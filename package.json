@@ -2,17 +2,22 @@
   "name": "eslint-plugin-node",
   "version": "0.0.0",
   "description": "Additional ESLint's rules for Node.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "preversion": "npm run test",
     "clean": "rimraf coverage",
     "lint": "eslint lib tests",
     "test": "eslint lib tests && istanbul cover node_modules/mocha/bin/_mocha -- tests/lib/**/*.js",
-    "dev": "node scripts/dev.js"
+    "dev": "mocha tests/lib/**/*.js --watch --growl --grep",
+    "coveralls": "cat coverage/lcov.info | coveralls"
   },
   "peerDependencies": {
     "eslint": "^1.0.0"
   },
   "devDependencies": {
+    "coveralls": "^2.11.4",
     "eslint": "^1.10.1",
     "eslint-config-eslint": "^1.0.1",
     "istanbul": "^0.4.0",
