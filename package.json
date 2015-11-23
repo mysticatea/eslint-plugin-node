@@ -1,0 +1,23 @@
+{
+  "name": "eslint-plugin-node",
+  "version": "0.0.0",
+  "description": "Additional ESLint's rules for Node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mysticatea/eslint-plugin-node.git"
+  },
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "author": "Toru Nagashima",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mysticatea/eslint-plugin-node/issues"
+  },
+  "homepage": "https://github.com/mysticatea/eslint-plugin-node#readme"
+}

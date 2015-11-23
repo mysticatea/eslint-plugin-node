@@ -1,2 +1,3 @@
 # eslint-plugin-node
-Additional ESLint's rules for Node.js
+
+I'm working on this now.
