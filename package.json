@@ -3,7 +3,21 @@
   "version": "0.0.0",
   "description": "Additional ESLint's rules for Node.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "preversion": "npm run test",
+    "clean": "rimraf coverage",
+    "lint": "eslint lib tests",
+    "test": "eslint lib tests && istanbul cover node_modules/mocha/bin/_mocha -- tests/lib/**/*.js",
+    "dev": "node scripts/dev.js"
+  },
+  "peerDependencies": {
+    "eslint": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^1.10.1",
+    "eslint-config-eslint": "^1.0.1",
+    "istanbul": "^0.4.0",
+    "mocha": "^2.3.4",
+    "rimraf": "^2.4.4"
   },
   "repository": {
     "type": "git",
