@@ -3,14 +3,17 @@
   "version": "0.0.0",
   "description": "Additional ESLint's rules for Node.js",
   "files": [
-    "lib"
+    "lib",
+    "index.js"
   ],
   "scripts": {
-    "preversion": "npm run test",
+    "preversion": "npm-run-all test build",
     "clean": "rimraf coverage",
     "lint": "eslint lib tests",
-    "test": "eslint lib tests && istanbul cover node_modules/mocha/bin/_mocha -- tests/lib/**/*.js",
-    "dev": "mocha tests/lib/**/*.js --watch --growl --grep",
+    "build": "node scripts/generate-index.js",
+    "test": "npm-run-all clean lint test:mocha",
+    "test:mocha": "istanbul cover node_modules/mocha/bin/_mocha -- tests/lib/**/*.js",
+    "dev": "node scripts/dev.js",
     "coveralls": "cat coverage/lcov.info | coveralls"
   },
   "peerDependencies": {
@@ -27,7 +30,10 @@
     "eslint-config-eslint": "^1.0.1",
     "istanbul": "^0.4.0",
     "mocha": "^2.3.4",
-    "rimraf": "^2.4.4"
+    "npm-run-all": "^1.3.2",
+    "rimraf": "^2.4.4",
+    "shelljs": "^0.5.3",
+    "watch": "^0.16.0"
   },
   "repository": {
     "type": "git",
