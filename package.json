@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "preversion": "npm-run-all test build",
+    "postversion": "git push && git push --tags",
     "clean": "rimraf coverage",
     "lint": "eslint lib tests --rulesdir lib/rules --rule \"no-missing-require:2\"",
     "build": "node scripts/generate-index.js",
