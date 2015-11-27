@@ -9,7 +9,7 @@
   "scripts": {
     "preversion": "npm-run-all test build",
     "clean": "rimraf coverage",
-    "lint": "eslint lib tests",
+    "lint": "eslint lib tests --rulesdir lib/rules --rule \"no-missing-require:2\"",
     "build": "node scripts/generate-index.js",
     "test": "npm-run-all clean lint test:mocha",
     "test:mocha": "istanbul cover node_modules/mocha/bin/_mocha -- tests/lib/**/*.js",

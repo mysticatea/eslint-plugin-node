@@ -13,7 +13,7 @@
 
 var path = require("path"),
     RuleTester = require("eslint").RuleTester,
-    rule = require("../../../lib/rules/no-missing-require");
+    rule = require("../../../lib/rules/no-missing-import");
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -34,71 +34,64 @@ function fixture(name) {
 
 
 var ruleTester = new RuleTester();
-ruleTester.run("no-missing-require", rule, {
+ruleTester.run("no-missing-import", rule, {
     valid: [
         {
             filename: fixture("test.js"),
-            code: "require('eslint');",
-            env: {node: true}
+            code: "import eslint from 'eslint';",
+            env: {node: true},
+            ecmaFeatures: {modules: true}
         },
         {
             filename: fixture("test.js"),
-            code: "require('eslint/lib/ast-utils');",
-            env: {node: true}
+            code: "import eslint from 'eslint/lib/ast-utils';",
+            env: {node: true},
+            ecmaFeatures: {modules: true}
         },
         {
             filename: fixture("test.js"),
-            code: "require('./a');",
-            env: {node: true}
+            code: "import a from './a';",
+            env: {node: true},
+            ecmaFeatures: {modules: true}
         },
         {
             filename: fixture("test.js"),
-            code: "require('./a.js');",
-            env: {node: true}
+            code: "import a from './a.js';",
+            env: {node: true},
+            ecmaFeatures: {modules: true}
         },
         {
             filename: fixture("test.js"),
-            code: "require('resolve');",
+            code: "import resolve from 'resolve';",
             options: [{"publish": "*.js"}],
-            env: {node: true}
+            env: {node: true},
+            ecmaFeatures: {modules: true}
         },
         {
             filename: fixture("test.js"),
-            code: "require('mocha');",
-            env: {node: true}
+            code: "import mocha from 'mocha';",
+            env: {node: true},
+            ecmaFeatures: {modules: true}
         },
 
         // Ignores it if the filename is unknown.
-        "require('no-exist-package-0');",
-        "require('./b');",
-
-        // Ignores it if the target is not string.
         {
-            filename: fixture("test.js"),
-            code: "require();",
-            env: {node: true}
+            code: "import abc from 'no-exist-package-0';",
+            env: {node: true},
+            ecmaFeatures: {modules: true}
         },
         {
-            filename: fixture("test.js"),
-            code: "require(foo);",
-            env: {node: true}
-        },
-        {
-            filename: fixture("test.js"),
-            code: "require(777);",
-            env: {node: true}
-        },
-        {
-            filename: fixture("test.js"),
-            code: "require(`foo${bar}`);",
-            env: {node: true, es6: true}
+            code: "import b from './b';",
+            env: {node: true},
+            ecmaFeatures: {modules: true}
         }
     ],
     invalid: [
         {
             filename: fixture("test.js"),
-            code: "require('no-exist-package-0');",
+            code: "import abc from 'no-exist-package-0';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             errors: [
                 "\"no-exist-package-0\" is not found.",
                 "\"no-exist-package-0\" is not published."
@@ -106,8 +99,9 @@ ruleTester.run("no-missing-require", rule, {
         },
         {
             filename: fixture("test.js"),
-            code: "require('@mysticatea/test');",
+            code: "import test from '@mysticatea/test';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             errors: [
                 "\"@mysticatea/test\" is not found.",
                 "\"@mysticatea/test\" is not published."
@@ -115,34 +109,39 @@ ruleTester.run("no-missing-require", rule, {
         },
         {
             filename: fixture("test.js"),
-            code: "require('no-exist-package-0');",
+            code: "import abc from 'no-exist-package-0';",
             options: [{"publish": null}],
             env: {node: true},
+            ecmaFeatures: {modules: true},
             errors: ["\"no-exist-package-0\" is not found."]
         },
         {
             filename: fixture("test.js"),
-            code: "require('./b');",
+            code: "import b from './b';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             errors: ["\"./b\" is not found."]
         },
         {
             filename: fixture("test.js"),
-            code: "require('./a.json');",
+            code: "import a from './a.json';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             errors: ["\"./a.json\" is not found."]
         },
         {
             filename: fixture("test.js"),
-            code: "require('async');",
+            code: "import async from 'async';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             errors: ["\"async\" is not published."]
         },
         {
             filename: fixture("test.js"),
-            code: "require(`mocha`);",
+            code: "import mocha from 'mocha';",
             options: [{"publish": "*.js"}],
             env: {node: true, es6: true},
+            ecmaFeatures: {modules: true},
             errors: ["\"mocha\" is not published."]
         }
     ]
