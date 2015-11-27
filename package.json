@@ -17,7 +17,7 @@
     "coveralls": "cat coverage/lcov.info | coveralls"
   },
   "peerDependencies": {
-    "eslint": "^1.0.0"
+    "eslint": ">=1.0.0"
   },
   "dependencies": {
     "minimatch": "^3.0.0",
