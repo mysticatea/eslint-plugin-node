@@ -13,35 +13,52 @@ If `package.json` was not found, this rule does nothing.
 This rule checks `bin` field of `package.json`, then if a target file matches one of `bin` files, it checks whether or not there is a correct shebang.
 Otherwise it checks whether or not there is not a shebang.
 
-### For files in `bin` field of `package.json`:
-
-The following patterns are considered problems:
+The following patterns are considered problems for files in `bin` field of `package.json`:
 
 ```js
 console.log("hello"); /*error This file needs shebang "#!/usr/bin/env node".*/
 ```
 
-The following patterns are considered not problems:
-
-```js
-#!/usr/bin/env node
-console.log("hello");
-```
-
-### For other files:
-
-The following patterns are considered problems:
+The following patterns are considered problems for other files:
 
 ```js
 #!/usr/bin/env node   /*error This file needs no shebang.*/
 console.log("hello");
 ```
 
-The following patterns are considered not problems:
+The following patterns are considered not problems for files in `bin` field of `package.json`:
+
+```js
+#!/usr/bin/env node
+console.log("hello");
+```
+
+The following patterns are considered not problems for other files:
 
 ```js
 console.log("hello");
 ```
+
+### Options
+
+```json
+{
+    "node/shebang": [2, {"convertBinPath": null}]
+}
+```
+
+- `convertBinPath` (`null | string[]`) - Configure to convert `bin` paths.
+  The purpose of this option is to handle source codes which are transpiled.
+  The value is two strings, the first is a convert source, the second is a convert result.
+  For example:
+
+  ```json
+  {
+      "node/shebang": [2, {"convertBinPath": ["bin", "src/bin"]}]
+  }
+  ```
+
+  Then if a `bin` path is `./bin/index.js`, this rule handles `./src/bin/index.js` as a `bin` file.
 
 ## When Not To Use It
 
