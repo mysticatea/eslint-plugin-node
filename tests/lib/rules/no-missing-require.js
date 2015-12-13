@@ -68,9 +68,28 @@ ruleTester.run("no-missing-require", rule, {
             env: {node: true}
         },
 
+        // Ignores it if not callee.
+        {
+            filename: fixture("test.js"),
+            code: "require;",
+            env: {node: true}
+        },
+
+        // Ignores it if the global variable of `require` is not defined.
+        {
+            filename: fixture("test.js"),
+            code: "require('no-exist-package-0');"
+        },
+
         // Ignores it if the filename is unknown.
-        "require('no-exist-package-0');",
-        "require('./b');",
+        {
+            code: "require('no-exist-package-0');",
+            env: {node: true}
+        },
+        {
+            code: "require('./b');",
+            env: {node: true}
+        },
 
         // Ignores it if the target is not string.
         {
