@@ -27,6 +27,7 @@ Some rules are slow because it searches `package.json` and opens it.
     "rules": {
         "node/no-missing-import": 2,
         "node/no-missing-require": 2,
+        "node/no-sloppy-block-bindings": 2,
         "node/shebang": 2
     }
 }
@@ -36,4 +37,5 @@ Some rules are slow because it searches `package.json` and opens it.
 
 - [no-missing-import](docs/rules/no-missing-import.md) - Disallow invalid `import` and `export` declarations.
 - [no-missing-require](docs/rules/no-missing-require.md) - Disallow invalid `require()`s.
+- [no-sloppy-block-bindings](docs/rules/no-sloppy-block-bindings.md) - Disallow block-scoped declarations outside strict mode.
 - [shebang](docs/rules/shebang.md) - Suggest correct usage of shebang.
