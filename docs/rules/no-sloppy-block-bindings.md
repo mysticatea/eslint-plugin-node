@@ -47,7 +47,7 @@ if (a) {
 }
 ```
 
-**Node:** In modules, the program is always strict mode.
+**Note:** In modules, the program is always strict mode.
 
 ## When Not To Use It
 
