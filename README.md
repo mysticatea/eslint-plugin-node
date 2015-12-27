@@ -11,8 +11,16 @@ Some rules are slow because it searches `package.json` and opens it.
 
 ## Install & Usage
 
+Currently, this is alpha versions for ESLint v2.
+
 ```
-> npm install --save-dev eslint eslint-plugin-node
+> npm install --save-dev eslint@next eslint-plugin-node
+```
+
+For ESLint v1, please use the specified version.
+
+```
+> npm install --save-dev eslint eslint-plugin-node@0.2
 ```
 
 **.eslintrc**
@@ -27,7 +35,7 @@ Some rules are slow because it searches `package.json` and opens it.
     "rules": {
         "node/no-missing-import": 2,
         "node/no-missing-require": 2,
-        "node/no-sloppy-block-bindings": 2,
+        "node/no-unsupported-features": [2, {"version": 4}],
         "node/shebang": 2
     }
 }
@@ -37,5 +45,5 @@ Some rules are slow because it searches `package.json` and opens it.
 
 - [no-missing-import](docs/rules/no-missing-import.md) - Disallow invalid `import` and `export` declarations.
 - [no-missing-require](docs/rules/no-missing-require.md) - Disallow invalid `require()`s.
-- [no-sloppy-block-bindings](docs/rules/no-sloppy-block-bindings.md) - Disallow block-scoped declarations outside strict mode.
+- [no-unsupported-features](docs/rules/no-unsupported-features.md) - Disallow unsupported features on the specified environment.
 - [shebang](docs/rules/shebang.md) - Suggest correct usage of shebang.
