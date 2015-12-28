@@ -17,7 +17,7 @@
     "coveralls": "cat coverage/lcov.info | coveralls"
   },
   "peerDependencies": {
-    "eslint": ">=2.0.0-alpha-2"
+    "eslint": ">=1.10.3"
   },
   "dependencies": {
     "minimatch": "^3.0.0",
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "coveralls": "^2.11.4",
-    "eslint": "^2.0.0-alpha-2",
+    "eslint": "^1.10.3",
     "eslint-config-eslint": "^1.0.1",
     "istanbul": "^0.4.0",
     "mocha": "^2.3.4",

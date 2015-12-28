@@ -40,24 +40,28 @@ ruleTester.run("no-missing-import", rule, {
             filename: fixture("test.js"),
             code: "import eslint from 'eslint';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },
         {
             filename: fixture("test.js"),
             code: "import eslint from 'eslint/lib/ast-utils';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },
         {
             filename: fixture("test.js"),
             code: "import a from './a';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },
         {
             filename: fixture("test.js"),
             code: "import a from './a.js';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },
         {
@@ -65,12 +69,14 @@ ruleTester.run("no-missing-import", rule, {
             code: "import resolve from 'resolve';",
             options: [{"publish": "*.js"}],
             env: {node: true},
+            ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },
         {
             filename: fixture("test.js"),
             code: "import mocha from 'mocha';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },
 
@@ -78,11 +84,13 @@ ruleTester.run("no-missing-import", rule, {
         {
             code: "import abc from 'no-exist-package-0';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },
         {
             code: "import b from './b';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         }
     ],
@@ -91,6 +99,7 @@ ruleTester.run("no-missing-import", rule, {
             filename: fixture("test.js"),
             code: "import abc from 'no-exist-package-0';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"},
             errors: [
                 "\"no-exist-package-0\" is not found.",
@@ -101,6 +110,7 @@ ruleTester.run("no-missing-import", rule, {
             filename: fixture("test.js"),
             code: "import test from '@mysticatea/test';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"},
             errors: [
                 "\"@mysticatea/test\" is not found.",
@@ -112,6 +122,7 @@ ruleTester.run("no-missing-import", rule, {
             code: "import abc from 'no-exist-package-0';",
             options: [{"publish": null}],
             env: {node: true},
+            ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"},
             errors: ["\"no-exist-package-0\" is not found."]
         },
@@ -119,6 +130,7 @@ ruleTester.run("no-missing-import", rule, {
             filename: fixture("test.js"),
             code: "import b from './b';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"},
             errors: ["\"./b\" is not found."]
         },
@@ -126,6 +138,7 @@ ruleTester.run("no-missing-import", rule, {
             filename: fixture("test.js"),
             code: "import a from './a.json';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"},
             errors: ["\"./a.json\" is not found."]
         },
@@ -133,6 +146,7 @@ ruleTester.run("no-missing-import", rule, {
             filename: fixture("test.js"),
             code: "import async from 'async';",
             env: {node: true},
+            ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"},
             errors: ["\"async\" is not published."]
         },
@@ -141,6 +155,7 @@ ruleTester.run("no-missing-import", rule, {
             code: "import mocha from 'mocha';",
             options: [{"publish": "*.js"}],
             env: {node: true, es6: true},
+            ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"},
             errors: ["\"mocha\" is not published."]
         }

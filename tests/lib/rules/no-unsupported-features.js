@@ -11,8 +11,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var rule = require("../../../lib/rules/no-unsupported-features"),
-    RuleTester = require("eslint").RuleTester;
+var rule = require("../../../lib/rules/no-unsupported-features");
+var RuleTester = require("eslint").RuleTester;
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -51,6 +51,7 @@ function convertPattern(retv, pattern) {
                 code: "/*" + pattern.name + ": " + versionText + "*/ " + pattern.code,
                 env: {es6: true},
                 options: [version],
+                ecmaFeatures: {modules: Boolean(pattern.modules)},
                 parserOptions: {sourceType: pattern.modules ? "module" : "script"}
             });
         } else {
@@ -58,12 +59,14 @@ function convertPattern(retv, pattern) {
                 code: "/*" + pattern.name + ": " + versionText + ", ignores: [\"" + pattern.key + "\"]*/ " + pattern.code,
                 env: {es6: true},
                 options: [{version: version, ignores: [pattern.key]}],
+                ecmaFeatures: {modules: Boolean(pattern.modules)},
                 parserOptions: {sourceType: pattern.modules ? "module" : "script"}
             });
             retv.invalid.push({
                 code: "/*" + pattern.name + ": " + versionText + "*/ " + pattern.code,
                 env: {es6: true},
                 options: [version],
+                ecmaFeatures: {modules: Boolean(pattern.modules)},
                 parserOptions: {sourceType: pattern.modules ? "module" : "script"},
                 errors: errors.map(function(message) { // eslint-disable-line no-loop-func
                     return message + versionText + ".";
@@ -172,13 +175,14 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 2,
         supported: NaN
     },
-    {
-        key: "unicodeCodePointEscapes",
-        name: "Unicode Code Point Escapes",
-        code: "var \\u{102C0} = { \\u{102C0} : '\\u{1d306}' };",
-        errors: 3,
-        supported: 4
-    },
+    // TODO: ESLint cannot parse unicode code point escapes.
+    // {
+    //     key: "unicodeCodePointEscapes",
+    //     name: "Unicode Code Point Escapes",
+    //     code: "var \\u{102C0} = { \\u{102C0} : '\\u{1d306}' };",
+    //     errors: 3,
+    //     supported: 4
+    // },
     {
         key: "newTarget",
         name: "\"new.target\"",

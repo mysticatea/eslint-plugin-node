@@ -39,31 +39,31 @@ The following patterns are considered problems:
 /*eslint no-unsupported-features: [2, {version: 4}]*/
 /*eslint-env es6*/
 
-function foo(a = 1) {  /*error Default Parameters are not supported yet on Node v4*/
+function foo(a = 1) {  /*error Default Parameters are not supported yet on Node v4.*/
     //...
 }
 
-function foo(...a) {   /*error Rest Parameters are not supported yet on Node v4*/
+function foo(...a) {   /*error Rest Parameters are not supported yet on Node v4.*/
     //...
 }
 
-var a = [...b];        /*error Spread Operators are not supported yet on Node v4*/
-var a = /foo/y;        /*error RegExp "y" Flags are not supported yet on Node v4*/
-var a = /foo/u;        /*error RegExp "u" Flags are not supported yet on Node v4*/
-var {a, b} = c;        /*error Destructuring are not supported yet on Node v4*/
-var {a, b} = c;        /*error Destructuring are not supported yet on Node v4*/
+var a = [...b];        /*error Spread Operators are not supported yet on Node v4.*/
+var a = /foo/y;        /*error RegExp "y" Flags are not supported yet on Node v4.*/
+var a = /foo/u;        /*error RegExp "u" Flags are not supported yet on Node v4.*/
+var {a, b} = c;        /*error Destructuring are not supported yet on Node v4.*/
+var {a, b} = c;        /*error Destructuring are not supported yet on Node v4.*/
 
-let a = 1;             /*error "let" Declarations in non-strict mode are not supported yet on Node v4*/
-const a = 1;           /*error "const" Declarations in non-strict mode are not supported yet on Node v4*/
-class A {}             /*error Classes in non-strict mode are not supported yet on Node v4*/
+let a = 1;             /*error "let" Declarations in non-strict mode are not supported yet on Node v4.*/
+const a = 1;           /*error "const" Declarations in non-strict mode are not supported yet on Node v4.*/
+class A {}             /*error Classes in non-strict mode are not supported yet on Node v4.*/
 
 if (a) {
-    function foo() {   /*error Block-Scoped Functions in non-strict mode are not supported yet on Node v4*/
+    function foo() {   /*error Block-Scoped Functions in non-strict mode are not supported yet on Node v4.*/
         //...
     }
 }
 
-var p = new Proxy(o, { /*error Proxy is not supported yet on Node v4*/
+var p = new Proxy(o, { /*error Proxy is not supported yet on Node v4.*/
     //...
 });
 ```

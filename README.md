@@ -11,16 +11,8 @@ Some rules are slow because it searches `package.json` and opens it.
 
 ## Install & Usage
 
-Currently, this is alpha versions for ESLint v2.
-
 ```
-> npm install --save-dev eslint@next eslint-plugin-node
-```
-
-For ESLint v1, please use the specified version.
-
-```
-> npm install --save-dev eslint eslint-plugin-node@0.2
+> npm install --save-dev eslint eslint-plugin-node
 ```
 
 **.eslintrc**
