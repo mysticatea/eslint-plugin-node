@@ -38,4 +38,4 @@ Some rules are slow because it searches `package.json` and opens it.
 - [no-missing-import](docs/rules/no-missing-import.md) - Disallow invalid `import` and `export` declarations.
 - [no-missing-require](docs/rules/no-missing-require.md) - Disallow invalid `require()`s.
 - [no-unsupported-features](docs/rules/no-unsupported-features.md) - Disallow unsupported ECMAScript features on the specified version.
-- [shebang](docs/rules/shebang.md) - Suggest correct usage of shebang.
+- [shebang](docs/rules/shebang.md) - Suggest correct usage of shebang. (fixable)

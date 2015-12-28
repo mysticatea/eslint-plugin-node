@@ -3,6 +3,8 @@
 When we make a CLI tool on Node.js, we add `bin` field to `package.json`, then we add a shebang the entry file.
 This rule suggests correct usage of shebang.
 
+**Fixable:** This rule is automatically fixable using the `--fix` flag on the command line.
+
 ## Rule Details
 
 This rule looks up `package.json` file from each linitng target file.

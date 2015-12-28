@@ -108,36 +108,43 @@ ruleTester.run("shebang", rule, {
         {
             filename: fixture("string-bin/bin/test.js"),
             code: "hello();",
+            output: "#!/usr/bin/env node\nhello();",
             errors: ["This file needs shebang \"#!/usr/bin/env node\"."]
         },
         {
             filename: fixture("string-bin/bin/test.js"),
             code: "#!/usr/bin/node\nhello();",
+            output: "#!/usr/bin/env node\nhello();",
             errors: ["This file needs shebang \"#!/usr/bin/env node\"."]
         },
         {
             filename: fixture("string-bin/lib/test.js"),
             code: "#!/usr/bin/env node\nhello();",
+            output: "hello();",
             errors: ["This file needs no shebang."]
         },
         {
             filename: fixture("object-bin/bin/a.js"),
             code: "hello();",
+            output: "#!/usr/bin/env node\nhello();",
             errors: ["This file needs shebang \"#!/usr/bin/env node\"."]
         },
         {
             filename: fixture("object-bin/bin/b.js"),
             code: "#!/usr/bin/node\nhello();",
+            output: "#!/usr/bin/env node\nhello();",
             errors: ["This file needs shebang \"#!/usr/bin/env node\"."]
         },
         {
             filename: fixture("object-bin/bin/c.js"),
             code: "#!/usr/bin/env node\nhello();",
+            output: "hello();",
             errors: ["This file needs no shebang."]
         },
         {
             filename: fixture("no-bin-field/lib/test.js"),
             code: "#!/usr/bin/env node\nhello();",
+            output: "hello();",
             errors: ["This file needs no shebang."]
         },
 
@@ -145,42 +152,49 @@ ruleTester.run("shebang", rule, {
         {
             filename: fixture("string-bin/src/bin/test.js"),
             code: "hello();",
+            output: "#!/usr/bin/env node\nhello();",
             options: [{"convertBinPath": ["bin", "src/bin"]}],
             errors: ["This file needs shebang \"#!/usr/bin/env node\"."]
         },
         {
             filename: fixture("string-bin/src/bin/test.js"),
             code: "#!/usr/bin/node\nhello();",
+            output: "#!/usr/bin/env node\nhello();",
             options: [{"convertBinPath": ["bin", "src/bin"]}],
             errors: ["This file needs shebang \"#!/usr/bin/env node\"."]
         },
         {
             filename: fixture("string-bin/src/lib/test.js"),
             code: "#!/usr/bin/env node\nhello();",
+            output: "hello();",
             options: [{"convertBinPath": ["bin", "src/bin"]}],
             errors: ["This file needs no shebang."]
         },
         {
             filename: fixture("object-bin/src/bin/a.js"),
             code: "hello();",
+            output: "#!/usr/bin/env node\nhello();",
             options: [{"convertBinPath": ["bin", "src/bin"]}],
             errors: ["This file needs shebang \"#!/usr/bin/env node\"."]
         },
         {
             filename: fixture("object-bin/src/bin/b.js"),
             code: "#!/usr/bin/node\nhello();",
+            output: "#!/usr/bin/env node\nhello();",
             options: [{"convertBinPath": ["bin", "src/bin"]}],
             errors: ["This file needs shebang \"#!/usr/bin/env node\"."]
         },
         {
             filename: fixture("object-bin/src/bin/c.js"),
             code: "#!/usr/bin/env node\nhello();",
+            output: "hello();",
             options: [{"convertBinPath": ["bin", "src/bin"]}],
             errors: ["This file needs no shebang."]
         },
         {
             filename: fixture("no-bin-field/src/lib/test.js"),
             code: "#!/usr/bin/env node\nhello();",
+            output: "hello();",
             options: [{"convertBinPath": ["bin", "src/bin"]}],
             errors: ["This file needs no shebang."]
         }
