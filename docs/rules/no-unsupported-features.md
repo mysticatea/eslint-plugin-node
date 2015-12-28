@@ -1,17 +1,7 @@
-# Disallow unsupported features on the specified environment (no-unsupported-features)
+# Disallow unsupported ECMAScript features on the specified version (no-unsupported-features)
 
 Node.js v0.12, v4, and v5 don't support all ECMAScript 2015 (ES6) features.
-But ESLint v2 is enabling or disabling all ECMAScript 2015 features at once.
-
-```json
-{
-    "parserOptions": {
-        "ecmaVersion": 6
-    }
-}
-```
-
-So this rule restricts features to the specified Node.js version.
+This rule reports when you used unsupported ECMAScript 2015 features on the specified Node version.
 
 ## Rule Details
 
