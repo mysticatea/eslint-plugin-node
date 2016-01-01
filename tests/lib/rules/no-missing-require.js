@@ -128,19 +128,13 @@ ruleTester.run("no-missing-require", rule, {
             filename: fixture("test.js"),
             code: "require('no-exist-package-0');",
             env: {node: true},
-            errors: [
-                "\"no-exist-package-0\" is not found.",
-                "\"no-exist-package-0\" is not published."
-            ]
+            errors: ["\"no-exist-package-0\" is not found."]
         },
         {
             filename: fixture("test.js"),
             code: "require('@mysticatea/test');",
             env: {node: true},
-            errors: [
-                "\"@mysticatea/test\" is not found.",
-                "\"@mysticatea/test\" is not published."
-            ]
+            errors: ["\"@mysticatea/test\" is not found."]
         },
         {
             filename: fixture("test.js"),
@@ -160,19 +154,6 @@ ruleTester.run("no-missing-require", rule, {
             code: "require('./a.json');",
             env: {node: true},
             errors: ["\"./a.json\" is not found."]
-        },
-        {
-            filename: fixture("test.js"),
-            code: "require('async');",
-            env: {node: true},
-            errors: ["\"async\" is not published."]
-        },
-        {
-            filename: fixture("test.js"),
-            code: "require(`mocha`);",
-            options: [{"publish": "*.js"}],
-            env: {node: true, es6: true},
-            errors: ["\"mocha\" is not published."]
         }
     ]
 });

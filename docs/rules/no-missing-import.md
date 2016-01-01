@@ -1,4 +1,4 @@
-# Disallow invalid `import` and `export` declarations (no-missing-import)
+# Disallow `import` and `export` declarations for files that don't exist (no-missing-import)
 
 This is similar to [no-missing-require](no-missing-require.md), but this rule handles `import` and `export` declarations.
 
@@ -6,16 +6,21 @@ This is similar to [no-missing-require](no-missing-require.md), but this rule ha
 
 ## Rule Details
 
-See [no-missing-require](no-missing-require.md#rule-details).
+This rule checks whether or not the file paths of `import` and `export` declarations.
+If the file paths don't exist, this reports these.
 
 The following patterns are considered problems:
 
 ```js
 import typoFile from "./typo-file";   /*error "./typo-file" is not found.*/
 import typoModule from "typo-module"; /*error "typo-module" is not found.*/
+```
 
-// If the module is not written in "dependencies" and "peerDependencies"....
-import someone from "someone";        /*error "someone" is not published.*/
+The following patterns are considered not problems:
+
+```js
+import existingFile from "./existing-file";
+import existingModule from "existing-module";
 ```
 
 ## When Not To Use It

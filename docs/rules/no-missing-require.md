@@ -1,53 +1,30 @@
-# Disallow invalid `require()`s (no-missing-require)
+# Disallow `require()`s for files that don't exist (no-missing-require)
 
-Maybe we cannot find typo of import paths until run it.
-Also, maybe we cannot find lacking of `dependencies` of `package.json` until publish it.
+Maybe we cannot find typo of import paths until run it, so this rule checks import paths.
 
-So this rule checks import paths and `dependencies` of `package.json`.
+```js
+// If the file "foo" doesn't exist, this is a runtime error.
+const foo = require("./foo");
+```
 
 ## Rule Details
 
-This rule does two checks.
-
-1. This rule checks whether or not the files of import paths exist.
-   If those do not exist, it reports the invalid `require()`.
-2. This rule looks up `package.json` file from each linitng target file.
-   Starting from the directory of the target file, it goes up ancestor directories until found.
-   Then it checks whether or not the imported modules are published properly.
-
-This does not check for dynamic imports.
+This rule checks whether or not the file paths of `require()`s.
+If the file paths don't exist, this reports these.
 
 The following patterns are considered problems:
 
 ```js
 var typoFile = require("./typo-file");   /*error "./typo-file" is not found.*/
 var typoModule = require("typo-module"); /*error "typo-module" is not found.*/
-
-// If the module is not written in "dependencies" and "peerDependencies"....
-var someone = require("someone");        /*error "someone" is not published.*/
 ```
 
 The following patterns are considered not problems:
 
 ```js
-var existingFile = require("./existing");
-
-// If it's installed and it's written in `dependencies` or `peerDependencies`.
-var eslint = require("eslint");
+var existingFile = require("./existing-file");
+var existingModule = require("existing-module");
 ```
-
-### Options
-
-```json
-{
-    "no-missing-require": [2, {"publish": "+(./*|./{bin,lib,src}/**)"}]
-}
-```
-
-- `publish` (`string`) - A glob pattern.
-  If a linting target file is matched this pattern, the file is addressed as a published file.
-  `require()` in the published files cannot import files which are not published.
-  On the other hand, other files can import files which are not published.
 
 ## When Not To Use It
 
