@@ -2,16 +2,18 @@
 
 This is similar to [no-missing-require](no-missing-require.md), but this rule handles `import` and `export` declarations.
 
-**NOTE:** ECMAScript 2015 (ES6) does not define the lookup logic. So this rule spec might be changed in future.
+**NOTE:** ECMAScript 2015 (ES6) does not define the lookup logic and Node does not support modules yet. So this rule spec might be changed in future.
 
 ## Rule Details
 
-This rule checks whether or not the file paths of `import` and `export` declarations.
+This rule checks the file paths of `import` and `export` declarations.
 If the file paths don't exist, this reports these.
 
 The following patterns are considered problems:
 
 ```js
+/*eslint node/no-missing-import: 2*/
+
 import typoFile from "./typo-file";   /*error "./typo-file" is not found.*/
 import typoModule from "typo-module"; /*error "typo-module" is not found.*/
 ```
@@ -19,6 +21,8 @@ import typoModule from "typo-module"; /*error "typo-module" is not found.*/
 The following patterns are considered not problems:
 
 ```js
+/*eslint node/no-missing-import: 2*/
+
 import existingFile from "./existing-file";
 import existingModule from "existing-module";
 ```

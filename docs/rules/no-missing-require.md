@@ -9,12 +9,14 @@ const foo = require("./foo");
 
 ## Rule Details
 
-This rule checks whether or not the file paths of `require()`s.
+This rule checks the file paths of `require()`s.
 If the file paths don't exist, this reports these.
 
 The following patterns are considered problems:
 
 ```js
+/*eslint node/no-missing-require: 2*/
+
 var typoFile = require("./typo-file");   /*error "./typo-file" is not found.*/
 var typoModule = require("typo-module"); /*error "typo-module" is not found.*/
 ```
@@ -22,8 +24,13 @@ var typoModule = require("typo-module"); /*error "typo-module" is not found.*/
 The following patterns are considered not problems:
 
 ```js
+/*eslint node/no-missing-require: 2*/
+
 var existingFile = require("./existing-file");
 var existingModule = require("existing-module");
+
+// This rule cannot check for dynamic imports.
+var foo = require(FOO_NAME);
 ```
 
 ## When Not To Use It
