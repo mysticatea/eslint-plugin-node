@@ -39,3 +39,9 @@ Some rules are slow because it searches `package.json` and opens it.
 - [no-missing-require](docs/rules/no-missing-require.md) - Disallow invalid `require()`s.
 - [no-unsupported-features](docs/rules/no-unsupported-features.md) - Disallow unsupported ECMAScript features on the specified version.
 - [shebang](docs/rules/shebang.md) - Suggest correct usage of shebang. (fixable)
+
+## FAQ
+
+Q: The `no-missing-import` / `no-missing-require` rules don't work with nested folders in SublimeLinter-eslint
+
+A: See [context.getFilename() in rule returns relative path](https://github.com/roadhump/SublimeLinter-eslint#contextgetfilename-in-rule-returns-relative-path) in the SublimeLinter-eslint FAQ.
