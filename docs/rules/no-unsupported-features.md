@@ -7,12 +7,12 @@ This rule reports when you used unsupported ECMAScript 2015 features on the spec
 
 **This rule expects to be used with `"env": {"es6": true}` configuration.**
 
-This rule requires to specify a Node.js version always.
+This rule requires to specify a Node version always.
 For Example:
 
 ```json
 {
-    "no-unsupported-features": [2, {"version": 4}]
+    "node/no-unsupported-features": [2, {"version": 4}]
 }
 ```
 
@@ -26,7 +26,7 @@ This rule accepts the following version number:
 The following patterns are considered problems:
 
 ```js
-/*eslint no-unsupported-features: [2, {version: 4}]*/
+/*eslint node/no-unsupported-features: [2, {version: 4}]*/
 /*eslint-env es6*/
 
 function foo(a = 1) {  /*error Default Parameters are not supported yet on Node v4.*/
@@ -61,7 +61,7 @@ var p = new Proxy(o, { /*error Proxy is not supported yet on Node v4.*/
 The following patterns are considered not problems:
 
 ```js
-/*eslint no-unsupported-features: [2, {version: 4}]*/
+/*eslint node/no-unsupported-features: [2, {version: 4}]*/
 /*eslint-env es6*/
 
 for (var a of list) {
@@ -98,7 +98,7 @@ This rule has `"ignores"` option to ignore to use the specified features.
 
 ```json
 {
-    "no-unsupported-features": [2, {"version": 4, "ignores": []}]
+    "node/no-unsupported-features": [2, {"version": 4, "ignores": []}]
 }
 ```
 
@@ -136,7 +136,7 @@ This `"ignores"` option accepts the following strings.
 The following patterns are considered not problems when it's using `"ignores"`:
 
 ```js
-/*eslint no-unsupported-features: [2, {version: 4, ignores: ["defaultParameters"]}]*/
+/*eslint node/no-unsupported-features: [2, {version: 4, ignores: ["defaultParameters"]}]*/
 /*eslint-env es6*/
 
 function foo(a = 1) {

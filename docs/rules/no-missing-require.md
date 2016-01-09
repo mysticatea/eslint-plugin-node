@@ -1,53 +1,72 @@
-# Disallow invalid `require()`s (no-missing-require)
+# Disallow `require()`s for files that don't exist (no-missing-require)
 
-Maybe we cannot find typo of import paths until run it.
-Also, maybe we cannot find lacking of `dependencies` of `package.json` until publish it.
+Maybe we cannot find typo of import paths until run it, so this rule checks import paths.
 
-So this rule checks import paths and `dependencies` of `package.json`.
+```js
+// If the file "foo" doesn't exist, this is a runtime error.
+const foo = require("./foo");
+```
 
 ## Rule Details
 
-This rule does two checks.
-
-1. This rule checks whether or not the files of import paths exist.
-   If those do not exist, it reports the invalid `require()`.
-2. This rule looks up `package.json` file from each linitng target file.
-   Starting from the directory of the target file, it goes up ancestor directories until found.
-   Then it checks whether or not the imported modules are published properly.
-
-This does not check for dynamic imports.
+This rule checks the file paths of `require()`s.
+If the file paths don't exist, this reports these.
 
 The following patterns are considered problems:
 
 ```js
+/*eslint node/no-missing-require: 2*/
+
 var typoFile = require("./typo-file");   /*error "./typo-file" is not found.*/
 var typoModule = require("typo-module"); /*error "typo-module" is not found.*/
-
-// If the module is not written in "dependencies" and "peerDependencies"....
-var someone = require("someone");        /*error "someone" is not published.*/
 ```
 
 The following patterns are considered not problems:
 
 ```js
-var existingFile = require("./existing");
+/*eslint node/no-missing-require: 2*/
 
-// If it's installed and it's written in `dependencies` or `peerDependencies`.
-var eslint = require("eslint");
+var existingFile = require("./existing-file");
+var existingModule = require("existing-module");
+
+// This rule cannot check for dynamic imports.
+var foo = require(FOO_NAME);
 ```
 
 ### Options
 
 ```json
 {
-    "no-missing-require": [2, {"publish": "+(./*|./{bin,lib,src}/**)"}]
+    "rules": {
+        "node/no-missing-require": [2, {
+            "tryExtensions": [".js", ".json", ".node"]
+        }]
+    }
 }
 ```
 
-- `publish` (`string`) - A glob pattern.
-  If a linting target file is matched this pattern, the file is addressed as a published file.
-  `require()` in the published files cannot import files which are not published.
-  On the other hand, other files can import files which are not published.
+#### `tryExtensions`
+
+When an import path does not exist, this rule checks whether or not any of `path.js`, `path.json`, and `path.node` exists.
+`tryExtensions` option is the extension list this rule uses at the time.
+
+Default is `[".js", ".json", ".node"]`.
+
+This option can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
+Several rules have this option, but we can set this option at once.
+
+```json
+{
+    "settings": {
+        "node": {
+            "tryExtensions": [".js", ".json", ".node"]
+        }
+    },
+    "rules": {
+        "node/no-missing-require": 2
+    }
+}
+```
 
 ## When Not To Use It
 

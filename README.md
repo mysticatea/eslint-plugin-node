@@ -7,8 +7,6 @@
 
 Additional ESLint's rules for Node.js
 
-Some rules are slow because it searches `package.json` and opens it.
-
 ## Install & Usage
 
 ```
@@ -27,6 +25,8 @@ Some rules are slow because it searches `package.json` and opens it.
     "rules": {
         "node/no-missing-import": 2,
         "node/no-missing-require": 2,
+        "node/no-unpublished-import": 2,
+        "node/no-unpublished-require": 2,
         "node/no-unsupported-features": [2, {"version": 4}],
         "node/shebang": 2
     }
@@ -35,7 +35,11 @@ Some rules are slow because it searches `package.json` and opens it.
 
 ## Rules
 
-- [no-missing-import](docs/rules/no-missing-import.md) - Disallow invalid `import` and `export` declarations.
-- [no-missing-require](docs/rules/no-missing-require.md) - Disallow invalid `require()`s.
+Some rules are slow because it searches `package.json` and opens it.
+
+- [no-missing-import](docs/rules/no-missing-import.md) - Disallow `import` and `export` declarations for files that don't exist.
+- [no-missing-require](docs/rules/no-missing-require.md) - Disallow `require()`s for files that don't exist.
+- [no-unpublished-import](docs/rules/no-unpublished-import.md) - Disallow `import` and `export` declarations for files that are not published.
+- [no-unpublished-require](docs/rules/no-unpublished-require.md) - Disallow `require()`s for files that are not published.
 - [no-unsupported-features](docs/rules/no-unsupported-features.md) - Disallow unsupported ECMAScript features on the specified version.
 - [shebang](docs/rules/shebang.md) - Suggest correct usage of shebang. (fixable)

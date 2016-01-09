@@ -1,30 +1,39 @@
-# Disallow `import` and `export` declarations for files that don't exist (no-missing-import)
+# Disallow `import` and `export` declarations for files that are not published (no-unpublished-import)
 
-This is similar to [no-missing-require](no-missing-require.md), but this rule handles `import` and `export` declarations.
+This is similar to [no-unpublished-require](no-unpublished-require.md), but this rule handles `import` and `export` declarations.
 
 **NOTE:** ECMAScript 2015 (ES6) does not define the lookup logic and Node does not support modules yet. So this rule spec might be changed in future.
 
 ## Rule Details
 
 This rule checks the file paths of `import` and `export` declarations.
-If the file paths don't exist, this reports these.
+If the file paths are not published, this reports these.
+
+"published" is that satisfying the following conditions:
+
+- If it's a file:
+  - `"files"` field of `package.json` includes the file, or the field is nothing.
+  - `.npmignore` does not include the file.
+- If it's a module:
+  - `"dependencies"` or `"peerDependencies"` field of `package.json` includes the module.
+    If the file `require` is written is not published then it's also OK that `"devDependencies"` field of `package.json` includes the module.
 
 The following patterns are considered problems:
 
 ```js
-/*eslint node/no-missing-import: 2*/
+/*eslint node/no-unpublished-import: 2*/
 
-import typoFile from "./typo-file";   /*error "./typo-file" is not found.*/
-import typoModule from "typo-module"; /*error "typo-module" is not found.*/
+import ignoredFile from "./ignored-file";             /*error "./ignored-file" is not published.*/
+import notDependedModule from "not-depended-module";  /*error "not-depended-module" is not published.*/
 ```
 
 The following patterns are considered not problems:
 
 ```js
-/*eslint node/no-missing-import: 2*/
+/*eslint node/no-unpublished-import: 2*/
 
-import existingFile from "./existing-file";
-import existingModule from "existing-module";
+import publishedFile from "./published-file";
+import dependedModule from "depended-module";
 ```
 
 ### Options
@@ -32,7 +41,7 @@ import existingModule from "existing-module";
 ```json
 {
     "rules": {
-        "node/no-missing-import": [2, {
+        "node/no-unpublished-import": [2, {
             "tryExtensions": [".js", ".json", ".node"]
         }]
     }
@@ -57,7 +66,7 @@ Several rules have this option, but we can set this option at once.
         }
     },
     "rules": {
-        "node/no-missing-import": 2
+        "node/no-unpublished-import": 2
     }
 }
 ```
