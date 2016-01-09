@@ -1,6 +1,6 @@
 # Suggest correct usage of shebang (node/shebang)
 
-When we make a CLI tool on Node.js, we add `bin` field to `package.json`, then we add a shebang the entry file.
+When we make a CLI tool with Node.js, we add `bin` field to `package.json`, then we add a shebang the entry file.
 This rule suggests correct usage of shebang.
 
 **Fixable:** This rule is automatically fixable using the `--fix` flag on the command line.
@@ -45,22 +45,63 @@ console.log("hello");
 
 ```json
 {
-    "node/shebang": [2, {"convertBinPath": null}]
+    "node/shebang": [2, {"convertPath": null}]
 }
 ```
 
-- `convertBinPath` (`null | string[]`) - Configure to convert `bin` paths.
-  The purpose of this option is to handle source codes which are transpiled.
-  The value is two strings, the first is a convert source, the second is a convert result.
-  For example:
+#### `convertPath`
 
-  ```json
-  {
-      "node/shebang": [2, {"convertBinPath": ["bin", "src/bin"]}]
-  }
-  ```
+If we use transpilers (e.g. Babel), perhaps the file path to a source code is never handled as a bin file.
+`convertPath` option tells to the rule, it needs to convert file paths.
 
-  Then if a `bin` path is `./bin/index.js`, this rule handles `./src/bin/index.js` as a `bin` file.
+For example:
+
+```json
+{
+    "rules": {
+        "node/shebang": [2, {
+            "convertPath": {
+                "src/**/*.jsx": ["^src/(.+?)\\.jsx$", "lib/$1.js"]
+            }
+        }]
+    }
+}
+```
+
+This option has the following shape: `<targetFiles>: [<fromRegExp>, <toString>]`
+
+`targetFiles` is a glob pattern.
+It converts paths which are matched to the pattern with the following way.
+
+```js
+path.replace(new RegExp(fromRegExp), toString);
+```
+
+So on this example, `src/a/foo.jsx` is handled as `lib/a/foo.js`.
+
+### Shared Settings
+
+The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
+Several rules have the same option, but we can set this option at once.
+
+- `convertPath`
+
+For Example:
+
+```json
+{
+    "settings": {
+        "node": {
+            "convertPath": {
+                "src/**/*.jsx": ["^src/(.+?)\\.jsx$", "lib/$1.js"]
+            }
+        }
+    },
+    "rules": {
+        "node/shebang": 2
+    }
+}
+```
 
 ## When Not To Use It
 

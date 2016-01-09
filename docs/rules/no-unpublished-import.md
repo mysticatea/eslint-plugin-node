@@ -61,7 +61,7 @@ For example:
     "rules": {
         "node/no-unpublished-import": [2, {
             "convertPath": {
-                "src/**/*.jsx": ["src/(.+?)\\.jsx", "lib/$1.js"]
+                "src/**/*.jsx": ["^src/(.+?)\\.jsx$", "lib/$1.js"]
             },
             "tryExtensions": [".js", ".jsx", ".json"]
         }]
@@ -102,7 +102,7 @@ For Example:
     "settings": {
         "node": {
             "convertPath": {
-                "src/**/*.jsx": ["src/(.+?)\\.jsx", "lib/$1.js"]
+                "src/**/*.jsx": ["^src/(.+?)\\.jsx$", "lib/$1.js"]
             },
             "tryExtensions": [".js", ".jsx", ".json"]
         }
