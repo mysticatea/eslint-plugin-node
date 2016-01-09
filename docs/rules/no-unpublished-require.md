@@ -44,11 +44,43 @@ var foo = require(FOO_NAME);
 {
     "rules": {
         "node/no-unpublished-require": [2, {
+            "convertPath": null,
             "tryExtensions": [".js", ".json", ".node"]
         }]
     }
 }
 ```
+
+#### `convertPath`
+
+If we use transpilers (e.g. Babel), perhaps the file path to a source code is never published.
+`convertPath` option tells to the rule, it needs to convert file paths.
+
+For example:
+
+```json
+{
+    "rules": {
+        "node/no-unpublished-require": [2, {
+            "convertPath": {
+                "src/**/*.jsx": ["^src/(.+?)\\.jsx$", "lib/$1.js"]
+            },
+            "tryExtensions": [".js", ".jsx", ".json"]
+        }]
+    }
+}
+```
+
+This option has the following shape: `<targetFiles>: [<fromRegExp>, <toString>]`
+
+`targetFiles` is a glob pattern.
+It converts paths which are matched to the pattern with the following way.
+
+```js
+path.replace(new RegExp(fromRegExp), toString);
+```
+
+So on this example, `src/a/foo.jsx` is handled as `lib/a/foo.js`.
 
 #### `tryExtensions`
 
@@ -57,14 +89,24 @@ When an import path does not exist, this rule checks whether or not any of `path
 
 Default is `[".js", ".json", ".node"]`.
 
-This option can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
-Several rules have this option, but we can set this option at once.
+### Shared Settings
+
+The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
+Several rules have the same option, but we can set this option at once.
+
+- `convertPath`
+- `tryExtensions`
+
+For Example:
 
 ```json
 {
     "settings": {
         "node": {
-            "tryExtensions": [".js", ".json", ".node"]
+            "convertPath": {
+                "src/**/*.jsx": ["^src/(.+?)\\.jsx$", "lib/$1.js"]
+            },
+            "tryExtensions": [".js", ".jsx", ".json"]
         }
     },
     "rules": {
