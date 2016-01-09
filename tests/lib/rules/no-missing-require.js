@@ -58,6 +58,36 @@ ruleTester.run("no-missing-require", rule, {
         },
         {
             filename: fixture("test.js"),
+            code: "require('./a.config');",
+            env: {node: true}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "require('./a.config.js');",
+            env: {node: true}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "require('./c');",
+            env: {node: true}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "require('./c.json');",
+            env: {node: true}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "require('./c.config');",
+            env: {node: true}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "require('./c.config.json');",
+            env: {node: true}
+        },
+        {
+            filename: fixture("test.js"),
             code: "require('resolve');",
             options: [{"publish": "*.js"}],
             env: {node: true}
