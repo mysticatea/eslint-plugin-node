@@ -66,6 +66,20 @@ ruleTester.run("no-missing-import", rule, {
         },
         {
             filename: fixture("test.js"),
+            code: "import aConfig from './a.config';",
+            env: {node: true},
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import aConfig from './a.config.js';",
+            env: {node: true},
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+        {
+            filename: fixture("test.js"),
             code: "import resolve from 'resolve';",
             options: [{"publish": "*.js"}],
             env: {node: true},
