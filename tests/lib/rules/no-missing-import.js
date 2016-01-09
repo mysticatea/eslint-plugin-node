@@ -43,13 +43,19 @@ ruleTester.run("no-missing-import", rule, {
         },
         {
             filename: fixture("test.js"),
+            code: "import fs from 'fs';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+        {
+            filename: fixture("test.js"),
             code: "import eslint from 'eslint/lib/ast-utils';",
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },
         {
             filename: fixture("test.js"),
-            code: "import a from './a';",
+            code: "import a from './a'; a();",
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },
@@ -73,14 +79,41 @@ ruleTester.run("no-missing-import", rule, {
         },
         {
             filename: fixture("test.js"),
-            code: "import resolve from 'resolve';",
-            options: [{"publish": "*.js"}],
+            code: "import b from './b';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import b from './b.json';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import c from './c.coffee';",
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },
         {
             filename: fixture("test.js"),
             code: "import mocha from 'mocha';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+
+        // tryExtensions
+        {
+            filename: fixture("test.js"),
+            code: "import c from './c';",
+            options: [{tryExtensions: [".coffee"]}],
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import c from './c';",
+            settings: {node: {tryExtensions: [".coffee"]}},
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },
@@ -93,6 +126,14 @@ ruleTester.run("no-missing-import", rule, {
         },
         {
             code: "import b from './b';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+
+        // no source.
+        {
+            filename: fixture("test.js"),
+            code: "export {foo, bar};",
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         }
@@ -114,10 +155,17 @@ ruleTester.run("no-missing-import", rule, {
         },
         {
             filename: fixture("test.js"),
-            code: "import b from './b';",
+            code: "import c from './c';",
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"},
-            errors: ["\"./b\" is not found."]
+            errors: ["\"./c\" is not found."]
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import d from './d';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"},
+            errors: ["\"./d\" is not found."]
         },
         {
             filename: fixture("test.js"),

@@ -36,7 +36,13 @@ ruleTester.run("no-unpublished-import", rule, {
     valid: [
         {
             filename: fixture("1/test.js"),
-            code: "import aaa from 'aaa';",
+            code: "import fs from 'fs';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+        {
+            filename: fixture("1/test.js"),
+            code: "import aaa from 'aaa'; aaa();",
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },
@@ -112,6 +118,12 @@ ruleTester.run("no-unpublished-import", rule, {
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },
+        {
+            filename: fixture("3/pub/test.js"),
+            code: "import p from '../package.json';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
 
         // Ignores it if the filename is unknown.
         {
@@ -179,6 +191,13 @@ ruleTester.run("no-unpublished-import", rule, {
             filename: fixture("3/pub/test.js"),
             code: "import ignore1 from './ignore1';",
             errors: ["\"./ignore1\" is not published."],
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+        {
+            filename: fixture("3/pub/test.js"),
+            code: "import abc from './abc';",
+            errors: ["\"./abc\" is not published."],
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },

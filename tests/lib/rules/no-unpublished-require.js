@@ -36,6 +36,11 @@ ruleTester.run("no-unpublished-require", rule, {
     valid: [
         {
             filename: fixture("1/test.js"),
+            code: "require('fs');",
+            env: {node: true}
+        },
+        {
+            filename: fixture("1/test.js"),
             code: "require('aaa');",
             env: {node: true}
         },
@@ -97,6 +102,11 @@ ruleTester.run("no-unpublished-require", rule, {
         {
             filename: fixture("3/pub/ignore1.js"),
             code: "require('bbb');",
+            env: {node: true}
+        },
+        {
+            filename: fixture("3/pub/test.js"),
+            code: "require('../package.json');",
             env: {node: true}
         },
 
@@ -193,6 +203,12 @@ ruleTester.run("no-unpublished-require", rule, {
             code: "require('./ignore1');",
             env: {node: true},
             errors: ["\"./ignore1\" is not published."]
+        },
+        {
+            filename: fixture("3/pub/test.js"),
+            code: "require('./abc');",
+            env: {node: true},
+            errors: ["\"./abc\" is not published."]
         },
         {
             filename: fixture("3/pub/test.js"),

@@ -31,10 +31,14 @@ function fixture(name) {
 // Test
 //------------------------------------------------------------------------------
 
-
 var ruleTester = new RuleTester();
 ruleTester.run("no-missing-require", rule, {
     valid: [
+        {
+            filename: fixture("test.js"),
+            code: "require('fs');",
+            env: {node: true}
+        },
         {
             filename: fixture("test.js"),
             code: "require('eslint');",
@@ -67,14 +71,42 @@ ruleTester.run("no-missing-require", rule, {
         },
         {
             filename: fixture("test.js"),
-            code: "require('resolve');",
-            options: [{"publish": "*.js"}],
+            code: "require('./b');",
+            env: {node: true}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "require('./b.json');",
+            env: {node: true}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "require('./c.coffee');",
             env: {node: true}
         },
         {
             filename: fixture("test.js"),
             code: "require('mocha');",
             env: {node: true}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "require(`eslint`);",
+            env: {node: true, es6: true}
+        },
+
+        // tryExtensions
+        {
+            filename: fixture("test.js"),
+            code: "require('./c');",
+            env: {node: true},
+            options: [{tryExtensions: [".coffee"]}]
+        },
+        {
+            filename: fixture("test.js"),
+            code: "require('./c');",
+            env: {node: true},
+            settings: {node: {tryExtensions: [".coffee"]}}
         },
 
         // Ignores it if not callee.
@@ -137,9 +169,15 @@ ruleTester.run("no-missing-require", rule, {
         },
         {
             filename: fixture("test.js"),
-            code: "require('./b');",
+            code: "require('./c');",
             env: {node: true},
-            errors: ["\"./b\" is not found."]
+            errors: ["\"./c\" is not found."]
+        },
+        {
+            filename: fixture("test.js"),
+            code: "require('./d');",
+            env: {node: true},
+            errors: ["\"./d\" is not found."]
         },
         {
             filename: fixture("test.js"),
