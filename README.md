@@ -25,6 +25,8 @@ Additional ESLint's rules for Node.js
     "rules": {
         "node/no-missing-import": 2,
         "node/no-missing-require": 2,
+        "node/no-unpublished-import": 2,
+        "node/no-unpublished-require": 2,
         "node/no-unsupported-features": [2, {"version": 4}],
         "node/shebang": 2
     }

@@ -41,7 +41,7 @@ import dependedModule from "depended-module";
 ```json
 {
     "rules": {
-        "node/no-missing-import": [2, {
+        "node/no-unpublished-import": [2, {
             "tryExtensions": [".js", ".json", ".node"]
         }]
     }
@@ -66,7 +66,7 @@ Several rules have this option, but we can set this option at once.
         }
     },
     "rules": {
-        "node/no-missing-import": 2
+        "node/no-unpublished-import": 2
     }
 }
 ```

@@ -43,7 +43,7 @@ var foo = require(FOO_NAME);
 ```json
 {
     "rules": {
-        "node/no-missing-import": [2, {
+        "node/no-unpublished-require": [2, {
             "tryExtensions": [".js", ".json", ".node"]
         }]
     }
@@ -68,7 +68,7 @@ Several rules have this option, but we can set this option at once.
         }
     },
     "rules": {
-        "node/no-missing-import": 2
+        "node/no-unpublished-require": 2
     }
 }
 ```
