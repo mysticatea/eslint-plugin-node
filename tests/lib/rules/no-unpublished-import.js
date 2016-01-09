@@ -125,6 +125,30 @@ ruleTester.run("no-unpublished-import", rule, {
             parserOptions: {sourceType: "module"}
         },
 
+        // `convertPath` option.
+        {
+            filename: fixture("3/src/test.jsx"),
+            code: "import a from './a';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"},
+            settings: {
+                node: {
+                    convertPath: {"src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"]},
+                    tryExtensions: [".js", ".jsx", ".json"]
+                }
+            }
+        },
+        {
+            filename: fixture("3/src/test.jsx"),
+            code: "import a from './a';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"},
+            options: [{
+                convertPath: {"src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"]},
+                tryExtensions: [".js", ".jsx", ".json"]
+            }]
+        },
+
         // Ignores it if the filename is unknown.
         {
             code: "import noExistPackage0 from 'no-exist-package-0';",

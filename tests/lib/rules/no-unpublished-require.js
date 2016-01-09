@@ -110,6 +110,28 @@ ruleTester.run("no-unpublished-require", rule, {
             env: {node: true}
         },
 
+        // `convertPath` option.
+        {
+            filename: fixture("3/src/test.jsx"),
+            code: "require('./a');",
+            env: {node: true},
+            settings: {
+                node: {
+                    convertPath: {"src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"]},
+                    tryExtensions: [".js", ".jsx", ".json"]
+                }
+            }
+        },
+        {
+            filename: fixture("3/src/test.jsx"),
+            code: "require('./a');",
+            env: {node: true},
+            options: [{
+                convertPath: {"src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"]},
+                tryExtensions: [".js", ".jsx", ".json"]
+            }]
+        },
+
         // Ignores it if not callee.
         {
             filename: fixture("1/test.js"),
@@ -215,6 +237,28 @@ ruleTester.run("no-unpublished-require", rule, {
             code: "require('../test');",
             env: {node: true},
             errors: ["\"../test\" is not published."]
+        },
+
+        // `convertPath` option.
+        {
+            filename: fixture("3/src/test.jsx"),
+            code: "require('../test');",
+            errors: ["\"../test\" is not published."],
+            env: {node: true},
+            settings: {
+                node: {
+                    convertPath: {"src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"]}
+                }
+            }
+        },
+        {
+            filename: fixture("3/src/test.jsx"),
+            code: "require('../test');",
+            errors: ["\"../test\" is not published."],
+            env: {node: true},
+            options: [{
+                convertPath: {"src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"]}
+            }]
         }
     ]
 });

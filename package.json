@@ -10,7 +10,7 @@
     "preversion": "npm-run-all test build",
     "postversion": "git push && git push --tags",
     "clean": "rimraf coverage",
-    "lint": "eslint lib tests --rulesdir lib/rules --rule \"no-missing-require:2\"",
+    "lint": "eslint lib tests --rulesdir lib/rules --rule \"{no-missing-require:2, no-unpublished-require:2, shebang:2}\"",
     "build": "node scripts/generate-index.js",
     "test": "npm-run-all clean lint test:mocha",
     "test:mocha": "istanbul cover node_modules/mocha/bin/_mocha -- tests/lib/**/*.js",
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "ignore": "^2.2.19",
+    "minimatch": "^3.0.0",
     "object-assign": "^4.0.1",
     "resolve": "^1.1.6"
   },
