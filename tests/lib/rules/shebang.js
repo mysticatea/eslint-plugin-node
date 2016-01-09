@@ -217,6 +217,14 @@ ruleTester.run("shebang", rule, {
             code: "#!/usr/bin/env node\nhello();",
             output: "hello();",
             errors: ["This file needs no shebang."]
+        },
+
+        // header comments
+        {
+            filename: fixture("string-bin/bin/test.js"),
+            code: "/* header */\nhello();",
+            output: "#!/usr/bin/env node\n/* header */\nhello();",
+            errors: ["This file needs shebang \"#!/usr/bin/env node\"."]
         }
     ]
 });
