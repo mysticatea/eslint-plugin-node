@@ -159,6 +159,20 @@ ruleTester.run("no-unpublished-import", rule, {
             code: "import b from './b';",
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
+        },
+
+        // Should work fine if the filename is relative.
+        {
+            filename: "tests/fixtures/no-unpublished/2/test.js",
+            code: "import aaa from 'aaa';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+        {
+            filename: "tests/fixtures/no-unpublished/2/test.js",
+            code: "import a from './a';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
         }
     ],
     invalid: [
@@ -229,6 +243,22 @@ ruleTester.run("no-unpublished-import", rule, {
             filename: fixture("3/pub/test.js"),
             code: "import test from '../test';",
             errors: ["\"../test\" is not published."],
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+
+        // Should work fine if the filename is relative.
+        {
+            filename: "tests/fixtures/no-unpublished/2/test.js",
+            code: "import noDeps from 'no-deps';",
+            errors: ["\"no-deps\" is not published."],
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+        {
+            filename: "tests/fixtures/no-unpublished/2/test.js",
+            code: "import ignore1 from './ignore1';",
+            errors: ["\"./ignore1\" is not published."],
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         }

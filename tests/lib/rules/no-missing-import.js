@@ -136,6 +136,20 @@ ruleTester.run("no-missing-import", rule, {
             code: "export {foo, bar};",
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
+        },
+
+        // Should work fine if the filename is relative.
+        {
+            filename: "tests/fixtures/no-missing/test.js",
+            code: "import eslint from 'eslint'",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+        {
+            filename: "tests/fixtures/no-missing/test.js",
+            code: "import a from './a';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
         }
     ],
     invalid: [
@@ -173,6 +187,22 @@ ruleTester.run("no-missing-import", rule, {
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"},
             errors: ["\"./a.json\" is not found."]
+        },
+
+        // Should work fine if the filename is relative.
+        {
+            filename: "tests/fixtures/no-missing/test.js",
+            code: "import eslint from 'no-exist-package-0';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"},
+            errors: ["\"no-exist-package-0\" is not found."]
+        },
+        {
+            filename: "tests/fixtures/no-missing/test.js",
+            code: "import c from './c';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"},
+            errors: ["\"./c\" is not found."]
         }
     ]
 });

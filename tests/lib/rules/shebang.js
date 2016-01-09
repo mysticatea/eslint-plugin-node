@@ -91,6 +91,16 @@ ruleTester.run("shebang", rule, {
             filename: fixture("no-bin-field/src/lib/test.js"),
             code: "hello();",
             options: [{"convertPath": {"src/**": ["^src/(.+)$", "$1"]}}]
+        },
+
+        // Should work fine if the filename is relative.
+        {
+            filename: "tests/fixtures/shebang/string-bin/bin/test.js",
+            code: "#!/usr/bin/env node\nhello();"
+        },
+        {
+            filename: "tests/fixtures/shebang/string-bin/lib/test.js",
+            code: "hello();"
         }
     ],
     invalid: [
@@ -192,6 +202,20 @@ ruleTester.run("shebang", rule, {
             code: "#!/usr/bin/env node\nhello();",
             output: "hello();",
             options: [{"convertPath": {"src/**": ["^src/(.+)$", "$1"]}}],
+            errors: ["This file needs no shebang."]
+        },
+
+        // Should work fine if the filename is relative.
+        {
+            filename: "tests/fixtures/shebang/string-bin/bin/test.js",
+            code: "hello();",
+            output: "#!/usr/bin/env node\nhello();",
+            errors: ["This file needs shebang \"#!/usr/bin/env node\"."]
+        },
+        {
+            filename: "tests/fixtures/shebang/string-bin/lib/test.js",
+            code: "#!/usr/bin/env node\nhello();",
+            output: "hello();",
             errors: ["This file needs no shebang."]
         }
     ]

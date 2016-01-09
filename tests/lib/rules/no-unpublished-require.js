@@ -175,6 +175,18 @@ ruleTester.run("no-unpublished-require", rule, {
             filename: fixture("1/test.js"),
             code: "require(`foo${bar}`);",
             env: {node: true, es6: true}
+        },
+
+        // Should work fine if the filename is relative.
+        {
+            filename: "tests/fixtures/no-unpublished/2/test.js",
+            code: "require('aaa');",
+            env: {node: true}
+        },
+        {
+            filename: "tests/fixtures/no-unpublished/2/test.js",
+            code: "require('./a');",
+            env: {node: true}
         }
     ],
     invalid: [
@@ -259,6 +271,20 @@ ruleTester.run("no-unpublished-require", rule, {
             options: [{
                 convertPath: {"src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"]}
             }]
+        },
+
+        // Should work fine if the filename is relative.
+        {
+            filename: "tests/fixtures/no-unpublished/2/test.js",
+            code: "require('no-deps');",
+            errors: ["\"no-deps\" is not published."],
+            env: {node: true}
+        },
+        {
+            filename: "tests/fixtures/no-unpublished/2/test.js",
+            code: "require('./ignore1');",
+            errors: ["\"./ignore1\" is not published."],
+            env: {node: true}
         }
     ]
 });

@@ -152,6 +152,18 @@ ruleTester.run("no-missing-require", rule, {
             filename: fixture("test.js"),
             code: "require(`foo${bar}`);",
             env: {node: true, es6: true}
+        },
+
+        // Should work fine if the filename is relative.
+        {
+            filename: "tests/fixtures/no-missing/test.js",
+            code: "require('eslint');",
+            env: {node: true}
+        },
+        {
+            filename: "tests/fixtures/no-missing/test.js",
+            code: "require('./a');",
+            env: {node: true}
         }
     ],
     invalid: [
@@ -184,6 +196,20 @@ ruleTester.run("no-missing-require", rule, {
             code: "require('./a.json');",
             env: {node: true},
             errors: ["\"./a.json\" is not found."]
+        },
+
+        // Should work fine if the filename is relative.
+        {
+            filename: "tests/fixtures/no-missing/test.js",
+            code: "require('no-exist-package-0');",
+            env: {node: true},
+            errors: ["\"no-exist-package-0\" is not found."]
+        },
+        {
+            filename: "tests/fixtures/no-missing/test.js",
+            code: "require('./c');",
+            env: {node: true},
+            errors: ["\"./c\" is not found."]
         }
     ]
 });
