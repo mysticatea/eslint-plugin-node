@@ -53,7 +53,8 @@ function convertPattern(retv, pattern) {
                 ecmaFeatures: {modules: Boolean(pattern.modules)},
                 parserOptions: {sourceType: pattern.modules ? "module" : "script"}
             });
-        } else {
+        }
+        else {
             retv.valid.push({
                 code: "/*" + pattern.name + ": " + versionText + ", ignores: [\"" + pattern.key + "\"]*/ " + pattern.code,
                 env: {es6: true},
