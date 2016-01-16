@@ -38,13 +38,13 @@ function foo(...a) {   /*error Rest Parameters are not supported yet on Node v4.
 }
 
 var a = [...b];        /*error Spread Operators are not supported yet on Node v4.*/
-var a = /foo/y;        /*error RegExp "y" Flags are not supported yet on Node v4.*/
-var a = /foo/u;        /*error RegExp "u" Flags are not supported yet on Node v4.*/
+var a = /foo/y;        /*error RegExp 'y' Flags are not supported yet on Node v4.*/
+var a = /foo/u;        /*error RegExp 'u' Flags are not supported yet on Node v4.*/
 var {a, b} = c;        /*error Destructuring are not supported yet on Node v4.*/
 var {a, b} = c;        /*error Destructuring are not supported yet on Node v4.*/
 
-let a = 1;             /*error "let" Declarations in non-strict mode are not supported yet on Node v4.*/
-const a = 1;           /*error "const" Declarations in non-strict mode are not supported yet on Node v4.*/
+let a = 1;             /*error 'let' Declarations in non-strict mode are not supported yet on Node v4.*/
+const a = 1;           /*error 'const' Declarations in non-strict mode are not supported yet on Node v4.*/
 class A {}             /*error Classes in non-strict mode are not supported yet on Node v4.*/
 
 if (a) {
@@ -103,7 +103,7 @@ This rule has `"ignores"` option to ignore to use the specified features.
 ```
 
 Features which are specified by this `"ignores"` option are not warned.
-This `"ignores"` option accepts the following strings.
+This `"ignores"` option accepts an array of the following strings.
 
 - `"defaultParameters"`
 - `"restParameters"`
@@ -117,21 +117,84 @@ This `"ignores"` option accepts the following strings.
 - `"regexpU"`
 - `"destructuring"`
 - `"unicodeCodePointEscapes"`
-- `"newTarget"`
+- `"new.target"`
 - `"const"`
 - `"let"`
 - `"blockScopedFunctions"`
 - `"arrowFunctions"`
 - `"generatorFunctions"`
 - `"classes"`
-- `"typedArrays"`
-- `"mapSet"`
-- `"weakMapSet"`
-- `"proxy"`
-- `"reflect"`
-- `"promise"`
-- `"symbol"`
 - `"modules"`
+- `"Object.assign"`
+- `"Object.is"`
+- `"Object.getOwnPropertySymbols"`
+- `"Object.setPrototypeOf"`
+- `"String.raw"`
+- `"String.fromCodePoint"`
+- `"Array.from"`
+- `"Array.of"`
+- `"Number.isFinite"`
+- `"Number.isInteger"`
+- `"Number.isSafeInteger"`
+- `"Number.isNaN"`
+- `"Number.EPSILON"`
+- `"Number.MIN_SAFE_INTEGER"`
+- `"Number.MAX_SAFE_INTEGER"`
+- `"Math.clz32"`
+- `"Math.imul"`
+- `"Math.sign"`
+- `"Math.log10"`
+- `"Math.log2"`
+- `"Math.log1p"`
+- `"Math.expm1"`
+- `"Math.cosh"`
+- `"Math.sinh"`
+- `"Math.tanh"`
+- `"Math.acosh"`
+- `"Math.asinh"`
+- `"Math.atanh"`
+- `"Math.trunc"`
+- `"Math.fround"`
+- `"Math.cbrt"`
+- `"Math.hypot"`
+- `"Int8Array"`
+- `"Uint8Array"`
+- `"Uint8ClampedArray"`
+- `"Int16Array"`
+- `"Uint16Array"`
+- `"Int32Array"`
+- `"Uint32Array"`
+- `"Float32Array"`
+- `"Float64Array"`
+- `"DataView"`
+- `"Map"`
+- `"Set"`
+- `"WeakMap"`
+- `"WeakSet"`
+- `"Proxy"`
+- `"Reflect"`
+- `"Promise"`
+- `"Symbol"`
+- `"Symbol.hasInstance"`
+- `"Symbol.isConcatSpreadablec"`
+- `"Symbol.iterator"`
+- `"Symbol.species"`
+- `"Symbol.replace"`
+- `"Symbol.search"`
+- `"Symbol.split"`
+- `"Symbol.match"`
+- `"Symbol.toPrimitive"`
+- `"Symbol.toStringTag"`
+- `"Symbol.unscopables"`
+- `"extendsArray"`
+- `"extendsRegExp"`
+- `"extendsFunction"`
+- `"extendsPromise"`
+- `"extendsBoolean"`
+- `"extendsNumber"`
+- `"extendsString"`
+- `"extendsMap"`
+- `"extendsSet"`
 
 The following patterns are considered not problems when it's using `"ignores"`:
 
