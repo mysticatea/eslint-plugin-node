@@ -10,9 +10,9 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var path = require("path"),
-    RuleTester = require("eslint").RuleTester,
-    rule = require("../../../lib/rules/no-unpublished-require");
+var path = require("path");
+var RuleTester = require("eslint").RuleTester;
+var rule = require("../../../lib/rules/no-unpublished-require");
 
 //------------------------------------------------------------------------------
 // Helpers

@@ -1,6 +1,9 @@
 {
-    "extends": "eslint",
-    "env": {
-        "node": true
+    "extends": "mysticatea/es5",
+    "env": {"node": true},
+    "rules": {
+        "func-name": 0,
+        "init-declarations": 0,
+        "no-param-reassign": [2, {"props": false}]
     }
 }
