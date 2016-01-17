@@ -251,6 +251,13 @@ ruleTester.run("no-unpublished-require", rule, {
             errors: ["\"../test\" is not published."]
         },
 
+        {
+            filename: fixture("1/test.js"),
+            code: "require('../a.js');",
+            env: {node: true},
+            errors: ["\"../a.js\" is not published."]
+        },
+
         // `convertPath` option.
         {
             filename: fixture("3/src/test.jsx"),

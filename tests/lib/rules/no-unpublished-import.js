@@ -247,6 +247,14 @@ ruleTester.run("no-unpublished-import", rule, {
             parserOptions: {sourceType: "module"}
         },
 
+        {
+            filename: fixture("1/test.js"),
+            code: "import a from '../a.js';",
+            errors: ["\"../a.js\" is not published."],
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+
         // Should work fine if the filename is relative.
         {
             filename: "tests/fixtures/no-unpublished/2/test.js",
