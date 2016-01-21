@@ -60,13 +60,15 @@ function convertPattern(retv, pattern) {
         }
         else {
             // If this is not supported, add to a valid pattern with a "ignores" option.
-            retv.valid.push({
-                code: "/*" + pattern.name + ": " + versionText + ", ignores: [\"" + pattern.key + "\"]*/ " + pattern.code,
-                env: {es6: true},
-                options: [{version: version, ignores: [pattern.key]}],
-                ecmaFeatures: {modules: Boolean(pattern.modules)},
-                parserOptions: {sourceType: pattern.modules ? "module" : "script"}
-            });
+            [].push.apply(retv.valid, pattern.keys.map(function(key) { // eslint-disable-line no-loop-func
+                return {
+                    code: "/*" + pattern.name + ": " + versionText + ", ignores: [\"" + key + "\"]*/ " + pattern.code,
+                    env: {es6: true},
+                    options: [{version: version, ignores: [key]}],
+                    ecmaFeatures: {modules: Boolean(pattern.modules)},
+                    parserOptions: {sourceType: pattern.modules ? "module" : "script"}
+                };
+            }));
 
             // If this is not supported, add to a invalid pattern.
             retv.invalid.push({
@@ -96,91 +98,91 @@ ruleTester.run("no-unsupported-features", rule, [
     //--------------------------------------------------------------------------
 
     {
-        key: "defaultParameters",
+        keys: ["defaultParameters", "syntax"],
         name: "Default Parameters",
         code: "function foo(a = 1) {} ;(function(a = 1) {})()",
         errors: 2,
         supported: NaN
     },
     {
-        key: "restParameters",
+        keys: ["restParameters", "syntax"],
         name: "Rest Parameters",
         code: "function foo(a, ...b) {} ;(function(a, ...b) {})()",
         errors: 2,
         supported: NaN
     },
     {
-        key: "spreadOperators",
+        keys: ["spreadOperators", "syntax"],
         name: "Spread Operators",
         code: "foo(...a); foo([...a, ...b])",
         errors: 3,
         supported: 5
     },
     {
-        key: "objectLiteralExtensions",
+        keys: ["objectLiteralExtensions", "syntax"],
         name: "Object Literal Extensions",
         code: "var obj = {[a]: 0, b, c() {}, get [d]() {}, set [d](v) {}}",
         errors: 5,
         supported: 4
     },
     {
-        key: "forOf",
+        keys: ["forOf", "syntax"],
         name: "'for..of' Loops",
         code: "for (var a of []) {}",
         errors: 1,
         supported: 0.12
     },
     {
-        key: "binaryNumberLiterals",
+        keys: ["binaryNumberLiterals", "syntax"],
         name: "Binary Number Literals",
         code: "var a = 0b10 === 2 && 0B10 === 2",
         errors: 2,
         supported: 4
     },
     {
-        key: "octalNumberLiterals",
+        keys: ["octalNumberLiterals", "syntax"],
         name: "Octal Number Literals",
         code: "var a = 0o10 === 8 && 0O10 === 8",
         errors: 2,
         supported: 4
     },
     {
-        key: "templateStrings",
+        keys: ["templateStrings", "syntax"],
         name: "Template Strings",
         code: "`hello, ${world}!`; foo`tagged`;",
         errors: 2,
         supported: 4
     },
     {
-        key: "regexpY",
+        keys: ["regexpY", "syntax"],
         name: "RegExp 'y' Flags",
         code: "new RegExp('', 'y'); (/a/y)",
         errors: 2,
         supported: NaN
     },
     {
-        key: "regexpU",
+        keys: ["regexpU", "syntax"],
         name: "RegExp 'u' Flags",
         code: "new RegExp('', 'u'); (/a/u)",
         errors: 2,
         supported: NaN
     },
     {
-        key: "destructuring",
+        keys: ["destructuring", "syntax"],
         name: "Destructuring",
         code: "var [[a], [b = 1]] = [], {c: {c}, d: {d = 1}} = {};",
         errors: 2,
         supported: NaN
     },
     {
-        key: "destructuring",
+        keys: ["destructuring", "syntax"],
         name: "Destructuring",
         code: "[[a], [b = 1]] = []; ({c: {c}, d: {d = 1}} = {})",
         errors: 2,
         supported: NaN
     },
     {
-        key: "destructuring",
+        keys: ["destructuring", "syntax"],
         name: "Destructuring",
         code: "function foo([[a], [b = 1]], {c: {c}, d: {d = 1}}) {}",
         errors: 2,
@@ -188,28 +190,28 @@ ruleTester.run("no-unsupported-features", rule, [
     },
     // TODO: ESLint v1 cannot parse unicode code point escapes.
     // {
-    //     key: "unicodeCodePointEscapes",
+    //     keys: ["unicodeCodePointEscapes", "syntax"],
     //     name: "Unicode Code Point Escapes",
     //     code: "var \\u{102C0} = { \\u{102C0} : '\\u{1d306}' };",
     //     errors: 3,
     //     supported: 4
     // },
     {
-        key: "new.target",
+        keys: ["new.target", "syntax"],
         name: "'new.target'",
         code: "function Foo() { new.target; } ;(function() { new.target; })()",
         errors: 2,
         supported: 5
     },
     {
-        key: "const",
+        keys: ["const", "syntax"],
         name: "'const' Declarations",
         code: "'use strict'; const a = 0;",
         errors: 1,
         supported: 4
     },
     {
-        key: "const",
+        keys: ["const", "syntax"],
         name: "'const' Declarations",
         code: "const a = 0;",
         errors: 1,
@@ -217,7 +219,7 @@ ruleTester.run("no-unsupported-features", rule, [
         modules: true
     },
     {
-        key: "const",
+        keys: ["const", "syntax"],
         name: "'const' Declarations in non-strict mode",
         code: "const a = 0;",
         errors: 1,
@@ -225,14 +227,14 @@ ruleTester.run("no-unsupported-features", rule, [
         ignores: [0.10, 0.12]
     },
     {
-        key: "let",
+        keys: ["let", "syntax"],
         name: "'let' Declarations",
         code: "'use strict'; let a = 0;",
         errors: 1,
         supported: 4
     },
     {
-        key: "let",
+        keys: ["let", "syntax"],
         name: "'let' Declarations",
         code: "let a = 0;",
         errors: 1,
@@ -240,7 +242,7 @@ ruleTester.run("no-unsupported-features", rule, [
         modules: true
     },
     {
-        key: "let",
+        keys: ["let", "syntax"],
         name: "'let' Declarations in non-strict mode",
         code: "let a = 0;",
         errors: 1,
@@ -248,14 +250,14 @@ ruleTester.run("no-unsupported-features", rule, [
         ignores: [0.10, 0.12]
     },
     {
-        key: "blockScopedFunctions",
+        keys: ["blockScopedFunctions", "syntax"],
         name: "Block-Scoped Functions",
         code: "'use strict'; { function foo() {} } if (a) { function foo() {} }",
         errors: 2,
         supported: 4
     },
     {
-        key: "blockScopedFunctions",
+        keys: ["blockScopedFunctions", "syntax"],
         name: "Block-Scoped Functions",
         code: "{ function foo() {} } if (a) { function foo() {} }",
         errors: 2,
@@ -263,7 +265,7 @@ ruleTester.run("no-unsupported-features", rule, [
         modules: true
     },
     {
-        key: "blockScopedFunctions",
+        keys: ["blockScopedFunctions", "syntax"],
         name: "Block-Scoped Functions in non-strict mode",
         code: "{ function foo() {} } if (a) { function foo() {} }",
         errors: 2,
@@ -271,21 +273,21 @@ ruleTester.run("no-unsupported-features", rule, [
         ignores: [0.10, 0.12]
     },
     {
-        key: "arrowFunctions",
+        keys: ["arrowFunctions", "syntax"],
         name: "Arrow Functions",
         code: "var a = () => 1",
         errors: 1,
         supported: 4
     },
     {
-        key: "classes",
+        keys: ["classes", "syntax"],
         name: "Classes",
         code: "'use strict'; class A {} new (class{})()",
         errors: 2,
         supported: 4
     },
     {
-        key: "classes",
+        keys: ["classes", "syntax"],
         name: "Classes",
         code: "class A {} new (class{})()",
         errors: 2,
@@ -293,7 +295,7 @@ ruleTester.run("no-unsupported-features", rule, [
         modules: true
     },
     {
-        key: "classes",
+        keys: ["classes", "syntax"],
         name: "Classes in non-strict mode",
         code: "class A {} new (class{})()",
         errors: 2,
@@ -301,14 +303,14 @@ ruleTester.run("no-unsupported-features", rule, [
         ignores: [0.10, 0.12]
     },
     {
-        key: "generatorFunctions",
+        keys: ["generatorFunctions", "syntax"],
         name: "Generator Functions",
         code: "function* foo() {} ;(function*() {})();",
         errors: 2,
         supported: 4
     },
     {
-        key: "modules",
+        keys: ["modules", "syntax"],
         name: "Import and Export Declarations",
         code: "import foo from 'foo'; export default 0; export {foo}; export * from 'foo';",
         errors: 4,
@@ -321,268 +323,7 @@ ruleTester.run("no-unsupported-features", rule, [
     //--------------------------------------------------------------------------
 
     {
-        key: "Object.assign",
-        name: "'Object.assign'",
-        code: "Object.assign; Object['assign']",
-        errors: 2,
-        supported: 4,
-        singular: true
-    },
-    {
-        key: "Object.is",
-        name: "'Object.is'",
-        code: "Object.is",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Object.getOwnPropertySymbols",
-        name: "'Object.getOwnPropertySymbols'",
-        code: "Object.getOwnPropertySymbols",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Object.setPrototypeOf",
-        name: "'Object.setPrototypeOf'",
-        code: "Object.setPrototypeOf",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-
-    {
-        key: "String.raw",
-        name: "'String.raw'",
-        code: "String.raw",
-        errors: 1,
-        supported: 4,
-        singular: true
-    },
-    {
-        key: "String.fromCodePoint",
-        name: "'String.fromCodePoint'",
-        code: "String.fromCodePoint",
-        errors: 1,
-        supported: 4,
-        singular: true
-    },
-
-    {
-        key: "Array.from",
-        name: "'Array.from'",
-        code: "Array.from",
-        errors: 1,
-        supported: 4,
-        singular: true
-    },
-    {
-        key: "Array.of",
-        name: "'Array.of'",
-        code: "Array.of",
-        errors: 1,
-        supported: 4,
-        singular: true
-    },
-
-    {
-        key: "Number.isFinite",
-        name: "'Number.isFinite'",
-        code: "Number.isFinite",
-        errors: 1,
-        supported: 0.10,
-        singular: true
-    },
-    {
-        key: "Number.isInteger",
-        name: "'Number.isInteger'",
-        code: "Number.isInteger",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Number.isSafeInteger",
-        name: "'Number.isSafeInteger'",
-        code: "Number.isSafeInteger",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Number.isNaN",
-        name: "'Number.isNaN'",
-        code: "Number.isNaN",
-        errors: 1,
-        supported: 0.10,
-        singular: true
-    },
-    {
-        key: "Number.EPSILON",
-        name: "'Number.EPSILON'",
-        code: "Number.EPSILON",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Number.MIN_SAFE_INTEGER",
-        name: "'Number.MIN_SAFE_INTEGER'",
-        code: "Number.MIN_SAFE_INTEGER",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Number.MAX_SAFE_INTEGER",
-        name: "'Number.MAX_SAFE_INTEGER'",
-        code: "Number.MAX_SAFE_INTEGER",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-
-    {
-        key: "Math.clz32",
-        name: "'Math.clz32'",
-        code: "Math.clz32",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Math.imul",
-        name: "'Math.imul'",
-        code: "Math.imul",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Math.sign",
-        name: "'Math.sign'",
-        code: "Math.sign",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Math.log10",
-        name: "'Math.log10'",
-        code: "Math.log10",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Math.log2",
-        name: "'Math.log2'",
-        code: "Math.log2",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Math.log1p",
-        name: "'Math.log1p'",
-        code: "Math.log1p",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Math.expm1",
-        name: "'Math.expm1'",
-        code: "Math.expm1",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Math.cosh",
-        name: "'Math.cosh'",
-        code: "Math.cosh",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Math.sinh",
-        name: "'Math.sinh'",
-        code: "Math.sinh",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Math.tanh",
-        name: "'Math.tanh'",
-        code: "Math.tanh",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Math.acosh",
-        name: "'Math.acosh'",
-        code: "Math.acosh",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Math.asinh",
-        name: "'Math.asinh'",
-        code: "Math.asinh",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Math.atanh",
-        name: "'Math.atanh'",
-        code: "Math.atanh",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Math.trunc",
-        name: "'Math.trunc'",
-        code: "Math.trunc",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Math.fround",
-        name: "'Math.fround'",
-        code: "Math.fround",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Math.cbrt",
-        name: "'Math.cbrt'",
-        code: "Math.cbrt",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-    {
-        key: "Math.hypot",
-        name: "'Math.hypot'",
-        code: "Math.hypot",
-        errors: 1,
-        supported: 0.12,
-        singular: true
-    },
-
-    {
-        key: "Int8Array",
+        keys: ["Int8Array", "typedArrays", "globalObjects", "runtime"],
         name: "'Int8Array'",
         code: "Int8Array",
         errors: 1,
@@ -590,7 +331,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Uint8Array",
+        keys: ["Uint8Array", "typedArrays", "globalObjects", "runtime"],
         name: "'Uint8Array'",
         code: "Uint8Array",
         errors: 1,
@@ -598,7 +339,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Uint8ClampedArray",
+        keys: ["Uint8ClampedArray", "typedArrays", "globalObjects", "runtime"],
         name: "'Uint8ClampedArray'",
         code: "Uint8ClampedArray",
         errors: 1,
@@ -606,7 +347,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Int16Array",
+        keys: ["Int16Array", "typedArrays", "globalObjects", "runtime"],
         name: "'Int16Array'",
         code: "Int16Array",
         errors: 1,
@@ -614,7 +355,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Uint16Array",
+        keys: ["Uint16Array", "typedArrays", "globalObjects", "runtime"],
         name: "'Uint16Array'",
         code: "Uint16Array",
         errors: 1,
@@ -622,7 +363,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Int32Array",
+        keys: ["Int32Array", "typedArrays", "globalObjects", "runtime"],
         name: "'Int32Array'",
         code: "Int32Array",
         errors: 1,
@@ -630,7 +371,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Uint32Array",
+        keys: ["Uint32Array", "typedArrays", "globalObjects", "runtime"],
         name: "'Uint32Array'",
         code: "Uint32Array",
         errors: 1,
@@ -638,7 +379,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Float32Array",
+        keys: ["Float32Array", "typedArrays", "globalObjects", "runtime"],
         name: "'Float32Array'",
         code: "Float32Array",
         errors: 1,
@@ -646,7 +387,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Float64Array",
+        keys: ["Float64Array", "typedArrays", "globalObjects", "runtime"],
         name: "'Float64Array'",
         code: "Float64Array",
         errors: 1,
@@ -654,7 +395,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "DataView",
+        keys: ["DataView", "typedArrays", "globalObjects", "runtime"],
         name: "'DataView'",
         code: "DataView",
         errors: 1,
@@ -662,7 +403,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Map",
+        keys: ["Map", "globalObjects", "runtime"],
         name: "'Map'",
         code: "Map",
         errors: 1,
@@ -670,7 +411,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Set",
+        keys: ["Set", "globalObjects", "runtime"],
         name: "'Set'",
         code: "Set",
         errors: 1,
@@ -678,7 +419,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "WeakMap",
+        keys: ["WeakMap", "globalObjects", "runtime"],
         name: "'WeakMap'",
         code: "WeakMap",
         errors: 1,
@@ -686,7 +427,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "WeakSet",
+        keys: ["WeakSet", "globalObjects", "runtime"],
         name: "'WeakSet'",
         code: "WeakSet",
         errors: 1,
@@ -694,7 +435,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Proxy",
+        keys: ["Proxy", "globalObjects", "runtime"],
         name: "'Proxy'",
         code: "Proxy",
         errors: 1,
@@ -702,7 +443,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Reflect",
+        keys: ["Reflect", "globalObjects", "runtime"],
         name: "'Reflect'",
         code: "Reflect",
         errors: 1,
@@ -710,7 +451,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Promise",
+        keys: ["Promise", "globalObjects", "runtime"],
         name: "'Promise'",
         code: "Promise",
         errors: 1,
@@ -718,7 +459,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Promise",
+        keys: ["Promise", "globalObjects", "runtime"],
         name: "'Promise'",
         code: "var Promise = require('promise'); new Promise()",
         errors: 0,
@@ -726,7 +467,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Symbol",
+        keys: ["Symbol", "globalObjects", "runtime"],
         name: "'Symbol'",
         code: "Symbol",
         errors: 1,
@@ -735,7 +476,268 @@ ruleTester.run("no-unsupported-features", rule, [
     },
 
     {
-        key: "Symbol.hasInstance",
+        keys: ["Object.assign", "Object.*", "staticMethods", "runtime"],
+        name: "'Object.assign'",
+        code: "Object.assign; Object['assign']",
+        errors: 2,
+        supported: 4,
+        singular: true
+    },
+    {
+        keys: ["Object.is", "Object.*", "staticMethods", "runtime"],
+        name: "'Object.is'",
+        code: "Object.is",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Object.getOwnPropertySymbols", "Object.*", "staticMethods", "runtime"],
+        name: "'Object.getOwnPropertySymbols'",
+        code: "Object.getOwnPropertySymbols",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Object.setPrototypeOf", "Object.*", "staticMethods", "runtime"],
+        name: "'Object.setPrototypeOf'",
+        code: "Object.setPrototypeOf",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+
+    {
+        keys: ["String.raw", "String.*", "staticMethods", "runtime"],
+        name: "'String.raw'",
+        code: "String.raw",
+        errors: 1,
+        supported: 4,
+        singular: true
+    },
+    {
+        keys: ["String.fromCodePoint", "String.*", "staticMethods", "runtime"],
+        name: "'String.fromCodePoint'",
+        code: "String.fromCodePoint",
+        errors: 1,
+        supported: 4,
+        singular: true
+    },
+
+    {
+        keys: ["Array.from", "Array.*", "staticMethods", "runtime"],
+        name: "'Array.from'",
+        code: "Array.from",
+        errors: 1,
+        supported: 4,
+        singular: true
+    },
+    {
+        keys: ["Array.of", "Array.*", "staticMethods", "runtime"],
+        name: "'Array.of'",
+        code: "Array.of",
+        errors: 1,
+        supported: 4,
+        singular: true
+    },
+
+    {
+        keys: ["Number.isFinite", "Number.*", "staticMethods", "runtime"],
+        name: "'Number.isFinite'",
+        code: "Number.isFinite",
+        errors: 1,
+        supported: 0.10,
+        singular: true
+    },
+    {
+        keys: ["Number.isInteger", "Number.*", "staticMethods", "runtime"],
+        name: "'Number.isInteger'",
+        code: "Number.isInteger",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Number.isSafeInteger", "Number.*", "staticMethods", "runtime"],
+        name: "'Number.isSafeInteger'",
+        code: "Number.isSafeInteger",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Number.isNaN", "Number.*", "staticMethods", "runtime"],
+        name: "'Number.isNaN'",
+        code: "Number.isNaN",
+        errors: 1,
+        supported: 0.10,
+        singular: true
+    },
+    {
+        keys: ["Number.EPSILON", "Number.*", "staticMethods", "runtime"],
+        name: "'Number.EPSILON'",
+        code: "Number.EPSILON",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Number.MIN_SAFE_INTEGER", "Number.*", "staticMethods", "runtime"],
+        name: "'Number.MIN_SAFE_INTEGER'",
+        code: "Number.MIN_SAFE_INTEGER",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Number.MAX_SAFE_INTEGER", "Number.*", "staticMethods", "runtime"],
+        name: "'Number.MAX_SAFE_INTEGER'",
+        code: "Number.MAX_SAFE_INTEGER",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+
+    {
+        keys: ["Math.clz32", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.clz32'",
+        code: "Math.clz32",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Math.imul", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.imul'",
+        code: "Math.imul",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Math.sign", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.sign'",
+        code: "Math.sign",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Math.log10", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.log10'",
+        code: "Math.log10",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Math.log2", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.log2'",
+        code: "Math.log2",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Math.log1p", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.log1p'",
+        code: "Math.log1p",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Math.expm1", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.expm1'",
+        code: "Math.expm1",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Math.cosh", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.cosh'",
+        code: "Math.cosh",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Math.sinh", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.sinh'",
+        code: "Math.sinh",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Math.tanh", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.tanh'",
+        code: "Math.tanh",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Math.acosh", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.acosh'",
+        code: "Math.acosh",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Math.asinh", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.asinh'",
+        code: "Math.asinh",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Math.atanh", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.atanh'",
+        code: "Math.atanh",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Math.trunc", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.trunc'",
+        code: "Math.trunc",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Math.fround", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.fround'",
+        code: "Math.fround",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Math.cbrt", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.cbrt'",
+        code: "Math.cbrt",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+    {
+        keys: ["Math.hypot", "Math.*", "staticMethods", "runtime"],
+        name: "'Math.hypot'",
+        code: "Math.hypot",
+        errors: 1,
+        supported: 0.12,
+        singular: true
+    },
+
+    {
+        keys: ["Symbol.hasInstance", "Symbol.*", "staticMethods", "runtime"],
         name: "'Symbol.hasInstance'",
         code: "Symbol.hasInstance",
         errors: 1,
@@ -744,7 +746,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Symbol.isConcatSpreadablec",
+        keys: ["Symbol.isConcatSpreadablec", "Symbol.*", "staticMethods", "runtime"],
         name: "'Symbol.isConcatSpreadablec'",
         code: "Symbol.isConcatSpreadablec",
         errors: 1,
@@ -753,7 +755,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Symbol.iterator",
+        keys: ["Symbol.iterator", "Symbol.*", "staticMethods", "runtime"],
         name: "'Symbol.iterator'",
         code: "Symbol.iterator",
         errors: 1,
@@ -762,7 +764,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Symbol.species",
+        keys: ["Symbol.species", "Symbol.*", "staticMethods", "runtime"],
         name: "'Symbol.species'",
         code: "Symbol.species",
         errors: 1,
@@ -771,7 +773,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Symbol.replace",
+        keys: ["Symbol.replace", "Symbol.*", "staticMethods", "runtime"],
         name: "'Symbol.replace'",
         code: "Symbol.replace",
         errors: 1,
@@ -780,7 +782,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Symbol.search",
+        keys: ["Symbol.search", "Symbol.*", "staticMethods", "runtime"],
         name: "'Symbol.search'",
         code: "Symbol.search",
         errors: 1,
@@ -789,7 +791,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Symbol.split",
+        keys: ["Symbol.split", "Symbol.*", "staticMethods", "runtime"],
         name: "'Symbol.split'",
         code: "Symbol.split",
         errors: 1,
@@ -798,7 +800,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Symbol.match",
+        keys: ["Symbol.match", "Symbol.*", "staticMethods", "runtime"],
         name: "'Symbol.match'",
         code: "Symbol.match",
         errors: 1,
@@ -807,7 +809,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Symbol.toPrimitive",
+        keys: ["Symbol.toPrimitive", "Symbol.*", "staticMethods", "runtime"],
         name: "'Symbol.toPrimitive'",
         code: "Symbol.toPrimitive",
         errors: 1,
@@ -816,7 +818,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Symbol.toStringTag",
+        keys: ["Symbol.toStringTag", "Symbol.*", "staticMethods", "runtime"],
         name: "'Symbol.toStringTag'",
         code: "Symbol.toStringTag",
         errors: 1,
@@ -825,7 +827,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "Symbol.unscopables",
+        keys: ["Symbol.unscopables", "Symbol.*", "staticMethods", "runtime"],
         name: "'Symbol.unscopables'",
         code: "Symbol.unscopables",
         errors: 1,
@@ -835,7 +837,7 @@ ruleTester.run("no-unsupported-features", rule, [
     },
 
     {
-        key: "extendsArray",
+        keys: ["extendsArray", "extends", "runtime"],
         name: "Subclassing of 'Array'",
         code: "'use strict'; class X extends Array {}",
         errors: 1,
@@ -844,7 +846,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "extendsRegExp",
+        keys: ["extendsRegExp", "extends", "runtime"],
         name: "Subclassing of 'RegExp'",
         code: "'use strict'; class X extends RegExp {}",
         errors: 1,
@@ -853,7 +855,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "extendsFunction",
+        keys: ["extendsFunction", "extends", "runtime"],
         name: "Subclassing of 'Function'",
         code: "'use strict'; class X extends Function {}",
         errors: 1,
@@ -862,7 +864,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "extendsPromise",
+        keys: ["extendsPromise", "extends", "runtime"],
         name: "Subclassing of 'Promise'",
         code: "'use strict'; class X extends Promise {}",
         errors: 1,
@@ -871,7 +873,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "extendsBoolean",
+        keys: ["extendsBoolean", "extends", "runtime"],
         name: "Subclassing of 'Boolean'",
         code: "'use strict'; class X extends Boolean {}",
         errors: 1,
@@ -880,7 +882,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "extendsNumber",
+        keys: ["extendsNumber", "extends", "runtime"],
         name: "Subclassing of 'Number'",
         code: "'use strict'; class X extends Number {}",
         errors: 1,
@@ -889,7 +891,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "extendsString",
+        keys: ["extendsString", "extends", "runtime"],
         name: "Subclassing of 'String'",
         code: "'use strict'; class X extends String {}",
         errors: 1,
@@ -898,7 +900,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "extendsMap",
+        keys: ["extendsMap", "extends", "runtime"],
         name: "Subclassing of 'Map'",
         code: "'use strict'; class X extends Map {}",
         errors: 1,
@@ -907,7 +909,7 @@ ruleTester.run("no-unsupported-features", rule, [
         singular: true
     },
     {
-        key: "extendsSet",
+        keys: ["extendsSet", "extends", "runtime"],
         name: "Subclassing of 'Set'",
         code: "'use strict'; class X extends Set {}",
         errors: 1,
