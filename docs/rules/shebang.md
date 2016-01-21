@@ -21,6 +21,18 @@ The following patterns are considered problems for files in `bin` field of `pack
 console.log("hello"); /*error This file needs shebang "#!/usr/bin/env node".*/
 ```
 
+```js
+#!/usr/bin/env node  /*error This file must not have Unicode BOM.*/
+console.log("hello");
+// If this file has Unicode BOM.
+```
+
+```js
+#!/usr/bin/env node  /*error This file must have Unix linebreaks (LF).*/
+console.log("hello");
+// If this file has Windows' linebreaks (CRLF).
+```
+
 The following patterns are considered problems for other files:
 
 ```js
