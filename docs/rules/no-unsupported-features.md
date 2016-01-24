@@ -58,7 +58,7 @@ var p = new Proxy(o, { /*error Proxy is not supported yet on Node v4.*/
 });
 ```
 
-The following patterns are considered not problems:
+The following patterns are not considered problems:
 
 ```js
 /*eslint node/no-unsupported-features: [2, {version: 4}]*/
@@ -211,7 +211,7 @@ This `"ignores"` option accepts an array of the following strings.
 If a group value is given, all sub items of the value are ignored.
 e.g. if `"String.*"` is given then `"String.raw"` and `"String.fromCodePoint"` are ignored.
 
-The following patterns are considered not problems when it's using `"ignores"`:
+The following patterns are not considered problems when it's using `"ignores"`:
 
 ```js
 /*eslint node/no-unsupported-features: [2, {version: 4, ignores: ["defaultParameters"]}]*/

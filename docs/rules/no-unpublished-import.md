@@ -27,7 +27,7 @@ import ignoredFile from "./ignored-file";             /*error "./ignored-file" i
 import notDependedModule from "not-depended-module";  /*error "not-depended-module" is not published.*/
 ```
 
-The following patterns are considered not problems:
+The following patterns are not considered problems:
 
 ```js
 /*eslint node/no-unpublished-import: 2*/

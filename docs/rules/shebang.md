@@ -40,14 +40,14 @@ The following patterns are considered problems for other files:
 console.log("hello");
 ```
 
-The following patterns are considered not problems for files in `bin` field of `package.json`:
+The following patterns are not considered problems for files in `bin` field of `package.json`:
 
 ```js
 #!/usr/bin/env node
 console.log("hello");
 ```
 
-The following patterns are considered not problems for other files:
+The following patterns are not considered problems for other files:
 
 ```js
 console.log("hello");

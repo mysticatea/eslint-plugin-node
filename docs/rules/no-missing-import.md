@@ -18,7 +18,7 @@ import typoFile from "./typo-file";   /*error "./typo-file" is not found.*/
 import typoModule from "typo-module"; /*error "typo-module" is not found.*/
 ```
 
-The following patterns are considered not problems:
+The following patterns are not considered problems:
 
 ```js
 /*eslint node/no-missing-import: 2*/

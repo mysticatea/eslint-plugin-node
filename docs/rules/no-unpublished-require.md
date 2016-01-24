@@ -1,4 +1,4 @@
-# Disallow `require()`s for files that files that are not published (no-unpublished-require)
+# Disallow `require()`s for files that are not published (no-unpublished-require)
 
 If `require()` targets are not published, the program works in local, but will not work after published to npm.
 This rule catches `require()` for files and modules that not published.
@@ -26,7 +26,7 @@ var ignoredFile = require("./ignored-file");             /*error "./ignored-file
 var notDependedModule = require("not-depended-module");  /*error "not-depended-module" is not published.*/
 ```
 
-The following patterns are considered not problems:
+The following patterns are not considered problems:
 
 ```js
 /*eslint node/no-unpublished-require: 2*/
