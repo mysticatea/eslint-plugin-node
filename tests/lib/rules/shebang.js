@@ -101,6 +101,24 @@ ruleTester.run("shebang", rule, {
         {
             filename: "tests/fixtures/shebang/string-bin/lib/test.js",
             code: "hello();"
+        },
+
+        // BOM and \r\n
+        {
+            filename: fixture("string-bin/lib/test.js"),
+            code: "\uFEFFhello();"
+        },
+        {
+            filename: fixture("string-bin/lib/test.js"),
+            code: "\uFEFFhello();\n"
+        },
+        {
+            filename: fixture("string-bin/lib/test.js"),
+            code: "hello();\r\n"
+        },
+        {
+            filename: fixture("string-bin/lib/test.js"),
+            code: "\uFEFFhello();\r\n"
         }
     ],
     invalid: [
@@ -225,6 +243,61 @@ ruleTester.run("shebang", rule, {
             code: "/* header */\nhello();",
             output: "#!/usr/bin/env node\n/* header */\nhello();",
             errors: ["This file needs shebang \"#!/usr/bin/env node\"."]
+        },
+
+        // BOM and \r\n
+        {
+            filename: fixture("string-bin/bin/test.js"),
+            code: "\uFEFFhello();",
+            output: "#!/usr/bin/env node\nhello();",
+            errors: ["This file needs shebang \"#!/usr/bin/env node\"."]
+        },
+        {
+            filename: fixture("string-bin/bin/test.js"),
+            code: "hello();\n",
+            output: "#!/usr/bin/env node\nhello();\n",
+            errors: ["This file needs shebang \"#!/usr/bin/env node\"."]
+        },
+        {
+            filename: fixture("string-bin/bin/test.js"),
+            code: "hello();\r\n",
+            output: "#!/usr/bin/env node\nhello();\r\n",
+            errors: ["This file needs shebang \"#!/usr/bin/env node\"."]
+        },
+        {
+            filename: fixture("string-bin/bin/test.js"),
+            code: "\uFEFFhello();\n",
+            output: "#!/usr/bin/env node\nhello();\n",
+            errors: ["This file needs shebang \"#!/usr/bin/env node\"."]
+        },
+        {
+            filename: fixture("string-bin/bin/test.js"),
+            code: "\uFEFFhello();\r\n",
+            output: "#!/usr/bin/env node\nhello();\r\n",
+            errors: ["This file needs shebang \"#!/usr/bin/env node\"."]
+        // ESLint v1 does not support
+        // },
+        // {
+        //     filename: fixture("string-bin/bin/test.js"),
+        //     code: "\uFEFF#!/usr/bin/env node\nhello();",
+        //     output: "#!/usr/bin/env node\nhello();",
+        //     errors: ["This file must not have Unicode BOM."]
+        },
+        {
+            filename: fixture("string-bin/bin/test.js"),
+            code: "#!/usr/bin/env node\r\nhello();",
+            output: "#!/usr/bin/env node\nhello();",
+            errors: ["This file must have Unix linebreaks (LF)."]
+        // ESLint v1 does not support
+        // },
+        // {
+        //     filename: fixture("string-bin/bin/test.js"),
+        //     code: "\uFEFF#!/usr/bin/env node\r\nhello();",
+        //     output: "#!/usr/bin/env node\nhello();",
+        //     errors: [
+        //         "This file must not have Unicode BOM.",
+        //         "This file must have Unix linebreaks (LF)."
+        //     ]
         }
     ]
 });
