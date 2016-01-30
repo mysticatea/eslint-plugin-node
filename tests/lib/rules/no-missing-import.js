@@ -150,6 +150,32 @@ ruleTester.run("no-missing-import", rule, {
             code: "import a from './a';",
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
+        },
+
+        // Relative paths to a directory should work.
+        {
+            filename: fixture("test.js"),
+            code: "import a from '.';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import a from './';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import a from './foo';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import a from './foo/';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
         }
     ],
     invalid: [
@@ -203,6 +229,22 @@ ruleTester.run("no-missing-import", rule, {
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"},
             errors: ["\"./c\" is not found."]
+        },
+
+        // Relative paths to a directory should work.
+        {
+            filename: fixture("test.js"),
+            code: "import a from './bar';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"},
+            errors: ["\"./bar\" is not found."]
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import a from './bar/';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"},
+            errors: ["\"./bar/\" is not found."]
         }
     ]
 });
