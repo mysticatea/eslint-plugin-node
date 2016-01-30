@@ -164,6 +164,28 @@ ruleTester.run("no-missing-require", rule, {
             filename: "tests/fixtures/no-missing/test.js",
             code: "require('./a');",
             env: {node: true}
+        },
+
+        // Relative paths to a directory should work.
+        {
+            filename: fixture("test.js"),
+            code: "require('.');",
+            env: {node: true}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "require('./');",
+            env: {node: true}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "require('./foo');",
+            env: {node: true}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "require('./foo/');",
+            env: {node: true}
         }
     ],
     invalid: [
@@ -210,6 +232,20 @@ ruleTester.run("no-missing-require", rule, {
             code: "require('./c');",
             env: {node: true},
             errors: ["\"./c\" is not found."]
+        },
+
+        // Relative paths to a directory should work.
+        {
+            filename: fixture("test.js"),
+            code: "require('./bar');",
+            env: {node: true},
+            errors: ["\"./bar\" is not found."]
+        },
+        {
+            filename: fixture("test.js"),
+            code: "require('./bar/');",
+            env: {node: true},
+            errors: ["\"./bar/\" is not found."]
         }
     ]
 });
