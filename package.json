@@ -13,7 +13,7 @@
     "lint": "eslint lib tests/lib --rulesdir lib/rules --rule \"{no-missing-require:2, no-unpublished-require:2, shebang:2}\"",
     "build": "node scripts/generate-index.js",
     "test": "npm-run-all clean lint test:mocha",
-    "test:mocha": "istanbul cover node_modules/mocha/bin/_mocha -- tests/lib/**/*.js",
+    "test:mocha": "istanbul cover node_modules/mocha/bin/_mocha -- tests/lib/**/*.js --reporter progress",
     "coveralls": "cat coverage/lcov.info | coveralls"
   },
   "peerDependencies": {
