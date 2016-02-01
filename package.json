@@ -14,10 +14,11 @@
     "build": "node scripts/generate-index.js",
     "test": "npm-run-all clean lint test:mocha",
     "test:mocha": "istanbul cover node_modules/mocha/bin/_mocha -- tests/lib/**/*.js --reporter progress",
-    "coveralls": "cat coverage/lcov.info | coveralls"
+    "coveralls": "cat coverage/lcov.info | coveralls",
+    "travis-test-with-eslint-next": "rimraf node_modules && npm i -g npm@3 && npm i && npm i eslint@next && npm i && npm run test:mocha && npm run coveralls"
   },
   "peerDependencies": {
-    "eslint": ">=1.10.3"
+    "eslint": ">=1.10.3 || 2.0.0-alpha-1 || 2.0.0-alpha-2 || 2.0.0-beta.1 || 2.0.0-beta.2 || 2.0.0-beta.3"
   },
   "dependencies": {
     "ignore": "^2.2.19",
@@ -34,6 +35,7 @@
     "mocha": "^2.3.4",
     "npm-run-all": "^1.3.2",
     "rimraf": "^2.4.4",
+    "semver": "^5.1.0",
     "shelljs": "^0.5.3"
   },
   "repository": {

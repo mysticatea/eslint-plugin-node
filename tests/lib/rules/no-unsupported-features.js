@@ -10,8 +10,13 @@
 // Requirements
 //------------------------------------------------------------------------------
 
+var semver = require("semver");
 var rule = require("../../../lib/rules/no-unsupported-features");
 var RuleTester = require("eslint").RuleTester;
+var unicodeSupported = semver.satisfies(
+    require("eslint/package.json").version,
+    ">=2.0.0 || 2.0.0-alpha-1 || 2.0.0-alpha-2 || 2.0.0-beta.1 || 2.0.0-beta.2 || 2.0.0-beta.3"
+);
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -29,6 +34,10 @@ var VERSIONS = Object.freeze([0.10, 0.12, 4, 5]);
 function convertPattern(retv, pattern) {
     var i;
 
+    if (pattern.onlyUnicodeSupported && !unicodeSupported) {
+        return retv;
+    }
+
     // Creates error messages.
     var errors = [];
     for (i = 0; i < pattern.errors; ++i) {
@@ -39,13 +48,12 @@ function convertPattern(retv, pattern) {
     }
 
     // Creates each pattern of Node versions.
-    for (i = 0; i < VERSIONS.length; ++i) {
-        var version = VERSIONS[i];
+    VERSIONS.forEach(function(version) {
         var versionText = version < 1 ? version.toFixed(2) : version.toFixed(0);
 
         // Skips if ignored
         if (pattern.ignores && pattern.ignores.indexOf(version) !== -1) {
-            continue;
+            return;
         }
 
         if (version >= pattern.supported) {
@@ -60,7 +68,7 @@ function convertPattern(retv, pattern) {
         }
         else {
             // If this is not supported, add to a valid pattern with a "ignores" option.
-            [].push.apply(retv.valid, pattern.keys.map(function(key) { // eslint-disable-line no-loop-func
+            [].push.apply(retv.valid, pattern.keys.map(function(key) {
                 return {
                     code: "/*" + pattern.name + ": " + versionText + ", ignores: [\"" + key + "\"]*/ " + pattern.code,
                     env: {es6: true},
@@ -77,12 +85,12 @@ function convertPattern(retv, pattern) {
                 options: [version],
                 ecmaFeatures: {modules: Boolean(pattern.modules)},
                 parserOptions: {sourceType: pattern.modules ? "module" : "script"},
-                errors: errors.map(function(message) { // eslint-disable-line no-loop-func
+                errors: errors.map(function(message) {
                     return message + versionText + ".";
                 })
             });
         }
-    }
+    });
 
     return retv;
 }
@@ -188,14 +196,15 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 2,
         supported: NaN
     },
-    // TODO: ESLint v1 cannot parse unicode code point escapes.
-    // {
-    //     keys: ["unicodeCodePointEscapes", "syntax"],
-    //     name: "Unicode Code Point Escapes",
-    //     code: "var \\u{102C0} = { \\u{102C0} : '\\u{1d306}' };",
-    //     errors: 3,
-    //     supported: 4
-    // },
+    // ESLint v1 cannot parse unicode code point escapes.
+    {
+        keys: ["unicodeCodePointEscapes", "syntax"],
+        name: "Unicode Code Point Escapes",
+        code: "var \\u{102C0} = { \\u{102C0} : '\\u{1d306}' };",
+        errors: 3,
+        supported: 4,
+        onlyUnicodeSupported: true
+    },
     {
         keys: ["new.target", "syntax"],
         name: "'new.target'",

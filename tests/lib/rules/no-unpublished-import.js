@@ -124,6 +124,12 @@ ruleTester.run("no-unpublished-import", rule, {
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },
+        {
+            filename: fixture("3/src/pub/test.js"),
+            code: "import bbb from 'bbb';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
 
         // `convertPath` option.
         {
@@ -245,6 +251,13 @@ ruleTester.run("no-unpublished-import", rule, {
             errors: ["\"../test\" is not published."],
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
+        },
+        {
+            filename: fixture("3/pub/test.js"),
+            code: "import a from '../src/pub/a.js';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"},
+            errors: ["\"../src/pub/a.js\" is not published."]
         },
 
         {

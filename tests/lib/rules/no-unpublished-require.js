@@ -109,6 +109,11 @@ ruleTester.run("no-unpublished-require", rule, {
             code: "require('../package.json');",
             env: {node: true}
         },
+        {
+            filename: fixture("3/src/pub/test.js"),
+            code: "require('bbb');",
+            env: {node: true}
+        },
 
         // `convertPath` option.
         {
@@ -249,6 +254,12 @@ ruleTester.run("no-unpublished-require", rule, {
             code: "require('../test');",
             env: {node: true},
             errors: ["\"../test\" is not published."]
+        },
+        {
+            filename: fixture("3/pub/test.js"),
+            code: "require('../src/pub/a.js');",
+            env: {node: true},
+            errors: ["\"../src/pub/a.js\" is not published."]
         },
 
         {
