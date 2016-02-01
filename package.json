@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-node",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Additional ESLint's rules for Node.js",
   "files": [
     "lib",
