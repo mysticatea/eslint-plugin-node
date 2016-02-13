@@ -16,7 +16,7 @@ var RuleTester = require("eslint").RuleTester;
 var rule = require("../../../lib/rules/shebang");
 var bomSupported = semver.satisfies(
     require("eslint/package.json").version,
-    ">=2.0.0 || 2.0.0-beta.2 || 2.0.0-beta.3"
+    "^2.0.0"
 );
 
 //------------------------------------------------------------------------------

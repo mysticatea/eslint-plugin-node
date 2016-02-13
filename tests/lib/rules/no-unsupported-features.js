@@ -15,7 +15,7 @@ var rule = require("../../../lib/rules/no-unsupported-features");
 var RuleTester = require("eslint").RuleTester;
 var unicodeSupported = semver.satisfies(
     require("eslint/package.json").version,
-    ">=2.0.0 || 2.0.0-alpha-1 || 2.0.0-alpha-2 || 2.0.0-beta.1 || 2.0.0-beta.2 || 2.0.0-beta.3"
+    "^2.0.0"
 );
 
 //------------------------------------------------------------------------------
