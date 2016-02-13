@@ -124,6 +124,12 @@ ruleTester.run("shebang", rule, {
         {
             filename: fixture("string-bin/lib/test.js"),
             code: "\uFEFFhello();\r\n"
+        },
+
+        // blank lines on the top of files.
+        {
+            filename: fixture("string-bin/lib/test.js"),
+            code: "\n\n\nhello();"
         }
     ],
     invalid: [
