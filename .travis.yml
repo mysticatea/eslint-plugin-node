@@ -9,4 +9,4 @@ before_script:
   - npm install async
 script:
   - "npm run test && npm run coveralls"
-  - npm run travis-test-with-eslint-next
+  - "npm rm eslint-config-mysticatea && npm i eslint@1 && npm run test:mocha"
