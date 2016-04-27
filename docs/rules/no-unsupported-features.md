@@ -24,7 +24,8 @@ This rule accepts the following version number:
 - `5`
 - `6`
 
-If the version was omitted, this rule would read the [engines](https://docs.npmjs.com/files/package.json#engines) field of `package.json`.
+If the version was omitted, this rule will read the [engines](https://docs.npmjs.com/files/package.json#engines) field of `package.json`.
+If both the `version` option and the `engines` field don't exist, this rule will use the minimum version Node community is maintaining (It's `0.10` currently).
 
 The following patterns are considered problems:
 
