@@ -10,6 +10,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
+var path = require("path");
 var semver = require("semver");
 var rule = require("../../../lib/rules/no-unsupported-features");
 var RuleTester = require("eslint").RuleTester;
@@ -93,6 +94,15 @@ function convertPattern(retv, pattern) {
     });
 
     return retv;
+}
+
+/**
+ * Makes a file path to a fixture.
+ * @param {string} name - A name.
+ * @returns {string} A file path to a fixture.
+ */
+function fixture(name) {
+    return path.resolve(__dirname, "../../fixtures/no-unsupported-features", name);
 }
 
 //------------------------------------------------------------------------------
@@ -926,4 +936,48 @@ ruleTester.run("no-unsupported-features", rule, [
         ignores: [0.10, 0.12],
         singular: true
     }
-].reduce(convertPattern, {valid: [], invalid: []}));
+].reduce(convertPattern, {
+    valid: [
+        {
+            filename: fixture("gte-4.0.0/a.js"),
+            code: "var a = () => 1",
+            env: {es6: true}
+        },
+        {
+            filename: fixture("gte-4.4.0-lt-5.0.0/a.js"),
+            code: "var a = () => 1",
+            env: {es6: true}
+        },
+        {
+            filename: fixture("hat-4.1.2/a.js"),
+            code: "var a = () => 1",
+            env: {es6: true}
+        }
+    ],
+    invalid: [
+        {
+            filename: fixture("gte-0.12.8/a.js"),
+            code: "var a = () => 1",
+            env: {es6: true},
+            errors: ["Arrow Functions are not supported yet on Node v0.12."]
+        },
+        {
+            filename: fixture("invalid/a.js"),
+            code: "var a = () => 1",
+            env: {es6: true},
+            errors: ["Arrow Functions are not supported yet on Node v0.10."]
+        },
+        {
+            filename: fixture("lt-6.0.0/a.js"),
+            code: "var a = () => 1",
+            env: {es6: true},
+            errors: ["Arrow Functions are not supported yet on Node v0.10."]
+        },
+        {
+            filename: fixture("nothing/a.js"),
+            code: "var a = () => 1",
+            env: {es6: true},
+            errors: ["Arrow Functions are not supported yet on Node v0.10."]
+        }
+    ]
+}));

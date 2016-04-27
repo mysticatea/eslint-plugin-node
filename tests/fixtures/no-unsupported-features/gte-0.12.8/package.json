@@ -1,0 +1,7 @@
+{
+    "private": true,
+    "name": "test",
+    "engines": {
+        "node": ">=0.12.8"
+    }
+}

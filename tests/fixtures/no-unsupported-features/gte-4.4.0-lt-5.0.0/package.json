@@ -1,0 +1,7 @@
+{
+    "private": true,
+    "name": "test",
+    "engines": {
+        "node": ">=4.4.0 <5.0.0"
+    }
+}

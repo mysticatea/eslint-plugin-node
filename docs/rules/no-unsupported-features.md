@@ -7,7 +7,7 @@ This rule reports when you used unsupported ECMAScript 2015 features on the spec
 
 **This rule expects to be used with `"env": {"es6": true}` configuration.**
 
-This rule requires to specify a Node version always.
+This rule requires a Node version.
 For Example:
 
 ```json
@@ -23,6 +23,8 @@ This rule accepts the following version number:
 - `4`
 - `5`
 - `6`
+
+If the version was omitted, this rule would read the [engines](https://docs.npmjs.com/files/package.json#engines) field of `package.json`.
 
 The following patterns are considered problems:
 
