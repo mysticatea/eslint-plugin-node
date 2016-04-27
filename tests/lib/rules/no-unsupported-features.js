@@ -22,7 +22,7 @@ var unicodeSupported = semver.satisfies(
 // Helpers
 //------------------------------------------------------------------------------
 
-var VERSIONS = Object.freeze([0.10, 0.12, 4, 5]);
+var VERSIONS = Object.freeze([0.10, 0.12, 4, 5, 6]);
 
 /**
  * Creates test pattern.
@@ -110,14 +110,14 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "Default Parameters",
         code: "function foo(a = 1) {} ;(function(a = 1) {})()",
         errors: 2,
-        supported: NaN
+        supported: 6
     },
     {
         keys: ["restParameters", "syntax"],
         name: "Rest Parameters",
         code: "function foo(a, ...b) {} ;(function(a, ...b) {})()",
         errors: 2,
-        supported: NaN
+        supported: 6
     },
     {
         keys: ["spreadOperators", "syntax"],
@@ -166,35 +166,35 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "RegExp 'y' Flags",
         code: "new RegExp('', 'y'); (/a/y)",
         errors: 2,
-        supported: NaN
+        supported: 6
     },
     {
         keys: ["regexpU", "syntax"],
         name: "RegExp 'u' Flags",
         code: "new RegExp('', 'u'); (/a/u)",
         errors: 2,
-        supported: NaN
+        supported: 6
     },
     {
         keys: ["destructuring", "syntax"],
         name: "Destructuring",
         code: "var [[a], [b = 1]] = [], {c: {c}, d: {d = 1}} = {};",
         errors: 2,
-        supported: NaN
+        supported: 6
     },
     {
         keys: ["destructuring", "syntax"],
         name: "Destructuring",
         code: "[[a], [b = 1]] = []; ({c: {c}, d: {d = 1}} = {})",
         errors: 2,
-        supported: NaN
+        supported: 6
     },
     {
         keys: ["destructuring", "syntax"],
         name: "Destructuring",
         code: "function foo([[a], [b = 1]], {c: {c}, d: {d = 1}}) {}",
         errors: 2,
-        supported: NaN
+        supported: 6
     },
     // ESLint v1 cannot parse unicode code point escapes.
     {
@@ -232,7 +232,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'const' Declarations in non-strict mode",
         code: "const a = 0;",
         errors: 1,
-        supported: NaN,
+        supported: 6,
         ignores: [0.10, 0.12]
     },
     {
@@ -255,7 +255,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'let' Declarations in non-strict mode",
         code: "let a = 0;",
         errors: 1,
-        supported: NaN,
+        supported: 6,
         ignores: [0.10, 0.12]
     },
     {
@@ -278,7 +278,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "Block-Scoped Functions in non-strict mode",
         code: "{ function foo() {} } if (a) { function foo() {} }",
         errors: 2,
-        supported: NaN,
+        supported: 6,
         ignores: [0.10, 0.12]
     },
     {
@@ -308,7 +308,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "Classes in non-strict mode",
         code: "class A {} new (class{})()",
         errors: 2,
-        supported: NaN,
+        supported: 6,
         ignores: [0.10, 0.12]
     },
     {
@@ -323,7 +323,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "Import and Export Declarations",
         code: "import foo from 'foo'; export default 0; export {foo}; export * from 'foo';",
         errors: 4,
-        supported: NaN,
+        supported: 6,
         modules: true
     },
 
@@ -448,7 +448,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Proxy'",
         code: "Proxy",
         errors: 1,
-        supported: NaN,
+        supported: 6,
         singular: true
     },
     {
@@ -456,7 +456,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Reflect'",
         code: "Reflect",
         errors: 1,
-        supported: NaN,
+        supported: 6,
         singular: true
     },
     {
@@ -759,7 +759,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Symbol.isConcatSpreadablec'",
         code: "Symbol.isConcatSpreadablec",
         errors: 1,
-        supported: NaN,
+        supported: 6,
         ignores: [0.10],
         singular: true
     },
@@ -786,7 +786,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Symbol.replace'",
         code: "Symbol.replace",
         errors: 1,
-        supported: NaN,
+        supported: 6,
         ignores: [0.10],
         singular: true
     },
@@ -795,7 +795,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Symbol.search'",
         code: "Symbol.search",
         errors: 1,
-        supported: NaN,
+        supported: 6,
         ignores: [0.10],
         singular: true
     },
@@ -804,7 +804,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Symbol.split'",
         code: "Symbol.split",
         errors: 1,
-        supported: NaN,
+        supported: 6,
         ignores: [0.10],
         singular: true
     },
@@ -813,7 +813,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Symbol.match'",
         code: "Symbol.match",
         errors: 1,
-        supported: NaN,
+        supported: 6,
         ignores: [0.10],
         singular: true
     },
@@ -822,7 +822,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Symbol.toPrimitive'",
         code: "Symbol.toPrimitive",
         errors: 1,
-        supported: NaN,
+        supported: 6,
         ignores: [0.10],
         singular: true
     },
@@ -831,7 +831,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Symbol.toStringTag'",
         code: "Symbol.toStringTag",
         errors: 1,
-        supported: NaN,
+        supported: 6,
         ignores: [0.10],
         singular: true
     },
@@ -850,7 +850,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "Subclassing of 'Array'",
         code: "'use strict'; class X extends Array {}",
         errors: 1,
-        supported: NaN,
+        supported: 6,
         ignores: [0.10, 0.12],
         singular: true
     },
@@ -868,7 +868,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "Subclassing of 'Function'",
         code: "'use strict'; class X extends Function {}",
         errors: 1,
-        supported: NaN,
+        supported: 6,
         ignores: [0.10, 0.12],
         singular: true
     },
