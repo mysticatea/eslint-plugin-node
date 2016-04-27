@@ -46,7 +46,15 @@
   "keywords": [
     "eslint",
     "eslintplugin",
-    "eslint-plugin"
+    "eslint-plugin",
+    "node",
+    "nodejs",
+    "ecmascript",
+    "shebang",
+    "file",
+    "path",
+    "import",
+    "require"
   ],
   "author": "Toru Nagashima",
   "license": "MIT",
