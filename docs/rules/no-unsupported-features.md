@@ -22,6 +22,7 @@ This rule accepts the following version number:
 - `0.12`
 - `4`
 - `5`
+- `6`
 
 The following patterns are considered problems:
 
@@ -228,4 +229,5 @@ If you don't want to restrict features, then it's safe to disable this rule.
 
 ## Further Reading
 
+- http://node.green/
 - http://kangax.github.io/compat-table/es6/
