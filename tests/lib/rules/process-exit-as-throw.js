@@ -19,13 +19,15 @@ var rule = require("../../../lib/rules/process-exit-as-throw");
 // Tests
 //------------------------------------------------------------------------------
 
+var supported = rule.meta.supported;
+
 describe("process-exit-as-throw", function() {
     beforeEach(function() {
         eslint.reset();
         eslint.defineRule("process-exit-as-throw", rule);
     });
 
-    it("should get unreachable error after 'process.exit()'.", function() {
+    (supported ? it : xit)("should get unreachable error after 'process.exit()'.", function() {
         var code = [
             "foo();",
             "process.exit(1);",
@@ -46,7 +48,7 @@ describe("process-exit-as-throw", function() {
         assert.equal(messages[0].line, 3);
     });
 
-    it("should get no unreachable error after 'process.exit()' if this rule is turned off.", function() {
+    (supported ? it : xit)("should get no unreachable error after 'process.exit()' if this rule is turned off.", function() {
         var code = [
             "foo();",
             "process.exit(1);",
@@ -65,7 +67,7 @@ describe("process-exit-as-throw", function() {
         assert.equal(messages.length, 0);
     });
 
-    it("should get no consistent-return error after 'process.exit()'.", function() {
+    (supported ? it : xit)("should get no consistent-return error after 'process.exit()'.", function() {
         var code = [
             "function foo() {",
             "    if (a) {",
