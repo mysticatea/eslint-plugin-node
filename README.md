@@ -21,15 +21,17 @@ Additional ESLint's rules for Node.js
     "extends": "eslint:recommended",
     "plugins": ["node"],
     "env": {
+        "es6": true,
         "node": true
     },
     "rules": {
-        "node/no-missing-import": 2,
-        "node/no-missing-require": 2,
-        "node/no-unpublished-import": 2,
-        "node/no-unpublished-require": 2,
-        "node/no-unsupported-features": [2, {"version": 4}],
-        "node/shebang": 2
+        "node/no-missing-import": "error",
+        "node/no-missing-require": "error",
+        "node/no-unpublished-import": "error",
+        "node/no-unpublished-require": "error",
+        "node/no-unsupported-features": ["error", {"version": 4}],
+        "node/process-exit-as-throw": "error",
+        "node/shebang": "error"
     }
 }
 ```
@@ -43,6 +45,7 @@ Some rules are slow because it searches `package.json` and opens it.
 - [no-unpublished-import](docs/rules/no-unpublished-import.md) - Disallow `import` and `export` declarations for files that are not published.
 - [no-unpublished-require](docs/rules/no-unpublished-require.md) - Disallow `require()`s for files that are not published.
 - [no-unsupported-features](docs/rules/no-unsupported-features.md) - Disallow unsupported ECMAScript features on the specified version.
+- [process-exit-as-throw](docs/rules/process-exit-as-throw.md) - Make the same code path as throw at `process.exit()`. (⚠ Experimental)
 - [shebang](docs/rules/shebang.md) - Suggest correct usage of shebang. (fixable)
 
 ## FAQ
