@@ -192,6 +192,14 @@ ruleTester.run("no-unpublished-require", rule, {
             filename: "tests/fixtures/no-unpublished/2/test.js",
             code: "require('./a');",
             env: {node: true}
+        },
+
+        // allowModules option
+        {
+            filename: fixture("1/test.js"),
+            code: "require('electron');",
+            options: [{allowModules: ["electron"]}],
+            env: {node: true}
         }
     ],
     invalid: [

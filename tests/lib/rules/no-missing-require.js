@@ -186,6 +186,14 @@ ruleTester.run("no-missing-require", rule, {
             filename: fixture("test.js"),
             code: "require('./foo/');",
             env: {node: true}
+        },
+
+        // allow option
+        {
+            filename: fixture("test.js"),
+            code: "require('electron');",
+            options: [{allowModules: ["electron"]}],
+            env: {node: true}
         }
     ],
     invalid: [

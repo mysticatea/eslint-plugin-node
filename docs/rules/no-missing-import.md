@@ -33,7 +33,26 @@ import existingModule from "existing-module";
 {
     "rules": {
         "node/no-missing-import": [2, {
+            "allowModules": [],
             "tryExtensions": [".js", ".json", ".node"]
+        }]
+    }
+}
+```
+
+#### `allowModules`
+
+Some platforms have additional embedded modules.
+For example, Electron has `electron` module.
+
+We can specify additional embedded modules with this option.
+This option is an array of strings as module names.
+
+```json
+{
+    "rules": {
+        "node/no-missing-import": [2, {
+            "allowModules": ["electron"]
         }]
     }
 }
@@ -46,13 +65,19 @@ When an import path does not exist, this rule checks whether or not any of `path
 
 Default is `[".js", ".json", ".node"]`.
 
-This option can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
-Several rules have this option, but we can set this option at once.
+### Shared Settings
+
+The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
+Several rules have the same option, but we can set this option at once.
+
+- `allowModules`
+- `tryExtensions`
 
 ```json
 {
     "settings": {
         "node": {
+            "allowModules": ["electron"],
             "tryExtensions": [".js", ".json", ".node"]
         }
     },

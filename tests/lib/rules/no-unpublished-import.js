@@ -179,6 +179,14 @@ ruleTester.run("no-unpublished-import", rule, {
             code: "import a from './a';",
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
+        },
+
+        {
+            filename: fixture("1/test.js"),
+            code: "import electron from 'electron';",
+            options: [{allowModules: ["electron"]}],
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
         }
     ],
     invalid: [

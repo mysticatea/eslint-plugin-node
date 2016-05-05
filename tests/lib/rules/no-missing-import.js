@@ -176,6 +176,15 @@ ruleTester.run("no-missing-import", rule, {
             code: "import a from './foo/';",
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
+        },
+
+        // allow option.
+        {
+            filename: fixture("test.js"),
+            code: "import electron from 'electron';",
+            options: [{allowModules: ["electron"]}],
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
         }
     ],
     invalid: [

@@ -44,8 +44,27 @@ var foo = require(FOO_NAME);
 {
     "rules": {
         "node/no-unpublished-require": [2, {
+            "allowModules": [],
             "convertPath": null,
             "tryExtensions": [".js", ".json", ".node"]
+        }]
+    }
+}
+```
+
+#### `allowModules`
+
+Some platforms have additional embedded modules.
+For example, Electron has `electron` module.
+
+We can specify additional embedded modules with this option.
+This option is an array of strings as module names.
+
+```json
+{
+    "rules": {
+        "node/no-unpublished-require": [2, {
+            "allowModules": ["electron"]
         }]
     }
 }
@@ -94,6 +113,7 @@ Default is `[".js", ".json", ".node"]`.
 The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
 Several rules have the same option, but we can set this option at once.
 
+- `allowModules`
 - `convertPath`
 - `tryExtensions`
 
@@ -103,6 +123,7 @@ For Example:
 {
     "settings": {
         "node": {
+            "allowModules": ["electron"],
             "convertPath": {
                 "src/**/*.jsx": ["^src/(.+?)\\.jsx$", "lib/$1.js"]
             },
