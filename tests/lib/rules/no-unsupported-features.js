@@ -210,7 +210,7 @@ ruleTester.run("no-unsupported-features", rule, [
     {
         keys: ["unicodeCodePointEscapes", "syntax"],
         name: "Unicode Code Point Escapes",
-        code: "var \\u{102C0} = { \\u{102C0} : '\\u{1d306}' };",
+        code: "var \\u{102C0} = { \\u{102C0} : '\\u{1d306}' };", // eslint-disable-line node/no-unsupported-features
         errors: 3,
         supported: 4,
         onlyUnicodeSupported: true
