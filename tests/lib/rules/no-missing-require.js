@@ -194,6 +194,12 @@ ruleTester.run("no-missing-require", rule, {
             code: "require('electron');",
             options: [{allowModules: ["electron"]}],
             env: {node: true}
+        },
+        {
+            filename: fixture("test.js"),
+            code: "require('jquery.cookie');",
+            options: [{allowModules: ["jquery.cookie"]}],
+            env: {node: true}
         }
     ],
     invalid: [
