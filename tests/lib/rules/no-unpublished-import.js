@@ -130,6 +130,12 @@ ruleTester.run("no-unpublished-import", rule, {
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },
+        {
+            filename: fixture("3/src/pub/test.js"),
+            code: "import bbb from 'bbb!foo?a=b&c=d';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
 
         // `convertPath` option.
         {

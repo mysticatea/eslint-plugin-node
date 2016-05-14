@@ -94,6 +94,11 @@ ruleTester.run("no-missing-require", rule, {
             code: "require(`eslint`);",
             env: {node: true, es6: true}
         },
+        {
+            filename: fixture("test.js"),
+            code: "require('mocha!foo?a=b&c=d');",
+            env: {node: true}
+        },
 
         // tryExtensions
         {

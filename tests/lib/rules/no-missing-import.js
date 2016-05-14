@@ -101,6 +101,12 @@ ruleTester.run("no-missing-import", rule, {
             ecmaFeatures: {modules: true},
             parserOptions: {sourceType: "module"}
         },
+        {
+            filename: fixture("test.js"),
+            code: "import mocha from 'mocha!foo?a=b&c=d';",
+            ecmaFeatures: {modules: true},
+            parserOptions: {sourceType: "module"}
+        },
 
         // tryExtensions
         {

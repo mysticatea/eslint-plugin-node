@@ -114,6 +114,11 @@ ruleTester.run("no-unpublished-require", rule, {
             code: "require('bbb');",
             env: {node: true}
         },
+        {
+            filename: fixture("3/src/pub/test.js"),
+            code: "require('bbb!foo?a=b&c=d');",
+            env: {node: true}
+        },
 
         // `convertPath` option.
         {
