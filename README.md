@@ -25,6 +25,7 @@ Additional ESLint's rules for Node.js
         "node": true
     },
     "rules": {
+        "node/no-deprecated-api": "error",
         "node/no-missing-import": "error",
         "node/no-missing-require": "error",
         "node/no-unpublished-import": "error",
@@ -40,6 +41,7 @@ Additional ESLint's rules for Node.js
 
 Some rules are slow because it searches `package.json` and opens it.
 
+- [no-deprecated-api](docs/rules/no-deprecated-api.md) - Disallow deprecated API.
 - [no-missing-import](docs/rules/no-missing-import.md) - Disallow `import` and `export` declarations for files that don't exist.
 - [no-missing-require](docs/rules/no-missing-require.md) - Disallow `require()`s for files that don't exist.
 - [no-unpublished-import](docs/rules/no-unpublished-import.md) - Disallow `import` and `export` declarations for files that are not published.
