@@ -1,7 +1,7 @@
 # eslint-plugin-node
 
 [![npm version](https://img.shields.io/npm/v/eslint-plugin-node.svg)](https://www.npmjs.com/package/eslint-plugin-node)
-[![Downloads/month](https://img.shields.io/npm/dm/eslint-plugin-node.svg)](https://www.npmjs.com/package/eslint-plugin-node)
+[![Downloads/month](https://img.shields.io/npm/dm/eslint-plugin-node.svg)](http://www.npmtrends.com/eslint-plugin-node)
 [![Build Status](https://travis-ci.org/mysticatea/eslint-plugin-node.svg?branch=master)](https://travis-ci.org/mysticatea/eslint-plugin-node)
 [![Coverage Status](https://coveralls.io/repos/mysticatea/eslint-plugin-node/badge.svg?branch=master)](https://coveralls.io/r/mysticatea/eslint-plugin-node?branch=master)
 [![Dependency Status](https://david-dm.org/mysticatea/eslint-plugin-node.svg)](https://david-dm.org/mysticatea/eslint-plugin-node)
@@ -49,6 +49,27 @@ Some rules are slow because it searches `package.json` and opens it.
 - [no-unsupported-features](docs/rules/no-unsupported-features.md) - Disallow unsupported ECMAScript features on the specified version.
 - [process-exit-as-throw](docs/rules/process-exit-as-throw.md) - Make the same code path as throw at `process.exit()`. (⚠ Experimental)
 - [shebang](docs/rules/shebang.md) - Suggest correct usage of shebang. (fixable)
+
+## Semantic Versioning Policy
+
+`eslint-plugin-node` follows [semantic versioning](http://semver.org/) and [ESLint's Semantic Versioning Policy](https://github.com/eslint/eslint#semantic-versioning-policy).
+
+- Patch release (intended to not break your lint build)
+    - A bug fix in a rule that results in `eslint-plugin-node` reporting fewer errors.
+    - Improvements to documentation.
+    - Non-user-facing changes such as refactoring code, adding, deleting, or modifying tests, and increasing test coverage.
+    - Re-releasing after a failed release (i.e., publishing a release that doesn't work for anyone).
+- Minor release (might break your lint build)
+    - A bug fix in a rule that results in `eslint-plugin-node` reporting more errors.
+    - A new rule is created.
+    - A new option to an existing rule is created.
+    - An existing rule is deprecated.
+- Major release (likely to break your lint build)
+    - A support for old Node version is dropped.
+    - A support for old ESLint version is dropped.
+    - An existing rule is removed.
+    - An existing option of a rule is removed.
+    - An existing config is updated.
 
 ## FAQ
 
