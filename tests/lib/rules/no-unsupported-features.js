@@ -144,6 +144,13 @@ ruleTester.run("no-unsupported-features", rule, [
         supported: 4
     },
     {
+        keys: ["objectPropertyShorthandOfGetSet", "objectLiteralExtensions", "syntax"],
+        name: "Property Shorthand of 'get' and 'set'",
+        code: "var obj = {get, set}",
+        errors: 2,
+        supported: 6
+    },
+    {
         keys: ["forOf", "syntax"],
         name: "'for..of' Loops",
         code: "for (var a of []) {}",
