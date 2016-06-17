@@ -3,16 +3,17 @@
   "version": "1.4.0",
   "description": "Additional ESLint's rules for Node.js",
   "files": [
+    "conf",
     "lib",
     "index.js"
   ],
   "scripts": {
-    "preversion": "run-s -sn clean test:* build",
+    "preversion": "run-s -sn clean build test:*",
     "postversion": "git push && git push --tags",
     "clean": "rimraf coverage",
     "build": "node scripts/generate-index.js",
-    "test": "run-s -sn clean test:*",
-    "test:lint": "eslint lib tests/lib",
+    "test": "run-s -sn clean build test:*",
+    "test:lint": "eslint lib tests/lib index.js",
     "test:mocha": "istanbul cover node_modules/mocha/bin/_mocha -- tests/lib/**/*.js --reporter progress",
     "coveralls": "cat coverage/lcov.info | coveralls"
   },
