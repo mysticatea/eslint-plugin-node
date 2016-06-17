@@ -61,6 +61,9 @@ var ruleNames = ls("lib/rules").map(toBasename);
     "    },",
     "    rulesConfig: {",
     ruleNames.map(toRuleLevel).join(",\n"),
+    "    },",
+    "    configs: {",
+    "        recommended: require(\"./conf/recommended.json\")",
     "    }",
     "};",
     ""
