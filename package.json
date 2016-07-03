@@ -21,7 +21,7 @@
     "node": ">=0.10"
   },
   "peerDependencies": {
-    "eslint": ">=1.10.3"
+    "eslint": ">=2.0.0"
   },
   "dependencies": {
     "ignore": "^3.0.11",

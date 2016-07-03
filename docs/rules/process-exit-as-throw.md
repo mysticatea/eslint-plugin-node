@@ -2,8 +2,6 @@
 
 **Experimental:** This rule is an experimental thing. This may be changed without major bump in future.
 
-**Note:** This rule is not working on ESLint v1 because v1 doesn't support code path analysis.
-
 ## Rule Details
 
 ```js

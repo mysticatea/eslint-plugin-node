@@ -4,10 +4,9 @@ node_js:
   - "0.10"
   - "0.12"
   - "4"
-  - "5"
   - "6"
 before_script:
   - npm install async
 script:
   - "npm run test && npm run coveralls"
-  - "npm rm eslint-config-mysticatea && npm i eslint@1 && npm run test:mocha"
+  - "npm rm eslint-config-mysticatea && npm i eslint@2 && npm run test:mocha"

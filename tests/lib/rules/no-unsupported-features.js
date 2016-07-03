@@ -11,13 +11,8 @@
 //------------------------------------------------------------------------------
 
 var path = require("path")
-var semver = require("semver")
 var rule = require("../../../lib/rules/no-unsupported-features")
 var RuleTester = require("eslint").RuleTester
-var unicodeSupported = semver.satisfies(
-    require("eslint/package.json").version,
-    "^2.0.0"
-)
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -34,10 +29,6 @@ var VERSIONS = Object.freeze([0.10, 0.12, 4, 5, 6])
  */
 function convertPattern(retv, pattern) {
     var i = 0
-
-    if (pattern.onlyUnicodeSupported && !unicodeSupported) {
-        return retv
-    }
 
     // Creates error messages.
     var errors = []
@@ -63,7 +54,6 @@ function convertPattern(retv, pattern) {
                 code: "/*" + pattern.name + ": " + versionText + "*/ " + pattern.code,
                 env: {es6: true},
                 options: [version],
-                ecmaFeatures: {modules: Boolean(pattern.modules)},
                 parserOptions: {sourceType: pattern.modules ? "module" : "script"},
             })
         }
@@ -74,7 +64,6 @@ function convertPattern(retv, pattern) {
                     code: "/*" + pattern.name + ": " + versionText + ", ignores: [\"" + key + "\"]*/ " + pattern.code,
                     env: {es6: true},
                     options: [{version: version, ignores: [key]}],
-                    ecmaFeatures: {modules: Boolean(pattern.modules)},
                     parserOptions: {sourceType: pattern.modules ? "module" : "script"},
                 }
             }))
@@ -84,7 +73,6 @@ function convertPattern(retv, pattern) {
                 code: "/*" + pattern.name + ": " + versionText + "*/ " + pattern.code,
                 env: {es6: true},
                 options: [version],
-                ecmaFeatures: {modules: Boolean(pattern.modules)},
                 parserOptions: {sourceType: pattern.modules ? "module" : "script"},
                 errors: errors.map(function(message) {
                     return message + versionText + "."
@@ -213,14 +201,12 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 2,
         supported: 6,
     },
-    // ESLint v1 cannot parse unicode code point escapes.
     {
         keys: ["unicodeCodePointEscapes", "syntax"],
         name: "Unicode Code Point Escapes",
         code: "var \\u{102C0} = { \\u{102C0} : '\\u{1d306}' };", // eslint-disable-line node/no-unsupported-features
         errors: 3,
         supported: 4,
-        onlyUnicodeSupported: true,
     },
     {
         keys: ["new.target", "syntax"],

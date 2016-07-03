@@ -11,13 +11,8 @@
 //------------------------------------------------------------------------------
 
 var path = require("path")
-var semver = require("semver")
 var RuleTester = require("eslint").RuleTester
 var rule = require("../../../lib/rules/shebang")
-var bomSupported = semver.satisfies(
-    require("eslint/package.json").version,
-    "^2.0.0"
-)
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -293,14 +288,11 @@ ruleTester.run("shebang", rule, {
             output: "#!/usr/bin/env node\nhello();",
             errors: ["This file must have Unix linebreaks (LF)."],
         },
-
-        // ESLint v1 does not support
         {
             filename: fixture("string-bin/bin/test.js"),
             code: "\uFEFF#!/usr/bin/env node\nhello();",
             output: "#!/usr/bin/env node\nhello();",
             errors: ["This file must not have Unicode BOM."],
-            onlyBomSupported: true,
         },
         {
             filename: fixture("string-bin/bin/test.js"),
@@ -310,9 +302,6 @@ ruleTester.run("shebang", rule, {
                 "This file must not have Unicode BOM.",
                 "This file must have Unix linebreaks (LF).",
             ],
-            onlyBomSupported: true,
         },
-    ].filter(function(item) {
-        return !item.onlyBomSupported || bomSupported
-    }),
+    ],
 })
