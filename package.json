@@ -13,7 +13,7 @@
     "clean": "rimraf coverage",
     "build": "node scripts/generate-index.js",
     "test": "run-s -sn clean build test:*",
-    "test:lint": "eslint lib tests/lib index.js",
+    "test:lint": "if-node-version \">=4\" eslint lib tests/lib index.js",
     "test:mocha": "istanbul cover node_modules/mocha/bin/_mocha -- tests/lib/**/*.js --reporter progress",
     "coveralls": "cat coverage/lcov.info | coveralls"
   },
@@ -28,12 +28,13 @@
     "minimatch": "^3.0.2",
     "object-assign": "^4.0.1",
     "resolve": "^1.1.7",
-    "semver": "5.1.0"
+    "semver": "5.2.0"
   },
   "devDependencies": {
     "coveralls": "^2.11.4",
     "eslint": "^3.0.0",
     "eslint-config-mysticatea": "^5.0.0",
+    "if-node-version": "^0.1.0",
     "istanbul": "^0.4.0",
     "mocha": "^2.3.4",
     "npm-run-all": "^2.0.0",
