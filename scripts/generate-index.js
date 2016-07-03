@@ -4,14 +4,14 @@
  * See LICENSE file in root directory for full license.
  */
 /* eslint-env shelljs */
-"use strict";
+"use strict"
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-var path = require("path");
-require("shelljs/global");
+var path = require("path")
+require("shelljs/global")
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -22,7 +22,7 @@ require("shelljs/global");
  * @returns {string} The base name of the file name.
  */
 function toBasename(name) {
-    return path.basename(name, ".js");
+    return path.basename(name, ".js")
 }
 
 /**
@@ -30,7 +30,7 @@ function toBasename(name) {
  * @returns {string} The definition code of the rule creator.
  */
 function toRuleDefinition(name) {
-    return "        \"" + name + "\": require(\"./lib/rules/" + name + "\")";
+    return "        \"" + name + "\": require(\"./lib/rules/" + name + "\"),"
 }
 
 /**
@@ -38,7 +38,7 @@ function toRuleDefinition(name) {
  * @returns {string} The definition code of the default rule level.
  */
 function toRuleLevel(name) {
-    return "        \"" + name + "\": 0";
+    return "        \"" + name + "\": \"off\","
 }
 
 //------------------------------------------------------------------------------
@@ -53,18 +53,16 @@ var ruleNames = ls("lib/rules").map(toBasename);
     " * @copyright 2015 Toru Nagashima. All rights reserved.",
     " * See LICENSE file in root directory for full license.",
     " */",
-    "\"use strict\";",
+    "\"use strict\"",
     "",
     "module.exports = {",
     "    rules: {",
-    ruleNames.map(toRuleDefinition).join(",\n"),
+    ruleNames.map(toRuleDefinition).join("\n"),
     "    },",
     "    rulesConfig: {",
-    ruleNames.map(toRuleLevel).join(",\n"),
+    ruleNames.map(toRuleLevel).join("\n"),
     "    },",
-    "    configs: {",
-    "        recommended: require(\"./conf/recommended.json\")",
-    "    }",
-    "};",
-    ""
-].join("\n").to("index.js");
+    "    configs: {recommended: require(\"./conf/recommended.json\")},",
+    "}",
+    "",
+].join("\n").to("index.js")

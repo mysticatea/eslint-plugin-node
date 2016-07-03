@@ -4,26 +4,26 @@
  * See LICENSE file in root directory for full license.
  */
 
-"use strict";
+"use strict"
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-var path = require("path");
-var semver = require("semver");
-var rule = require("../../../lib/rules/no-unsupported-features");
-var RuleTester = require("eslint").RuleTester;
+var path = require("path")
+var semver = require("semver")
+var rule = require("../../../lib/rules/no-unsupported-features")
+var RuleTester = require("eslint").RuleTester
 var unicodeSupported = semver.satisfies(
     require("eslint/package.json").version,
     "^2.0.0"
-);
+)
 
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
 
-var VERSIONS = Object.freeze([0.10, 0.12, 4, 5, 6]);
+var VERSIONS = Object.freeze([0.10, 0.12, 4, 5, 6])
 
 /**
  * Creates test pattern.
@@ -33,28 +33,28 @@ var VERSIONS = Object.freeze([0.10, 0.12, 4, 5, 6]);
  * @returns {{valid: object[], invalid: object[]}} retv.
  */
 function convertPattern(retv, pattern) {
-    var i;
+    var i = 0
 
     if (pattern.onlyUnicodeSupported && !unicodeSupported) {
-        return retv;
+        return retv
     }
 
     // Creates error messages.
-    var errors = [];
+    var errors = []
     for (i = 0; i < pattern.errors; ++i) {
         errors.push(
             pattern.name + " " + (pattern.singular ? "is" : "are") +
             " not supported yet on Node v"
-        );
+        )
     }
 
     // Creates each pattern of Node versions.
     VERSIONS.forEach(function(version) {
-        var versionText = version < 1 ? version.toFixed(2) : version.toFixed(0);
+        var versionText = version < 1 ? version.toFixed(2) : version.toFixed(0)
 
         // Skips if ignored
         if (pattern.ignores && pattern.ignores.indexOf(version) !== -1) {
-            return;
+            return
         }
 
         if (version >= pattern.supported) {
@@ -64,8 +64,8 @@ function convertPattern(retv, pattern) {
                 env: {es6: true},
                 options: [version],
                 ecmaFeatures: {modules: Boolean(pattern.modules)},
-                parserOptions: {sourceType: pattern.modules ? "module" : "script"}
-            });
+                parserOptions: {sourceType: pattern.modules ? "module" : "script"},
+            })
         }
         else {
             // If this is not supported, add to a valid pattern with a "ignores" option.
@@ -75,9 +75,9 @@ function convertPattern(retv, pattern) {
                     env: {es6: true},
                     options: [{version: version, ignores: [key]}],
                     ecmaFeatures: {modules: Boolean(pattern.modules)},
-                    parserOptions: {sourceType: pattern.modules ? "module" : "script"}
-                };
-            }));
+                    parserOptions: {sourceType: pattern.modules ? "module" : "script"},
+                }
+            }))
 
             // If this is not supported, add to a invalid pattern.
             retv.invalid.push({
@@ -87,13 +87,13 @@ function convertPattern(retv, pattern) {
                 ecmaFeatures: {modules: Boolean(pattern.modules)},
                 parserOptions: {sourceType: pattern.modules ? "module" : "script"},
                 errors: errors.map(function(message) {
-                    return message + versionText + ".";
-                })
-            });
+                    return message + versionText + "."
+                }),
+            })
         }
-    });
+    })
 
-    return retv;
+    return retv
 }
 
 /**
@@ -102,14 +102,14 @@ function convertPattern(retv, pattern) {
  * @returns {string} A file path to a fixture.
  */
 function fixture(name) {
-    return path.resolve(__dirname, "../../fixtures/no-unsupported-features", name);
+    return path.resolve(__dirname, "../../fixtures/no-unsupported-features", name)
 }
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-var ruleTester = new RuleTester();
+var ruleTester = new RuleTester()
 ruleTester.run("no-unsupported-features", rule, [
     //--------------------------------------------------------------------------
     // Syntax
@@ -120,98 +120,98 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "Default Parameters",
         code: "function foo(a = 1) {} ;(function(a = 1) {})()",
         errors: 2,
-        supported: 6
+        supported: 6,
     },
     {
         keys: ["restParameters", "syntax"],
         name: "Rest Parameters",
         code: "function foo(a, ...b) {} ;(function(a, ...b) {})()",
         errors: 2,
-        supported: 6
+        supported: 6,
     },
     {
         keys: ["spreadOperators", "syntax"],
         name: "Spread Operators",
         code: "foo(...a); foo([...a, ...b])",
         errors: 3,
-        supported: 5
+        supported: 5,
     },
     {
         keys: ["objectLiteralExtensions", "syntax"],
         name: "Object Literal Extensions",
         code: "var obj = {[a]: 0, b, c() {}, get [d]() {}, set [d](v) {}}",
         errors: 5,
-        supported: 4
+        supported: 4,
     },
     {
         keys: ["objectPropertyShorthandOfGetSet", "objectLiteralExtensions", "syntax"],
         name: "Property Shorthand of 'get' and 'set'",
         code: "var obj = {get, set}",
         errors: 2,
-        supported: 6
+        supported: 6,
     },
     {
         keys: ["forOf", "syntax"],
         name: "'for..of' Loops",
         code: "for (var a of []) {}",
         errors: 1,
-        supported: 0.12
+        supported: 0.12,
     },
     {
         keys: ["binaryNumberLiterals", "syntax"],
         name: "Binary Number Literals",
         code: "var a = 0b10 === 2 && 0B10 === 2",
         errors: 2,
-        supported: 4
+        supported: 4,
     },
     {
         keys: ["octalNumberLiterals", "syntax"],
         name: "Octal Number Literals",
         code: "var a = 0o10 === 8 && 0O10 === 8",
         errors: 2,
-        supported: 4
+        supported: 4,
     },
     {
         keys: ["templateStrings", "syntax"],
         name: "Template Strings",
         code: "`hello, ${world}!`; foo`tagged`;",
         errors: 2,
-        supported: 4
+        supported: 4,
     },
     {
         keys: ["regexpY", "syntax"],
         name: "RegExp 'y' Flags",
         code: "new RegExp('', 'y'); (/a/y)",
         errors: 2,
-        supported: 6
+        supported: 6,
     },
     {
         keys: ["regexpU", "syntax"],
         name: "RegExp 'u' Flags",
         code: "new RegExp('', 'u'); (/a/u)",
         errors: 2,
-        supported: 6
+        supported: 6,
     },
     {
         keys: ["destructuring", "syntax"],
         name: "Destructuring",
         code: "var [[a], [b = 1]] = [], {c: {c}, d: {d = 1}} = {};",
         errors: 2,
-        supported: 6
+        supported: 6,
     },
     {
         keys: ["destructuring", "syntax"],
         name: "Destructuring",
         code: "[[a], [b = 1]] = []; ({c: {c}, d: {d = 1}} = {})",
         errors: 2,
-        supported: 6
+        supported: 6,
     },
     {
         keys: ["destructuring", "syntax"],
         name: "Destructuring",
         code: "function foo([[a], [b = 1]], {c: {c}, d: {d = 1}}) {}",
         errors: 2,
-        supported: 6
+        supported: 6,
     },
     // ESLint v1 cannot parse unicode code point escapes.
     {
@@ -220,21 +220,21 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "var \\u{102C0} = { \\u{102C0} : '\\u{1d306}' };", // eslint-disable-line node/no-unsupported-features
         errors: 3,
         supported: 4,
-        onlyUnicodeSupported: true
+        onlyUnicodeSupported: true,
     },
     {
         keys: ["new.target", "syntax"],
         name: "'new.target'",
         code: "function Foo() { new.target; } ;(function() { new.target; })()",
         errors: 2,
-        supported: 5
+        supported: 5,
     },
     {
         keys: ["const", "syntax"],
         name: "'const' Declarations",
         code: "'use strict'; const a = 0;",
         errors: 1,
-        supported: 4
+        supported: 4,
     },
     {
         keys: ["const", "syntax"],
@@ -242,7 +242,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "const a = 0;",
         errors: 1,
         supported: 4,
-        modules: true
+        modules: true,
     },
     {
         keys: ["const", "syntax"],
@@ -250,14 +250,14 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "const a = 0;",
         errors: 1,
         supported: 6,
-        ignores: [0.10, 0.12]
+        ignores: [0.10, 0.12],
     },
     {
         keys: ["let", "syntax"],
         name: "'let' Declarations",
         code: "'use strict'; let a = 0;",
         errors: 1,
-        supported: 4
+        supported: 4,
     },
     {
         keys: ["let", "syntax"],
@@ -265,7 +265,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "let a = 0;",
         errors: 1,
         supported: 4,
-        modules: true
+        modules: true,
     },
     {
         keys: ["let", "syntax"],
@@ -273,14 +273,14 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "let a = 0;",
         errors: 1,
         supported: 6,
-        ignores: [0.10, 0.12]
+        ignores: [0.10, 0.12],
     },
     {
         keys: ["blockScopedFunctions", "syntax"],
         name: "Block-Scoped Functions",
         code: "'use strict'; { function foo() {} } if (a) { function foo() {} }",
         errors: 2,
-        supported: 4
+        supported: 4,
     },
     {
         keys: ["blockScopedFunctions", "syntax"],
@@ -288,7 +288,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "{ function foo() {} } if (a) { function foo() {} }",
         errors: 2,
         supported: 4,
-        modules: true
+        modules: true,
     },
     {
         keys: ["blockScopedFunctions", "syntax"],
@@ -296,21 +296,21 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "{ function foo() {} } if (a) { function foo() {} }",
         errors: 2,
         supported: 6,
-        ignores: [0.10, 0.12]
+        ignores: [0.10, 0.12],
     },
     {
         keys: ["arrowFunctions", "syntax"],
         name: "Arrow Functions",
         code: "var a = () => 1",
         errors: 1,
-        supported: 4
+        supported: 4,
     },
     {
         keys: ["classes", "syntax"],
         name: "Classes",
         code: "'use strict'; class A {} new (class{})()",
         errors: 2,
-        supported: 4
+        supported: 4,
     },
     {
         keys: ["classes", "syntax"],
@@ -318,7 +318,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "class A {} new (class{})()",
         errors: 2,
         supported: 4,
-        modules: true
+        modules: true,
     },
     {
         keys: ["classes", "syntax"],
@@ -326,14 +326,14 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "class A {} new (class{})()",
         errors: 2,
         supported: 6,
-        ignores: [0.10, 0.12]
+        ignores: [0.10, 0.12],
     },
     {
         keys: ["generatorFunctions", "syntax"],
         name: "Generator Functions",
         code: "function* foo() {} ;(function*() {})();",
         errors: 2,
-        supported: 4
+        supported: 4,
     },
     {
         keys: ["modules", "syntax"],
@@ -341,7 +341,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "import foo from 'foo'; export default 0; export {foo}; export * from 'foo';",
         errors: 4,
         supported: 6,
-        modules: true
+        modules: true,
     },
 
     //--------------------------------------------------------------------------
@@ -354,7 +354,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Int8Array",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Uint8Array", "typedArrays", "globalObjects", "runtime"],
@@ -362,7 +362,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Uint8Array",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Uint8ClampedArray", "typedArrays", "globalObjects", "runtime"],
@@ -370,7 +370,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Uint8ClampedArray",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Int16Array", "typedArrays", "globalObjects", "runtime"],
@@ -378,7 +378,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Int16Array",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Uint16Array", "typedArrays", "globalObjects", "runtime"],
@@ -386,7 +386,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Uint16Array",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Int32Array", "typedArrays", "globalObjects", "runtime"],
@@ -394,7 +394,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Int32Array",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Uint32Array", "typedArrays", "globalObjects", "runtime"],
@@ -402,7 +402,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Uint32Array",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Float32Array", "typedArrays", "globalObjects", "runtime"],
@@ -410,7 +410,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Float32Array",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Float64Array", "typedArrays", "globalObjects", "runtime"],
@@ -418,7 +418,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Float64Array",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["DataView", "typedArrays", "globalObjects", "runtime"],
@@ -426,7 +426,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "DataView",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Map", "globalObjects", "runtime"],
@@ -434,7 +434,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Map",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Set", "globalObjects", "runtime"],
@@ -442,7 +442,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Set",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["WeakMap", "globalObjects", "runtime"],
@@ -450,7 +450,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "WeakMap",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["WeakSet", "globalObjects", "runtime"],
@@ -458,7 +458,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "WeakSet",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Proxy", "globalObjects", "runtime"],
@@ -466,7 +466,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Proxy",
         errors: 1,
         supported: 6,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Reflect", "globalObjects", "runtime"],
@@ -474,7 +474,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Reflect",
         errors: 1,
         supported: 6,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Promise", "globalObjects", "runtime"],
@@ -482,7 +482,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Promise",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Promise", "globalObjects", "runtime"],
@@ -490,7 +490,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "var Promise = require('promise'); new Promise()",
         errors: 0,
         supported: 0,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Symbol", "globalObjects", "runtime"],
@@ -498,7 +498,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Symbol",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
 
     {
@@ -507,7 +507,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Object.assign; Object['assign']",
         errors: 2,
         supported: 4,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Object.is", "Object.*", "staticMethods", "runtime"],
@@ -515,7 +515,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Object.is",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Object.getOwnPropertySymbols", "Object.*", "staticMethods", "runtime"],
@@ -523,7 +523,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Object.getOwnPropertySymbols",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Object.setPrototypeOf", "Object.*", "staticMethods", "runtime"],
@@ -531,7 +531,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Object.setPrototypeOf",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
 
     {
@@ -540,7 +540,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "String.raw",
         errors: 1,
         supported: 4,
-        singular: true
+        singular: true,
     },
     {
         keys: ["String.fromCodePoint", "String.*", "staticMethods", "runtime"],
@@ -548,7 +548,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "String.fromCodePoint",
         errors: 1,
         supported: 4,
-        singular: true
+        singular: true,
     },
 
     {
@@ -557,7 +557,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Array.from",
         errors: 1,
         supported: 4,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Array.of", "Array.*", "staticMethods", "runtime"],
@@ -565,7 +565,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Array.of",
         errors: 1,
         supported: 4,
-        singular: true
+        singular: true,
     },
 
     {
@@ -574,7 +574,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Number.isFinite",
         errors: 1,
         supported: 0.10,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Number.isInteger", "Number.*", "staticMethods", "runtime"],
@@ -582,7 +582,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Number.isInteger",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Number.isSafeInteger", "Number.*", "staticMethods", "runtime"],
@@ -590,7 +590,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Number.isSafeInteger",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Number.isNaN", "Number.*", "staticMethods", "runtime"],
@@ -598,7 +598,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Number.isNaN",
         errors: 1,
         supported: 0.10,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Number.EPSILON", "Number.*", "staticMethods", "runtime"],
@@ -606,7 +606,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Number.EPSILON",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Number.MIN_SAFE_INTEGER", "Number.*", "staticMethods", "runtime"],
@@ -614,7 +614,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Number.MIN_SAFE_INTEGER",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Number.MAX_SAFE_INTEGER", "Number.*", "staticMethods", "runtime"],
@@ -622,7 +622,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Number.MAX_SAFE_INTEGER",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
 
     {
@@ -631,7 +631,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.clz32",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Math.imul", "Math.*", "staticMethods", "runtime"],
@@ -639,7 +639,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.imul",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Math.sign", "Math.*", "staticMethods", "runtime"],
@@ -647,7 +647,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.sign",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Math.log10", "Math.*", "staticMethods", "runtime"],
@@ -655,7 +655,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.log10",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Math.log2", "Math.*", "staticMethods", "runtime"],
@@ -663,7 +663,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.log2",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Math.log1p", "Math.*", "staticMethods", "runtime"],
@@ -671,7 +671,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.log1p",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Math.expm1", "Math.*", "staticMethods", "runtime"],
@@ -679,7 +679,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.expm1",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Math.cosh", "Math.*", "staticMethods", "runtime"],
@@ -687,7 +687,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.cosh",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Math.sinh", "Math.*", "staticMethods", "runtime"],
@@ -695,7 +695,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.sinh",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Math.tanh", "Math.*", "staticMethods", "runtime"],
@@ -703,7 +703,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.tanh",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Math.acosh", "Math.*", "staticMethods", "runtime"],
@@ -711,7 +711,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.acosh",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Math.asinh", "Math.*", "staticMethods", "runtime"],
@@ -719,7 +719,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.asinh",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Math.atanh", "Math.*", "staticMethods", "runtime"],
@@ -727,7 +727,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.atanh",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Math.trunc", "Math.*", "staticMethods", "runtime"],
@@ -735,7 +735,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.trunc",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Math.fround", "Math.*", "staticMethods", "runtime"],
@@ -743,7 +743,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.fround",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Math.cbrt", "Math.*", "staticMethods", "runtime"],
@@ -751,7 +751,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.cbrt",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
     {
         keys: ["Math.hypot", "Math.*", "staticMethods", "runtime"],
@@ -759,7 +759,7 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Math.hypot",
         errors: 1,
         supported: 0.12,
-        singular: true
+        singular: true,
     },
 
     {
@@ -769,7 +769,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: NaN,
         ignores: [0.10],
-        singular: true
+        singular: true,
     },
     {
         keys: ["Symbol.isConcatSpreadablec", "Symbol.*", "staticMethods", "runtime"],
@@ -778,7 +778,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 6,
         ignores: [0.10],
-        singular: true
+        singular: true,
     },
     {
         keys: ["Symbol.iterator", "Symbol.*", "staticMethods", "runtime"],
@@ -787,7 +787,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 0.12,
         ignores: [0.10],
-        singular: true
+        singular: true,
     },
     {
         keys: ["Symbol.species", "Symbol.*", "staticMethods", "runtime"],
@@ -796,7 +796,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: NaN,
         ignores: [0.10],
-        singular: true
+        singular: true,
     },
     {
         keys: ["Symbol.replace", "Symbol.*", "staticMethods", "runtime"],
@@ -805,7 +805,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 6,
         ignores: [0.10],
-        singular: true
+        singular: true,
     },
     {
         keys: ["Symbol.search", "Symbol.*", "staticMethods", "runtime"],
@@ -814,7 +814,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 6,
         ignores: [0.10],
-        singular: true
+        singular: true,
     },
     {
         keys: ["Symbol.split", "Symbol.*", "staticMethods", "runtime"],
@@ -823,7 +823,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 6,
         ignores: [0.10],
-        singular: true
+        singular: true,
     },
     {
         keys: ["Symbol.match", "Symbol.*", "staticMethods", "runtime"],
@@ -832,7 +832,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 6,
         ignores: [0.10],
-        singular: true
+        singular: true,
     },
     {
         keys: ["Symbol.toPrimitive", "Symbol.*", "staticMethods", "runtime"],
@@ -841,7 +841,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 6,
         ignores: [0.10],
-        singular: true
+        singular: true,
     },
     {
         keys: ["Symbol.toStringTag", "Symbol.*", "staticMethods", "runtime"],
@@ -850,7 +850,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 6,
         ignores: [0.10],
-        singular: true
+        singular: true,
     },
     {
         keys: ["Symbol.unscopables", "Symbol.*", "staticMethods", "runtime"],
@@ -859,7 +859,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 4,
         ignores: [0.10],
-        singular: true
+        singular: true,
     },
 
     {
@@ -869,7 +869,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 6,
         ignores: [0.10, 0.12],
-        singular: true
+        singular: true,
     },
     {
         keys: ["extendsRegExp", "extends", "runtime"],
@@ -878,7 +878,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 5,
         ignores: [0.10, 0.12],
-        singular: true
+        singular: true,
     },
     {
         keys: ["extendsFunction", "extends", "runtime"],
@@ -887,7 +887,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 6,
         ignores: [0.10, 0.12],
-        singular: true
+        singular: true,
     },
     {
         keys: ["extendsPromise", "extends", "runtime"],
@@ -896,7 +896,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 5,
         ignores: [0.10, 0.12],
-        singular: true
+        singular: true,
     },
     {
         keys: ["extendsBoolean", "extends", "runtime"],
@@ -905,7 +905,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 4,
         ignores: [0.10, 0.12],
-        singular: true
+        singular: true,
     },
     {
         keys: ["extendsNumber", "extends", "runtime"],
@@ -914,7 +914,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 4,
         ignores: [0.10, 0.12],
-        singular: true
+        singular: true,
     },
     {
         keys: ["extendsString", "extends", "runtime"],
@@ -923,7 +923,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 4,
         ignores: [0.10, 0.12],
-        singular: true
+        singular: true,
     },
     {
         keys: ["extendsMap", "extends", "runtime"],
@@ -932,7 +932,7 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 4,
         ignores: [0.10, 0.12],
-        singular: true
+        singular: true,
     },
     {
         keys: ["extendsSet", "extends", "runtime"],
@@ -941,50 +941,50 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 1,
         supported: 4,
         ignores: [0.10, 0.12],
-        singular: true
-    }
+        singular: true,
+    },
 ].reduce(convertPattern, {
     valid: [
         {
             filename: fixture("gte-4.0.0/a.js"),
             code: "var a = () => 1",
-            env: {es6: true}
+            env: {es6: true},
         },
         {
             filename: fixture("gte-4.4.0-lt-5.0.0/a.js"),
             code: "var a = () => 1",
-            env: {es6: true}
+            env: {es6: true},
         },
         {
             filename: fixture("hat-4.1.2/a.js"),
             code: "var a = () => 1",
-            env: {es6: true}
-        }
+            env: {es6: true},
+        },
     ],
     invalid: [
         {
             filename: fixture("gte-0.12.8/a.js"),
             code: "var a = () => 1",
             env: {es6: true},
-            errors: ["Arrow Functions are not supported yet on Node v0.12."]
+            errors: ["Arrow Functions are not supported yet on Node v0.12."],
         },
         {
             filename: fixture("invalid/a.js"),
             code: "var a = () => 1",
             env: {es6: true},
-            errors: ["Arrow Functions are not supported yet on Node v0.10."]
+            errors: ["Arrow Functions are not supported yet on Node v0.10."],
         },
         {
             filename: fixture("lt-6.0.0/a.js"),
             code: "var a = () => 1",
             env: {es6: true},
-            errors: ["Arrow Functions are not supported yet on Node v0.10."]
+            errors: ["Arrow Functions are not supported yet on Node v0.10."],
         },
         {
             filename: fixture("nothing/a.js"),
             code: "var a = () => 1",
             env: {es6: true},
-            errors: ["Arrow Functions are not supported yet on Node v0.10."]
-        }
-    ]
-}));
+            errors: ["Arrow Functions are not supported yet on Node v0.10."],
+        },
+    ],
+}))
