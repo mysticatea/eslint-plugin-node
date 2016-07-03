@@ -14,6 +14,9 @@ Additional ESLint's rules for Node.js
 > npm install --save-dev eslint eslint-plugin-node
 ```
 
+- Requires Node.js `^0.10.0 || ^0.12.0 || ^4.0.0 || >=6.0.0`
+- Requires ESLint `>=2.0.0`
+
 **.eslintrc**
 
 ```json
