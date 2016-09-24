@@ -5,7 +5,7 @@
  */
 "use strict"
 
-/*eslint-env mocha*/
+/*eslint-env mocha */
 
 //------------------------------------------------------------------------------
 // Requirements
