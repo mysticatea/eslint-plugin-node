@@ -8,5 +8,5 @@ node_js:
 before_script:
   - npm install async
 script:
-  - "npm run test && npm run coveralls"
+  - "npm run test && npm run codecov"
   - "npm rm eslint-config-mysticatea && npm i eslint@2 && npm run test:mocha"
