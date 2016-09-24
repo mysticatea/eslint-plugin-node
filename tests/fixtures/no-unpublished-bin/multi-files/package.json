@@ -1,0 +1,12 @@
+{
+    "private": true,
+    "name": "test",
+    "version": "1.0.0",
+    "bin": {
+        "a": "a.js",
+        "b": "b.js"
+    },
+    "files": [
+        "lib"
+    ]
+}

@@ -41,10 +41,11 @@ This preset config:
 |        |          | Rule ID                                                          | Description |
 |:------:|:--------:|:-----------------------------------------------------------------|:------------|
 | :star: |          | [no-deprecated-api](docs/rules/no-deprecated-api.md)             | Disallow deprecated API.
-|        |          | [no-missing-import](docs/rules/no-missing-import.md)             | Disallow `import` and `export` declarations for files that don't exist.
+|        |          | [no-missing-import](docs/rules/no-missing-import.md)             | Disallow `import` declarations for files that don't exist.
 | :star: |          | [no-missing-require](docs/rules/no-missing-require.md)           | Disallow `require()`s for files that don't exist.
-|        |          | [no-unpublished-import](docs/rules/no-unpublished-import.md)     | Disallow `import` and `export` declarations for files that are not published.
-| :star: |          | [no-unpublished-require](docs/rules/no-unpublished-require.md)   | Disallow `require()`s for files that are not published.
+|        |          | [no-unpublished-bin](docs/rules/no-unpublished-bin.md)           | Disallow `bin` files that npm ignores.
+|        |          | [no-unpublished-import](docs/rules/no-unpublished-import.md)     | Disallow `import` declarations for files that npm ignores.
+| :star: |          | [no-unpublished-require](docs/rules/no-unpublished-require.md)   | Disallow `require()`s for files that npm ignores.
 | :star: |          | [no-unsupported-features](docs/rules/no-unsupported-features.md) | Disallow unsupported ECMAScript features on the specified version.
 |        |          | [process-exit-as-throw](docs/rules/process-exit-as-throw.md)     | Make the same code path as throw at `process.exit()`. (⚠ Experimental)
 | :star: | :pencil: | [shebang](docs/rules/shebang.md)                                 | Suggest correct usage of shebang.
