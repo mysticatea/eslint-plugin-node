@@ -48,7 +48,7 @@ This preset config:
 |        |          | [no-unpublished-import](docs/rules/no-unpublished-import.md)     | Disallow `import` declarations for files that npm ignores.
 | :star: |          | [no-unpublished-require](docs/rules/no-unpublished-require.md)   | Disallow `require()`s for files that npm ignores.
 | :star: |          | [no-unsupported-features](docs/rules/no-unsupported-features.md) | Disallow unsupported ECMAScript features on the specified version.
-|        |          | [process-exit-as-throw](docs/rules/process-exit-as-throw.md)     | Make the same code path as throw at `process.exit()`. (⚠ Experimental)
+|        |          | [process-exit-as-throw](docs/rules/process-exit-as-throw.md)     | Make the same code path as throw at `process.exit()`.
 | :star: | :pencil: | [shebang](docs/rules/shebang.md)                                 | Suggest correct usage of shebang.
 
 - :star: - the mark of a recommended rule.

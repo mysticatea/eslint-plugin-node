@@ -1,7 +1,5 @@
 # Make the same code path as throw at `process.exit()` (process-exit-as-throw)
 
-**Experimental:** This rule is an experimental thing. This may be changed without major bump in future.
-
 ## Rule Details
 
 ```js
@@ -24,8 +22,12 @@ This rule itself never warn code.
 
 Nothing.
 
-## When Not To Use It
+## Related Rules
 
-If you don't want to address `process.exit()` as throw in code path analysis, then it's safe to disable this rule.
+- [consistent-return]
+- [no-fallthrough]
+- [no-unreachable]
 
 [consistent-return]: http://eslint.org/docs/rules/consistent-return
+[no-fallthrough]: http://eslint.org/docs/rules/no-fallthrough
+[no-unreachable]: http://eslint.org/docs/rules/no-unreachable
