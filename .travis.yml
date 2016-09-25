@@ -7,6 +7,8 @@ node_js:
   - "6"
 before_script:
   - npm install async
+  - npm install -g if-node-version
 script:
-  - "npm run test && npm run codecov"
-  - "npm rm eslint-config-mysticatea && npm i eslint@2 && npm run test:mocha"
+  - "if if-node-version '>=4'; then npm test; else npm run test@2; fi"
+after_success:
+  - npm run codecov
