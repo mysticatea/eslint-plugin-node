@@ -8,7 +8,7 @@
 
 Additional ESLint's rules for Node.js
 
-## Install & Usage
+## :cd: Install & Usage
 
 ```
 > npm install --save-dev eslint eslint-plugin-node
@@ -17,16 +17,7 @@ Additional ESLint's rules for Node.js
 - Requires Node.js `^0.10.0 || ^0.12.0 || ^4.0.0 || >=6.0.0`
 - Requires ESLint `>=2.0.0`
 
-**.eslintrc**
-
-```json
-{
-    "plugins": ["node"],
-    "extends": ["eslint:recommended", "plugin:node/recommended"]
-}
-```
-
-## Configs
+## :wrench: Configs
 
 This plugin provides `plugin:node/recommended` preset config.
 This preset config:
@@ -36,16 +27,40 @@ This preset config:
 
 **Note:** It recommends a use of [the "engines" field of package.json](https://docs.npmjs.com/files/package.json#engines). The "engines" field is used by [no-unsupported-features](docs/rules/no-unsupported-features.md) rule.
 
-## Rules
+**.eslintrc.json** (An example)
+
+```json
+{
+    "plugins": ["node"],
+    "extends": ["eslint:recommended", "plugin:node/recommended"],
+    "rules": {
+        "node/exports-style": ["error", "module.exports"],
+        "node/no-unpublished-bin": "error",
+        "node/process-exit-as-throw": "error"
+    }
+}
+```
+
+**package.json** (An example)
+
+```json
+{
+    "engines": {
+        "node": ">=4"
+    }
+}
+```
+
+## :bulb: Rules
 
 |        |          | Rule ID                                                          | Description |
 |:------:|:--------:|:-----------------------------------------------------------------|:------------|
 |        |          | [exports-style](docs/rules/exports-style.md)                     | Enforce either `module.exports` or `exports`.
 | :star: |          | [no-deprecated-api](docs/rules/no-deprecated-api.md)             | Disallow deprecated API.
-|        |          | [no-missing-import](docs/rules/no-missing-import.md)             | Disallow `import` declarations for files that don't exist.
+|        |          | [no-missing-import](docs/rules/no-missing-import.md)             | Disallow `import` declarations for files that don't exist. :warning:
 | :star: |          | [no-missing-require](docs/rules/no-missing-require.md)           | Disallow `require()`s for files that don't exist.
 |        |          | [no-unpublished-bin](docs/rules/no-unpublished-bin.md)           | Disallow `bin` files that npm ignores.
-|        |          | [no-unpublished-import](docs/rules/no-unpublished-import.md)     | Disallow `import` declarations for files that npm ignores.
+|        |          | [no-unpublished-import](docs/rules/no-unpublished-import.md)     | Disallow `import` declarations for files that npm ignores. :warning:
 | :star: |          | [no-unpublished-require](docs/rules/no-unpublished-require.md)   | Disallow `require()`s for files that npm ignores.
 | :star: |          | [no-unsupported-features](docs/rules/no-unsupported-features.md) | Disallow unsupported ECMAScript features on the specified version.
 |        |          | [process-exit-as-throw](docs/rules/process-exit-as-throw.md)     | Make the same code path as throw at `process.exit()`.
@@ -54,7 +69,12 @@ This preset config:
 - :star: - the mark of a recommended rule.
 - :pencil: - the mark of a fixable rule.
 
-## Semantic Versioning Policy
+## :couple: FAQ
+
+- Q: The `no-missing-import` / `no-missing-require` rules don't work with nested folders in SublimeLinter-eslint
+- A: See [context.getFilename() in rule returns relative path](https://github.com/roadhump/SublimeLinter-eslint#contextgetfilename-in-rule-returns-relative-path) in the SublimeLinter-eslint FAQ.
+
+## :anchor: Semantic Versioning Policy
 
 `eslint-plugin-node` follows [semantic versioning](http://semver.org/) and [ESLint's Semantic Versioning Policy](https://github.com/eslint/eslint#semantic-versioning-policy).
 
@@ -75,8 +95,18 @@ This preset config:
     - An existing option of a rule is removed.
     - An existing config is updated.
 
-## FAQ
+## :memo: Changelog
 
-Q: The `no-missing-import` / `no-missing-require` rules don't work with nested folders in SublimeLinter-eslint
+- [GitHub Releases](https://github.com/mysticatea/eslint-plugin-node/releases)
 
-A: See [context.getFilename() in rule returns relative path](https://github.com/roadhump/SublimeLinter-eslint#contextgetfilename-in-rule-returns-relative-path) in the SublimeLinter-eslint FAQ.
+## :muscle: Contributing
+
+Welcome contributing!
+
+Please use GitHub's Issues/PRs.
+
+### Development Tools
+
+- `npm test` runs tests and measures coverage.
+- `npm run coverage` shows the coverage result of `npm test` command.
+- `npm run clean` removes the coverage result of `npm test` command.
