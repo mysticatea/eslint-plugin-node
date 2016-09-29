@@ -126,6 +126,12 @@ ruleTester.run("shebang", rule, {
             filename: fixture("string-bin/lib/test.js"),
             code: "\n\n\nhello();",
         },
+
+        // https://github.com/mysticatea/eslint-plugin-node/issues/51
+        {
+            filename: fixture("string-bin/bin/test.js"),
+            code: "#!/usr/bin/env node --harmony\nhello();",
+        },
     ],
     invalid: [
         {
@@ -302,6 +308,14 @@ ruleTester.run("shebang", rule, {
                 "This file must not have Unicode BOM.",
                 "This file must have Unix linebreaks (LF).",
             ],
+        },
+
+        // https://github.com/mysticatea/eslint-plugin-node/issues/51
+        {
+            filename: fixture("string-bin/lib/test.js"),
+            code: "#!/usr/bin/env node --harmony\nhello();",
+            output: "hello();",
+            errors: ["This file needs no shebang."],
         },
     ],
 })
