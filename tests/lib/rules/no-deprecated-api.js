@@ -63,6 +63,12 @@ ruleTester.run("no-deprecated-api", rule, {
             env: {es6: true},
             parserOptions: {sourceType: "module"},
         },
+
+        // On Node v6.8.0, fs.existsSync revived.
+        {
+            code: "require('fs').existsSync;",
+            env: {node: true},
+        },
     ],
     invalid: [
         //----------------------------------------------------------------------
@@ -166,11 +172,6 @@ ruleTester.run("no-deprecated-api", rule, {
             code: "require('fs').exists;",
             env: {node: true},
             errors: ["'fs.exists' was deprecated since v4. Use 'fs.stat()' or 'fs.access()' instead."],
-        },
-        {
-            code: "require('fs').existsSync;",
-            env: {node: true},
-            errors: ["'fs.existsSync' was deprecated since v4. Use 'fs.statSync()' or 'fs.accessSync()' instead."],
         },
         {
             code: "require('http').createClient;",
