@@ -36,22 +36,18 @@ ruleTester.run("no-deprecated-api", rule, {
         {
             code: "var http = require('http'); http.request()",
             env: {node: true},
-            errors: ["'buffer.Buffer' constructor was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead."],
         },
         {
             code: "var {request} = require('http'); request()",
             env: {node: true, es6: true},
-            errors: ["'buffer.Buffer' constructor was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead."],
         },
         {
             code: "(s ? require('https') : require('http')).request()",
             env: {node: true},
-            errors: ["'buffer.Buffer' constructor was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead."],
         },
         {
             code: "require(HTTP).createClient",
             env: {node: true},
-            errors: ["'buffer.Buffer' constructor was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead."],
         },
         {
             code: "import {Buffer} from 'another-buffer'; new Buffer()",
