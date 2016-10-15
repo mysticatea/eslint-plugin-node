@@ -95,7 +95,7 @@ This preset config:
     - An existing option of a rule is removed.
     - An existing config is updated.
 
-## :memo: Changelog
+## :newspaper: Changelog
 
 - [GitHub Releases](https://github.com/mysticatea/eslint-plugin-node/releases)
 

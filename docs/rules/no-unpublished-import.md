@@ -11,7 +11,7 @@ If a source code file satisfies all of the following conditions, the file is \*p
 - `"files"` field of `package.json` includes the file. (or `"files"` field of `package.json` does not exist)
 - `.npmignore` does not include the file.
 
-This rule disallows importing the following things from the \*published* files.
+**This rule disallows importing the following things from the \*published\* files.**
 
 - Unpublished files.
 - Extraneous modules.
@@ -20,7 +20,7 @@ This rule disallows importing the following things from the \*published* files.
 > This intends to prevent "Module Not Found" error after `npm publish`.<br>
 > :bulb: If you want to import `devDependencies`, please write `.npmignore` or `"files"` field of `package.json`.
 
-This rule disallows importing the following things from the \*unpublished* files.
+**This rule disallows importing the following things from the \*unpublished\* files.**
 
 - Extraneous modules.
 
