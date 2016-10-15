@@ -1,49 +1,36 @@
-# Disallow `require()`s for files that are not published (no-unpublished-require)
+# Disallow `require()`s which import unpublished files/modules (no-unpublished-require)
 
-If `require()` targets are not published, the program works in local, but will not work after published to npm.
-This rule catches `require()` for files and modules that not published.
+If a `require()`'s target is not published, the program works in local, but will not work after published to npm.
+This rule disallows `require()` of unpublished files/modules.
 
 ## Rule Details
 
-This rule checks the file paths of `require()`s.
-If the file paths are not published, this reports these.
+If a source code file satisfies all of the following conditions, the file is \*published*.
 
-"published" is that satisfying the following conditions:
+- `"files"` field of `package.json` includes the file. (or `"files"` field of `package.json` does not exist)
+- `.npmignore` does not include the file.
 
-- If it's a file:
-  - `"files"` field of `package.json` includes the file, or the field is nothing.
-  - `.npmignore` does not include the file.
-- If it's a module:
-  - `"dependencies"` or `"peerDependencies"` field of `package.json` includes the module.
-    If the file `require` is written is not published then it's also OK that `"devDependencies"` field of `package.json` includes the module.
+This rule disallows importing the following things from the \*published* files.
 
-The following patterns are considered problems:
+- Unpublished files.
+- Extraneous modules.
+- Modules in `devDependencies`.
 
-```js
-/*eslint node/no-unpublished-require: 2*/
+> This intends to prevent "Module Not Found" error after `npm publish`.<br>
+> :bulb: If you want to import `devDependencies`, please write `.npmignore` or `"files"` field of `package.json`.
 
-var ignoredFile = require("./ignored-file");             /*error "./ignored-file" is not published.*/
-var notDependedModule = require("not-depended-module");  /*error "not-depended-module" is not published.*/
-```
+This rule disallows importing the following things from the \*unpublished* files.
 
-The following patterns are not considered problems:
+- Extraneous modules.
 
-```js
-/*eslint node/no-unpublished-require: 2*/
+> This intends to prevent "Module Not Found" error after `npm install`.
 
-var publishedFile = require("./published-file");
-var dependedModule = require("depended-module");
-
-// This rule cannot check for dynamic imports.
-var foo = require(FOO_NAME);
-```
-
-### Options
+## Options
 
 ```json
 {
     "rules": {
-        "node/no-unpublished-require": [2, {
+        "node/no-unpublished-require": ["error", {
             "allowModules": [],
             "convertPath": null,
             "tryExtensions": [".js", ".json", ".node"]
@@ -52,7 +39,7 @@ var foo = require(FOO_NAME);
 }
 ```
 
-#### `allowModules`
+### allowModules
 
 Some platforms have additional embedded modules.
 For example, Electron has `electron` module.
@@ -63,14 +50,14 @@ This option is an array of strings as module names.
 ```json
 {
     "rules": {
-        "node/no-unpublished-require": [2, {
+        "node/no-unpublished-require": ["error", {
             "allowModules": ["electron"]
         }]
     }
 }
 ```
 
-#### `convertPath`
+### convertPath
 
 If we use transpilers (e.g. Babel), perhaps the file path to a source code is never published.
 `convertPath` option tells to the rule, it needs to convert file paths.
@@ -80,7 +67,7 @@ For example:
 ```json
 {
     "rules": {
-        "node/no-unpublished-require": [2, {
+        "node/no-unpublished-require": ["error", {
             "convertPath": {
                 "src/**/*.jsx": ["^src/(.+?)\\.jsx$", "lib/$1.js"]
             },
@@ -101,14 +88,14 @@ path.replace(new RegExp(fromRegExp), toString);
 
 So on this example, `src/a/foo.jsx` is handled as `lib/a/foo.js`.
 
-#### `tryExtensions`
+### tryExtensions
 
 When an import path does not exist, this rule checks whether or not any of `path.js`, `path.json`, and `path.node` exists.
 `tryExtensions` option is the extension list this rule uses at the time.
 
 Default is `[".js", ".json", ".node"]`.
 
-### Shared Settings
+## Shared Settings
 
 The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
 Several rules have the same option, but we can set this option at once.
@@ -131,11 +118,7 @@ For Example:
         }
     },
     "rules": {
-        "node/no-unpublished-require": 2
+        "node/no-unpublished-require": "error"
     }
 }
 ```
-
-## When Not To Use It
-
-If you don't want to be notified about usage of `require()`, then it's safe to disable this rule.

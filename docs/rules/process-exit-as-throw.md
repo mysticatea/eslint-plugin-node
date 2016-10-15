@@ -18,10 +18,6 @@ If you turn this rule on, ESLint comes to address `process.exit()` as throw in c
 
 This rule itself never warn code.
 
-## Option
-
-Nothing.
-
 ## Related Rules
 
 - [consistent-return]

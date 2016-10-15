@@ -12,7 +12,7 @@ For Example:
 
 ```json
 {
-    "node/no-unsupported-features": [2, {"version": 4}]
+    "node/no-unsupported-features": ["error", {"version": 4}]
 }
 ```
 
@@ -27,10 +27,10 @@ This rule accepts the following version number:
 If the version was omitted, this rule will read the [engines](https://docs.npmjs.com/files/package.json#engines) field of `package.json`.
 If both the `version` option and the `engines` field don't exist, this rule will use the minimum version Node community is maintaining (It's `0.10` currently).
 
-The following patterns are considered problems:
+Examples of :-1: **incorrect** code for this rule:
 
 ```js
-/*eslint node/no-unsupported-features: [2, {version: 4}]*/
+/*eslint node/no-unsupported-features: ["error", {version: 4}]*/
 /*eslint-env es6*/
 
 function foo(a = 1) {  /*error Default Parameters are not supported yet on Node v4.*/
@@ -62,10 +62,10 @@ var p = new Proxy(o, { /*error Proxy is not supported yet on Node v4.*/
 });
 ```
 
-The following patterns are not considered problems:
+Examples of :+1: **correct** code for this rule:
 
 ```js
-/*eslint node/no-unsupported-features: [2, {version: 4}]*/
+/*eslint node/no-unsupported-features: ["error", {version: 4}]*/
 /*eslint-env es6*/
 
 for (var a of list) {
@@ -96,13 +96,13 @@ var p = new Promise((resolve, reject) => {
 });
 ```
 
-### Options
+## Options
 
 This rule has `"ignores"` option to ignore to use the specified features.
 
 ```json
 {
-    "node/no-unsupported-features": [2, {"version": 4, "ignores": []}]
+    "node/no-unsupported-features": ["error", {"version": 4, "ignores": []}]
 }
 ```
 
@@ -215,20 +215,16 @@ This `"ignores"` option accepts an array of the following strings.
 If a group value is given, all sub items of the value are ignored.
 e.g. if `"String.*"` is given then `"String.raw"` and `"String.fromCodePoint"` are ignored.
 
-The following patterns are not considered problems when it's using `"ignores"`:
+Examples of :+1: **correct** code for the `"ignores"` option:
 
 ```js
-/*eslint node/no-unsupported-features: [2, {version: 4, ignores: ["defaultParameters"]}]*/
+/*eslint node/no-unsupported-features: ["error", {version: 4, ignores: ["defaultParameters"]}]*/
 /*eslint-env es6*/
 
 function foo(a = 1) {
     //...
 }
 ```
-
-## When Not To Use It
-
-If you don't want to restrict features, then it's safe to disable this rule.
 
 ## Further Reading
 

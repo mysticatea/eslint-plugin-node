@@ -53,15 +53,15 @@ The following patterns are not considered problems for other files:
 console.log("hello");
 ```
 
-### Options
+## Options
 
 ```json
 {
-    "node/shebang": [2, {"convertPath": null}]
+    "node/shebang": ["error", {"convertPath": null}]
 }
 ```
 
-#### `convertPath`
+### convertPath
 
 If we use transpilers (e.g. Babel), perhaps the file path to a source code is never handled as a bin file.
 `convertPath` option tells to the rule, it needs to convert file paths.
@@ -71,7 +71,7 @@ For example:
 ```json
 {
     "rules": {
-        "node/shebang": [2, {
+        "node/shebang": ["error", {
             "convertPath": {
                 "src/**/*.jsx": ["^src/(.+?)\\.jsx$", "lib/$1.js"]
             }
@@ -91,7 +91,7 @@ path.replace(new RegExp(fromRegExp), toString);
 
 So on this example, `src/a/foo.jsx` is handled as `lib/a/foo.js`.
 
-### Shared Settings
+## Shared Settings
 
 The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
 Several rules have the same option, but we can set this option at once.
@@ -110,11 +110,7 @@ For Example:
         }
     },
     "rules": {
-        "node/shebang": 2
+        "node/shebang": "error"
     }
 }
 ```
-
-## When Not To Use It
-
-If you don't want to be notified about usage of shebang, then it's safe to disable this rule.

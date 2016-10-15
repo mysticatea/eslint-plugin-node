@@ -9,22 +9,21 @@ const foo = require("./foo");
 
 ## Rule Details
 
-This rule checks the file paths of `require()`s.
-If the file paths don't exist, this reports these.
+This rule checks the file paths of `require()`s, then reports the path of files which don't exist.
 
-The following patterns are considered problems:
+Examples of :-1: **incorrect** code for this rule:
 
 ```js
-/*eslint node/no-missing-require: 2*/
+/*eslint node/no-missing-require: "error" */
 
 var typoFile = require("./typo-file");   /*error "./typo-file" is not found.*/
 var typoModule = require("typo-module"); /*error "typo-module" is not found.*/
 ```
 
-The following patterns are not considered problems:
+Examples of :+1: **correct** code for this rule:
 
 ```js
-/*eslint node/no-missing-require: 2*/
+/*eslint node/no-missing-require: "error" */
 
 var existingFile = require("./existing-file");
 var existingModule = require("existing-module");
@@ -33,12 +32,12 @@ var existingModule = require("existing-module");
 var foo = require(FOO_NAME);
 ```
 
-### Options
+## Options
 
 ```json
 {
     "rules": {
-        "node/no-missing-require": [2, {
+        "node/no-missing-require": ["error", {
             "allowModules": [],
             "tryExtensions": [".js", ".json", ".node"]
         }]
@@ -46,7 +45,7 @@ var foo = require(FOO_NAME);
 }
 ```
 
-#### `allowModules`
+### allowModules
 
 Some platforms have additional embedded modules.
 For example, Electron has `electron` module.
@@ -57,21 +56,21 @@ This option is an array of strings as module names.
 ```json
 {
     "rules": {
-        "node/no-missing-require": [2, {
+        "node/no-missing-require": ["error", {
             "allowModules": ["electron"]
         }]
     }
 }
 ```
 
-#### `tryExtensions`
+### tryExtensions
 
 When an import path does not exist, this rule checks whether or not any of `path.js`, `path.json`, and `path.node` exists.
 `tryExtensions` option is the extension list this rule uses at the time.
 
 Default is `[".js", ".json", ".node"]`.
 
-### Shared Settings
+## Shared Settings
 
 The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
 Several rules have the same option, but we can set this option at once.
@@ -88,11 +87,7 @@ Several rules have the same option, but we can set this option at once.
         }
     },
     "rules": {
-        "node/no-missing-require": 2
+        "node/no-missing-require": "error"
     }
 }
 ```
-
-## When Not To Use It
-
-If you don't want to be notified about usage of `require()`, then it's safe to disable this rule.

@@ -42,7 +42,9 @@ This rule has a string option.
 - `"exports"` requires `exports` and disallows `module.exports`.
 - `allowBatchAssign` (default is `false`) allows `module.exports = exports = obj` if this is `true`.
 
-Examples of **incorrect** code for the `"module.exports"` option:
+### module.exports
+
+Examples of :-1: **incorrect** code for the `"module.exports"` option:
 
 ```js
 /*eslint exports-style: ["error", "module.exports"]*/
@@ -51,7 +53,7 @@ exports.foo = 1
 exports.bar = 2
 ```
 
-Examples of **correct** code for the `"module.exports"` option:
+Examples of :+1: **correct** code for the `"module.exports"` option:
 
 ```js
 /*eslint exports-style: ["error", "module.exports"]*/
@@ -64,7 +66,9 @@ module.exports = {
 module.exports.baz = 3
 ```
 
-Examples of **incorrect** code for the `"exports"` option:
+### exports
+
+Examples of :-1: **incorrect** code for the `"exports"` option:
 
 ```js
 /*eslint exports-style: ["error", "exports"]*/
@@ -77,7 +81,7 @@ module.exports = {
 module.exports.baz = 3
 ```
 
-Examples of **correct** code for the `"exports"` option:
+Examples of :+1: **correct** code for the `"exports"` option:
 
 ```js
 /*eslint exports-style: ["error", "exports"]*/
@@ -86,7 +90,9 @@ exports.foo = 1
 exports.bar = 2
 ```
 
-Examples of **correct** code for the `"exports"` and `{"allowBatchAssign": true}` option:
+### allowBatchAssign
+
+Examples of :+1: **correct** code for the `"exports"` and `{"allowBatchAssign": true}` option:
 
 ```js
 /*eslint exports-style: ["error", "exports", {"allowBatchAssign": true}]*/

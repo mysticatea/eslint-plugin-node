@@ -30,7 +30,7 @@ If `npm` ignores the files in `bin` field, this rule warns the files.
 }
 ```
 
-### `convertPath`
+### convertPath
 
 If we use transpilers (e.g. Babel), perhaps the file path to a source code is never published.
 `convertPath` option tells to the rule, it needs to convert file paths.

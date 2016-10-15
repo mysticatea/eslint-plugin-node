@@ -5,17 +5,17 @@ The community is going to remove those API from Node in future, so we should not
 
 ## Rule Details
 
-The following patterns are considered problems:
+Examples of :-1: **incorrect** code for this rule:
 
 ```js
-/*eslint no-deprecated-api: 2*/
+/*eslint node/no-deprecated-api: "error" */
 
 var fs = require("fs");
 fs.exists("./foo.js", function() {}); /*ERROR: 'fs.exists' was deprecated since v4. Use 'fs.stat()' or 'fs.access()' instead.*/
 
 // Also, it can report the following patterns.
-var exists = require("fs").exists; /*ERROR: 'fs.exists' was deprecated since v4. Use 'fs.stat()' or 'fs.access()' instead.*/
-const {exists} = require("fs"); /*ERROR: 'fs.exists' was deprecated since v4. Use 'fs.stat()' or 'fs.access()' instead.*/
+var exists = require("fs").exists;    /*ERROR: 'fs.exists' was deprecated since v4. Use 'fs.stat()' or 'fs.access()' instead.*/
+const {exists} = require("fs");       /*ERROR: 'fs.exists' was deprecated since v4. Use 'fs.stat()' or 'fs.access()' instead.*/
 
 
 // And other deprecated API below.
@@ -24,7 +24,7 @@ const {exists} = require("fs"); /*ERROR: 'fs.exists' was deprecated since v4. Us
 This rule reports the following deprecated API.
 
 - buffer
-    - [Buffer constructors](https://nodejs.org/dist/v6.0.0/docs/api/buffer.html#buffer_class_buffer)
+    - [Buffer constructors](https://nodejs.org/dist/v6.0.0/docs/api/buffer.html#buffer_class_buffer) (You can use [safe-buffer](https://www.npmjs.com/package/safe-buffer) module for `Node@<6.0.0`)
     - [SlowBuffer class](https://nodejs.org/dist/v6.0.0/docs/api/buffer.html#buffer_class_slowbuffer)
 - crypto
     - [createCredentials](https://nodejs.org/dist/v0.12.0/docs/api/crypto.html#crypto_crypto_createcredentials_details)
@@ -33,7 +33,6 @@ This rule reports the following deprecated API.
     - [EventEmitter.listenerCount](https://nodejs.org/dist/v4.0.0/docs/api/events.html#events_class_method_eventemitter_listenercount_emitter_event)
 - fs
     - [exists](https://nodejs.org/dist/v4.0.0/docs/api/fs.html#fs_fs_exists_path_callback)
-    - [existsSync](https://nodejs.org/dist/v4.0.0/docs/api/fs.html#fs_fs_existssync_path)
 - globals
     - [require.extensions](https://nodejs.org/dist/v0.12.0/docs/api/globals.html#globals_require_extensions)
 - http
@@ -74,7 +73,9 @@ This rule reports the following deprecated API.
 
 ## Known Limitations
 
-### Cannot report non-static properties:
+This rule cannot report the following cases:
+
+### non-static properties
 
 - cluster
     - [worker.suicide](https://nodejs.org/dist/v6.0.0/docs/api/cluster.html#cluster_worker_suicide)
@@ -83,14 +84,14 @@ This rule reports the following deprecated API.
 - net
     - [server.connections](https://nodejs.org/dist/v0.10.0/docs/api/net.html#net_server_connections)
 
-### Cannot report dynamic things:
+### dynamic things
 
 ```js
 require(foo).aDeprecatedProperty;
 require("http")[A_DEPRECATED_PROPERTY]();
 ```
 
-### Cannot understand assignments to properties:
+### assignments
 
 ```js
 var obj = {
@@ -105,22 +106,16 @@ obj.Buffer = require("buffer").Buffer
 new obj.Buffer(); /* missing. */
 ```
 
-### Cannot understand assignments to arguments:
-
 ```js
 (function(Buffer) {
     new Buffer(); /* missing. */
 })(require("buffer").Buffer);
 ```
 
-### Cannot understand reassignments:
+### reassignments
 
 ```js
 var Buffer = require("buffer").Buffer;
 Buffer = require("another-buffer");
 new Buffer(); /*ERROR: 'buffer.Buffer' constructor was deprecated.*/
 ```
-
-## When Not To Use It
-
-If you don't want to be warned on deprecated API, then it's safe to disable this rule.
