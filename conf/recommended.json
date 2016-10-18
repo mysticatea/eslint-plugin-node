@@ -4,6 +4,7 @@
         "node": true
     },
     "rules": {
+       "no-process-exit": "error",
        "node/no-deprecated-api": "error",
        "node/no-missing-require": "error",
        "node/no-unpublished-require": "error",
