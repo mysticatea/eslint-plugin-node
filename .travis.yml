@@ -5,10 +5,12 @@ node_js:
   - "0.12"
   - "4"
   - "6"
+  - "7"
 before_script:
   - npm install async
   - npm install -g if-node-version
 script:
-  - "if if-node-version '>=4'; then npm test; else npm run test@2; fi"
+  - "if-node-version '>=4' npm test"
+  - "npm run test@2"
 after_success:
   - npm run codecov
