@@ -24,7 +24,7 @@ const {exists} = require("fs");       /*ERROR: 'fs.exists' was deprecated since 
 This rule reports the following deprecated API.
 
 - buffer
-    - [Buffer constructors](https://nodejs.org/dist/v6.0.0/docs/api/buffer.html#buffer_class_buffer) (You can use [safe-buffer](https://www.npmjs.com/package/safe-buffer) module for `Node@<6.0.0`)
+    - [Buffer constructors](https://nodejs.org/dist/v6.0.0/docs/api/buffer.html#buffer_class_buffer) (Use [safe-buffer](https://www.npmjs.com/package/safe-buffer) module for `Node@<6.0.0`)
     - [SlowBuffer class](https://nodejs.org/dist/v6.0.0/docs/api/buffer.html#buffer_class_slowbuffer)
 - crypto
     - [createCredentials](https://nodejs.org/dist/v0.12.0/docs/api/crypto.html#crypto_crypto_createcredentials_details)
@@ -35,9 +35,22 @@ This rule reports the following deprecated API.
     - [exists](https://nodejs.org/dist/v4.0.0/docs/api/fs.html#fs_fs_exists_path_callback)
 - globals
     - [require.extensions](https://nodejs.org/dist/v0.12.0/docs/api/globals.html#globals_require_extensions)
+    - `Intl.v8BreakIterator` (undocumented)
 - http
     - [createClient](https://nodejs.org/dist/v0.10.0/docs/api/http.html#http_http_createclient_port_host)
-- REPL
+- module
+    - `requireRepl` (undocumented)
+- os
+    - `tmpDir` (undocumented)
+- process
+    - `EventEmitter` (undocumented)
+- [punycode](https://nodejs.org/dist/v7.0.0/docs/api/punycode.html)
+- readline
+    - `codePointAt` (undocumented)
+    - `getStringWidth` (undocumented)
+    - `isFullWidthCodePoint` (undocumented)
+    - `stripVTControlCharacters` (undocumented)
+- repl
     - [process.env.NODE_REPL_HISTORY_FILE](https://nodejs.org/dist/v4.0.0/docs/api/repl.html#repl_node_repl_history_file)
 - tls
     - [CleartextStream](https://nodejs.org/dist/v0.10.0/docs/api/tls.html#tls_class_tls_cleartextstream)
@@ -83,6 +96,8 @@ This rule cannot report the following cases:
     - [ecdh.setPublicKey](https://nodejs.org/dist/v6.0.0/docs/api/crypto.html#crypto_ecdh_setpublickey_public_key_encoding)
 - net
     - [server.connections](https://nodejs.org/dist/v0.10.0/docs/api/net.html#net_server_connections)
+- repl
+    - `replServer.convertToContext` (undocumented)
 
 ### dynamic things
 
