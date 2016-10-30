@@ -78,12 +78,12 @@ ruleTester.run("no-deprecated-api", rule, {
         // there are third parties.
         {
             filename: THIRD_PERTY,
-            code: "require('punycode');",
+            code: "require('domain');",
             env: {node: true},
         },
         {
             filename: THIRD_PERTY,
-            code: "import punycode from 'punycode';",
+            code: "import domain from 'domain';",
             parserOptions: {sourceType: "module"},
         },
     ],
@@ -469,15 +469,15 @@ ruleTester.run("no-deprecated-api", rule, {
         // there are no third parties.
         {
             filename: NO_THIRD_PERTY,
-            code: "require('punycode');",
+            code: "require('domain');",
             env: {node: true},
-            errors: ["'punycode' module was deprecated since v7. Use 'https://www.npmjs.com/package/punycode' instead."],
+            errors: ["'domain' module was deprecated since v4."],
         },
         {
             filename: NO_THIRD_PERTY,
-            code: "import punycode from 'punycode';",
+            code: "import domain from 'domain';",
             parserOptions: {sourceType: "module"},
-            errors: ["'punycode' module was deprecated since v7. Use 'https://www.npmjs.com/package/punycode' instead."],
+            errors: ["'domain' module was deprecated since v4."],
         },
     ],
 })
