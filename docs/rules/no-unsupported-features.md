@@ -1,31 +1,38 @@
 # Disallow unsupported ECMAScript features on the specified version (no-unsupported-features)
 
-Node.js v0.12, v4, and v5 don't support all ECMAScript 2015 (ES6) features.
-This rule reports when you used unsupported ECMAScript 2015 features on the specified Node version.
+Node.js doesn't support all ECMAScript standard features.
+This rule reports when you used unsupported ECMAScript 2015-2017 features on the specified Node.js version.
+
+> ※ About ECMAScript 2017, this rule reports only features which have arrived at stage 4 until 2016-10-31.
+> It needs a major version bump in order to cover newer features.
 
 ## Rule Details
 
-**This rule expects to be used with `"env": {"es6": true}` configuration.**
-
-This rule requires a Node version.
-For Example:
+:warning: This rule expects to be used with the following configuration:
 
 ```json
 {
-    "node/no-unsupported-features": ["error", {"version": 4}]
+    "env": {"es6": true},
+    "parserOptions": {"ecmaVersion": 2017}
 }
 ```
 
-This rule accepts the following version number:
+:warning: This rule reads the [engines] field of `package.json` to detect Node.js version.
 
-- `0.10`
-- `0.12`
-- `4`
-- `5`
-- `6`
+I recommend a use of the [engines] field since it's the official way to indicate what Node.js versions your module is supporting.
+For example of `package.json`:
 
-If the version was omitted, this rule will read the [engines](https://docs.npmjs.com/files/package.json#engines) field of `package.json`.
-If both the `version` option and the `engines` field don't exist, this rule will use the minimum version Node community is maintaining (It's `0.10` currently).
+```json
+{
+    "name": "your-module",
+    "version": "1.0.0",
+    "engines": {
+        "node": ">=4.0.0"
+    }
+}
+```
+
+If the [engines] field is omitted, this rule chooses `0.12` since it's the minimum version the community is maintaining.
 
 Examples of :-1: **incorrect** code for this rule:
 
@@ -98,16 +105,33 @@ var p = new Promise((resolve, reject) => {
 
 ## Options
 
-This rule has `"ignores"` option to ignore to use the specified features.
-
 ```json
 {
-    "node/no-unsupported-features": ["error", {"version": 4, "ignores": []}]
+    "node/no-unsupported-features": ["error", {
+        "version": 4,
+        "ignores": []
+    }]
 }
 ```
 
-Features which are specified by this `"ignores"` option are not warned.
-This `"ignores"` option accepts an array of the following strings.
+### version
+
+As mentioned above, this rule reads the [engines] field of `package.json` to detect Node.js version.
+Also, you can overwrite the version by `version` option.
+The `version` option accepts the following version number:
+
+- `0.10`
+- `0.12`
+- `4`
+- `5`
+- `6`
+- `7`
+
+### ignores
+
+If you are using transpilers, maybe you want to ignore the warnings about some features.
+You can use this `ignores` option to ignore the given features.
+The `"ignores"` option accepts an array of the following strings.
 
 - `"syntax"` (group)
   - `"defaultParameters"`
@@ -130,6 +154,9 @@ This `"ignores"` option accepts an array of the following strings.
   - `"generatorFunctions"`
   - `"classes"`
   - `"modules"`
+  - `"exponentialOperators"`
+  - `"asyncAwait"`
+  - `"trailingCommasInFunctionSyntax"`
 - `"runtime"` (group)
   - `"globalObjects"` (group)
     - `"typedArrays"` (group)
@@ -157,6 +184,9 @@ This `"ignores"` option accepts an array of the following strings.
       - `"Object.is"`
       - `"Object.getOwnPropertySymbols"`
       - `"Object.setPrototypeOf"`
+      - `"Object.values"`
+      - `"Object.entries"`
+      - `"Object.getOwnPropertyDescriptors"`
     - `"String.*"` (group)
       - `"String.raw"`
       - `"String.fromCodePoint"`
@@ -211,6 +241,7 @@ This `"ignores"` option accepts an array of the following strings.
     - `"extendsString"`
     - `"extendsMap"`
     - `"extendsSet"`
+    - `"extendsNull"`
 
 If a group value is given, all sub items of the value are ignored.
 e.g. if `"String.*"` is given then `"String.raw"` and `"String.fromCodePoint"` are ignored.
@@ -226,7 +257,14 @@ function foo(a = 1) {
 }
 ```
 
+## Known Limitations
+
+This rule cannot report non-static things.
+E.g., a use of instance methods.
+
 ## Further Reading
 
 - http://node.green/
 - http://kangax.github.io/compat-table/es6/
+
+[engines]: https://docs.npmjs.com/files/package.json#engines

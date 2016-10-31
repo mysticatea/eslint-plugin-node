@@ -17,7 +17,7 @@ var RuleTester = require("eslint").RuleTester
 // Helpers
 //------------------------------------------------------------------------------
 
-var VERSIONS = Object.freeze([0.10, 0.12, 4, 5, 6])
+var VERSIONS = Object.freeze([0.10, 0.12, 4, 5, 6, 7])
 
 /**
  * Creates test pattern.
@@ -53,7 +53,10 @@ function convertPattern(retv, pattern) {
                 code: "/*" + pattern.name + ": " + versionText + "*/ " + pattern.code,
                 env: {es6: true},
                 options: [version],
-                parserOptions: {sourceType: pattern.modules ? "module" : "script"},
+                parserOptions: {
+                    ecmaVersion: 2017,
+                    sourceType: pattern.modules ? "module" : "script",
+                },
             })
         }
         else {
@@ -63,7 +66,10 @@ function convertPattern(retv, pattern) {
                     code: "/*" + pattern.name + ": " + versionText + ", ignores: [\"" + key + "\"]*/ " + pattern.code,
                     env: {es6: true},
                     options: [{version: version, ignores: [key]}],
-                    parserOptions: {sourceType: pattern.modules ? "module" : "script"},
+                    parserOptions: {
+                        ecmaVersion: 2017,
+                        sourceType: pattern.modules ? "module" : "script",
+                    },
                 }
             }))
 
@@ -72,7 +78,10 @@ function convertPattern(retv, pattern) {
                 code: "/*" + pattern.name + ": " + versionText + "*/ " + pattern.code,
                 env: {es6: true},
                 options: [version],
-                parserOptions: {sourceType: pattern.modules ? "module" : "script"},
+                parserOptions: {
+                    ecmaVersion: 2017,
+                    sourceType: pattern.modules ? "module" : "script",
+                },
                 errors: errors.map(function(message) {
                     return message + versionText + "."
                 }),
@@ -325,8 +334,45 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "Import and Export Declarations",
         code: "import foo from 'foo'; export default 0; export {foo}; export * from 'foo';",
         errors: 4,
-        supported: 6,
+        supported: NaN,
         modules: true,
+    },
+    {
+        keys: ["exponentialOperators", "syntax"],
+        name: "Exponential Operators (**)",
+        code: "var a = 2 ** 10; a **= 10;",
+        errors: 2,
+        supported: 7,
+    },
+    {
+        keys: ["asyncAwait", "syntax"],
+        name: "Async Functions",
+        code: [
+            "async function foo() { await obj; };",
+            "(async function() { await obj; });",
+            "(async () => { await obj; });",
+            "({async foo() { await obj; }});",
+            "class A { async foo() { await obj; } };",
+        ].join("\n"),
+        errors: 10,
+        supported: NaN,
+        ignores: [0.10, 0.12, 4, 5],
+    },
+    {
+        keys: ["trailingCommasInFunctionSyntax", "syntax"],
+        name: "Trailing Commas in Function Syntax",
+        code: [
+            "function foo(a,) {}",
+            "(function(a,) {});",
+            "((a,) => {});",
+            "({ foo(a,) {} });",
+            "class A { foo(a,) {} };",
+            "foo(a,);",
+            "new Foo(a,);",
+        ].join("\n"),
+        errors: 7,
+        supported: NaN,
+        ignores: [0.10, 0.12, 4, 5],
     },
 
     //--------------------------------------------------------------------------
@@ -516,6 +562,30 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Object.setPrototypeOf",
         errors: 1,
         supported: 0.12,
+        singular: true,
+    },
+    {
+        keys: ["Object.values", "Object.*", "staticMethods", "runtime"],
+        name: "'Object.values'",
+        code: "Object.values",
+        errors: 1,
+        supported: 7,
+        singular: true,
+    },
+    {
+        keys: ["Object.entries", "Object.*", "staticMethods", "runtime"],
+        name: "'Object.entries'",
+        code: "Object.entries",
+        errors: 1,
+        supported: 7,
+        singular: true,
+    },
+    {
+        keys: ["Object.getOwnPropertyDescriptors", "Object.*", "staticMethods", "runtime"],
+        name: "'Object.getOwnPropertyDescriptors'",
+        code: "Object.getOwnPropertyDescriptors",
+        errors: 1,
+        supported: 7,
         singular: true,
     },
 
@@ -925,6 +995,15 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "'use strict'; class X extends Set {}",
         errors: 1,
         supported: 4,
+        ignores: [0.10, 0.12],
+        singular: true,
+    },
+    {
+        keys: ["extendsNull", "extends", "runtime"],
+        name: "'extends null'",
+        code: "'use strict'; class X extends null {}",
+        errors: 1,
+        supported: NaN,
         ignores: [0.10, 0.12],
         singular: true,
     },
