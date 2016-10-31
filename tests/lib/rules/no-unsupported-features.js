@@ -54,7 +54,7 @@ function convertPattern(retv, pattern) {
                 env: {es6: true},
                 options: [version],
                 parserOptions: {
-                    ecmaVersion: 2017,
+                    ecmaVersion: 8,
                     sourceType: pattern.modules ? "module" : "script",
                 },
             })
@@ -67,7 +67,7 @@ function convertPattern(retv, pattern) {
                     env: {es6: true},
                     options: [{version: version, ignores: [key]}],
                     parserOptions: {
-                        ecmaVersion: 2017,
+                        ecmaVersion: 8,
                         sourceType: pattern.modules ? "module" : "script",
                     },
                 }
@@ -79,7 +79,7 @@ function convertPattern(retv, pattern) {
                 env: {es6: true},
                 options: [version],
                 parserOptions: {
-                    ecmaVersion: 2017,
+                    ecmaVersion: 8,
                     sourceType: pattern.modules ? "module" : "script",
                 },
                 errors: errors.map(function(message) {
