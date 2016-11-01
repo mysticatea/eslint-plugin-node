@@ -86,6 +86,12 @@ ruleTester.run("no-deprecated-api", rule, {
             code: "import domain from 'domain';",
             parserOptions: {sourceType: "module"},
         },
+
+        // https://github.com/mysticatea/eslint-plugin-node/issues/55
+        {
+            code: "undefinedVar = require('fs')",
+            env: {node: true},
+        },
     ],
     invalid: [
         //----------------------------------------------------------------------
