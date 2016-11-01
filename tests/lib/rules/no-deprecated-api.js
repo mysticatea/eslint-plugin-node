@@ -18,10 +18,14 @@ var RuleTester = require("eslint/lib/testers/rule-tester")
 // Helpers
 //------------------------------------------------------------------------------
 
-var THIRD_PERTY =
-    path.resolve(__dirname, "../../fixtures/no-deprecated-api/thirdparty")
-var NO_THIRD_PERTY =
-    path.resolve(__dirname, "../../fixtures/no-deprecated-api/no-thirdparty")
+var THIRD_PERTY = path.resolve(
+    __dirname,
+    "../../fixtures/no-deprecated-api/thirdparty/test.js"
+)
+var NO_THIRD_PERTY = path.resolve(
+    __dirname,
+    "../../fixtures/no-deprecated-api/no-thirdparty/test.js"
+)
 
 //------------------------------------------------------------------------------
 // Tests
