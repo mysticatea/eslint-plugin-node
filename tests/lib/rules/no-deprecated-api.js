@@ -65,6 +65,12 @@ ruleTester.run("no-deprecated-api", rule, {
             code: "require('fs').existsSync;",
             env: {node: true},
         },
+
+        // https://github.com/mysticatea/eslint-plugin-node/issues/55
+        {
+            code: "undefinedVar = require('fs')",
+            env: {node: true},
+        },
     ],
     invalid: [
         //----------------------------------------------------------------------
