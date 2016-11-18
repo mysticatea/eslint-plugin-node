@@ -1028,6 +1028,12 @@ ruleTester.run("no-unsupported-features", rule, [
             code: "'\\\\u{0123}'",
             env: {es6: true},
         },
+        {
+            filename: fixture("gte-4.0.0/a.js"),
+            code: "var a = async () => 1",
+            parserOptions: {ecmaVersion: 2017},
+            options: [{ignores: ["asyncAwait"]}],
+        },
     ],
     invalid: [
         {
