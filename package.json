@@ -16,7 +16,7 @@
     "test:lint": "if-node-version \">=4\" eslint lib tests/lib index.js",
     "test:mocha": "nyc mocha tests/lib/**/*.js --reporter progress",
     "coverage": "nyc report --reporter=lcov && opener ./coverage/lcov-report/index.html",
-    "test@2": "rimraf \"node_modules/eslint-{config,plugin}-*\" && npm i eslint@2 && npm run test:mocha",
+    "test@2": "rimraf \"node_modules/eslint-{config,plugin}-*\" && npm i eslint@2 && npm run test:mocha -- -i -g NOT_SUPPORTED_ON_2",
     "codecov": "nyc report -r lcovonly && codecov"
   },
   "engines": {
