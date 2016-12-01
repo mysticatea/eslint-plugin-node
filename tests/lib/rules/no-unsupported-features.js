@@ -29,6 +29,17 @@ var VERSIONS = Object.freeze([0.10, 0.12, 4, 5, 6, 7])
 function convertPattern(retv, pattern) {
     var i = 0
 
+    // If this test is on script mode, it should do this test on module mode as well.
+    if (!pattern.modules &&
+        pattern.code.indexOf("'use strict'") !== 0 &&
+        pattern.name.indexOf("non-strict") === -1
+    ) {
+        convertPattern(
+            retv,
+            Object.create(pattern, {modules: {value: true}})
+        )
+    }
+
     // Creates error messages.
     var errors = []
     for (i = 0; i < pattern.errors; ++i) {
