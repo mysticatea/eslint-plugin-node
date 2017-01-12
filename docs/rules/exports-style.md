@@ -28,7 +28,7 @@ This rule has a string option.
 
 ```json
 {
-    "exports-style": [
+    "node/exports-style": [
         "error",
         "module.exports" or "exports",
         {
@@ -47,7 +47,7 @@ This rule has a string option.
 Examples of :-1: **incorrect** code for the `"module.exports"` option:
 
 ```js
-/*eslint exports-style: ["error", "module.exports"]*/
+/*eslint node/exports-style: ["error", "module.exports"]*/
 
 exports.foo = 1
 exports.bar = 2
@@ -56,7 +56,7 @@ exports.bar = 2
 Examples of :+1: **correct** code for the `"module.exports"` option:
 
 ```js
-/*eslint exports-style: ["error", "module.exports"]*/
+/*eslint node/exports-style: ["error", "module.exports"]*/
 
 module.exports = {
     foo: 1,
@@ -71,7 +71,7 @@ module.exports.baz = 3
 Examples of :-1: **incorrect** code for the `"exports"` option:
 
 ```js
-/*eslint exports-style: ["error", "exports"]*/
+/*eslint node/exports-style: ["error", "exports"]*/
 
 module.exports = {
     foo: 1,
@@ -84,7 +84,7 @@ module.exports.baz = 3
 Examples of :+1: **correct** code for the `"exports"` option:
 
 ```js
-/*eslint exports-style: ["error", "exports"]*/
+/*eslint node/exports-style: ["error", "exports"]*/
 
 exports.foo = 1
 exports.bar = 2
@@ -95,7 +95,7 @@ exports.bar = 2
 Examples of :+1: **correct** code for the `"exports"` and `{"allowBatchAssign": true}` option:
 
 ```js
-/*eslint exports-style: ["error", "exports", {"allowBatchAssign": true}]*/
+/*eslint node/exports-style: ["error", "exports", {"allowBatchAssign": true}]*/
 
 // Allow `module.exports` in the same assignment expression as `exports`.
 module.exports = exports = function foo() {
