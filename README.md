@@ -15,7 +15,7 @@ Additional ESLint's rules for Node.js
 ```
 
 - Requires Node.js `^4.0.0 || >=6.0.0`
-- Requires ESLint `>=2.0.0`
+- Requires ESLint `>=3.1.0`
 
 **Note:** It recommends a use of [the "engines" field of package.json](https://docs.npmjs.com/files/package.json#engines). The "engines" field is used by [no-unsupported-features](docs/rules/no-unsupported-features.md) rule.
 
