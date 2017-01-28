@@ -10,19 +10,19 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var path = require("path")
-var rule = require("../../../lib/rules/no-deprecated-api")
-var RuleTester = require("eslint/lib/testers/rule-tester")
+const path = require("path")
+const rule = require("../../../lib/rules/no-deprecated-api")
+const RuleTester = require("eslint/lib/testers/rule-tester")
 
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
 
-var THIRD_PERTY = path.resolve(
+const THIRD_PERTY = path.resolve(
     __dirname,
     "../../fixtures/no-deprecated-api/thirdparty/test.js"
 )
-var NO_THIRD_PERTY = path.resolve(
+const NO_THIRD_PERTY = path.resolve(
     __dirname,
     "../../fixtures/no-deprecated-api/no-thirdparty/test.js"
 )
@@ -31,7 +31,7 @@ var NO_THIRD_PERTY = path.resolve(
 // Tests
 //------------------------------------------------------------------------------
 
-var ruleTester = new RuleTester()
+const ruleTester = new RuleTester()
 ruleTester.run("no-deprecated-api", rule, {
     valid: [
         {

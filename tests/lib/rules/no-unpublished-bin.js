@@ -9,9 +9,9 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var path = require("path")
-var RuleTester = require("eslint").RuleTester
-var rule = require("../../../lib/rules/no-unpublished-bin")
+const path = require("path")
+const RuleTester = require("eslint").RuleTester
+const rule = require("../../../lib/rules/no-unpublished-bin")
 
 //------------------------------------------------------------------------------
 // Helpers

@@ -1,6 +1,4 @@
 {
-    "extends": ["mysticatea/es5", "mysticatea/node"],
-    "rules": {
-        "no-param-reassign": [2, {"props": false}]
-    }
+    "extends": ["mysticatea", "mysticatea/node"],
+    "rules": {}
 }

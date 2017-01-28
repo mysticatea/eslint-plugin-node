@@ -9,9 +9,9 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var path = require("path")
-var RuleTester = require("eslint").RuleTester
-var rule = require("../../../lib/rules/shebang")
+const path = require("path")
+const RuleTester = require("eslint").RuleTester
+const rule = require("../../../lib/rules/shebang")
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -30,7 +30,7 @@ function fixture(name) {
 // Test
 //------------------------------------------------------------------------------
 
-var ruleTester = new RuleTester()
+const ruleTester = new RuleTester()
 ruleTester.run("shebang", rule, {
     valid: [
         {

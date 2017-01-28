@@ -9,15 +9,15 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var path = require("path")
-var rule = require("../../../lib/rules/no-unsupported-features")
-var RuleTester = require("eslint").RuleTester
+const path = require("path")
+const rule = require("../../../lib/rules/no-unsupported-features")
+const RuleTester = require("eslint").RuleTester
 
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
 
-var VERSIONS = Object.freeze([0.10, 0.12, 4, 5, 6, 7])
+const VERSIONS = Object.freeze([0.10, 0.12, 4, 5, 6, 7])
 
 /**
  * Creates test pattern.
@@ -27,7 +27,7 @@ var VERSIONS = Object.freeze([0.10, 0.12, 4, 5, 6, 7])
  * @returns {{valid: object[], invalid: object[]}} retv.
  */
 function convertPattern(retv, pattern) {
-    var i = 0
+    let i = 0
 
     // If this test is on script mode, it should do this test on module mode as well.
     if (!pattern.modules &&
@@ -41,17 +41,17 @@ function convertPattern(retv, pattern) {
     }
 
     // Creates error messages.
-    var errors = []
+    const errors = []
     for (i = 0; i < pattern.errors; ++i) {
         errors.push(
-            pattern.name + " " + (pattern.singular ? "is" : "are") +
-            " not supported yet on Node v"
+            `${pattern.name} ${pattern.singular ? "is" : "are"
+            } not supported yet on Node v`
         )
     }
 
     // Creates each pattern of Node versions.
-    VERSIONS.forEach(function(version) {
-        var versionText = version < 1 ? version.toFixed(2) : version.toFixed(0)
+    VERSIONS.forEach(version => {
+        const versionText = version < 1 ? version.toFixed(2) : version.toFixed(0)
 
         // Skips if ignored
         if (pattern.ignores && pattern.ignores.indexOf(version) !== -1) {
@@ -61,7 +61,7 @@ function convertPattern(retv, pattern) {
         if (version >= pattern.supported) {
             // If this is supported, add to a valid pattern.
             retv.valid.push({
-                code: "/*" + pattern.name + ": " + versionText + "*/ " + pattern.code,
+                code: `/*${pattern.name}: ${versionText}*/ ${pattern.code}`,
                 env: {es6: true},
                 options: [version],
                 parserOptions: {
@@ -72,30 +72,26 @@ function convertPattern(retv, pattern) {
         }
         else {
             // If this is not supported, add to a valid pattern with a "ignores" option.
-            [].push.apply(retv.valid, pattern.keys.map(function(key) {
-                return {
-                    code: "/*" + pattern.name + ": " + versionText + ", ignores: [\"" + key + "\"]*/ " + pattern.code,
-                    env: {es6: true},
-                    options: [{version: version, ignores: [key]}],
-                    parserOptions: {
-                        ecmaVersion: 8,
-                        sourceType: pattern.modules ? "module" : "script",
-                    },
-                }
-            }))
+            [].push.apply(retv.valid, pattern.keys.map(key => ({
+                code: `/*${pattern.name}: ${versionText}, ignores: ["${key}"]*/ ${pattern.code}`,
+                env: {es6: true},
+                options: [{version, ignores: [key]}],
+                parserOptions: {
+                    ecmaVersion: 8,
+                    sourceType: pattern.modules ? "module" : "script",
+                },
+            })))
 
             // If this is not supported, add to a invalid pattern.
             retv.invalid.push({
-                code: "/*" + pattern.name + ": " + versionText + "*/ " + pattern.code,
+                code: `/*${pattern.name}: ${versionText}*/ ${pattern.code}`,
                 env: {es6: true},
                 options: [version],
                 parserOptions: {
                     ecmaVersion: 8,
                     sourceType: pattern.modules ? "module" : "script",
                 },
-                errors: errors.map(function(message) {
-                    return message + versionText + "."
-                }),
+                errors: errors.map(message => `${message + versionText}.`),
             })
         }
     })
@@ -116,7 +112,7 @@ function fixture(name) {
 // Tests
 //------------------------------------------------------------------------------
 
-var ruleTester = new RuleTester()
+const ruleTester = new RuleTester()
 ruleTester.run("no-unsupported-features", rule, [
     //--------------------------------------------------------------------------
     // Syntax
@@ -181,7 +177,7 @@ ruleTester.run("no-unsupported-features", rule, [
     {
         keys: ["templateStrings", "syntax"],
         name: "Template Strings",
-        code: "`hello, ${world}!`; foo`tagged`;",
+        code: "`hello, ${world}!`; foo`tagged`;", //eslint-disable-line no-template-curly-in-string
         errors: 2,
         supported: 4,
     },

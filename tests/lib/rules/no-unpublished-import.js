@@ -9,9 +9,9 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var path = require("path")
-var RuleTester = require("eslint").RuleTester
-var rule = require("../../../lib/rules/no-unpublished-import")
+const path = require("path")
+const RuleTester = require("eslint").RuleTester
+const rule = require("../../../lib/rules/no-unpublished-import")
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -30,7 +30,7 @@ function fixture(name) {
 // Test
 //------------------------------------------------------------------------------
 
-var ruleTester = new RuleTester()
+const ruleTester = new RuleTester()
 ruleTester.run("no-unpublished-import", rule, {
     valid: [
         {

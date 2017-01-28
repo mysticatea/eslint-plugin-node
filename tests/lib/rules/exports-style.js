@@ -9,8 +9,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var RuleTester = require("eslint").RuleTester
-var rule = require("../../../lib/rules/exports-style")
+const RuleTester = require("eslint").RuleTester
+const rule = require("../../../lib/rules/exports-style")
 
 //------------------------------------------------------------------------------
 // Tests

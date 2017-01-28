@@ -8,20 +8,20 @@
     "index.js"
   ],
   "scripts": {
-    "preversion": "run-s -sn clean build test:*",
-    "postversion": "git push && git push --tags",
-    "clean": "rimraf .nyc_output coverage index.js",
     "build": "node scripts/generate-index.js",
-    "test": "run-s -sn clean build test:*",
-    "test:lint": "if-node-version \">=4\" eslint lib tests/lib index.js",
-    "test:mocha": "nyc mocha tests/lib/**/*.js --reporter progress",
-    "coverage": "nyc report --reporter=lcov && opener ./coverage/lcov-report/index.html",
-    "watch": "mocha tests/lib/**/*.js --reporter progress --watch --growl",
-    "test@2": "rimraf \"node_modules/eslint-{config,plugin}-*\" && npm i eslint@2 && npm run test:mocha -- -i -g NOT_SUPPORTED_ON_2",
-    "codecov": "nyc report -r lcovonly && codecov"
+    "clean": "rimraf .nyc_output coverage index.js",
+    "codecov": "nyc report -r lcovonly && codecov",
+    "coverage": "nyc report -r lcov && opener ./coverage/lcov-report/index.html",
+    "lint": "eslint lib tests/lib index.js",
+    "postversion": "git push && git push --tags",
+    "pretest": "npm run -s lint",
+    "preversion": "npm t && npm run build",
+    "test": "nyc npm run -s test:_mocha",
+    "test:_mocha": "_mocha tests/lib/**/*.js --reporter progress",
+    "watch": "npm run test:_mocha -- --watch --growl"
   },
   "engines": {
-    "node": ">=0.10"
+    "node": ">=4"
   },
   "peerDependencies": {
     "eslint": ">=2.0.0"
@@ -37,9 +37,7 @@
     "codecov": "^1.0.1",
     "eslint": "^3.9.0",
     "eslint-config-mysticatea": "^7.0.0",
-    "if-node-version": "^1.0.0",
     "mocha": "^3.0.2",
-    "npm-run-all": "^3.1.0",
     "nyc": "^8.3.0",
     "opener": "^1.4.2",
     "rimraf": "^2.4.4",

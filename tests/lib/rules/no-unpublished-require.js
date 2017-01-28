@@ -9,9 +9,9 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var path = require("path")
-var RuleTester = require("eslint").RuleTester
-var rule = require("../../../lib/rules/no-unpublished-require")
+const path = require("path")
+const RuleTester = require("eslint").RuleTester
+const rule = require("../../../lib/rules/no-unpublished-require")
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -30,7 +30,7 @@ function fixture(name) {
 // Test
 //------------------------------------------------------------------------------
 
-var ruleTester = new RuleTester()
+const ruleTester = new RuleTester()
 ruleTester.run("no-unpublished-require", rule, {
     valid: [
         {
@@ -182,7 +182,7 @@ ruleTester.run("no-unpublished-require", rule, {
         },
         {
             filename: fixture("1/test.js"),
-            code: "require(`foo${bar}`);",
+            code: "require(`foo${bar}`);", //eslint-disable-line no-template-curly-in-string
             env: {node: true, es6: true},
         },
 

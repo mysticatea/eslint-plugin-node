@@ -3,14 +3,15 @@
  * @copyright 2015 Toru Nagashima. All rights reserved.
  * See LICENSE file in root directory for full license.
  */
-/* eslint-env shelljs */
 "use strict"
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-var path = require("path")
+const path = require("path")
+
+/* eslint-env shelljs */
 require("shelljs/global")
 
 //------------------------------------------------------------------------------
@@ -30,7 +31,7 @@ function toBasename(name) {
  * @returns {string} The definition code of the rule creator.
  */
 function toRuleDefinition(name) {
-    return "        \"" + name + "\": require(\"./lib/rules/" + name + "\"),"
+    return `        "${name}": require("./lib/rules/${name}"),`
 }
 
 /**
@@ -38,14 +39,14 @@ function toRuleDefinition(name) {
  * @returns {string} The definition code of the default rule level.
  */
 function toRuleLevel(name) {
-    return "        \"" + name + "\": \"off\","
+    return `        "${name}": "off",`
 }
 
 //------------------------------------------------------------------------------
 // Main
 //------------------------------------------------------------------------------
 
-var ruleNames = ls("lib/rules").map(toBasename);
+const ruleNames = ls("lib/rules").map(toBasename);
 
 [
     "/**",
