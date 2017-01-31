@@ -34,6 +34,10 @@
     "semver": "5.3.0"
   },
   "devDependencies": {
+    "@types/minimatch": "^2.0.29",
+    "@types/node": "^4.2.1",
+    "@types/resolve": "0.0.4",
+    "@types/semver": "^5.3.30",
     "codecov": "^1.0.1",
     "eslint": "^3.9.0",
     "eslint-config-mysticatea": "^7.0.0",

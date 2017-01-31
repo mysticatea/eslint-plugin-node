@@ -187,6 +187,32 @@ new RuleTester().run("no-unpublished-bin", rule, {
             options: [{convertPath: {"x.js": ["x.js", "a.js"]}}],
             errors: ["npm ignores 'a.js'. Check 'files' field of 'package.json' or '.npmignore'."],
         },
+        {
+            filename: fixture("simple-npmignore/x.js"),
+            code: "'simple-npmignore/x.js'",
+            options: [{
+                convertPath: [
+                    {
+                        include: ["x.js"],
+                        replace: ["x.js", "a.js"],
+                    },
+                ],
+            }],
+            errors: ["npm ignores 'a.js'. Check 'files' field of 'package.json' or '.npmignore'."],
+        },
+        {
+            filename: fixture("multi-npmignore/x.js"),
+            code: "'multi-npmignore/x.js'",
+            options: [{
+                convertPath: [
+                    {
+                        include: ["x.js"],
+                        replace: ["x.js", "a.js"],
+                    },
+                ],
+            }],
+            errors: ["npm ignores 'a.js'. Check 'files' field of 'package.json' or '.npmignore'."],
+        },
 
         // files field of `package.json` with convertPath (shared setting)
         {

@@ -42,7 +42,7 @@ For example:
     "rules": {
         "node/no-unpublished-bin": ["error", {
             "convertPath": {
-                "src/bin/**/*.js": ["^src/bin/(.+)$", "bin/$1"]
+                "src/bin/**/*.js": ["^src/(.+)$", "$1"]
             }
         }]
     }
@@ -59,6 +59,30 @@ path.replace(new RegExp(fromRegExp), toString);
 ```
 
 So on this example, `src/bin/index.js` is handled as `bin/index.js`.
+
+The `convertPath` option can be an array as well.
+
+For example:
+
+```json
+{
+    "rules": {
+        "node/no-unpublished-bin": ["error", {
+            "convertPath": [
+                {
+                    "include": ["src/bin/**/*.js"],
+                    "exclude": ["**/*.spec.js"],
+                    "replace": ["^src/(.+)$", "$1"]
+                }
+            ]
+        }]
+    }
+}
+```
+
+In this style, this option has the following shape as the same expression as above: `{include: [<targetFiles>], replace: [<fromRegExp>, <toString>]}`.
+In addition, we can specify glob patterns to exclude files.
+
 
 ## Shared Settings
 

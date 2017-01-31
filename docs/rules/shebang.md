@@ -91,6 +91,29 @@ path.replace(new RegExp(fromRegExp), toString);
 
 So on this example, `src/a/foo.jsx` is handled as `lib/a/foo.js`.
 
+The `convertPath` option can be an array as well.
+
+For example:
+
+```json
+{
+    "rules": {
+        "node/shebang": ["error", {
+            "convertPath": [
+                {
+                    "include": ["src/**/*.js"],
+                    "exclude": ["**/*.spec.js"],
+                    "replace": ["^src/(.+)$", "lib/$1"]
+                }
+            ]
+        }]
+    }
+}
+```
+
+In this style, this option has the following shape as the same expression as above: `{include: [<targetFiles>], replace: [<fromRegExp>, <toString>]}`.
+In addition, we can specify glob patterns to exclude files.
+
 ## Shared Settings
 
 The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).

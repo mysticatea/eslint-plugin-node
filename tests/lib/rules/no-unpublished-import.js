@@ -102,26 +102,6 @@ ruleTester.run("no-unpublished-import", rule, {
             code: "import bbb from 'bbb!foo?a=b&c=d';",
         },
 
-        // `convertPath` option.
-        {
-            filename: fixture("3/src/test.jsx"),
-            code: "import a from './a';",
-            settings: {
-                node: {
-                    convertPath: {"src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"]},
-                    tryExtensions: [".js", ".jsx", ".json"],
-                },
-            },
-        },
-        {
-            filename: fixture("3/src/test.jsx"),
-            code: "import a from './a';",
-            options: [{
-                convertPath: {"src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"]},
-                tryExtensions: [".js", ".jsx", ".json"],
-            }],
-        },
-
         // Ignores it if the filename is unknown.
         "import noExistPackage0 from 'no-exist-package-0';",
         "import b from './b';",
@@ -215,6 +195,58 @@ ruleTester.run("no-unpublished-import", rule, {
             filename: "tests/fixtures/no-unpublished/2/test.js",
             code: "import ignore1 from './ignore1';",
             errors: ["\"./ignore1\" is not published."],
+        },
+
+        // `convertPath` option.
+        {
+            filename: fixture("3/src/test.jsx"),
+            code: "import a from '../test';",
+            errors: ["\"../test\" is not published."],
+            settings: {
+                node: {
+                    convertPath: {"src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"]},
+                    tryExtensions: [".js", ".jsx", ".json"],
+                },
+            },
+        },
+        {
+            filename: fixture("3/src/test.jsx"),
+            code: "import a from '../test';",
+            errors: ["\"../test\" is not published."],
+            options: [{
+                convertPath: {"src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"]},
+                tryExtensions: [".js", ".jsx", ".json"],
+            }],
+        },
+        {
+            filename: fixture("3/src/test.jsx"),
+            code: "import a from '../test';",
+            errors: ["\"../test\" is not published."],
+            settings: {
+                node: {
+                    convertPath: [
+                        {
+                            include: ["src/**/*.jsx"],
+                            replace: ["src/(.+?)\\.jsx", "pub/$1.js"],
+                        },
+                    ],
+                    tryExtensions: [".js", ".jsx", ".json"],
+                },
+            },
+        },
+        {
+            filename: fixture("3/src/test.jsx"),
+            code: "import a from '../test';",
+            errors: ["\"../test\" is not published."],
+            options: [{
+                convertPath: [
+                    {
+                        include: ["src/**/*.jsx"],
+                        replace: ["src/(.+?)\\.jsx", "pub/$1.js"],
+                    },
+                ],
+                tryExtensions: [".js", ".jsx", ".json"],
+            }],
         },
     ],
 })

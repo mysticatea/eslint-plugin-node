@@ -140,6 +140,36 @@ ruleTester.run("no-unpublished-require", rule, {
                 tryExtensions: [".js", ".jsx", ".json"],
             }],
         },
+        {
+            filename: fixture("3/src/test.jsx"),
+            code: "require('../test');",
+            env: {node: true},
+            settings: {
+                node: {
+                    convertPath: [
+                        {
+                            include: ["src/**/*.jsx"],
+                            exclude: ["**/test.jsx"],
+                            replace: ["src/(.+?)\\.jsx", "pub/$1.js"],
+                        },
+                    ],
+                },
+            },
+        },
+        {
+            filename: fixture("3/src/test.jsx"),
+            code: "require('../test');",
+            env: {node: true},
+            options: [{
+                convertPath: [
+                    {
+                        include: ["src/**/*.jsx"],
+                        exclude: ["**/test.jsx"],
+                        replace: ["src/(.+?)\\.jsx", "pub/$1.js"],
+                    },
+                ],
+            }],
+        },
 
         // Ignores it if not callee.
         {
@@ -295,6 +325,36 @@ ruleTester.run("no-unpublished-require", rule, {
             errors: ["\"../test\" is not published."],
             env: {node: true},
             options: [{convertPath: {"src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"]}}],
+        },
+        {
+            filename: fixture("3/src/test.jsx"),
+            code: "require('../test');",
+            errors: ["\"../test\" is not published."],
+            env: {node: true},
+            settings: {
+                node: {
+                    convertPath: [
+                        {
+                            include: ["src/**/*.jsx"],
+                            replace: ["src/(.+?)\\.jsx", "pub/$1.js"],
+                        },
+                    ],
+                },
+            },
+        },
+        {
+            filename: fixture("3/src/test.jsx"),
+            code: "require('../test');",
+            errors: ["\"../test\" is not published."],
+            env: {node: true},
+            options: [{
+                convertPath: [
+                    {
+                        include: ["src/**/*.jsx"],
+                        replace: ["src/(.+?)\\.jsx", "pub/$1.js"],
+                    },
+                ],
+            }],
         },
 
         // Should work fine if the filename is relative.
