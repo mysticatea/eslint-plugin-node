@@ -84,6 +84,106 @@ This rule reports the following deprecated API.
     - [puts](https://nodejs.org/dist/v0.12.0/docs/api/util.html#util_util_puts)
     - [_extend](https://nodejs.org/dist/v6.0.0/docs/api/util.html#util_util_extend_obj)
 
+## Options
+
+This rule has 2 options.
+
+```json
+{
+    "rules": {
+        "node/no-deprecated-api": ["error", {
+            "ignoreModuleItems": [],
+            "ignoreGlobalItems": []
+        }]
+    }
+}
+```
+
+### ignoreModuleItems
+
+This is the array of module names and module's member names.
+Default is an empty array.
+
+This rule ignores APIs that `ignoreModuleItems` includes.
+This option can include the following values:
+
+- `buffer.Buffer()`
+- `new buffer.Buffer()`
+- `buffer.SlowBuffer`
+- `crypto.createCredentials`
+- `domain`
+- `events.EventEmitter.listenerCount`
+- `events.listenerCount`
+- `fs.exists`
+- `http.createClient`
+- `module.Module.requireRepl`
+- `module.requireRepl`
+- `os.tmpDir`
+- `punycode`
+- `readline.codePointAt`
+- `readline.getStringWidth`
+- `readline.isFullWidthCodePoint`
+- `readline.stripVTControlCharacters`
+- `tls.CleartextStream`
+- `tls.CryptoStream`
+- `tls.SecurePair`
+- `tls.createSecurePair`
+- `tty.setRawMode`
+- `util.debug`
+- `util.error`
+- `util.isArray`
+- `util.isBoolean`
+- `util.isBuffer`
+- `util.isDate`
+- `util.isError`
+- `util.isFunction`
+- `util.isNull`
+- `util.isNullOrUndefined`
+- `util.isNumber`
+- `util.isObject`
+- `util.isPrimitive`
+- `util.isRegExp`
+- `util.isString`
+- `util.isSymbol`
+- `util.isUndefined`
+- `util.log`
+- `util.print`
+- `util.pump`
+- `util.puts`
+- `util._extend`
+
+Examples of :+1: **correct** code for the `{"ignoreModuleItems": ["new buffer.Buffer()"]}`:
+
+```js
+/*eslint node/no-deprecated-api: [error, {ignoreModuleItems: ["new buffer.Buffer()"]}] */
+
+const buffer = require("buffer")
+const data = new buffer.Buffer(10) // OK since it's in ignoreModuleItems.
+```
+
+### ignoreGlobalItems
+
+This is the array of global variable names and global variable's member names.
+Default is an empty array.
+
+This rule ignores APIs that `ignoreGlobalItems` includes.
+This option can include the following values:
+
+- `Buffer()`
+- `new Buffer()`
+- `Intl.v8BreakIterator`
+- `require.extensions`
+- `process.EventEmitter`
+- `process.env.NODE_REPL_HISTORY_FILE`
+
+Examples of :+1: **correct** code for the `{"ignoreGlobalItems": ["new Buffer()"]}`:
+
+```js
+/*eslint node/no-deprecated-api: [error, {ignoreGlobalItems: ["new Buffer()"]}] */
+
+const data = new Buffer(10) // OK since it's in ignoreGlobalItems.
+```
+
 ## Known Limitations
 
 This rule cannot report the following cases:
@@ -106,7 +206,7 @@ require(foo).aDeprecatedProperty;
 require("http")[A_DEPRECATED_PROPERTY]();
 ```
 
-### assignments
+### assignments to properties
 
 ```js
 var obj = {
@@ -120,6 +220,8 @@ var obj = {};
 obj.Buffer = require("buffer").Buffer
 new obj.Buffer(); /* missing. */
 ```
+
+### giving arguments
 
 ```js
 (function(Buffer) {
