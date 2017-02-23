@@ -17,7 +17,7 @@ const RuleTester = require("eslint").RuleTester
 // Helpers
 //------------------------------------------------------------------------------
 
-const VERSIONS = Object.freeze([0.10, 0.12, 4, 5, 6, 7])
+const VERSIONS = Object.freeze([0.10, 0.12, 4, 5, 6, 7, 7.6])
 
 /**
  * Creates test pattern.
@@ -51,7 +51,7 @@ function convertPattern(retv, pattern) {
 
     // Creates each pattern of Node versions.
     VERSIONS.forEach(version => {
-        const versionText = version < 1 ? version.toFixed(2) : version.toFixed(0)
+        const versionText = version < 1 ? version.toFixed(2) : String(version)
 
         // Skips if ignored
         if (pattern.ignores && pattern.ignores.indexOf(version) !== -1) {
@@ -362,7 +362,7 @@ ruleTester.run("no-unsupported-features", rule, [
             "class A { async foo() { await obj; } };",
         ].join("\n"),
         errors: 10,
-        supported: NaN,
+        supported: 7.6,
         ignores: [0.10, 0.12, 4, 5],
     },
     {
@@ -1041,6 +1041,11 @@ ruleTester.run("no-unsupported-features", rule, [
             parserOptions: {ecmaVersion: 2017},
             options: [{ignores: ["asyncAwait"]}],
         },
+        {
+            filename: fixture("gte-7.6.0/a.js"),
+            code: "var a = async () => 1",
+            parserOptions: {ecmaVersion: 2017},
+        },
     ],
     invalid: [
         {
@@ -1066,6 +1071,12 @@ ruleTester.run("no-unsupported-features", rule, [
             code: "var a = () => 1",
             env: {es6: true},
             errors: ["Arrow Functions are not supported yet on Node v0.10."],
+        },
+        {
+            filename: fixture("gte-7.5.0/a.js"),
+            code: "var a = async () => 1",
+            parserOptions: {ecmaVersion: 2017},
+            errors: ["Async Functions are not supported yet on Node v7.5."],
         },
     ],
 }))

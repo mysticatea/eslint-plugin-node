@@ -126,6 +126,7 @@ The `version` option accepts the following version number:
 - `5`
 - `6`
 - `7`
+- `7.6` ... It supports async functions.
 
 ### ignores
 
