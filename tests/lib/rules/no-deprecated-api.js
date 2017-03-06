@@ -10,26 +10,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const path = require("path")
 const rule = require("../../../lib/rules/no-deprecated-api")
 const RuleTester = require("eslint/lib/testers/rule-tester")
-
-//------------------------------------------------------------------------------
-// Helpers
-//------------------------------------------------------------------------------
-
-const THIRD_PERTY = path.resolve(
-    __dirname,
-    "../../fixtures/no-deprecated-api/thirdparty/test.js"
-)
-const NO_THIRD_PERTY = path.resolve(
-    __dirname,
-    "../../fixtures/no-deprecated-api/no-thirdparty/test.js"
-)
-const INDIRECT_THIRD_PERTY = path.resolve(
-    __dirname,
-    "../../fixtures/no-deprecated-api/indirect-thirdparty/test.js"
-)
 
 //------------------------------------------------------------------------------
 // Tests
@@ -83,15 +65,13 @@ ruleTester.run("no-deprecated-api", rule, {
             env: {node: true},
         },
 
-        // there are third parties.
+        // use third parties.
         {
-            filename: THIRD_PERTY,
-            code: "require('domain');",
+            code: "require('domain/');",
             env: {node: true},
         },
         {
-            filename: THIRD_PERTY,
-            code: "import domain from 'domain';",
+            code: "import domain from 'domain/';",
             parserOptions: {sourceType: "module"},
         },
 
@@ -168,8 +148,7 @@ ruleTester.run("no-deprecated-api", rule, {
 
         // https://github.com/mysticatea/eslint-plugin-node/issues/65
         {
-            filename: INDIRECT_THIRD_PERTY,
-            code: "require(\"domain\")",
+            code: "require(\"domain/\")",
             env: {node: true},
             options: [{ignoreIndirectDependencies: true}],
         },
@@ -458,21 +437,6 @@ ruleTester.run("no-deprecated-api", rule, {
             errors: ["'util._extend' was deprecated since v6. Use 'Object.assign()' instead."],
         },
 
-        // https://github.com/mysticatea/eslint-plugin-node/issues/65
-        {
-            filename: INDIRECT_THIRD_PERTY,
-            code: "require(\"domain\")",
-            env: {node: true},
-            errors: ["'domain' module was deprecated since v4."],
-        },
-        {
-            filename: INDIRECT_THIRD_PERTY,
-            code: "require(\"domain\")",
-            env: {node: true},
-            options: [{ignoreIndirectDependencies: false}],
-            errors: ["'domain' module was deprecated since v4."],
-        },
-
         // ES2015 Modules
         {
             code: "import b from 'buffer'; new b.Buffer()",
@@ -587,15 +551,12 @@ ruleTester.run("no-deprecated-api", rule, {
             errors: ["'process.env.NODE_REPL_HISTORY_FILE' was deprecated since v4. Use 'NODE_REPL_HISTORY' instead."],
         },
 
-        // there are no third parties.
         {
-            filename: NO_THIRD_PERTY,
             code: "require('domain');",
             env: {node: true},
             errors: ["'domain' module was deprecated since v4."],
         },
         {
-            filename: NO_THIRD_PERTY,
             code: "import domain from 'domain';",
             parserOptions: {sourceType: "module"},
             errors: ["'domain' module was deprecated since v4."],

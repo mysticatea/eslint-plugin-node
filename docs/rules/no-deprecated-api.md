@@ -93,8 +93,7 @@ This rule has 2 options.
     "rules": {
         "node/no-deprecated-api": ["error", {
             "ignoreModuleItems": [],
-            "ignoreGlobalItems": [],
-            "ignoreIndirectDependencies": false
+            "ignoreGlobalItems": []
         }]
     }
 }
@@ -184,12 +183,6 @@ Examples of :+1: **correct** code for the `{"ignoreGlobalItems": ["new Buffer()"
 
 const data = new Buffer(10) // OK since it's in ignoreGlobalItems.
 ```
-
-### ignoreIndirectDependencies
-
-If `ignoreIndirectDependencies: true`, this rule ignores deprecated APIs if your module depends on third-party modules which have the same name as core modules indirectly. Default is `false`.
-
-If your module depends on such third-party modules directly (explicitly), this rule always ignores deprecated APIs of those.
 
 ## Known Limitations
 
