@@ -2,6 +2,10 @@
  * @author Toru Nagashima
  * @copyright 2016 Toru Nagashima. All rights reserved.
  * See LICENSE file in root directory for full license.
+ *
+ * @deprecated since v4.2.0
+ * This rule was based on an invalid assumption.
+ * No meaning.
  */
 "use strict"
 

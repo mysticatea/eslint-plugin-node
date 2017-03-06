@@ -49,7 +49,6 @@ Additional ESLint's rules for Node.js
 |:------:|:--------:|:-----------------------------------------------------------------|:------------|
 |        |          | [exports-style](docs/rules/exports-style.md)                     | Enforce either `module.exports` or `exports`.
 | :star: |          | [no-deprecated-api](docs/rules/no-deprecated-api.md)             | Disallow deprecated API.
-|        |          | [no-hide-core-modules](docs/rules/no-hide-core-modules.md)       | Disallow third-party modules which are hiding core modules.
 |        |          | [no-missing-import](docs/rules/no-missing-import.md)             | Disallow `import` declarations for files that don't exist. :warning:
 | :star: |          | [no-missing-require](docs/rules/no-missing-require.md)           | Disallow `require()`s for files that don't exist.
 | :star: |          | [no-unpublished-bin](docs/rules/no-unpublished-bin.md)           | Disallow `bin` files that npm ignores.
