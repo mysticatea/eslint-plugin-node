@@ -265,5 +265,13 @@ ruleTester.run("no-missing-require", rule, {
             env: {node: true},
             errors: ["\"./bar/\" is not found."],
         },
+
+        // Case sensitive
+        {
+            filename: fixture("test.js"),
+            code: "require('./A');",
+            env: {node: true},
+            errors: ["\"./A\" is not found."],
+        },
     ],
 })

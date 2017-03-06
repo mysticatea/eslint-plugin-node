@@ -189,5 +189,12 @@ ruleTester.run("no-missing-import", rule, {
             code: "import a from './bar/';",
             errors: ["\"./bar/\" is not found."],
         },
+
+        // Case sensitive
+        {
+            filename: fixture("test.js"),
+            code: "import a from './A.js';",
+            errors: ["\"./A.js\" is not found."],
+        },
     ],
 })
