@@ -275,3 +275,28 @@ ruleTester.run("no-missing-require", rule, {
         },
     ],
 })
+
+/*eslint-env mocha */
+describe("On specific working directory:", () => {
+    const filename = fixture("test.js")
+    let originalDir = null
+
+    before(() => {
+        originalDir = process.cwd()
+        process.chdir(path.dirname(filename))
+    })
+    after(() => {
+        process.chdir(originalDir)
+    })
+
+    ruleTester.run("no-missing-require", rule, {
+        valid: [
+            {
+                filename: fixture("test.js"),
+                code: "require('../../lib/rules/no-missing-require');",
+                env: {node: true},
+            },
+        ],
+        invalid: [],
+    })
+})
