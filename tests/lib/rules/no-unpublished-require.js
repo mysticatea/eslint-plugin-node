@@ -235,6 +235,13 @@ ruleTester.run("no-unpublished-require", rule, {
             options: [{allowModules: ["electron"]}],
             env: {node: true},
         },
+
+        // Auto-published files only apply to root package directory
+        {
+            filename: fixture("3/src/readme.js"),
+            code: "require('bbb');",
+            env: {node: true},
+        },
     ],
     invalid: [
         {
