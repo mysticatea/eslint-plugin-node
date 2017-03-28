@@ -121,6 +121,13 @@ ruleTester.run("no-unpublished-import", rule, {
             code: "import electron from 'electron';",
             options: [{allowModules: ["electron"]}],
         },
+
+        // Auto-published files only apply to root package directory
+        {
+            filename: fixture("3/src/readme.js"),
+            code: "import bbb from 'bbb';",
+            env: {node: true},
+        },
     ],
     invalid: [
         {
