@@ -231,6 +231,22 @@ ruleTester.run("no-deprecated-api", rule, {
             errors: ["'buffer.SlowBuffer' was deprecated since v6. Use 'buffer.Buffer.allocUnsafeSlow()' instead."],
         },
 
+        //----------------------------------------------------------------------
+        {
+            code: "require('_linklist');",
+            env: {node: true},
+            errors: ["'_linklist' module was deprecated since v5."],
+        },
+        {
+            code: "require('constants');",
+            env: {node: true},
+            errors: ["'constants' module was deprecated since v6.3. Use 'constants' property of each module instead."],
+        },
+        {
+            code: "require('crypto').Credentials;",
+            env: {node: true},
+            errors: ["'crypto.Credentials' was deprecated since v0.12. Use 'tls.SecureContext' instead."],
+        },
         {
             code: "require('crypto').createCredentials;",
             env: {node: true},
@@ -252,9 +268,39 @@ ruleTester.run("no-deprecated-api", rule, {
             errors: ["'events.listenerCount' was deprecated since v4. Use 'events.EventEmitter#listenerCount()' instead."],
         },
         {
+            code: "require('freelist');",
+            env: {node: true},
+            errors: ["'freelist' module was deprecated since v4."],
+        },
+        {
+            code: "require('fs').SyncWriteStream;",
+            env: {node: true},
+            errors: ["'fs.SyncWriteStream' was deprecated since v4."],
+        },
+        {
             code: "require('fs').exists;",
             env: {node: true},
             errors: ["'fs.exists' was deprecated since v4. Use 'fs.stat()' or 'fs.access()' instead."],
+        },
+        {
+            code: "require('fs').lchmod;",
+            env: {node: true},
+            errors: ["'fs.lchmod' was deprecated since v0.4."],
+        },
+        {
+            code: "require('fs').lchmodSync;",
+            env: {node: true},
+            errors: ["'fs.lchmodSync' was deprecated since v0.4."],
+        },
+        {
+            code: "require('fs').lchown;",
+            env: {node: true},
+            errors: ["'fs.lchown' was deprecated since v0.4."],
+        },
+        {
+            code: "require('fs').lchownSync;",
+            env: {node: true},
+            errors: ["'fs.lchownSync' was deprecated since v0.4."],
         },
         {
             code: "require('http').createClient;",
@@ -270,6 +316,11 @@ ruleTester.run("no-deprecated-api", rule, {
             code: "require('module').Module.requireRepl;",
             env: {node: true},
             errors: ["'module.Module.requireRepl' was deprecated since v6. Use 'require(\"repl\")' instead."],
+        },
+        {
+            code: "require('os').getNetworkInterfaces;",
+            env: {node: true},
+            errors: ["'os.getNetworkInterfaces' was deprecated since v0.6. Use 'os.networkInterfaces()' instead."],
         },
         {
             code: "require('os').tmpDir;",
@@ -300,6 +351,11 @@ ruleTester.run("no-deprecated-api", rule, {
             code: "require('readline').stripVTControlCharacters;",
             env: {node: true},
             errors: ["'readline.stripVTControlCharacters' was deprecated since v6."],
+        },
+        {
+            code: "require('sys');",
+            env: {node: true},
+            errors: ["'sys' module was deprecated since v0.3. Use 'util' module instead."],
         },
         {
             code: "require('tls').CleartextStream;",
@@ -435,6 +491,11 @@ ruleTester.run("no-deprecated-api", rule, {
             code: "require('util')._extend;",
             env: {node: true},
             errors: ["'util._extend' was deprecated since v6. Use 'Object.assign()' instead."],
+        },
+        {
+            code: "require('vm').runInDebugContext;",
+            env: {node: true},
+            errors: ["'vm.runInDebugContext' was deprecated since v8."],
         },
 
         // ES2015 Modules

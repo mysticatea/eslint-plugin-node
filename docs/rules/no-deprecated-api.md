@@ -23,16 +23,25 @@ const {exists} = require("fs");       /*ERROR: 'fs.exists' was deprecated since 
 
 This rule reports the following deprecated API.
 
+- _linklist (undocumented)
 - buffer
     - [Buffer constructors](https://nodejs.org/dist/v6.0.0/docs/api/buffer.html#buffer_class_buffer) (Use [safe-buffer](https://www.npmjs.com/package/safe-buffer) module for `Node@<4.5.0`)
     - [SlowBuffer class](https://nodejs.org/dist/v6.0.0/docs/api/buffer.html#buffer_class_slowbuffer)
+- constants (undocumented)
 - crypto
+    - `Credentials` (undocumented)
     - [createCredentials](https://nodejs.org/dist/v0.12.0/docs/api/crypto.html#crypto_crypto_createcredentials_details)
 - [domain](https://nodejs.org/dist/v4.0.0/docs/api/domain.html#domain_domain)
 - events
     - [EventEmitter.listenerCount](https://nodejs.org/dist/v4.0.0/docs/api/events.html#events_class_method_eventemitter_listenercount_emitter_event)
+- freelist (undocumented)
 - fs
+    - `SyncWriteStream` (undocumented)
     - [exists](https://nodejs.org/dist/v4.0.0/docs/api/fs.html#fs_fs_exists_path_callback)
+    - [lchmod](https://nodejs.org/dist/v8.0.0/docs/api/fs.html#fs_fs_lchmod_path_mode_callback)
+    - [lchmodSync](https://nodejs.org/dist/v8.0.0/docs/api/fs.html#fs_fs_lchmodsync_path_mode)
+    - [lchown](https://nodejs.org/dist/v8.0.0/docs/api/fs.html#fs_fs_lchown_path_uid_gid_callback)
+    - [lchownSync](https://nodejs.org/dist/v8.0.0/docs/api/fs.html#fs_fs_lchownsync_path_uid_gid)
 - globals
     - [require.extensions](https://nodejs.org/dist/v0.12.0/docs/api/globals.html#globals_require_extensions)
     - `Intl.v8BreakIterator` (undocumented)
@@ -42,6 +51,7 @@ This rule reports the following deprecated API.
     - `requireRepl` (undocumented)
 - os
     - `tmpDir` (undocumented)
+    - `getNetworkInterfaces` (undocumented)
 - process
     - `EventEmitter` (undocumented)
 - [punycode](https://nodejs.org/dist/v7.0.0/docs/api/punycode.html)
@@ -52,6 +62,7 @@ This rule reports the following deprecated API.
     - `stripVTControlCharacters` (undocumented)
 - repl
     - [process.env.NODE_REPL_HISTORY_FILE](https://nodejs.org/dist/v4.0.0/docs/api/repl.html#repl_node_repl_history_file)
+- sys (undocumented)
 - tls
     - [CleartextStream](https://nodejs.org/dist/v0.10.0/docs/api/tls.html#tls_class_tls_cleartextstream)
       (this class was removed on v0.11.3, but never deprecated in documents)
@@ -83,6 +94,8 @@ This rule reports the following deprecated API.
     - [pump](https://nodejs.org/dist/v0.10.0/docs/api/util.html#util_util_pump_readablestream_writablestream_callback)
     - [puts](https://nodejs.org/dist/v0.12.0/docs/api/util.html#util_util_puts)
     - [_extend](https://nodejs.org/dist/v6.0.0/docs/api/util.html#util_util_extend_obj)
+- vm
+    - [runInDebugContext](https://nodejs.org/dist/v8.0.0/docs/api/vm.html#vm_vm_runindebugcontext_code)
 
 ## Options
 
@@ -107,14 +120,23 @@ Default is an empty array.
 This rule ignores APIs that `ignoreModuleItems` includes.
 This option can include the following values:
 
+- `_linklist`
 - `buffer.Buffer()`
 - `new buffer.Buffer()`
 - `buffer.SlowBuffer`
+- `constants`
+- `crypto.Credentials`
 - `crypto.createCredentials`
 - `domain`
 - `events.EventEmitter.listenerCount`
 - `events.listenerCount`
+- `freelist`
+- `fs.SyncWriteStream`
 - `fs.exists`
+- `fs.lchmod`
+- `fs.lchmodSync`
+- `fs.lchown`
+- `fs.lchownSync`
 - `http.createClient`
 - `module.Module.requireRepl`
 - `module.requireRepl`
@@ -124,6 +146,7 @@ This option can include the following values:
 - `readline.getStringWidth`
 - `readline.isFullWidthCodePoint`
 - `readline.stripVTControlCharacters`
+- `sys`
 - `tls.CleartextStream`
 - `tls.CryptoStream`
 - `tls.SecurePair`
@@ -151,6 +174,7 @@ This option can include the following values:
 - `util.pump`
 - `util.puts`
 - `util._extend`
+- `vm.runInDebugContext`
 
 Examples of :+1: **correct** code for the `{"ignoreModuleItems": ["new buffer.Buffer()"]}`:
 
@@ -190,10 +214,14 @@ This rule cannot report the following cases:
 
 ### non-static properties
 
+- buffer
+    - [buf.parent](https://nodejs.org/dist/v8.0.0/docs/api/buffer.html#buffer_buf_parent)
 - cluster
     - [worker.suicide](https://nodejs.org/dist/v6.0.0/docs/api/cluster.html#cluster_worker_suicide)
 - crypto
     - [ecdh.setPublicKey](https://nodejs.org/dist/v6.0.0/docs/api/crypto.html#crypto_ecdh_setpublickey_public_key_encoding)
+- http
+    - [res.writeHeader()](https://nodejs.org/dist/v8.0.0/docs/api/deprecations.html#deprecations_dep0063_serverresponse_prototype_writeheader)
 - net
     - [server.connections](https://nodejs.org/dist/v0.10.0/docs/api/net.html#net_server_connections)
 - repl
