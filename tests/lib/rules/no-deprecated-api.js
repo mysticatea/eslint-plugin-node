@@ -10,8 +10,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/no-deprecated-api")
 const RuleTester = require("eslint/lib/testers/rule-tester")
+const rule = require("../../../lib/rules/no-deprecated-api")
 
 //------------------------------------------------------------------------------
 // Tests

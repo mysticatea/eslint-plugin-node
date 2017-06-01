@@ -10,8 +10,8 @@
 //------------------------------------------------------------------------------
 
 const path = require("path")
-const rule = require("../../../lib/rules/no-unsupported-features")
 const RuleTester = require("eslint").RuleTester
+const rule = require("../../../lib/rules/no-unsupported-features")
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -50,12 +50,12 @@ function convertPattern(retv, pattern) {
     }
 
     // Creates each pattern of Node versions.
-    VERSIONS.forEach(version => {
+    for (const version of VERSIONS) {
         const versionText = version < 1 ? version.toFixed(2) : String(version)
 
         // Skips if ignored
         if (pattern.ignores && pattern.ignores.indexOf(version) !== -1) {
-            return
+            continue
         }
 
         if (version >= pattern.supported) {
@@ -94,7 +94,7 @@ function convertPattern(retv, pattern) {
                 errors: errors.map(message => `${message + versionText}.`),
             })
         }
-    })
+    }
 
     return retv
 }
