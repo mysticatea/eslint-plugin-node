@@ -3,7 +3,7 @@
 Node.js doesn't support all ECMAScript standard features.
 This rule reports when you used unsupported ECMAScript 2015-2017 features on the specified Node.js version.
 
-> ※ About ECMAScript 2017, this rule reports only features which have arrived at stage 4 until 2016-10-31.
+> ※ About ECMAScript 2017, this rule reports only features which have arrived at stage 4 until 2017-06-01.
 > It needs a major version bump in order to cover newer features.
 
 ## Rule Details
@@ -32,7 +32,7 @@ For example of `package.json`:
 }
 ```
 
-If the [engines] field is omitted, this rule chooses `0.12` since it's the minimum version the community is maintaining.
+If the [engines] field is omitted, this rule chooses `4` since it's the minimum version the community is maintaining.
 
 Examples of :-1: **incorrect** code for this rule:
 
@@ -126,7 +126,8 @@ The `version` option accepts the following version number:
 - `5`
 - `6`
 - `7`
-- `7.6` ... It supports async functions.
+- `7.6` ... supports async functions.
+- `8` ... supports trailing commas in functions.
 
 ### ignores
 
@@ -157,7 +158,7 @@ The `"ignores"` option accepts an array of the following strings.
   - `"modules"`
   - `"exponentialOperators"`
   - `"asyncAwait"`
-  - `"trailingCommasInFunctionSyntax"`
+  - `"trailingCommasInFunctions"`
 - `"runtime"` (group)
   - `"globalObjects"` (group)
     - `"typedArrays"` (group)
@@ -179,6 +180,8 @@ The `"ignores"` option accepts an array of the following strings.
     - `"Reflect"`
     - `"Promise"`
     - `"Symbol"`
+    - `"SharedArrayBuffer"`
+    - `"Atomics"`
   - `"staticMethods"` (group)
     - `"Object.*"` (group)
       - `"Object.assign"`
@@ -232,6 +235,19 @@ The `"ignores"` option accepts an array of the following strings.
       - `"Symbol.toPrimitive"`
       - `"Symbol.toStringTag"`
       - `"Symbol.unscopables"`
+    - `"Atomics.*"` (group)
+      - `"Atomics.add"`
+      - `"Atomics.and"`
+      - `"Atomics.compareExchange"`
+      - `"Atomics.exchange"`
+      - `"Atomics.wait"`
+      - `"Atomics.wake"`
+      - `"Atomics.isLockFree"`
+      - `"Atomics.load"`
+      - `"Atomics.or"`
+      - `"Atomics.store"`
+      - `"Atomics.sub"`
+      - `"Atomics.xor"`
   - `"extends"` (group)
     - `"extendsArray"`
     - `"extendsRegExp"`

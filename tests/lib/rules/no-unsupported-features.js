@@ -17,7 +17,7 @@ const rule = require("../../../lib/rules/no-unsupported-features")
 // Helpers
 //------------------------------------------------------------------------------
 
-const VERSIONS = Object.freeze([0.10, 0.12, 4, 5, 6, 7, 7.6])
+const VERSIONS = Object.freeze([0.10, 0.12, 4, 5, 6, 7, 7.6, 8])
 
 /**
  * Creates test pattern.
@@ -63,6 +63,7 @@ function convertPattern(retv, pattern) {
             retv.valid.push({
                 code: `/*${pattern.name}: ${versionText}*/ ${pattern.code}`,
                 env: {es6: true},
+                globals: {SharedArrayBuffer: false, Atomics: false},
                 options: [version],
                 parserOptions: {
                     ecmaVersion: 8,
@@ -75,6 +76,7 @@ function convertPattern(retv, pattern) {
             [].push.apply(retv.valid, pattern.keys.map(key => ({
                 code: `/*${pattern.name}: ${versionText}, ignores: ["${key}"]*/ ${pattern.code}`,
                 env: {es6: true},
+                globals: {SharedArrayBuffer: false, Atomics: false},
                 options: [{version, ignores: [key]}],
                 parserOptions: {
                     ecmaVersion: 8,
@@ -86,6 +88,7 @@ function convertPattern(retv, pattern) {
             retv.invalid.push({
                 code: `/*${pattern.name}: ${versionText}*/ ${pattern.code}`,
                 env: {es6: true},
+                globals: {SharedArrayBuffer: false, Atomics: false},
                 options: [version],
                 parserOptions: {
                     ecmaVersion: 8,
@@ -120,77 +123,77 @@ ruleTester.run("no-unsupported-features", rule, [
 
     {
         keys: ["defaultParameters", "syntax"],
-        name: "Default Parameters",
+        name: "Default parameters",
         code: "function foo(a = 1) {} ;(function(a = 1) {})()",
         errors: 2,
         supported: 6,
     },
     {
         keys: ["restParameters", "syntax"],
-        name: "Rest Parameters",
+        name: "Rest parameters",
         code: "function foo(a, ...b) {} ;(function(a, ...b) {})()",
         errors: 2,
         supported: 6,
     },
     {
         keys: ["spreadOperators", "syntax"],
-        name: "Spread Operators",
+        name: "Spread operators",
         code: "foo(...a); foo([...a, ...b])",
         errors: 3,
         supported: 5,
     },
     {
         keys: ["objectLiteralExtensions", "syntax"],
-        name: "Object Literal Extensions",
+        name: "Object literal extensions",
         code: "var obj = {[a]: 0, b, c() {}, get [d]() {}, set [d](v) {}}",
         errors: 5,
         supported: 4,
     },
     {
         keys: ["objectPropertyShorthandOfGetSet", "objectLiteralExtensions", "syntax"],
-        name: "Property Shorthand of 'get' and 'set'",
+        name: "Property shorthand of 'get' and 'set'",
         code: "var obj = {get, set}",
         errors: 2,
         supported: 6,
     },
     {
         keys: ["forOf", "syntax"],
-        name: "'for..of' Loops",
+        name: "'for..of' loops",
         code: "for (var a of []) {}",
         errors: 1,
         supported: 0.12,
     },
     {
         keys: ["binaryNumberLiterals", "syntax"],
-        name: "Binary Number Literals",
+        name: "Binary number literals",
         code: "var a = 0b10 === 2 && 0B10 === 2",
         errors: 2,
         supported: 4,
     },
     {
         keys: ["octalNumberLiterals", "syntax"],
-        name: "Octal Number Literals",
+        name: "Octal number literals",
         code: "var a = 0o10 === 8 && 0O10 === 8",
         errors: 2,
         supported: 4,
     },
     {
         keys: ["templateStrings", "syntax"],
-        name: "Template Strings",
+        name: "Template strings",
         code: "`hello, ${world}!`; foo`tagged`;", //eslint-disable-line no-template-curly-in-string
         errors: 2,
         supported: 4,
     },
     {
         keys: ["regexpY", "syntax"],
-        name: "RegExp 'y' Flags",
+        name: "RegExp 'y' flags",
         code: "new RegExp('', 'y'); (/a/y)",
         errors: 2,
         supported: 6,
     },
     {
         keys: ["regexpU", "syntax"],
-        name: "RegExp 'u' Flags",
+        name: "RegExp 'u' flags",
         code: "new RegExp('', 'u'); (/a/u)",
         errors: 2,
         supported: 6,
@@ -218,7 +221,7 @@ ruleTester.run("no-unsupported-features", rule, [
     },
     {
         keys: ["unicodeCodePointEscapes", "syntax"],
-        name: "Unicode Code Point Escapes",
+        name: "Unicode code point escapes",
         code: "var \\u{102C0} = { \\u{102C0} : '\\u{1d306}' };",
         errors: 3,
         supported: 4,
@@ -232,14 +235,14 @@ ruleTester.run("no-unsupported-features", rule, [
     },
     {
         keys: ["const", "syntax"],
-        name: "'const' Declarations",
+        name: "'const' declarations",
         code: "'use strict'; const a = 0;",
         errors: 1,
         supported: 4,
     },
     {
         keys: ["const", "syntax"],
-        name: "'const' Declarations",
+        name: "'const' declarations",
         code: "const a = 0;",
         errors: 1,
         supported: 4,
@@ -247,7 +250,7 @@ ruleTester.run("no-unsupported-features", rule, [
     },
     {
         keys: ["const", "syntax"],
-        name: "'const' Declarations in non-strict mode",
+        name: "'const' declarations in non-strict mode",
         code: "const a = 0;",
         errors: 1,
         supported: 6,
@@ -255,14 +258,14 @@ ruleTester.run("no-unsupported-features", rule, [
     },
     {
         keys: ["let", "syntax"],
-        name: "'let' Declarations",
+        name: "'let' declarations",
         code: "'use strict'; let a = 0;",
         errors: 1,
         supported: 4,
     },
     {
         keys: ["let", "syntax"],
-        name: "'let' Declarations",
+        name: "'let' declarations",
         code: "let a = 0;",
         errors: 1,
         supported: 4,
@@ -270,7 +273,7 @@ ruleTester.run("no-unsupported-features", rule, [
     },
     {
         keys: ["let", "syntax"],
-        name: "'let' Declarations in non-strict mode",
+        name: "'let' declarations in non-strict mode",
         code: "let a = 0;",
         errors: 1,
         supported: 6,
@@ -278,14 +281,14 @@ ruleTester.run("no-unsupported-features", rule, [
     },
     {
         keys: ["blockScopedFunctions", "syntax"],
-        name: "Block-Scoped Functions",
+        name: "Block-scoped functions",
         code: "'use strict'; { function foo() {} } if (a) { function foo() {} }",
         errors: 2,
         supported: 4,
     },
     {
         keys: ["blockScopedFunctions", "syntax"],
-        name: "Block-Scoped Functions",
+        name: "Block-scoped functions",
         code: "{ function foo() {} } if (a) { function foo() {} }",
         errors: 2,
         supported: 4,
@@ -293,7 +296,7 @@ ruleTester.run("no-unsupported-features", rule, [
     },
     {
         keys: ["blockScopedFunctions", "syntax"],
-        name: "Block-Scoped Functions in non-strict mode",
+        name: "Block-scoped functions in non-strict mode",
         code: "{ function foo() {} } if (a) { function foo() {} }",
         errors: 2,
         supported: 6,
@@ -301,7 +304,7 @@ ruleTester.run("no-unsupported-features", rule, [
     },
     {
         keys: ["arrowFunctions", "syntax"],
-        name: "Arrow Functions",
+        name: "Arrow functions",
         code: "var a = () => 1",
         errors: 1,
         supported: 4,
@@ -331,14 +334,14 @@ ruleTester.run("no-unsupported-features", rule, [
     },
     {
         keys: ["generatorFunctions", "syntax"],
-        name: "Generator Functions",
+        name: "Generator functions",
         code: "function* foo() {} ;(function*() {})();",
         errors: 2,
         supported: 4,
     },
     {
         keys: ["modules", "syntax"],
-        name: "Import and Export Declarations",
+        name: "Import and export declarations",
         code: "import foo from 'foo'; export default 0; export {foo}; export * from 'foo';",
         errors: 4,
         supported: NaN,
@@ -346,14 +349,14 @@ ruleTester.run("no-unsupported-features", rule, [
     },
     {
         keys: ["exponentialOperators", "syntax"],
-        name: "Exponential Operators (**)",
+        name: "Exponential operators (**)",
         code: "var a = 2 ** 10; a **= 10;",
         errors: 2,
         supported: 7,
     },
     {
         keys: ["asyncAwait", "syntax"],
-        name: "Async Functions",
+        name: "Async functions",
         code: [
             "async function foo() { await obj; };",
             "(async function() { await obj; });",
@@ -366,8 +369,8 @@ ruleTester.run("no-unsupported-features", rule, [
         ignores: [0.10, 0.12, 4, 5],
     },
     {
-        keys: ["trailingCommasInFunctionSyntax", "syntax"],
-        name: "Trailing Commas in Function Syntax",
+        keys: ["trailingCommasInFunctionSyntax", "trailingCommasInFunctions", "syntax"],
+        name: "Trailing commas in functions",
         code: [
             "function foo(a,) {}",
             "(function(a,) {});",
@@ -378,7 +381,7 @@ ruleTester.run("no-unsupported-features", rule, [
             "new Foo(a,);",
         ].join("\n"),
         errors: 7,
-        supported: NaN,
+        supported: 8,
         ignores: [0.10, 0.12, 4, 5],
     },
 
@@ -536,6 +539,22 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Symbol",
         errors: 1,
         supported: 0.12,
+        singular: true,
+    },
+    {
+        keys: ["SharedArrayBuffer", "globalObjects", "runtime"],
+        name: "'SharedArrayBuffer'",
+        code: "SharedArrayBuffer",
+        errors: 1,
+        supported: NaN,
+        singular: true,
+    },
+    {
+        keys: ["Atomics", "globalObjects", "runtime"],
+        name: "'Atomics'",
+        code: "Atomics",
+        errors: 1,
+        supported: NaN,
         singular: true,
     },
 
@@ -830,7 +849,6 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Symbol.hasInstance",
         errors: 1,
         supported: NaN,
-        ignores: [0.10],
         singular: true,
     },
     {
@@ -839,7 +857,6 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Symbol.isConcatSpreadablec",
         errors: 1,
         supported: 6,
-        ignores: [0.10],
         singular: true,
     },
     {
@@ -848,7 +865,6 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Symbol.iterator",
         errors: 1,
         supported: 0.12,
-        ignores: [0.10],
         singular: true,
     },
     {
@@ -857,7 +873,6 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Symbol.species",
         errors: 1,
         supported: NaN,
-        ignores: [0.10],
         singular: true,
     },
     {
@@ -866,7 +881,6 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Symbol.replace",
         errors: 1,
         supported: 6,
-        ignores: [0.10],
         singular: true,
     },
     {
@@ -875,7 +889,6 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Symbol.search",
         errors: 1,
         supported: 6,
-        ignores: [0.10],
         singular: true,
     },
     {
@@ -884,7 +897,6 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Symbol.split",
         errors: 1,
         supported: 6,
-        ignores: [0.10],
         singular: true,
     },
     {
@@ -893,7 +905,6 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Symbol.match",
         errors: 1,
         supported: 6,
-        ignores: [0.10],
         singular: true,
     },
     {
@@ -902,7 +913,6 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Symbol.toPrimitive",
         errors: 1,
         supported: 6,
-        ignores: [0.10],
         singular: true,
     },
     {
@@ -911,7 +921,6 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Symbol.toStringTag",
         errors: 1,
         supported: 6,
-        ignores: [0.10],
         singular: true,
     },
     {
@@ -920,7 +929,103 @@ ruleTester.run("no-unsupported-features", rule, [
         code: "Symbol.unscopables",
         errors: 1,
         supported: 4,
-        ignores: [0.10],
+        singular: true,
+    },
+
+    {
+        keys: ["Atomics.add", "Atomics.*", "staticMethods", "runtime"],
+        name: "'Atomics.add'",
+        code: "Atomics.add",
+        errors: 1,
+        supported: NaN,
+        singular: true,
+    },
+    {
+        keys: ["Atomics.and", "Atomics.*", "staticMethods", "runtime"],
+        name: "'Atomics.and'",
+        code: "Atomics.and",
+        errors: 1,
+        supported: NaN,
+        singular: true,
+    },
+    {
+        keys: ["Atomics.compareExchange", "Atomics.*", "staticMethods", "runtime"],
+        name: "'Atomics.compareExchange'",
+        code: "Atomics.compareExchange",
+        errors: 1,
+        supported: NaN,
+        singular: true,
+    },
+    {
+        keys: ["Atomics.exchange", "Atomics.*", "staticMethods", "runtime"],
+        name: "'Atomics.exchange'",
+        code: "Atomics.exchange",
+        errors: 1,
+        supported: NaN,
+        singular: true,
+    },
+    {
+        keys: ["Atomics.wait", "Atomics.*", "staticMethods", "runtime"],
+        name: "'Atomics.wait'",
+        code: "Atomics.wait",
+        errors: 1,
+        supported: NaN,
+        singular: true,
+    },
+    {
+        keys: ["Atomics.wake", "Atomics.*", "staticMethods", "runtime"],
+        name: "'Atomics.wake'",
+        code: "Atomics.wake",
+        errors: 1,
+        supported: NaN,
+        singular: true,
+    },
+    {
+        keys: ["Atomics.isLockFree", "Atomics.*", "staticMethods", "runtime"],
+        name: "'Atomics.isLockFree'",
+        code: "Atomics.isLockFree",
+        errors: 1,
+        supported: NaN,
+        singular: true,
+    },
+    {
+        keys: ["Atomics.load", "Atomics.*", "staticMethods", "runtime"],
+        name: "'Atomics.load'",
+        code: "Atomics.load",
+        errors: 1,
+        supported: NaN,
+        singular: true,
+    },
+    {
+        keys: ["Atomics.or", "Atomics.*", "staticMethods", "runtime"],
+        name: "'Atomics.or'",
+        code: "Atomics.or",
+        errors: 1,
+        supported: NaN,
+        singular: true,
+    },
+    {
+        keys: ["Atomics.store", "Atomics.*", "staticMethods", "runtime"],
+        name: "'Atomics.store'",
+        code: "Atomics.store",
+        errors: 1,
+        supported: NaN,
+        singular: true,
+    },
+    {
+        keys: ["Atomics.sub", "Atomics.*", "staticMethods", "runtime"],
+        name: "'Atomics.sub'",
+        code: "Atomics.sub",
+        errors: 1,
+        supported: NaN,
+        singular: true,
+    },
+    {
+        keys: ["Atomics.xor", "Atomics.*", "staticMethods", "runtime"],
+        name: "'Atomics.xor'",
+        code: "Atomics.xor",
+        errors: 1,
+        supported: NaN,
         singular: true,
     },
 
@@ -1046,37 +1151,55 @@ ruleTester.run("no-unsupported-features", rule, [
             code: "var a = async () => 1",
             parserOptions: {ecmaVersion: 2017},
         },
+        {
+            filename: fixture("lt-6.0.0/a.js"),
+            code: "var a = () => 1",
+            env: {es6: true},
+        },
+        {
+            filename: fixture("invalid/a.js"),
+            code: "var a = () => 1",
+            env: {es6: true},
+        },
+        {
+            filename: fixture("nothing/a.js"),
+            code: "var a = () => 1",
+            env: {es6: true},
+        },
     ],
     invalid: [
         {
             filename: fixture("gte-0.12.8/a.js"),
             code: "var a = () => 1",
             env: {es6: true},
-            errors: ["Arrow Functions are not supported yet on Node v0.12."],
+            errors: ["Arrow functions are not supported yet on Node v0.12."],
         },
         {
             filename: fixture("invalid/a.js"),
-            code: "var a = () => 1",
+            code: "var a = (b,) => 1",
+            parserOptions: {ecmaVersion: 2017},
             env: {es6: true},
-            errors: ["Arrow Functions are not supported yet on Node v0.10."],
+            errors: ["Trailing commas in functions are not supported yet on Node v4."],
         },
         {
             filename: fixture("lt-6.0.0/a.js"),
-            code: "var a = () => 1",
+            code: "var a = (b,) => 1",
+            parserOptions: {ecmaVersion: 2017},
             env: {es6: true},
-            errors: ["Arrow Functions are not supported yet on Node v0.10."],
+            errors: ["Trailing commas in functions are not supported yet on Node v4."],
         },
         {
             filename: fixture("nothing/a.js"),
-            code: "var a = () => 1",
+            code: "var a = (b,) => 1",
+            parserOptions: {ecmaVersion: 2017},
             env: {es6: true},
-            errors: ["Arrow Functions are not supported yet on Node v0.10."],
+            errors: ["Trailing commas in functions are not supported yet on Node v4."],
         },
         {
             filename: fixture("gte-7.5.0/a.js"),
             code: "var a = async () => 1",
             parserOptions: {ecmaVersion: 2017},
-            errors: ["Async Functions are not supported yet on Node v7.5."],
+            errors: ["Async functions are not supported yet on Node v7.5."],
         },
     ],
 }))
