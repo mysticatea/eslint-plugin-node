@@ -11,7 +11,7 @@ Additional ESLint's rules for Node.js
 ## :cd: Install & Usage
 
 ```
-> npm install --save-dev eslint eslint-plugin-node
+$ npm install --save-dev eslint eslint-plugin-node
 ```
 
 - Requires Node.js `^4.0.0 || >=6.0.0`
@@ -45,21 +45,23 @@ Additional ESLint's rules for Node.js
 
 ## :bulb: Rules
 
+- :star: - the mark of recommended rules.
+- :pencil: - the mark of fixable rules.
+
 |        |          | Rule ID                                                          | Description |
 |:------:|:--------:|:-----------------------------------------------------------------|:------------|
 |        |          | [exports-style](docs/rules/exports-style.md)                     | Enforce either `module.exports` or `exports`.
 | :star: |          | [no-deprecated-api](docs/rules/no-deprecated-api.md)             | Disallow deprecated API.
-|        |          | [no-missing-import](docs/rules/no-missing-import.md)             | Disallow `import` declarations for files that don't exist. :warning:
-| :star: |          | [no-missing-require](docs/rules/no-missing-require.md)           | Disallow `require()`s for files that don't exist.
+|        |          | [no-extraneous-import](docs/rules/no-extraneous-import.md)       | Disallow `import` declarations of extraneous packages. :warning:
+| :star: |          | [no-extraneous-require](docs/rules/no-extraneous-require.md)     | Disallow `require()` expressions of extraneous packages.
+|        |          | [no-missing-import](docs/rules/no-missing-import.md)             | Disallow `import` declarations of files that don't exist. :warning:
+| :star: |          | [no-missing-require](docs/rules/no-missing-require.md)           | Disallow `require()` expressions of files that don't exist.
 | :star: |          | [no-unpublished-bin](docs/rules/no-unpublished-bin.md)           | Disallow `bin` files that npm ignores.
-|        |          | [no-unpublished-import](docs/rules/no-unpublished-import.md)     | Disallow `import` declarations for files that npm ignores. :warning:
-| :star: |          | [no-unpublished-require](docs/rules/no-unpublished-require.md)   | Disallow `require()`s for files that npm ignores.
+|        |          | [no-unpublished-import](docs/rules/no-unpublished-import.md)     | Disallow `import` declarations of files that npm ignores. :warning:
+| :star: |          | [no-unpublished-require](docs/rules/no-unpublished-require.md)   | Disallow `require()` expressions of files that npm ignores.
 | :star: |          | [no-unsupported-features](docs/rules/no-unsupported-features.md) | Disallow unsupported ECMAScript features on the specified version.
 | :star: |          | [process-exit-as-throw](docs/rules/process-exit-as-throw.md)     | Make the same code path as throw at `process.exit()`.
 | :star: | :pencil: | [shebang](docs/rules/shebang.md)                                 | Suggest correct usage of shebang.
-
-- :star: - the mark of a recommended rule.
-- :pencil: - the mark of a fixable rule.
 
 ## :wrench: Configs
 
