@@ -1,5 +1,7 @@
 # eslint-plugin-node
 
+[![Join the chat at https://gitter.im/mysticatea/eslint-plugin-node](https://badges.gitter.im/mysticatea/eslint-plugin-node.svg)](https://gitter.im/mysticatea/eslint-plugin-node?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![npm version](https://img.shields.io/npm/v/eslint-plugin-node.svg)](https://www.npmjs.com/package/eslint-plugin-node)
 [![Downloads/month](https://img.shields.io/npm/dm/eslint-plugin-node.svg)](http://www.npmtrends.com/eslint-plugin-node)
 [![Build Status](https://travis-ci.org/mysticatea/eslint-plugin-node.svg?branch=master)](https://travis-ci.org/mysticatea/eslint-plugin-node)
