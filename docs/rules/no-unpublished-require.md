@@ -1,29 +1,19 @@
-# Disallow `require()`s which import unpublished files/modules (no-unpublished-require)
+# Disallow `require()` expressions which import unpublished files/modules (no-unpublished-require)
 
-If a `require()`'s target is not published, the program works in local, but will not work after published to npm.
-This rule disallows `require()` of unpublished files/modules.
+If a `require()` expression's target is not published, the program works in local, but will not work after published to npm.
+This rule disallows `require()` expressions of unpublished files/modules.
 
 ## Rule Details
 
-If a source code file satisfies all of the following conditions, the file is \*published*.
+If a source code file satisfies all of the following conditions, the file is \*published\*.
 
-- `"files"` field of `package.json` includes the file. (or `"files"` field of `package.json` does not exist)
+- `"files"` field of `package.json` includes the file or `"files"` field of `package.json` does not exist.
 - `.npmignore` does not include the file.
 
-**This rule disallows importing the following things from the \*published\* files.**
-
-- Unpublished files.
-- Extraneous modules.
-- Modules in `devDependencies`.
+Then this rule warns `require()` expressions in \*published\* files if the `require()` expression imports \*unpublished\* files or the packages of `devDependencies`.
 
 > This intends to prevent "Module Not Found" error after `npm publish`.<br>
 > :bulb: If you want to import `devDependencies`, please write `.npmignore` or `"files"` field of `package.json`.
-
-**This rule disallows importing the following things from the \*unpublished\* files.**
-
-- Extraneous modules.
-
-> This intends to prevent "Module Not Found" error after `npm install`.
 
 ## Options
 

@@ -245,18 +245,6 @@ ruleTester.run("no-unpublished-require", rule, {
     ],
     invalid: [
         {
-            filename: fixture("1/test.js"),
-            code: "require('no-deps');",
-            env: {node: true},
-            errors: ["\"no-deps\" is not published."],
-        },
-        {
-            filename: fixture("1/test.js"),
-            code: "require('no-deps/a/b/c');",
-            env: {node: true},
-            errors: ["\"no-deps\" is not published."],
-        },
-        {
             filename: fixture("2/test.js"),
             code: "require('./ignore1.js');",
             env: {node: true},
@@ -267,18 +255,6 @@ ruleTester.run("no-unpublished-require", rule, {
             code: "require('./ignore1');",
             env: {node: true},
             errors: ["\"./ignore1\" is not published."],
-        },
-        {
-            filename: fixture("2/ignore1.js"),
-            code: "require('no-deps');",
-            env: {node: true},
-            errors: ["\"no-deps\" is not published."],
-        },
-        {
-            filename: fixture("3/test.js"),
-            code: "require('no-deps');",
-            env: {node: true},
-            errors: ["\"no-deps\" is not published."],
         },
         {
             filename: fixture("3/pub/test.js"),
@@ -367,15 +343,17 @@ ruleTester.run("no-unpublished-require", rule, {
         // Should work fine if the filename is relative.
         {
             filename: "tests/fixtures/no-unpublished/2/test.js",
-            code: "require('no-deps');",
-            errors: ["\"no-deps\" is not published."],
-            env: {node: true},
-        },
-        {
-            filename: "tests/fixtures/no-unpublished/2/test.js",
             code: "require('./ignore1');",
             errors: ["\"./ignore1\" is not published."],
             env: {node: true},
+        },
+
+        // outside of the package.
+        {
+            filename: fixture("1/test.js"),
+            code: "require('../2/a.js');",
+            env: {node: true},
+            errors: ["\"../2/a.js\" is not published."],
         },
     ],
 })

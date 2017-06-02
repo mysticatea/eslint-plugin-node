@@ -6,25 +6,15 @@ This is similar to [no-unpublished-require](no-unpublished-require.md), but this
 
 ## Rule Details
 
-If a source code file satisfies all of the following conditions, the file is \*published*.
+If a source code file satisfies all of the following conditions, the file is \*published\*.
 
-- `"files"` field of `package.json` includes the file. (or `"files"` field of `package.json` does not exist)
+- `"files"` field of `package.json` includes the file or `"files"` field of `package.json` does not exist.
 - `.npmignore` does not include the file.
 
-**This rule disallows importing the following things from the \*published\* files.**
-
-- Unpublished files.
-- Extraneous modules.
-- Modules in `devDependencies`.
+Then this rule warns `import` declarations in \*published\* files if the `import` declaration imports \*unpublished\* files or the packages of `devDependencies`.
 
 > This intends to prevent "Module Not Found" error after `npm publish`.<br>
 > :bulb: If you want to import `devDependencies`, please write `.npmignore` or `"files"` field of `package.json`.
-
-**This rule disallows importing the following things from the \*unpublished\* files.**
-
-- Extraneous modules.
-
-> This intends to prevent "Module Not Found" error after `npm install`.
 
 ## Options
 
