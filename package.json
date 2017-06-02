@@ -2,20 +2,19 @@
   "name": "eslint-plugin-node",
   "version": "4.2.2",
   "description": "Additional ESLint's rules for Node.js",
+  "main": "lib/index.js",
   "files": [
-    "conf",
-    "lib",
-    "index.js"
+    "lib"
   ],
   "scripts": {
-    "build": "node scripts/generate-index.js",
-    "clean": "rimraf .nyc_output coverage index.js",
+    "build": "node scripts/update.js",
+    "clean": "rimraf .nyc_output coverage",
     "codecov": "nyc report -r lcovonly && codecov",
     "coverage": "nyc report -r lcov && opener ./coverage/lcov-report/index.html",
     "lint": "eslint lib tests/lib index.js",
     "postversion": "git push && git push --tags",
     "pretest": "npm run -s lint",
-    "preversion": "npm t && npm run build",
+    "preversion": "npm t && npm run -s build",
     "test": "nyc npm run -s test:_mocha",
     "test:_mocha": "_mocha tests/lib/**/*.js --reporter progress",
     "watch": "npm run test:_mocha -- --watch --growl"

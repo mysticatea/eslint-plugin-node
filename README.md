@@ -8,7 +8,7 @@
 
 Additional ESLint's rules for Node.js
 
-## :cd: Install & Usage
+## 💿 Install & Usage
 
 ```
 $ npm install --save-dev eslint eslint-plugin-node
@@ -43,27 +43,39 @@ $ npm install --save-dev eslint eslint-plugin-node
 }
 ```
 
-## :bulb: Rules
+## 📖 Rules
 
-- :star: - the mark of recommended rules.
-- :pencil: - the mark of fixable rules.
+- ⭐️ - the mark of recommended rules.
+- ✒️ - the mark of fixable rules.
 
-|        |          | Rule ID                                                          | Description |
-|:------:|:--------:|:-----------------------------------------------------------------|:------------|
-|        |          | [exports-style](docs/rules/exports-style.md)                     | Enforce either `module.exports` or `exports`.
-| :star: |          | [no-deprecated-api](docs/rules/no-deprecated-api.md)             | Disallow deprecated API.
-|        |          | [no-extraneous-import](docs/rules/no-extraneous-import.md)       | Disallow `import` declarations of extraneous packages. :warning:
-| :star: |          | [no-extraneous-require](docs/rules/no-extraneous-require.md)     | Disallow `require()` expressions of extraneous packages.
-|        |          | [no-missing-import](docs/rules/no-missing-import.md)             | Disallow `import` declarations of files that don't exist. :warning:
-| :star: |          | [no-missing-require](docs/rules/no-missing-require.md)           | Disallow `require()` expressions of files that don't exist.
-| :star: |          | [no-unpublished-bin](docs/rules/no-unpublished-bin.md)           | Disallow `bin` files that npm ignores.
-|        |          | [no-unpublished-import](docs/rules/no-unpublished-import.md)     | Disallow `import` declarations of files that npm ignores. :warning:
-| :star: |          | [no-unpublished-require](docs/rules/no-unpublished-require.md)   | Disallow `require()` expressions of files that npm ignores.
-| :star: |          | [no-unsupported-features](docs/rules/no-unsupported-features.md) | Disallow unsupported ECMAScript features on the specified version.
-| :star: |          | [process-exit-as-throw](docs/rules/process-exit-as-throw.md)     | Make the same code path as throw at `process.exit()`.
-| :star: | :pencil: | [shebang](docs/rules/shebang.md)                                 | Suggest correct usage of shebang.
+<!--RULES_TABLE_START-->
+### Possible Errors
+|    | Rule ID | Description |
+|:---|:--------|:------------|
+|  | [no-extraneous-import](./docs/rules/no-extraneous-import.md) | disallow `import` declarations of extraneous packages |
+| ⭐️ | [no-extraneous-require](./docs/rules/no-extraneous-require.md) | disallow `require()` expressions of extraneous packages |
+|  | [no-missing-import](./docs/rules/no-missing-import.md) | disallow `import` declarations of missing files |
+| ⭐️ | [no-missing-require](./docs/rules/no-missing-require.md) | disallow `require()` expressions of missing files |
+| ⭐️ | [no-unpublished-bin](./docs/rules/no-unpublished-bin.md) | disallow 'bin' files which are ignored by npm |
+|  | [no-unpublished-import](./docs/rules/no-unpublished-import.md) | disallow `import` declarations of private things |
+| ⭐️ | [no-unpublished-require](./docs/rules/no-unpublished-require.md) | disallow `require()` expressions of private things |
+| ⭐️ | [no-unsupported-features](./docs/rules/no-unsupported-features.md) | disallow unsupported ECMAScript features on the specified version |
+| ⭐️ | [process-exit-as-throw](./docs/rules/process-exit-as-throw.md) | make `process.exit()` expressions the same code path as `throw` |
+| ⭐️✒️ | [shebang](./docs/rules/shebang.md) | enforce the correct usage of shebang |
 
-## :wrench: Configs
+### Best Practices
+|    | Rule ID | Description |
+|:---|:--------|:------------|
+| ⭐️ | [no-deprecated-api](./docs/rules/no-deprecated-api.md) | disallow deprecated APIs |
+
+### Stylistic Issues
+|    | Rule ID | Description |
+|:---|:--------|:------------|
+|  | [exports-style](./docs/rules/exports-style.md) | enforce either `module.exports` or `exports` |
+
+<!--RULES_TABLE_END-->
+
+## 🔧 Configs
 
 This plugin provides `plugin:node/recommended` preset config.
 This preset config:
@@ -73,12 +85,12 @@ This preset config:
 - enables [no-process-exit](http://eslint.org/docs/rules/no-process-exit) rule because [the official document](https://nodejs.org/api/process.html#process_process_exit_code) does not recommend a use of `process.exit()`.
 - adds `{ecmaVersion: 8}` into `parserOptions`.
 
-## :couple: FAQ
+## 👫 FAQ
 
 - Q: The `no-missing-import` / `no-missing-require` rules don't work with nested folders in SublimeLinter-eslint
 - A: See [context.getFilename() in rule returns relative path](https://github.com/roadhump/SublimeLinter-eslint#contextgetfilename-in-rule-returns-relative-path) in the SublimeLinter-eslint FAQ.
 
-## :anchor: Semantic Versioning Policy
+## 🚥 Semantic Versioning Policy
 
 `eslint-plugin-node` follows [semantic versioning](http://semver.org/) and [ESLint's Semantic Versioning Policy](https://github.com/eslint/eslint#semantic-versioning-policy).
 
@@ -100,11 +112,11 @@ This preset config:
     - An existing option of a rule is removed.
     - An existing config is updated.
 
-## :newspaper: Changelog
+## 📰 Changelog
 
 - [GitHub Releases](https://github.com/mysticatea/eslint-plugin-node/releases)
 
-## :muscle: Contributing
+## 💎 Contributing
 
 Welcome contributing!
 
