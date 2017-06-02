@@ -97,6 +97,10 @@ This rule reports the following deprecated API.
 - vm
     - [runInDebugContext](https://nodejs.org/dist/v8.0.0/docs/api/vm.html#vm_vm_runindebugcontext_code)
 
+> ⚠️ Note that userland modules don't hide core modules.
+> For example, `require("punycode")` still imports the deprecated core module even if you executed `npm install punycode`.
+> Use `require("punycode/")` to import userland modules rather than core modules.
+
 ## Options
 
 This rule has 2 options.
