@@ -25,9 +25,9 @@ describe("process-exit-as-throw", () => {
     beforeEach(() => {
         eslint.reset()
         eslint.defineRule("process-exit-as-throw", rule)
-    });
+    })
 
-    (supported ? it : xit)("should get unreachable error after 'process.exit()'.", () => {
+    ;(supported ? it : xit)("should get unreachable error after 'process.exit()'.", () => {
         const code = [
             "foo();",
             "process.exit(1);",
@@ -46,9 +46,9 @@ describe("process-exit-as-throw", () => {
         assert.equal(messages.length, 1)
         assert.equal(messages[0].message, "Unreachable code.")
         assert.equal(messages[0].line, 3)
-    });
+    })
 
-    (supported ? it : xit)("should get no unreachable error after 'process.exit()' if this rule is turned off.", () => {
+    ;(supported ? it : xit)("should get no unreachable error after 'process.exit()' if this rule is turned off.", () => {
         const code = [
             "foo();",
             "process.exit(1);",
@@ -65,9 +65,9 @@ describe("process-exit-as-throw", () => {
         const messages = eslint.verify(code, options)
 
         assert.equal(messages.length, 0)
-    });
+    })
 
-    (supported ? it : xit)("should get no consistent-return error after 'process.exit()'.", () => {
+    ;(supported ? it : xit)("should get no consistent-return error after 'process.exit()'.", () => {
         const code = [
             "function foo() {",
             "    if (a) {",
