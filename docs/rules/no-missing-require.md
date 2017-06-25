@@ -39,7 +39,8 @@ var foo = require(FOO_NAME);
     "rules": {
         "node/no-missing-require": ["error", {
             "allowModules": [],
-            "tryExtensions": [".js", ".json", ".node"]
+            "tryExtensions": [".js", ".json", ".node"],
+            "resolvePaths": ["/an/absolute/path"]
         }]
     }
 }
@@ -70,6 +71,13 @@ When an import path does not exist, this rule checks whether or not any of `path
 
 Default is `[".js", ".json", ".node"]`.
 
+### resolvePaths
+
+Adds additional paths to try for when resolving a require.
+The paths must be absolute.
+
+Default is `[]`
+
 ## Shared Settings
 
 The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
@@ -77,13 +85,16 @@ Several rules have the same option, but we can set this option at once.
 
 - `allowModules`
 - `tryExtensions`
+- `resolvePaths`
 
-```json
-{
+```js
+// .eslintrc.js
+module.exports = {
     "settings": {
         "node": {
             "allowModules": ["electron"],
-            "tryExtensions": [".js", ".json", ".node"]
+            "tryExtensions": [".js", ".json", ".node"],
+            "resolvePaths": [__dirname]
         }
     },
     "rules": {

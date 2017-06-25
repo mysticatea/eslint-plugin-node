@@ -113,6 +113,14 @@ ruleTester.run("no-missing-require", rule, {
             settings: {node: {tryExtensions: [".coffee"]}},
         },
 
+        // resolvePaths
+        {
+            filename: fixture("test.js"),
+            code: "require('fixtures/no-missing/a');",
+            env: {node: true},
+            settings: {node: {resolvePaths: [path.resolve(__dirname, "../../")]}},
+        },
+
         // Ignores it if not callee.
         {
             filename: fixture("test.js"),
