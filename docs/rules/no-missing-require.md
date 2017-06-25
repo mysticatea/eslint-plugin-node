@@ -39,8 +39,8 @@ var foo = require(FOO_NAME);
     "rules": {
         "node/no-missing-require": ["error", {
             "allowModules": [],
-            "tryExtensions": [".js", ".json", ".node"],
-            "resolvePaths": ["/an/absolute/path"]
+            "resolvePaths": ["/path/to/a/modules/directory"],
+            "tryExtensions": [".js", ".json", ".node"]
         }]
     }
 }
@@ -64,6 +64,13 @@ This option is an array of strings as module names.
 }
 ```
 
+### resolvePaths
+
+Adds additional paths to try for when resolving a require.
+If a path is relative, it will be resolved from CWD.
+
+Default is `[]`
+
 ### tryExtensions
 
 When an import path does not exist, this rule checks whether or not any of `path.js`, `path.json`, and `path.node` exists.
@@ -71,21 +78,14 @@ When an import path does not exist, this rule checks whether or not any of `path
 
 Default is `[".js", ".json", ".node"]`.
 
-### resolvePaths
-
-Adds additional paths to try for when resolving a require.
-The paths must be absolute.
-
-Default is `[]`
-
 ## Shared Settings
 
 The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
 Several rules have the same option, but we can set this option at once.
 
 - `allowModules`
-- `tryExtensions`
 - `resolvePaths`
+- `tryExtensions`
 
 ```js
 // .eslintrc.js
@@ -93,8 +93,8 @@ module.exports = {
     "settings": {
         "node": {
             "allowModules": ["electron"],
-            "tryExtensions": [".js", ".json", ".node"],
-            "resolvePaths": [__dirname]
+            "resolvePaths": [__dirname],
+            "tryExtensions": [".js", ".json", ".node"]
         }
     },
     "rules": {

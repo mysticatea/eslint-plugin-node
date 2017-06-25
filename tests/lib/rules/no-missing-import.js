@@ -138,6 +138,26 @@ ruleTester.run("no-missing-import", rule, {
             code: "import electron from 'electron';",
             options: [{allowModules: ["electron"]}],
         },
+
+        // resolvePaths
+        {
+            filename: fixture("test.js"),
+            code: "import a from 'fixtures/no-missing/a';",
+            env: {node: true},
+            settings: {node: {resolvePaths: [path.resolve(__dirname, "../../")]}},
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import a from 'fixtures/no-missing/a';",
+            env: {node: true},
+            options: [{resolvePaths: [path.resolve(__dirname, "../../")]}],
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import a from 'fixtures/no-missing/a';",
+            env: {node: true},
+            options: [{resolvePaths: ["tests"]}],
+        },
     ],
     invalid: [
         {
