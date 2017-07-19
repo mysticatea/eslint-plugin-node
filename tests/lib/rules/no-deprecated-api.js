@@ -152,6 +152,12 @@ ruleTester.run("no-deprecated-api", rule, {
             env: {node: true},
             options: [{ignoreIndirectDependencies: true}],
         },
+
+        // https://github.com/mysticatea/eslint-plugin-node/issues/87
+        {
+            code: "let fs = fs || require(\"fs\")",
+            env: {node: true, es6: true},
+        },
     ],
     invalid: [
         //----------------------------------------------------------------------
