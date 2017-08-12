@@ -17,7 +17,8 @@ This rule reports when you used unsupported ECMAScript 2015-2017 features on the
 }
 ```
 
-:warning: This rule reads the [engines] field of `package.json` to detect Node.js version.
+:warning: This rule uses the [engines] field of `package.json` to detect Node.js version.
+Alternatively, the `infer` option can be used to detect the Node.js version from the process.
 
 I recommend a use of the [engines] field since it's the official way to indicate what Node.js versions your module is supporting.
 For example of `package.json`:
@@ -109,7 +110,8 @@ var p = new Promise((resolve, reject) => {
 {
     "node/no-unsupported-features": ["error", {
         "version": 4,
-        "ignores": []
+        "ignores": [],
+        "infer": false
     }]
 }
 ```
@@ -268,6 +270,23 @@ Examples of :+1: **correct** code for the `"ignores"` option:
 ```js
 /*eslint node/no-unsupported-features: ["error", {version: 4, ignores: ["defaultParameters"]}]*/
 /*eslint-env es6*/
+
+function foo(a = 1) {
+    //...
+}
+```
+
+### infer
+
+The Node.js version can be automatically detected by setting this option to `true`.
+
+Examples of :+1: **correct** code for the `"infer"` option:
+
+```js
+/*eslint node/no-unsupported-features: ["error", {infer: true}]*/
+/*eslint-env es6*/
+
+assert.equal(process.versions.node, '6.10.0');
 
 function foo(a = 1) {
     //...
