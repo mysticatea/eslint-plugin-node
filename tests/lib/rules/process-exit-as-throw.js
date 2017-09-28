@@ -12,7 +12,7 @@
 //------------------------------------------------------------------------------
 
 const assert = require("assert")
-const eslint = require("eslint").linter
+const eslint = require("eslint")
 const rule = require("../../../lib/rules/process-exit-as-throw")
 
 //------------------------------------------------------------------------------
@@ -22,9 +22,16 @@ const rule = require("../../../lib/rules/process-exit-as-throw")
 const supported = rule.meta.supported
 
 describe("process-exit-as-throw", () => {
+    let linter = eslint.linter
+
     beforeEach(() => {
-        eslint.reset()
-        eslint.defineRule("process-exit-as-throw", rule)
+        if (eslint.Linter != null) {
+            linter = new eslint.Linter()
+        }
+        else {
+            linter.reset()
+        }
+        linter.defineRule("process-exit-as-throw", rule)
     })
 
     ;(supported ? it : xit)("should get unreachable error after 'process.exit()'.", () => {
@@ -41,7 +48,7 @@ describe("process-exit-as-throw", () => {
             },
         }
 
-        const messages = eslint.verify(code, options)
+        const messages = linter.verify(code, options)
 
         assert.equal(messages.length, 1)
         assert.equal(messages[0].message, "Unreachable code.")
@@ -62,7 +69,7 @@ describe("process-exit-as-throw", () => {
             },
         }
 
-        const messages = eslint.verify(code, options)
+        const messages = linter.verify(code, options)
 
         assert.equal(messages.length, 0)
     })
@@ -85,7 +92,7 @@ describe("process-exit-as-throw", () => {
             },
         }
 
-        const messages = eslint.verify(code, options)
+        const messages = linter.verify(code, options)
 
         assert.equal(messages.length, 0)
     })
