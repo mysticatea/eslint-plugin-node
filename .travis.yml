@@ -7,6 +7,7 @@ node_js:
   - "8"
 
 env:
+  - ESLINT_VERSION=3.1
   - ESLINT_VERSION=3
   - ESLINT_VERSION=4
 
@@ -19,7 +20,7 @@ before_script:
   - npm i --no-save eslint@$ESLINT_VERSION; true
 
 script:
-  - if [ $ESLINT_VERSION = 3 ]; then nyc npm run -s test:_mocha; else npm t; fi
+  - if [ $ESLINT_VERSION = 4 ]; then npm test; else nyc npm run -s test:_mocha; fi
 
 after_success:
   - npm run codecov
