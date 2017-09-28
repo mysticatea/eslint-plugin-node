@@ -593,6 +593,11 @@ ruleTester.run("no-deprecated-api", rule, {
             errors: ["'Buffer()' was deprecated since v6. Use 'Buffer.alloc()' or 'Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead."],
         },
         {
+            code: "GLOBAL; /*globals GLOBAL*/",
+            env: {node: true},
+            errors: ["'GLOBAL' was deprecated since v6. Use 'global' instead."],
+        },
+        {
             code: "Intl.v8BreakIterator;",
             env: {node: true},
             errors: ["'Intl.v8BreakIterator' was deprecated since v7."],
@@ -601,6 +606,11 @@ ruleTester.run("no-deprecated-api", rule, {
             code: "require.extensions;",
             env: {node: true},
             errors: ["'require.extensions' was deprecated since v0.12. Use compiling them ahead of time instead."],
+        },
+        {
+            code: "root;",
+            env: {node: true},
+            errors: ["'root' was deprecated since v6. Use 'global' instead."],
         },
         {
             code: "process.EventEmitter;",

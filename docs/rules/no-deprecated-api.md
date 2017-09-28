@@ -44,7 +44,9 @@ This rule reports the following deprecated API.
     - [lchownSync](https://nodejs.org/dist/v8.0.0/docs/api/fs.html#fs_fs_lchownsync_path_uid_gid)
 - globals
     - [require.extensions](https://nodejs.org/dist/v0.12.0/docs/api/globals.html#globals_require_extensions)
-    - `Intl.v8BreakIterator` (undocumented)
+    - [GLOBAL](https://nodejs.org/api/deprecations.html#deprecations_dep0016_global_root)
+    - [root](https://nodejs.org/api/deprecations.html#deprecations_dep0016_global_root)
+    - [Intl.v8BreakIterator](https://nodejs.org/api/deprecations.html#deprecations_dep0017_intl_v8breakiterator)
 - http
     - [createClient](https://nodejs.org/dist/v0.10.0/docs/api/http.html#http_http_createclient_port_host)
 - module
@@ -62,7 +64,7 @@ This rule reports the following deprecated API.
     - `stripVTControlCharacters` (undocumented)
 - repl
     - [process.env.NODE_REPL_HISTORY_FILE](https://nodejs.org/dist/v4.0.0/docs/api/repl.html#repl_node_repl_history_file)
-- sys (undocumented)
+- [sys](https://nodejs.org/api/deprecations.html#deprecations_dep0025_require_sys)
 - tls
     - [CleartextStream](https://nodejs.org/dist/v0.10.0/docs/api/tls.html#tls_class_tls_cleartextstream)
       (this class was removed on v0.11.3, but never deprecated in documents)
