@@ -1,0 +1,15 @@
+{
+    "private": true,
+    "name": "test",
+    "version": "0.0.0",
+    "files": [
+        "lib",
+        "!**/__test__"
+    ],
+    "dependencies": {
+        "aaa": "0.0.0"
+    },
+    "devDependencies": {
+        "bbb": "0.0.0"
+    }
+}

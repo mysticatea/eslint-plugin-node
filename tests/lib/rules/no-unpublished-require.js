@@ -242,6 +242,13 @@ ruleTester.run("no-unpublished-require", rule, {
             code: "require('bbb');",
             env: {node: true},
         },
+
+        // Negative patterns in files field.
+        {
+            filename: fixture("negative-in-files/lib/__test__/index.js"),
+            code: "require('bbb');",
+            env: {node: true},
+        },
     ],
     invalid: [
         {

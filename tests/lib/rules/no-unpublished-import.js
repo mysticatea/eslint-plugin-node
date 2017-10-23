@@ -128,6 +128,12 @@ ruleTester.run("no-unpublished-import", rule, {
             code: "import bbb from 'bbb';",
             env: {node: true},
         },
+
+        // Negative patterns in files field.
+        {
+            filename: fixture("negative-in-files/lib/__test__/index.js"),
+            code: "import bbb from 'bbb';",
+        },
     ],
     invalid: [
         {
