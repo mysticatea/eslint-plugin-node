@@ -1186,7 +1186,7 @@ ruleTester.run("no-unsupported-features", rule, [
             filename: fixture("gte-0.12.8/a.js"),
             code: "var a = () => 1",
             env: {es6: true},
-            errors: ["Arrow functions are not supported yet on Node 0.12.8."],
+            errors: ["Arrow functions are not supported yet on Node >=0.12.8."],
         },
         {
             filename: fixture("invalid/a.js"),
@@ -1200,7 +1200,7 @@ ruleTester.run("no-unsupported-features", rule, [
             code: "var a = () => 1",
             parserOptions: {ecmaVersion: 2017},
             env: {es6: true},
-            errors: ["Arrow functions are not supported yet on Node 0.0.0."],
+            errors: ["Arrow functions are not supported yet on Node <6.0.0."],
         },
         {
             filename: fixture("nothing/a.js"),
@@ -1213,7 +1213,7 @@ ruleTester.run("no-unsupported-features", rule, [
             filename: fixture("gte-7.5.0/a.js"),
             code: "var a = async () => 1",
             parserOptions: {ecmaVersion: 2017},
-            errors: ["Async functions are not supported yet on Node 7.5.0."],
+            errors: ["Async functions are not supported yet on Node >=7.5.0."],
         },
         {
             code: "var a = async () => 1",
