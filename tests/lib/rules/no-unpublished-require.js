@@ -249,6 +249,14 @@ ruleTester.run("no-unpublished-require", rule, {
             code: "require('bbb');",
             env: {node: true},
         },
+
+        // negative patterns in .npmignore
+        {
+            filename: fixture("negative-in-npmignore/tests/test.js"),
+            code: "require('./ignore1.js');",
+            env: {node: true},
+        },
+
     ],
     invalid: [
         {
