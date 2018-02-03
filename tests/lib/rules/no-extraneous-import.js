@@ -30,7 +30,7 @@ function fixture(name) {
 // Tests
 //------------------------------------------------------------------------------
 
-const tester = new RuleTester({parserOptions: {sourceType: "module"}})
+const tester = new RuleTester({ parserOptions: { sourceType: "module" } })
 
 tester.run("no-extraneous-import", rule, {
     valid: [

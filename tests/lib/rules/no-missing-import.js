@@ -30,7 +30,7 @@ function fixture(name) {
 // Test
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester({parserOptions: {sourceType: "module"}})
+const ruleTester = new RuleTester({ parserOptions: { sourceType: "module" } })
 ruleTester.run("no-missing-import", rule, {
     valid: [
         {
@@ -86,12 +86,12 @@ ruleTester.run("no-missing-import", rule, {
         {
             filename: fixture("test.js"),
             code: "import c from './c';",
-            options: [{tryExtensions: [".coffee"]}],
+            options: [{ tryExtensions: [".coffee"] }],
         },
         {
             filename: fixture("test.js"),
             code: "import c from './c';",
-            settings: {node: {tryExtensions: [".coffee"]}},
+            settings: { node: { tryExtensions: [".coffee"] } },
         },
 
         // Ignores it if the filename is unknown.
@@ -136,27 +136,27 @@ ruleTester.run("no-missing-import", rule, {
         {
             filename: fixture("test.js"),
             code: "import electron from 'electron';",
-            options: [{allowModules: ["electron"]}],
+            options: [{ allowModules: ["electron"] }],
         },
 
         // resolvePaths
         {
             filename: fixture("test.js"),
             code: "import a from 'fixtures/no-missing/a';",
-            env: {node: true},
-            settings: {node: {resolvePaths: [path.resolve(__dirname, "../../")]}},
+            env: { node: true },
+            settings: { node: { resolvePaths: [path.resolve(__dirname, "../../")] } },
         },
         {
             filename: fixture("test.js"),
             code: "import a from 'fixtures/no-missing/a';",
-            env: {node: true},
-            options: [{resolvePaths: [path.resolve(__dirname, "../../")]}],
+            env: { node: true },
+            options: [{ resolvePaths: [path.resolve(__dirname, "../../")] }],
         },
         {
             filename: fixture("test.js"),
             code: "import a from 'fixtures/no-missing/a';",
-            env: {node: true},
-            options: [{resolvePaths: ["tests"]}],
+            env: { node: true },
+            options: [{ resolvePaths: ["tests"] }],
         },
     ],
     invalid: [

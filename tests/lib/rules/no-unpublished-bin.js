@@ -78,50 +78,50 @@ new RuleTester().run("no-unpublished-bin", rule, {
         },
 
         // empty name
-        {code: "'stdin'"},
+        { code: "'stdin'" },
 
         // convertPath option
         {
             filename: fixture("simple-files/a.js"),
             code: "'simple-files/a.js'",
-            options: [{convertPath: {"a.js": ["a.js", "lib/a.js"]}}],
+            options: [{ convertPath: { "a.js": ["a.js", "lib/a.js"] } }],
         },
         {
             filename: fixture("multi-files/a.js"),
             code: "'multi-files/a.js'",
-            options: [{convertPath: {"a.js": ["a.js", "lib/a.js"]}}],
+            options: [{ convertPath: { "a.js": ["a.js", "lib/a.js"] } }],
         },
         {
             filename: fixture("simple-npmignore/a.js"),
             code: "'simple-npmignore/a.js'",
-            options: [{convertPath: {"a.js": ["a.js", "lib/a.js"]}}],
+            options: [{ convertPath: { "a.js": ["a.js", "lib/a.js"] } }],
         },
         {
             filename: fixture("multi-npmignore/a.js"),
             code: "'multi-npmignore/a.js'",
-            options: [{convertPath: {"a.js": ["a.js", "lib/a.js"]}}],
+            options: [{ convertPath: { "a.js": ["a.js", "lib/a.js"] } }],
         },
 
         // convertPath shared setting
         {
             filename: fixture("simple-files/a.js"),
             code: "'simple-files/a.js'",
-            settings: {node: {convertPath: {"a.js": ["a.js", "lib/a.js"]}}},
+            settings: { node: { convertPath: { "a.js": ["a.js", "lib/a.js"] } } },
         },
         {
             filename: fixture("multi-files/a.js"),
             code: "'multi-files/a.js'",
-            settings: {node: {convertPath: {"a.js": ["a.js", "lib/a.js"]}}},
+            settings: { node: { convertPath: { "a.js": ["a.js", "lib/a.js"] } } },
         },
         {
             filename: fixture("simple-npmignore/a.js"),
             code: "'simple-npmignore/a.js'",
-            settings: {node: {convertPath: {"a.js": ["a.js", "lib/a.js"]}}},
+            settings: { node: { convertPath: { "a.js": ["a.js", "lib/a.js"] } } },
         },
         {
             filename: fixture("multi-npmignore/a.js"),
             code: "'multi-npmignore/a.js'",
-            settings: {node: {convertPath: {"a.js": ["a.js", "lib/a.js"]}}},
+            settings: { node: { convertPath: { "a.js": ["a.js", "lib/a.js"] } } },
         },
     ],
     invalid: [
@@ -158,19 +158,19 @@ new RuleTester().run("no-unpublished-bin", rule, {
         {
             filename: fixture("simple-files/x.js"),
             code: "'simple-files/x.js'",
-            options: [{convertPath: {"x.js": ["x.js", "a.js"]}}],
+            options: [{ convertPath: { "x.js": ["x.js", "a.js"] } }],
             errors: ["npm ignores 'a.js'. Check 'files' field of 'package.json' or '.npmignore'."],
         },
         {
             filename: fixture("multi-files/x.js"),
             code: "'multi-files/x.js'",
-            options: [{convertPath: {"x.js": ["x.js", "a.js"]}}],
+            options: [{ convertPath: { "x.js": ["x.js", "a.js"] } }],
             errors: ["npm ignores 'a.js'. Check 'files' field of 'package.json' or '.npmignore'."],
         },
         {
             filename: fixture("multi-files/x.js"),
             code: "'multi-files/x.js'",
-            options: [{convertPath: {"x.js": ["x.js", "b.js"]}}],
+            options: [{ convertPath: { "x.js": ["x.js", "b.js"] } }],
             errors: ["npm ignores 'b.js'. Check 'files' field of 'package.json' or '.npmignore'."],
         },
 
@@ -178,13 +178,13 @@ new RuleTester().run("no-unpublished-bin", rule, {
         {
             filename: fixture("simple-npmignore/x.js"),
             code: "'simple-npmignore/x.js'",
-            options: [{convertPath: {"x.js": ["x.js", "a.js"]}}],
+            options: [{ convertPath: { "x.js": ["x.js", "a.js"] } }],
             errors: ["npm ignores 'a.js'. Check 'files' field of 'package.json' or '.npmignore'."],
         },
         {
             filename: fixture("multi-npmignore/x.js"),
             code: "'multi-npmignore/x.js'",
-            options: [{convertPath: {"x.js": ["x.js", "a.js"]}}],
+            options: [{ convertPath: { "x.js": ["x.js", "a.js"] } }],
             errors: ["npm ignores 'a.js'. Check 'files' field of 'package.json' or '.npmignore'."],
         },
         {
@@ -218,19 +218,19 @@ new RuleTester().run("no-unpublished-bin", rule, {
         {
             filename: fixture("simple-files/x.js"),
             code: "'simple-files/x.js'",
-            settings: {node: {convertPath: {"x.js": ["x.js", "a.js"]}}},
+            settings: { node: { convertPath: { "x.js": ["x.js", "a.js"] } } },
             errors: ["npm ignores 'a.js'. Check 'files' field of 'package.json' or '.npmignore'."],
         },
         {
             filename: fixture("multi-files/x.js"),
             code: "'multi-files/x.js'",
-            settings: {node: {convertPath: {"x.js": ["x.js", "a.js"]}}},
+            settings: { node: { convertPath: { "x.js": ["x.js", "a.js"] } } },
             errors: ["npm ignores 'a.js'. Check 'files' field of 'package.json' or '.npmignore'."],
         },
         {
             filename: fixture("multi-files/x.js"),
             code: "'multi-files/x.js'",
-            settings: {node: {convertPath: {"x.js": ["x.js", "b.js"]}}},
+            settings: { node: { convertPath: { "x.js": ["x.js", "b.js"] } } },
             errors: ["npm ignores 'b.js'. Check 'files' field of 'package.json' or '.npmignore'."],
         },
 
@@ -238,13 +238,13 @@ new RuleTester().run("no-unpublished-bin", rule, {
         {
             filename: fixture("simple-npmignore/x.js"),
             code: "'simple-npmignore/x.js'",
-            settings: {node: {convertPath: {"x.js": ["x.js", "a.js"]}}},
+            settings: { node: { convertPath: { "x.js": ["x.js", "a.js"] } } },
             errors: ["npm ignores 'a.js'. Check 'files' field of 'package.json' or '.npmignore'."],
         },
         {
             filename: fixture("multi-npmignore/x.js"),
             code: "'multi-npmignore/x.js'",
-            settings: {node: {convertPath: {"x.js": ["x.js", "a.js"]}}},
+            settings: { node: { convertPath: { "x.js": ["x.js", "a.js"] } } },
             errors: ["npm ignores 'a.js'. Check 'files' field of 'package.json' or '.npmignore'."],
         },
     ],

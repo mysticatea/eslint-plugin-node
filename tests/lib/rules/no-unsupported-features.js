@@ -45,7 +45,7 @@ function convertPattern(retv, pattern) {
     ) {
         convertPattern(
             retv,
-            Object.create(pattern, {modules: {value: true}})
+            Object.create(pattern, { modules: { value: true } })
         )
     }
 
@@ -71,8 +71,8 @@ function convertPattern(retv, pattern) {
             // If this is supported, add to a valid pattern.
             retv.valid.push({
                 code: `/*${pattern.name}: ${versionText}*/ ${pattern.code}`,
-                env: {es6: true},
-                globals: {SharedArrayBuffer: false, Atomics: false},
+                env: { es6: true },
+                globals: { SharedArrayBuffer: false, Atomics: false },
                 options: [version],
                 parserOptions: {
                     ecmaVersion: 8,
@@ -84,9 +84,9 @@ function convertPattern(retv, pattern) {
             // If this is not supported, add to a valid pattern with a "ignores" option.
             [].push.apply(retv.valid, pattern.keys.map(key => ({
                 code: `/*${pattern.name}: ${versionText}, ignores: ["${key}"]*/ ${pattern.code}`,
-                env: {es6: true},
-                globals: {SharedArrayBuffer: false, Atomics: false},
-                options: [{version, ignores: [key]}],
+                env: { es6: true },
+                globals: { SharedArrayBuffer: false, Atomics: false },
+                options: [{ version, ignores: [key] }],
                 parserOptions: {
                     ecmaVersion: 8,
                     sourceType: pattern.modules ? "module" : "script",
@@ -96,8 +96,8 @@ function convertPattern(retv, pattern) {
             // If this is not supported, add to a invalid pattern.
             retv.invalid.push({
                 code: `/*${pattern.name}: ${versionText}*/ ${pattern.code}`,
-                env: {es6: true},
-                globals: {SharedArrayBuffer: false, Atomics: false},
+                env: { es6: true },
+                globals: { SharedArrayBuffer: false, Atomics: false },
                 options: [version],
                 parserOptions: {
                     ecmaVersion: 8,
@@ -1133,51 +1133,51 @@ ruleTester.run("no-unsupported-features", rule, [
         {
             filename: fixture("gte-4.0.0/a.js"),
             code: "var a = () => 1",
-            env: {es6: true},
+            env: { es6: true },
         },
         {
             filename: fixture("gte-4.4.0-lt-5.0.0/a.js"),
             code: "var a = () => 1",
-            env: {es6: true},
+            env: { es6: true },
         },
         {
             filename: fixture("hat-4.1.2/a.js"),
             code: "var a = () => 1",
-            env: {es6: true},
+            env: { es6: true },
         },
         {
             code: "'\\\\u{0123}'",
-            env: {es6: true},
+            env: { es6: true },
         },
         {
             filename: fixture("gte-4.0.0/a.js"),
             code: "var a = async () => 1",
-            parserOptions: {ecmaVersion: 2017},
-            options: [{ignores: ["asyncAwait"]}],
+            parserOptions: { ecmaVersion: 2017 },
+            options: [{ ignores: ["asyncAwait"] }],
         },
         {
             filename: fixture("gte-7.6.0/a.js"),
             code: "var a = async () => 1",
-            parserOptions: {ecmaVersion: 2017},
+            parserOptions: { ecmaVersion: 2017 },
         },
         {
             filename: fixture("gte-7.10.0/a.js"),
             code: "var a = async () => 1",
-            parserOptions: {ecmaVersion: 2017},
+            parserOptions: { ecmaVersion: 2017 },
         },
         {
             filename: fixture("invalid/a.js"),
             code: "var a = () => 1",
-            env: {es6: true},
+            env: { es6: true },
         },
         {
             filename: fixture("nothing/a.js"),
             code: "var a = () => 1",
-            env: {es6: true},
+            env: { es6: true },
         },
         {
             code: "var a = async () => 1",
-            parserOptions: {ecmaVersion: 2017},
+            parserOptions: { ecmaVersion: 2017 },
             options: ["7.10.0"],
         },
     ],
@@ -1185,39 +1185,39 @@ ruleTester.run("no-unsupported-features", rule, [
         {
             filename: fixture("gte-0.12.8/a.js"),
             code: "var a = () => 1",
-            env: {es6: true},
+            env: { es6: true },
             errors: ["Arrow functions are not supported yet on Node >=0.12.8."],
         },
         {
             filename: fixture("invalid/a.js"),
             code: "var a = (b,) => 1",
-            parserOptions: {ecmaVersion: 2017},
-            env: {es6: true},
+            parserOptions: { ecmaVersion: 2017 },
+            env: { es6: true },
             errors: ["Trailing commas in functions are not supported yet on Node 4.0.0."],
         },
         {
             filename: fixture("lt-6.0.0/a.js"),
             code: "var a = () => 1",
-            parserOptions: {ecmaVersion: 2017},
-            env: {es6: true},
+            parserOptions: { ecmaVersion: 2017 },
+            env: { es6: true },
             errors: ["Arrow functions are not supported yet on Node <6.0.0."],
         },
         {
             filename: fixture("nothing/a.js"),
             code: "var a = (b,) => 1",
-            parserOptions: {ecmaVersion: 2017},
-            env: {es6: true},
+            parserOptions: { ecmaVersion: 2017 },
+            env: { es6: true },
             errors: ["Trailing commas in functions are not supported yet on Node 4.0.0."],
         },
         {
             filename: fixture("gte-7.5.0/a.js"),
             code: "var a = async () => 1",
-            parserOptions: {ecmaVersion: 2017},
+            parserOptions: { ecmaVersion: 2017 },
             errors: ["Async functions are not supported yet on Node >=7.5.0."],
         },
         {
             code: "var a = async () => 1",
-            parserOptions: {ecmaVersion: 2017},
+            parserOptions: { ecmaVersion: 2017 },
             options: ["7.1.0"],
             errors: ["Async functions are not supported yet on Node 7.1.0."],
         },

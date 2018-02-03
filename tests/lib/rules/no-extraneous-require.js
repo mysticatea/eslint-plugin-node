@@ -30,7 +30,7 @@ function fixture(name) {
 // Tests
 //------------------------------------------------------------------------------
 
-const tester = new RuleTester({env: {node: true}})
+const tester = new RuleTester({ env: { node: true } })
 
 tester.run("no-extraneous-require", rule, {
     valid: [

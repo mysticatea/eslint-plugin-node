@@ -30,7 +30,7 @@ function fixture(name) {
 // Test
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester({parserOptions: {sourceType: "module"}})
+const ruleTester = new RuleTester({ parserOptions: { sourceType: "module" } })
 ruleTester.run("no-unpublished-import", rule, {
     valid: [
         {
@@ -119,14 +119,14 @@ ruleTester.run("no-unpublished-import", rule, {
         {
             filename: fixture("1/test.js"),
             code: "import electron from 'electron';",
-            options: [{allowModules: ["electron"]}],
+            options: [{ allowModules: ["electron"] }],
         },
 
         // Auto-published files only apply to root package directory
         {
             filename: fixture("3/src/readme.js"),
             code: "import bbb from 'bbb';",
-            env: {node: true},
+            env: { node: true },
         },
 
         // Negative patterns in files field.
@@ -192,7 +192,7 @@ ruleTester.run("no-unpublished-import", rule, {
             errors: ["\"../test\" is not published."],
             settings: {
                 node: {
-                    convertPath: {"src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"]},
+                    convertPath: { "src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"] },
                     tryExtensions: [".js", ".jsx", ".json"],
                 },
             },
@@ -202,7 +202,7 @@ ruleTester.run("no-unpublished-import", rule, {
             code: "import a from '../test';",
             errors: ["\"../test\" is not published."],
             options: [{
-                convertPath: {"src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"]},
+                convertPath: { "src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"] },
                 tryExtensions: [".js", ".jsx", ".json"],
             }],
         },
@@ -241,7 +241,7 @@ ruleTester.run("no-unpublished-import", rule, {
         {
             filename: fixture("1/test.js"),
             code: "import a from '../2/a.js';",
-            env: {node: true},
+            env: { node: true },
             errors: ["\"../2/a.js\" is not published."],
         },
     ],
