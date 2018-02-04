@@ -1,9 +1,9 @@
 # Disallow unsupported ECMAScript features on the specified version (no-unsupported-features)
 
 Node.js doesn't support all ECMAScript standard features.
-This rule reports when you used unsupported ECMAScript 2015-2017 features on the specified Node.js version.
+This rule reports when you used unsupported ECMAScript 2015-2018 features on the specified Node.js version.
 
-> ※ About ECMAScript 2017, this rule reports only features which have arrived at stage 4 until 2017-06-01.
+> ※ About ECMAScript 2018, this rule reports only features which have arrived at stage 4 until 2018-02-01.
 > It needs a major version bump in order to cover newer features.
 
 ## Rule Details
@@ -13,7 +13,7 @@ This rule reports when you used unsupported ECMAScript 2015-2017 features on the
 ```json
 {
     "env": {"es6": true},
-    "parserOptions": {"ecmaVersion": 2017}
+    "parserOptions": {"ecmaVersion": 2018}
 }
 ```
 
@@ -27,7 +27,7 @@ For example of `package.json`:
     "name": "your-module",
     "version": "1.0.0",
     "engines": {
-        "node": ">=4.0.0"
+        "node": ">=6.0.0"
     }
 }
 ```
@@ -125,9 +125,13 @@ The `version` option accepts the following version number:
 - `4`
 - `5`
 - `6`
-- `7`
-- `7.6` ... supports async functions.
-- `8` ... supports trailing commas in functions.
+- `6.5` ... `Symbol.hasInstance` and `Symbol.species`.
+- `7` ... Exponential operators, `Object.values`, `Object.entries`, and `Object.getOwnPropertyDescriptors`.
+- `7.6` ... Async functions.
+- `8` ... Trailing commas in functions.
+- `8.3` ... Rest/Spread proeprties.
+- `9.0` ... Illegal escape sequences in taggled templates, RegExp 's' flags, RegExp lookbehind assertions, `SharedArrayBuffer`, and `Atomics`.
+- `10.0` ... RegExp named capture groups, RegExp Unicode property escapes, Async generators, and `for-await-of` loops.
 
 ### ignores
 
@@ -159,6 +163,15 @@ The `"ignores"` option accepts an array of the following strings.
   - `"exponentialOperators"`
   - `"asyncAwait"`
   - `"trailingCommasInFunctions"`
+  - `"templateLiteralRevision"`
+  - `"regexpS"`
+  - `"regexpNamedCaptureGroups"`
+  - `"regexpLookbehind"`
+  - `"regexpUnicodeProperties"`
+  - `"restProperties"`
+  - `"spreadProperties"`
+  - `"asyncGenerators"`
+  - `"forAwaitOf"`
 - `"runtime"` (group)
   - `"globalObjects"` (group)
     - `"typedArrays"` (group)
@@ -282,6 +295,5 @@ E.g., a use of instance methods.
 ## Further Reading
 
 - http://node.green/
-- http://kangax.github.io/compat-table/es6/
 
 [engines]: https://docs.npmjs.com/files/package.json#engines

@@ -23,9 +23,13 @@ const VERSION_MAP = new Map([
     [4, "4.0.0"],
     [5, "5.0.0"],
     [6, "6.0.0"],
+    [6.5, "6.5.0"],
     [7, "7.0.0"],
     [7.6, "7.6.0"],
     [8, "8.0.0"],
+    [8.3, "8.3.0"],
+    [9, "9.0.0"],
+    [10, "10.0.0"],
 ])
 
 /**
@@ -75,7 +79,7 @@ function convertPattern(retv, pattern) {
                 globals: { SharedArrayBuffer: false, Atomics: false },
                 options: [version],
                 parserOptions: {
-                    ecmaVersion: 8,
+                    ecmaVersion: 2018,
                     sourceType: pattern.modules ? "module" : "script",
                 },
             })
@@ -88,7 +92,7 @@ function convertPattern(retv, pattern) {
                 globals: { SharedArrayBuffer: false, Atomics: false },
                 options: [{ version, ignores: [key] }],
                 parserOptions: {
-                    ecmaVersion: 8,
+                    ecmaVersion: 2018,
                     sourceType: pattern.modules ? "module" : "script",
                 },
             })))
@@ -100,7 +104,7 @@ function convertPattern(retv, pattern) {
                 globals: { SharedArrayBuffer: false, Atomics: false },
                 options: [version],
                 parserOptions: {
-                    ecmaVersion: 8,
+                    ecmaVersion: 2018,
                     sourceType: pattern.modules ? "module" : "script",
                 },
                 errors: errors.map(message => `${message + versionText}.`),
@@ -378,7 +382,7 @@ ruleTester.run("no-unsupported-features", rule, [
         ignores: [0.10, 0.12, 4, 5],
     },
     {
-        keys: ["trailingCommasInFunctionSyntax", "trailingCommasInFunctions", "syntax"],
+        keys: ["trailingCommasInFunctions", "syntax"],
         name: "Trailing commas in functions",
         code: [
             "function foo(a,) {}",
@@ -392,6 +396,105 @@ ruleTester.run("no-unsupported-features", rule, [
         errors: 7,
         supported: 8,
         ignores: [0.10, 0.12, 4, 5],
+    },
+    {
+        keys: ["templateLiteralRevision", "syntax"],
+        name: "Illegal escape sequences in taggled templates",
+        code: [
+            //eslint-disable-next-line no-template-curly-in-string
+            "tag`\\01\\1\\xg\\xAg\\u0\\u0g\\u00g\\u000g\\u{g\\u{0\\u{110000}${0}\\0`",
+        ].join("\n"),
+        errors: 1,
+        supported: 9,
+        ignores: [0.10, 0.12, 4, 5],
+    },
+    {
+        keys: ["regexpS", "syntax"],
+        name: "RegExp 's' flags",
+        code: "new RegExp('', 's'); (/a/s)",
+        errors: 2,
+        supported: 9,
+    },
+    {
+        keys: ["regexpNamedCaptureGroups", "syntax"],
+        name: "RegExp named capture groups",
+        code: [
+            "new RegExp('(?<a>b)');",
+            //TODO: Espree has not supported this syntax yet.
+            // ";(/(?<a>b)/)",
+        ].join("\n"),
+        errors: 1,
+        supported: 10,
+    },
+    {
+        keys: ["regexpLookbehind", "syntax"],
+        name: "RegExp lookbehind assertions",
+        code: [
+            "new RegExp('(?<=a)b')",
+            "new RegExp('(?<!a)b')",
+            //TODO: Espree has not supported this syntax yet.
+            // ";(/(?<=a)b/)",
+            // ";(/(?<!a)b/)",
+        ].join("\n"),
+        errors: 2,
+        supported: 9,
+    },
+    {
+        keys: ["regexpUnicodeProperties", "syntax"],
+        name: "RegExp Unicode property escapes",
+        code: [
+            "new RegExp('\\\\p{Script=Greek}');",
+            ";(/\\p{Script=Greek}/)",
+        ].join("\n"),
+        errors: 2,
+        supported: 10,
+    },
+    {
+        keys: ["restProperties", "syntax"],
+        name: "Rest properties",
+        code: [
+            "({...rest} = obj)",
+            "function f({...rest}) {}",
+        ].join("\n"),
+        errors: 2,
+        supported: 8.3,
+        ignores: [0.10, 0.12, 4, 5],
+    },
+    {
+        keys: ["spreadProperties", "syntax"],
+        name: "Spread properties",
+        code: [
+            "obj = {...a, ...b}",
+        ].join("\n"),
+        errors: 2,
+        supported: 8.3,
+        ignores: [0.10, 0.12, 4, 5],
+    },
+    {
+        keys: ["asyncGenerators", "syntax"],
+        name: "Async generators",
+        code: [
+            "async function* f1() {}",
+            ";(async function*() {})",
+            ";({ async* f() {} })",
+            "class A { async* f() {} }",
+            "class B { static async* f() {} }",
+            ";(class { async* f() {} })",
+            ";(class { static async* f() {} })",
+        ].join("\n"),
+        errors: 7,
+        supported: 10,
+        ignores: [0.10, 0.12, 4, 5, 6, 6.5, 7],
+    },
+    {
+        keys: ["forAwaitOf", "syntax"],
+        name: "for-await-of loops",
+        code: [
+            "async function f1() { for await (const x of xs) {} }",
+        ].join("\n"),
+        errors: 1,
+        supported: 10,
+        ignores: [0.10, 0.12, 4, 5, 6, 6.5, 7],
     },
 
     //--------------------------------------------------------------------------
@@ -555,7 +658,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'SharedArrayBuffer'",
         code: "SharedArrayBuffer",
         errors: 1,
-        supported: NaN,
+        supported: 9,
         singular: true,
     },
     {
@@ -563,7 +666,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Atomics'",
         code: "Atomics",
         errors: 1,
-        supported: NaN,
+        supported: 9,
         singular: true,
     },
 
@@ -857,7 +960,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Symbol.hasInstance'",
         code: "Symbol.hasInstance",
         errors: 1,
-        supported: NaN,
+        supported: 6.5,
         singular: true,
     },
     {
@@ -881,7 +984,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Symbol.species'",
         code: "Symbol.species",
         errors: 1,
-        supported: NaN,
+        supported: 6.5,
         singular: true,
     },
     {
@@ -946,7 +1049,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Atomics.add'",
         code: "Atomics.add",
         errors: 1,
-        supported: NaN,
+        supported: 9,
         singular: true,
     },
     {
@@ -954,7 +1057,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Atomics.and'",
         code: "Atomics.and",
         errors: 1,
-        supported: NaN,
+        supported: 9,
         singular: true,
     },
     {
@@ -962,7 +1065,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Atomics.compareExchange'",
         code: "Atomics.compareExchange",
         errors: 1,
-        supported: NaN,
+        supported: 9,
         singular: true,
     },
     {
@@ -970,7 +1073,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Atomics.exchange'",
         code: "Atomics.exchange",
         errors: 1,
-        supported: NaN,
+        supported: 9,
         singular: true,
     },
     {
@@ -978,7 +1081,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Atomics.wait'",
         code: "Atomics.wait",
         errors: 1,
-        supported: NaN,
+        supported: 9,
         singular: true,
     },
     {
@@ -986,7 +1089,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Atomics.wake'",
         code: "Atomics.wake",
         errors: 1,
-        supported: NaN,
+        supported: 9,
         singular: true,
     },
     {
@@ -994,7 +1097,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Atomics.isLockFree'",
         code: "Atomics.isLockFree",
         errors: 1,
-        supported: NaN,
+        supported: 9,
         singular: true,
     },
     {
@@ -1002,7 +1105,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Atomics.load'",
         code: "Atomics.load",
         errors: 1,
-        supported: NaN,
+        supported: 9,
         singular: true,
     },
     {
@@ -1010,7 +1113,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Atomics.or'",
         code: "Atomics.or",
         errors: 1,
-        supported: NaN,
+        supported: 9,
         singular: true,
     },
     {
@@ -1018,7 +1121,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Atomics.store'",
         code: "Atomics.store",
         errors: 1,
-        supported: NaN,
+        supported: 9,
         singular: true,
     },
     {
@@ -1026,7 +1129,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Atomics.sub'",
         code: "Atomics.sub",
         errors: 1,
-        supported: NaN,
+        supported: 9,
         singular: true,
     },
     {
@@ -1034,7 +1137,7 @@ ruleTester.run("no-unsupported-features", rule, [
         name: "'Atomics.xor'",
         code: "Atomics.xor",
         errors: 1,
-        supported: NaN,
+        supported: 9,
         singular: true,
     },
 
