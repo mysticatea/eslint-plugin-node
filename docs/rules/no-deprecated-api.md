@@ -24,6 +24,9 @@ const {exists} = require("fs");       /*ERROR: 'fs.exists' was deprecated since 
 This rule reports the following deprecated API.
 
 - _linklist (undocumented)
+- async_hooks
+    - [currentId](https://nodejs.org/dist/v8.2.0/docs/api/deprecations.html#deprecations_dep0070_async_hooks_currentid)
+    - [triggerId](https://nodejs.org/dist/v8.2.0/docs/api/deprecations.html#deprecations_dep0071_async_hooks_triggerid)
 - buffer
     - [Buffer constructors](https://nodejs.org/dist/v6.0.0/docs/api/buffer.html#buffer_class_buffer) (Use [safe-buffer](https://www.npmjs.com/package/safe-buffer) module for `Node@<4.5.0`)
     - [SlowBuffer class](https://nodejs.org/dist/v6.0.0/docs/api/buffer.html#buffer_class_slowbuffer)
@@ -51,9 +54,12 @@ This rule reports the following deprecated API.
     - [createClient](https://nodejs.org/dist/v0.10.0/docs/api/http.html#http_http_createclient_port_host)
 - module
     - `requireRepl` (undocumented)
+    - [_debug](https://nodejs.org/dist/v9.0.0/docs/api/deprecations.html#deprecations_dep0077_module_debug)
 - os
     - `tmpDir` (undocumented)
     - `getNetworkInterfaces` (undocumented)
+- path
+    - [_makeLong](https://nodejs.org/dist/v9.0.0/docs/api/deprecations.html#deprecations_dep0080_path_makelong)
 - process
     - `EventEmitter` (undocumented)
 - [punycode](https://nodejs.org/dist/v7.0.0/docs/api/punycode.html)
@@ -71,6 +77,7 @@ This rule reports the following deprecated API.
     - [CryptoStream](https://nodejs.org/dist/v0.12.0/docs/api/tls.html#tls_class_cryptostream)
     - [SecurePair](https://nodejs.org/dist/v6.0.0/docs/api/tls.html#tls_class_securepair)
     - [createSecurePair](https://nodejs.org/dist/v6.0.0/docs/api/tls.html#tls_tls_createsecurepair_context_isserver_requestcert_rejectunauthorized_options)
+    - [parseCertString](https://nodejs.org/dist/v8.6.0/docs/api/deprecations.html#deprecations_dep0076_tls_parsecertstring)
 - tty
     - [setRawMode](https://nodejs.org/dist/v0.10.0/docs/api/tty.html#tty_tty_setrawmode_mode)
 - util
@@ -127,6 +134,8 @@ This rule ignores APIs that `ignoreModuleItems` includes.
 This option can include the following values:
 
 - `_linklist`
+- `async_hooks.currentId`
+- `async_hooks.triggerId`
 - `buffer.Buffer()`
 - `new buffer.Buffer()`
 - `buffer.SlowBuffer`
@@ -146,7 +155,10 @@ This option can include the following values:
 - `http.createClient`
 - `module.Module.requireRepl`
 - `module.requireRepl`
+- `module.Module._debug`
+- `module._debug`
 - `os.tmpDir`
+- `path._makeLong`
 - `punycode`
 - `readline.codePointAt`
 - `readline.getStringWidth`
@@ -157,6 +169,7 @@ This option can include the following values:
 - `tls.CryptoStream`
 - `tls.SecurePair`
 - `tls.createSecurePair`
+- `tls.parseCertString`
 - `tty.setRawMode`
 - `util.debug`
 - `util.error`
@@ -220,6 +233,8 @@ This rule cannot report the following cases:
 
 ### non-static properties
 
+- async_hooks
+    - [asyncResource.triggerId](https://nodejs.org/dist/v8.2.0/docs/api/deprecations.html#deprecations_dep0072_async_hooks_asyncresource_triggerid)
 - buffer
     - [buf.parent](https://nodejs.org/dist/v8.0.0/docs/api/buffer.html#buffer_buf_parent)
 - cluster
@@ -232,6 +247,13 @@ This rule cannot report the following cases:
     - [server.connections](https://nodejs.org/dist/v0.10.0/docs/api/net.html#net_server_connections)
 - repl
     - `replServer.convertToContext` (undocumented)
+    - [replServer.turnOffEditorMode](https://nodejs.org/dist/v9.0.0/docs/api/deprecations.html#deprecations_dep0078_replserver_turnoffeditormode)
+    - [replServer.memory](https://nodejs.org/dist/v9.0.0/docs/api/deprecations.html#deprecations_dep0082_replserver_prototype_memory)
+
+### types of arguments
+
+- fs
+    - `fs.truncate()` and `fs.truncateSync()` usage with a file descriptor has been deprecated.
 
 ### dynamic things
 

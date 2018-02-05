@@ -244,6 +244,16 @@ ruleTester.run("no-deprecated-api", rule, {
             errors: ["'_linklist' module was deprecated since v5."],
         },
         {
+            code: "require('async_hooks').currentId;",
+            env: { node: true },
+            errors: ["'async_hooks.currentId' was deprecated since v8.2. Use 'async_hooks.executionAsyncId()' instead."],
+        },
+        {
+            code: "require('async_hooks').triggerId;",
+            env: { node: true },
+            errors: ["'async_hooks.triggerId' was deprecated since v8.2. Use 'async_hooks.triggerAsyncId()' instead."],
+        },
+        {
             code: "require('constants');",
             env: { node: true },
             errors: ["'constants' module was deprecated since v6.3. Use 'constants' property of each module instead."],
@@ -324,6 +334,16 @@ ruleTester.run("no-deprecated-api", rule, {
             errors: ["'module.Module.requireRepl' was deprecated since v6. Use 'require(\"repl\")' instead."],
         },
         {
+            code: "require('module')._debug;",
+            env: { node: true },
+            errors: ["'module._debug' was deprecated since v9."],
+        },
+        {
+            code: "require('module').Module._debug;",
+            env: { node: true },
+            errors: ["'module.Module._debug' was deprecated since v9."],
+        },
+        {
             code: "require('os').getNetworkInterfaces;",
             env: { node: true },
             errors: ["'os.getNetworkInterfaces' was deprecated since v0.6. Use 'os.networkInterfaces()' instead."],
@@ -332,6 +352,11 @@ ruleTester.run("no-deprecated-api", rule, {
             code: "require('os').tmpDir;",
             env: { node: true },
             errors: ["'os.tmpDir' was deprecated since v7. Use 'os.tmpdir()' instead."],
+        },
+        {
+            code: "require('path')._makeLong;",
+            env: { node: true },
+            errors: ["'path._makeLong' was deprecated since v9. Use 'path.toNamespacedPath()' instead."],
         },
         {
             code: "require('punycode');",
@@ -382,6 +407,11 @@ ruleTester.run("no-deprecated-api", rule, {
             code: "require('tls').createSecurePair;",
             env: { node: true },
             errors: ["'tls.createSecurePair' was deprecated since v6. Use 'tls.TLSSocket' instead."],
+        },
+        {
+            code: "require('tls').parseCertString;",
+            env: { node: true },
+            errors: ["'tls.parseCertString' was deprecated since v8.6. Use 'querystring.parse()' instead."],
         },
         {
             code: "require('tty').setRawMode;",
