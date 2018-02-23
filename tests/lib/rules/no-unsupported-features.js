@@ -1283,6 +1283,11 @@ ruleTester.run("no-unsupported-features", rule, [
             parserOptions: { ecmaVersion: 2017 },
             options: ["7.10.0"],
         },
+        {
+            filename: fixture("without-node/a.js"),
+            code: "var a = () => 1",
+            env: { es6: true },
+        },
     ],
     invalid: [
         {
