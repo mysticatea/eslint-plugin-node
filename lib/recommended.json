@@ -10,6 +10,9 @@
         "Atomics": false,
         "SharedArrayBuffer": false
     },
+    "plugins": [
+        "node"
+    ],
     "rules": {
         "no-process-exit": "error",
         "node/exports-style": "off",
