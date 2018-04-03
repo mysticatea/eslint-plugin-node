@@ -82,7 +82,8 @@ This preset config:
 - enables the environment of ES2015 (ES6) and Node.js.
 - enables rules which are given :star: in the above table.
 - enables [no-process-exit](http://eslint.org/docs/rules/no-process-exit) rule because [the official document](https://nodejs.org/api/process.html#process_process_exit_code) does not recommend a use of `process.exit()`.
-- adds `{ecmaVersion: 8}` into `parserOptions`.
+- adds `{ecmaVersion: 2018}` into `parserOptions`.
+- adds `Atomics` and `SharedArrayBuffer` into `globals`.
 
 ## 👫 FAQ
 
