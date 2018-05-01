@@ -663,7 +663,7 @@ ruleTester.run("no-deprecated-api", rule, {
             code: "import * as b from 'buffer'; new b.default.Buffer()",
             parserOptions: { sourceType: "module" },
             errors: [
-                "'new buffer.default.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
             ],
             env: { es6: true },
         },
@@ -695,7 +695,7 @@ ruleTester.run("no-deprecated-api", rule, {
             code: "import * as b from 'buffer'; b.default.SlowBuffer",
             parserOptions: { sourceType: "module" },
             errors: [
-                "'buffer.default.SlowBuffer' was deprecated since v6. Use 'buffer.Buffer.allocUnsafeSlow()' instead.",
+                "'buffer.SlowBuffer' was deprecated since v6. Use 'buffer.Buffer.allocUnsafeSlow()' instead.",
             ],
             env: { es6: true },
         },
