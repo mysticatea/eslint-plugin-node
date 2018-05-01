@@ -1,21 +1,12 @@
 /**
  * @author Toru Nagashima
- * @copyright 2015 Toru Nagashima. All rights reserved.
  * See LICENSE file in root directory for full license.
  */
 "use strict"
 
-//------------------------------------------------------------------------------
-// Requirements
-//------------------------------------------------------------------------------
-
 const path = require("path")
 const RuleTester = require("eslint").RuleTester
 const rule = require("../../../lib/rules/no-missing-require")
-
-//------------------------------------------------------------------------------
-// Helpers
-//------------------------------------------------------------------------------
 
 /**
  * Makes a file path to a fixture.
@@ -26,124 +17,122 @@ function fixture(name) {
     return path.resolve(__dirname, "../../fixtures/no-missing", name)
 }
 
-//------------------------------------------------------------------------------
-// Test
-//------------------------------------------------------------------------------
-
 const ruleTester = new RuleTester()
 ruleTester.run("no-missing-require", rule, {
     valid: [
         {
-            filename: fixture("test.js"),
             code: "require('fs');",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('eslint');",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('eslint/lib/ast-utils');",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('./a');",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('./a.js');",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('./a.config');",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('./a.config.js');",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('./b');",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('./b.json');",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('./c.coffee');",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('mocha');",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require(`eslint`);",
+            filename: fixture("test.js"),
             env: { node: true, es6: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('mocha!foo?a=b&c=d');",
+            filename: fixture("test.js"),
             env: { node: true },
         },
 
         // tryExtensions
         {
-            filename: fixture("test.js"),
             code: "require('./c');",
-            env: { node: true },
             options: [{ tryExtensions: [".coffee"] }],
+            filename: fixture("test.js"),
+            env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('./c');",
+            filename: fixture("test.js"),
             env: { node: true },
             settings: { node: { tryExtensions: [".coffee"] } },
         },
 
         // resolvePaths
         {
-            filename: fixture("test.js"),
             code: "require('fixtures/no-missing/a');",
+            filename: fixture("test.js"),
             env: { node: true },
-            settings: { node: { resolvePaths: [path.resolve(__dirname, "../../")] } },
+            settings: {
+                node: { resolvePaths: [path.resolve(__dirname, "../../")] },
+            },
         },
         {
-            filename: fixture("test.js"),
             code: "require('fixtures/no-missing/a');",
-            env: { node: true },
             options: [{ resolvePaths: [path.resolve(__dirname, "../../")] }],
+            filename: fixture("test.js"),
+            env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('fixtures/no-missing/a');",
-            env: { node: true },
             options: [{ resolvePaths: ["tests"] }],
+            filename: fixture("test.js"),
+            env: { node: true },
         },
 
         // Ignores it if not callee.
         {
-            filename: fixture("test.js"),
             code: "require;",
+            filename: fixture("test.js"),
             env: { node: true },
         },
 
         // Ignores it if the global variable of `require` is not defined.
         {
-            filename: fixture("test.js"),
             code: "require('no-exist-package-0');",
+            filename: fixture("test.js"),
         },
 
         // Ignores it if the filename is unknown.
@@ -158,140 +147,140 @@ ruleTester.run("no-missing-require", rule, {
 
         // Ignores it if the target is not string.
         {
-            filename: fixture("test.js"),
             code: "require();",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require(foo);",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require(777);",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require(`foo${bar}`);", //eslint-disable-line no-template-curly-in-string
+            filename: fixture("test.js"),
             env: { node: true, es6: true },
         },
 
         // Should work fine if the filename is relative.
         {
-            filename: "tests/fixtures/no-missing/test.js",
             code: "require('eslint');",
+            filename: "tests/fixtures/no-missing/test.js",
             env: { node: true },
         },
         {
-            filename: "tests/fixtures/no-missing/test.js",
             code: "require('./a');",
+            filename: "tests/fixtures/no-missing/test.js",
             env: { node: true },
         },
 
         // Relative paths to a directory should work.
         {
-            filename: fixture("test.js"),
             code: "require('.');",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('./');",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('./foo');",
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('./foo/');",
+            filename: fixture("test.js"),
             env: { node: true },
         },
 
         // allow option
         {
-            filename: fixture("test.js"),
             code: "require('electron');",
             options: [{ allowModules: ["electron"] }],
+            filename: fixture("test.js"),
             env: { node: true },
         },
         {
-            filename: fixture("test.js"),
             code: "require('jquery.cookie');",
             options: [{ allowModules: ["jquery.cookie"] }],
+            filename: fixture("test.js"),
             env: { node: true },
         },
     ],
     invalid: [
         {
-            filename: fixture("test.js"),
             code: "require('no-exist-package-0');",
+            errors: ['"no-exist-package-0" is not found.'],
+            filename: fixture("test.js"),
             env: { node: true },
-            errors: ["\"no-exist-package-0\" is not found."],
         },
         {
-            filename: fixture("test.js"),
             code: "require('@mysticatea/test');",
+            errors: ['"@mysticatea/test" is not found.'],
+            filename: fixture("test.js"),
             env: { node: true },
-            errors: ["\"@mysticatea/test\" is not found."],
         },
         {
-            filename: fixture("test.js"),
             code: "require('./c');",
+            errors: ['"./c" is not found.'],
+            filename: fixture("test.js"),
             env: { node: true },
-            errors: ["\"./c\" is not found."],
         },
         {
-            filename: fixture("test.js"),
             code: "require('./d');",
+            errors: ['"./d" is not found.'],
+            filename: fixture("test.js"),
             env: { node: true },
-            errors: ["\"./d\" is not found."],
         },
         {
-            filename: fixture("test.js"),
             code: "require('./a.json');",
+            errors: ['"./a.json" is not found.'],
+            filename: fixture("test.js"),
             env: { node: true },
-            errors: ["\"./a.json\" is not found."],
         },
 
         // Should work fine if the filename is relative.
         {
-            filename: "tests/fixtures/no-missing/test.js",
             code: "require('no-exist-package-0');",
+            errors: ['"no-exist-package-0" is not found.'],
+            filename: "tests/fixtures/no-missing/test.js",
             env: { node: true },
-            errors: ["\"no-exist-package-0\" is not found."],
         },
         {
-            filename: "tests/fixtures/no-missing/test.js",
             code: "require('./c');",
+            errors: ['"./c" is not found.'],
+            filename: "tests/fixtures/no-missing/test.js",
             env: { node: true },
-            errors: ["\"./c\" is not found."],
         },
 
         // Relative paths to a directory should work.
         {
-            filename: fixture("test.js"),
             code: "require('./bar');",
+            errors: ['"./bar" is not found.'],
+            filename: fixture("test.js"),
             env: { node: true },
-            errors: ["\"./bar\" is not found."],
         },
         {
-            filename: fixture("test.js"),
             code: "require('./bar/');",
+            errors: ['"./bar/" is not found.'],
+            filename: fixture("test.js"),
             env: { node: true },
-            errors: ["\"./bar/\" is not found."],
         },
 
         // Case sensitive
         {
-            filename: fixture("test.js"),
             code: "require('./A');",
+            errors: ['"./A" is not found.'],
+            filename: fixture("test.js"),
             env: { node: true },
-            errors: ["\"./A\" is not found."],
         },
     ],
 })
