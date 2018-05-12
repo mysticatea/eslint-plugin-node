@@ -244,6 +244,14 @@ ruleTester.run("no-unpublished-require", rule, {
             filename: fixture("negative-in-files/lib/__test__/index.js"),
             env: { node: true },
         },
+
+        // negative patterns in .npmignore
+        {
+            filename: fixture("negative-in-npmignore/tests/test.js"),
+            code: "require('./ignore1.js');",
+            env: {node: true},
+        },
+
     ],
     invalid: [
         {
