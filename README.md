@@ -23,6 +23,7 @@ $ npm install --save-dev eslint eslint-plugin-node
 
 ```json
 {
+    "plugins": ["node"],
     "extends": ["eslint:recommended", "plugin:node/recommended"],
     "rules": {
         "node/exports-style": ["error", "module.exports"]
@@ -49,28 +50,28 @@ $ npm install --save-dev eslint eslint-plugin-node
 
 <!--RULES_TABLE_START-->
 ### Possible Errors
-|    | Rule ID | Description |
-|:---|:--------|:------------|
-|  | [no-extraneous-import](./docs/rules/no-extraneous-import.md) | disallow `import` declarations of extraneous packages |
-| ⭐️ | [no-extraneous-require](./docs/rules/no-extraneous-require.md) | disallow `require()` expressions of extraneous packages |
-|  | [no-missing-import](./docs/rules/no-missing-import.md) | disallow `import` declarations of missing files |
-| ⭐️ | [no-missing-require](./docs/rules/no-missing-require.md) | disallow `require()` expressions of missing files |
-| ⭐️ | [no-unpublished-bin](./docs/rules/no-unpublished-bin.md) | disallow 'bin' files which are ignored by npm |
-|  | [no-unpublished-import](./docs/rules/no-unpublished-import.md) | disallow `import` declarations of private things |
-| ⭐️ | [no-unpublished-require](./docs/rules/no-unpublished-require.md) | disallow `require()` expressions of private things |
-| ⭐️ | [no-unsupported-features](./docs/rules/no-unsupported-features.md) | disallow unsupported ECMAScript features on the specified version |
-| ⭐️ | [process-exit-as-throw](./docs/rules/process-exit-as-throw.md) | make `process.exit()` expressions the same code path as `throw` |
-| ⭐️✒️ | [shebang](./docs/rules/shebang.md) | enforce the correct usage of shebang |
+|      | Rule ID                                                            | Description                                                       |
+| :--- | :----------------------------------------------------------------- | :---------------------------------------------------------------- |
+|      | [no-extraneous-import](./docs/rules/no-extraneous-import.md)       | disallow `import` declarations of extraneous packages             |
+| ⭐️   | [no-extraneous-require](./docs/rules/no-extraneous-require.md)     | disallow `require()` expressions of extraneous packages           |
+|      | [no-missing-import](./docs/rules/no-missing-import.md)             | disallow `import` declarations of missing files                   |
+| ⭐️   | [no-missing-require](./docs/rules/no-missing-require.md)           | disallow `require()` expressions of missing files                 |
+| ⭐️   | [no-unpublished-bin](./docs/rules/no-unpublished-bin.md)           | disallow 'bin' files which are ignored by npm                     |
+|      | [no-unpublished-import](./docs/rules/no-unpublished-import.md)     | disallow `import` declarations of private things                  |
+| ⭐️   | [no-unpublished-require](./docs/rules/no-unpublished-require.md)   | disallow `require()` expressions of private things                |
+| ⭐️   | [no-unsupported-features](./docs/rules/no-unsupported-features.md) | disallow unsupported ECMAScript features on the specified version |
+| ⭐️   | [process-exit-as-throw](./docs/rules/process-exit-as-throw.md)     | make `process.exit()` expressions the same code path as `throw`   |
+| ⭐️✒️ | [shebang](./docs/rules/shebang.md)                                 | enforce the correct usage of shebang                              |
 
 ### Best Practices
-|    | Rule ID | Description |
-|:---|:--------|:------------|
-| ⭐️ | [no-deprecated-api](./docs/rules/no-deprecated-api.md) | disallow deprecated APIs |
+|      | Rule ID                                                | Description              |
+| :--- | :----------------------------------------------------- | :----------------------- |
+| ⭐️   | [no-deprecated-api](./docs/rules/no-deprecated-api.md) | disallow deprecated APIs |
 
 ### Stylistic Issues
-|    | Rule ID | Description |
-|:---|:--------|:------------|
-|  | [exports-style](./docs/rules/exports-style.md) | enforce either `module.exports` or `exports` |
+|      | Rule ID                                        | Description                                  |
+| :--- | :--------------------------------------------- | :------------------------------------------- |
+|      | [exports-style](./docs/rules/exports-style.md) | enforce either `module.exports` or `exports` |
 
 <!--RULES_TABLE_END-->
 
