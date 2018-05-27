@@ -157,11 +157,6 @@ ruleTester.run("no-missing-require", rule, {
             env: { node: true },
         },
         {
-            code: "require(777);",
-            filename: fixture("test.js"),
-            env: { node: true },
-        },
-        {
             code: "require(`foo${bar}`);", //eslint-disable-line no-template-curly-in-string
             filename: fixture("test.js"),
             env: { node: true, es6: true },
