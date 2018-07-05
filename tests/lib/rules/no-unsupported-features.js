@@ -1373,7 +1373,7 @@ ruleTester.run(
                 parserOptions: { ecmaVersion: 2017 },
                 env: { es6: true },
                 errors: [
-                    "Trailing commas in functions are not supported yet on Node 4.0.0.",
+                    "Trailing commas in functions are not supported yet on Node 6.0.0.",
                 ],
             },
             {
@@ -1391,7 +1391,7 @@ ruleTester.run(
                 parserOptions: { ecmaVersion: 2017 },
                 env: { es6: true },
                 errors: [
-                    "Trailing commas in functions are not supported yet on Node 4.0.0.",
+                    "Trailing commas in functions are not supported yet on Node 6.0.0.",
                 ],
             },
             {
