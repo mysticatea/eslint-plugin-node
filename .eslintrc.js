@@ -10,12 +10,23 @@ module.exports = {
     extends: ["plugin:mysticatea/es2015", "plugin:mysticatea/+eslint-plugin"],
     overrides: [
         {
-            files: ["**/rules/**/*.js"],
+            files: ["**/rules/*.js"],
             rules: {
                 "mysticatea/eslint-plugin/require-meta-docs-url": [
                     "error",
                     {
                         pattern: `https://github.com/mysticatea/eslint-plugin-node/blob/v${version}/docs/rules/{{name}}.md`,
+                    },
+                ],
+            },
+        },
+        {
+            files: ["**/rules/no-unsupported-features/*.js"],
+            rules: {
+                "mysticatea/eslint-plugin/require-meta-docs-url": [
+                    "error",
+                    {
+                        pattern: `https://github.com/mysticatea/eslint-plugin-node/blob/v${version}/docs/rules/no-unsupported-features/{{name}}.md`,
                     },
                 ],
             },
