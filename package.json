@@ -36,7 +36,6 @@
     "codecov": "nyc report -r lcovonly && codecov",
     "coverage": "nyc report -r lcov && opener ./coverage/lcov-report/index.html",
     "lint": "eslint lib scripts tests/lib .eslintrc.js",
-    "pretest": "npm run -s lint",
     "test": "nyc npm run -s test:_mocha",
     "test:_mocha": "_mocha tests/lib/**/*.js --reporter progress",
     "preversion": "npm t && npm run -s build",

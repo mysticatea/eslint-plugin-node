@@ -2,18 +2,20 @@ sudo: false
 
 language: node_js
 node_js:
-  - "6"
+  - "6.5.0"
   - "8"
   - "10"
 
 env:
   - ESLINT_VERSION=4
+  - ESLINT_VERSION=5
 
 before_script:
   - npm i --no-save async
   - npm i --no-save eslint@$ESLINT_VERSION; true
 
 script:
+  - if [ $ESLINT_VERSION = "5" ]; then npm run lint; else true; fi
   - npm test
 
 after_success:
