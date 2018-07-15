@@ -62,6 +62,7 @@ $ npm install --save-dev eslint eslint-plugin-node
 | [node/no-unsupported-features/assert](./docs/rules/no-unsupported-features/assert.md) | disallow unsupported `assert` APIs on the specified version | ⭐️ |
 | [node/no-unsupported-features/async_hooks](./docs/rules/no-unsupported-features/async_hooks.md) | disallow unsupported `async_hooks` APIs on the specified version | ⭐️ |
 | [node/no-unsupported-features/child_process](./docs/rules/no-unsupported-features/child_process.md) | disallow unsupported `child_process` APIs on the specified version | ⭐️ |
+| [node/no-unsupported-features/console](./docs/rules/no-unsupported-features/console.md) | disallow unsupported `console` APIs on the specified version | ⭐️ |
 | [node/no-unsupported-features/ecma](./docs/rules/no-unsupported-features/ecma.md) | disallow unsupported ECMAScript features on the specified version | ⭐️ |
 | [node/process-exit-as-throw](./docs/rules/process-exit-as-throw.md) | make `process.exit()` expressions the same code path as `throw` | ⭐️ |
 | [node/shebang](./docs/rules/shebang.md) | enforce the correct usage of shebang | ⭐️✒️ |
