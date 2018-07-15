@@ -61,6 +61,7 @@ $ npm install --save-dev eslint eslint-plugin-node
 | [node/no-unpublished-require](./docs/rules/no-unpublished-require.md) | disallow `require()` expressions of private things | ⭐️ |
 | [node/no-unsupported-features/assert](./docs/rules/no-unsupported-features/assert.md) | disallow unsupported `assert` APIs on the specified version | ⭐️ |
 | [node/no-unsupported-features/async_hooks](./docs/rules/no-unsupported-features/async_hooks.md) | disallow unsupported `async_hooks` APIs on the specified version | ⭐️ |
+| [node/no-unsupported-features/buffer](./docs/rules/no-unsupported-features/buffer.md) | disallow unsupported `buffer` APIs on the specified version | ⭐️ |
 | [node/no-unsupported-features/child_process](./docs/rules/no-unsupported-features/child_process.md) | disallow unsupported `child_process` APIs on the specified version | ⭐️ |
 | [node/no-unsupported-features/console](./docs/rules/no-unsupported-features/console.md) | disallow unsupported `console` APIs on the specified version | ⭐️ |
 | [node/no-unsupported-features/crypto](./docs/rules/no-unsupported-features/crypto.md) | disallow unsupported `crypto` APIs on the specified version | ⭐️ |
