@@ -25,7 +25,7 @@ For example of `package.json`:
 }
 ```
 
-If you omit the [engines] field, this rule chooses `>=6.0.0` as the configured Node.js version since `6.0.0` is the minimum version the community is maintaining (see also [Node.js Release Working Group](https://github.com/nodejs/Release#readme)).
+If you omit the [engines] field, this rule chooses `>=6.0.0` as the configured Node.js version since `6` is the minimum version the community is maintaining (see also [Node.js Release Working Group](https://github.com/nodejs/Release#readme)).
 
 ### Supported ECMAScript features
 

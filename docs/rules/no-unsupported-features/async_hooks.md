@@ -1,14 +1,14 @@
-# Disallow unsupported `assert` APIs on the specified version (no-unsupported-features/assert)
+# Disallow unsupported `async_hooks` APIs on the specified version (no-unsupported-features/async_hooks)
 
 Node.js community is improving built-in modules continuously.
 You can check [Node.js Documentation](https://nodejs.org/api/) to know which Node.js version supports each Node.js API.
 
-This rule reports unsupported `assert` module's APIs on the configured Node.js version as lint errors.
+This rule reports unsupported `async_hooks` module's APIs on the configured Node.js version as lint errors.
 Editor integrations of ESLint would be useful to know it in real-time.
 
 ## Rule Details
 
-This rule reports APIs of the `assert` module on the basis of [Node.js v10.6.0 Documentation](https://nodejs.org/docs/v10.6.0/api/assert.html).
+This rule reports APIs of the `async_hooks` module on the basis of [Node.js v10.6.0 Documentation](https://nodejs.org/docs/v10.6.0/api/async_hooks.html).
 
 ### Configured Node.js version range
 
@@ -33,7 +33,7 @@ If you omit the [engines] field, this rule chooses `>=6.0.0` as the configured N
 
 ```json
 {
-    "node/no-unsupported-features/assert": ["error", {
+    "node/no-unsupported-features/async_hooks": ["error", {
         "version": ">=6.0.0",
         "ignores": []
     }]
@@ -54,12 +54,16 @@ You can use this `ignores` option to ignore the given features.
 
 The `"ignores"` option accepts an array of the following strings.
 
-- `"assert.strict"`
-- `"assert.strict.doesNotReject"`
-- `"assert.strict.rejects"`
-- `"assert.deepStrictEqual"`
-- `"assert.doesNotReject"`
-- `"assert.notDeepStrictEqual"`
-- `"assert.rejects"`
+- `"async_hooks"`
+- `"async_hooks.createHook"`
+
+### Known limitations
+
+This rule cannot find non-static things.
+E.g., the use of instance methods.
+
+This means the following methods are not reported:
+
+- [asyncResource.runInAsyncScope(fn[, thisArg, ...args])](https://nodejs.org/docs/v10.6.0/api/async_hooks.html#async_hooks_asyncresource_runinasyncscope_fn_thisarg_args) (Added in v9.6.0)
 
 [engines]: https://docs.npmjs.com/files/package.json#engines
