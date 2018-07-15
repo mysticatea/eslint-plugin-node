@@ -60,7 +60,7 @@ new RuleTester({
             options: [
                 {
                     version: "7.9.9",
-                    ignores: ["async_hooks"],
+                    ignores: ["async_hooks", "async_hooks.createHook"],
                 },
             ],
         },
@@ -134,6 +134,14 @@ new RuleTester({
                     data: {
                         name: "async_hooks",
                         supported: "8.0.0",
+                        version: "7.9.9",
+                    },
+                },
+                {
+                    messageId: "unsupported",
+                    data: {
+                        name: "async_hooks.createHook",
+                        supported: "8.1.0",
                         version: "7.9.9",
                     },
                 },
