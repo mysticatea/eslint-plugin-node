@@ -6,7 +6,7 @@
 
 const path = require("path")
 const RuleTester = require("eslint").RuleTester
-const { configs } = require("eslint-plugin-mysticatea")
+const { configs } = require("@mysticatea/eslint-plugin")
 const rule = require("../../../../lib/rules/no-unsupported-features/ecma")
 
 /**

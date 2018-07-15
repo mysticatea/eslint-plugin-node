@@ -781,6 +781,7 @@ ruleTester.run("no-deprecated-api", rule, {
             code: "root;",
             errors: ["'root' was deprecated since v6. Use 'global' instead."],
             env: { node: true },
+            globals: { root: false },
         },
         {
             code: "process.EventEmitter;",

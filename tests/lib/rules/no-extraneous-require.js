@@ -30,10 +30,6 @@ tester.run("no-extraneous-require", rule, {
             filename: fixture("dependencies/a.js"),
         },
         {
-            code: "require('b'+'bb')",
-            filename: fixture("dependencies/a.js"),
-        },
-        {
             code: "require(bbb)",
             filename: fixture("dependencies/a.js"),
         },
@@ -92,6 +88,11 @@ tester.run("no-extraneous-require", rule, {
             code: "require('bbb')",
             errors: ['"bbb" is extraneous.'],
             filename: fixture("optionalDependencies/a.js"),
+        },
+        {
+            code: "require('b'+'bb')",
+            errors: ['"bbb" is extraneous.'],
+            filename: fixture("dependencies/a.js"),
         },
     ],
 })

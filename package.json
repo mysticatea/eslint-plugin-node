@@ -14,29 +14,28 @@
   },
   "dependencies": {
     "eslint-plugin-es": "^1.3.1",
-    "eslint-utils": "^1.1.0",
-    "ignore": "^3.3.6",
+    "eslint-utils": "^1.3.1",
+    "ignore": "^4.0.2",
     "minimatch": "^3.0.4",
-    "resolve": "^1.3.3",
-    "semver": "^5.4.1"
+    "resolve": "^1.8.1",
+    "semver": "^5.5.0"
   },
   "devDependencies": {
-    "codecov": "^3.0.0",
-    "eslint": "^4.17.0",
-    "eslint-plugin-mysticatea": "^5.0.0-beta.2",
+    "@mysticatea/eslint-plugin": "^5.1.0",
+    "codecov": "^3.0.4",
+    "eslint": "^5.1.0",
     "fast-glob": "^2.2.2",
-    "mocha": "^5.0.0",
-    "nyc": "^11.0.1",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
     "opener": "^1.4.3",
-    "rimraf": "^2.6.1",
-    "shelljs": "^0.8.1"
+    "rimraf": "^2.6.1"
   },
   "scripts": {
     "build": "node scripts/update.js",
     "clean": "rimraf .nyc_output coverage",
     "codecov": "nyc report -r lcovonly && codecov",
     "coverage": "nyc report -r lcov && opener ./coverage/lcov-report/index.html",
-    "lint": "eslint lib tests/lib .eslintrc.js index.js",
+    "lint": "eslint lib scripts tests/lib .eslintrc.js",
     "pretest": "npm run -s lint",
     "test": "nyc npm run -s test:_mocha",
     "test:_mocha": "_mocha tests/lib/**/*.js --reporter progress",
