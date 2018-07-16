@@ -183,42 +183,42 @@ ruleTester.run("no-deprecated-api", rule, {
         {
             code: "new (require('buffer').Buffer)()",
             errors: [
-                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { node: true },
         },
         {
             code: "require('buffer').Buffer()",
             errors: [
-                "'buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { node: true },
         },
         {
             code: "var b = require('buffer'); new b.Buffer()",
             errors: [
-                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { node: true },
         },
         {
             code: "var b = require('buffer'); new b['Buffer']()",
             errors: [
-                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { node: true },
         },
         {
             code: "var b = require('buffer'); new b[`Buffer`]()",
             errors: [
-                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { node: true, es6: true },
         },
         {
             code: "var b = require('buffer').Buffer; new b()",
             errors: [
-                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { node: true },
         },
@@ -226,36 +226,36 @@ ruleTester.run("no-deprecated-api", rule, {
             code:
                 "var b; new ((b = require('buffer')).Buffer)(); new b.Buffer()",
             errors: [
-                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
-                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { node: true },
         },
         {
             code: "var {Buffer: b} = require('buffer'); new b()",
             errors: [
-                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { node: true, es6: true },
         },
         {
             code: "var {['Buffer']: b = null} = require('buffer'); new b()",
             errors: [
-                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { node: true, es6: true },
         },
         {
             code: "var {'Buffer': b = null} = require('buffer'); new b()",
             errors: [
-                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { node: true, es6: true },
         },
         {
             code: "var {Buffer: b = require('buffer').Buffer} = {}; new b()",
             errors: [
-                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { node: true, es6: true },
         },
@@ -647,7 +647,7 @@ ruleTester.run("no-deprecated-api", rule, {
             code: "import b from 'buffer'; new b.Buffer()",
             parserOptions: { sourceType: "module" },
             errors: [
-                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { es6: true },
         },
@@ -655,7 +655,7 @@ ruleTester.run("no-deprecated-api", rule, {
             code: "import * as b from 'buffer'; new b.Buffer()",
             parserOptions: { sourceType: "module" },
             errors: [
-                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { es6: true },
         },
@@ -663,7 +663,7 @@ ruleTester.run("no-deprecated-api", rule, {
             code: "import * as b from 'buffer'; new b.default.Buffer()",
             parserOptions: { sourceType: "module" },
             errors: [
-                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { es6: true },
         },
@@ -671,7 +671,7 @@ ruleTester.run("no-deprecated-api", rule, {
             code: "import {Buffer as b} from 'buffer'; new b()",
             parserOptions: { sourceType: "module" },
             errors: [
-                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { es6: true },
         },
@@ -724,7 +724,7 @@ ruleTester.run("no-deprecated-api", rule, {
                 },
             ],
             errors: [
-                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { node: true },
         },
@@ -738,7 +738,7 @@ ruleTester.run("no-deprecated-api", rule, {
                 },
             ],
             errors: [
-                "'buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'buffer.Buffer()' was deprecated since v6. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
             env: { node: true },
         },
@@ -749,14 +749,14 @@ ruleTester.run("no-deprecated-api", rule, {
         {
             code: "new Buffer;",
             errors: [
-                "'new Buffer()' was deprecated since v6. Use 'Buffer.alloc()' or 'Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new Buffer()' was deprecated since v6. Use 'Buffer.alloc()' or 'Buffer.from()' instead.",
             ],
             env: { node: true },
         },
         {
             code: "Buffer();",
             errors: [
-                "'Buffer()' was deprecated since v6. Use 'Buffer.alloc()' or 'Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'Buffer()' was deprecated since v6. Use 'Buffer.alloc()' or 'Buffer.from()' instead.",
             ],
             env: { node: true },
         },
@@ -823,7 +823,7 @@ ruleTester.run("no-deprecated-api", rule, {
                 },
             ],
             errors: [
-                "'new Buffer()' was deprecated since v6. Use 'Buffer.alloc()' or 'Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'new Buffer()' was deprecated since v6. Use 'Buffer.alloc()' or 'Buffer.from()' instead.",
             ],
             env: { node: true },
         },
@@ -840,7 +840,7 @@ ruleTester.run("no-deprecated-api", rule, {
                 },
             ],
             errors: [
-                "'Buffer()' was deprecated since v6. Use 'Buffer.alloc()' or 'Buffer.from()' (use 'https://www.npmjs.com/package/safe-buffer' for '<4.5.0') instead.",
+                "'Buffer()' was deprecated since v6. Use 'Buffer.alloc()' or 'Buffer.from()' instead.",
             ],
             env: { node: true },
         },

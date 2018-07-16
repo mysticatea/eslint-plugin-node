@@ -24,6 +24,11 @@ const {exists} = require("fs");       /*ERROR: 'fs.exists' was deprecated since 
 This rule reports the following deprecated API.
 
 - _linklist (undocumented)
+- assert
+    - [deepEqual](https://nodejs.org/dist/v10.0.0/docs/api/assert.html#assert_assert_deepequal_actual_expected_message)
+    - [equal](https://nodejs.org/dist/v10.0.0/docs/api/assert.html#assert_assert_equal_actual_expected_message)
+    - [notDeepEqual](https://nodejs.org/dist/v10.0.0/docs/api/assert.html#assert_assert_notdeepequal_actual_expected_message)
+    - [notEqual](https://nodejs.org/dist/v10.0.0/docs/api/assert.html#assert_assert_notequal_actual_expected_message)
 - async_hooks
     - [currentId](https://nodejs.org/dist/v8.2.0/docs/api/deprecations.html#deprecations_dep0070_async_hooks_currentid)
     - [triggerId](https://nodejs.org/dist/v8.2.0/docs/api/deprecations.html#deprecations_dep0071_async_hooks_triggerid)
@@ -33,7 +38,11 @@ This rule reports the following deprecated API.
 - constants (undocumented)
 - crypto
     - `Credentials` (undocumented)
+    - [DEFAULT_ENCODING](https://nodejs.org/dist/v10.0.0/docs/api/crypto.html#crypto_crypto_default_encoding)
     - [createCredentials](https://nodejs.org/dist/v0.12.0/docs/api/crypto.html#crypto_crypto_createcredentials_details)
+    - [createCipher](https://nodejs.org/dist/v10.0.0/docs/api/crypto.html#crypto_crypto_createcipher_algorithm_password_options)
+    - [createDecipher](https://nodejs.org/dist/v10.0.0/docs/api/crypto.html#crypto_crypto_createdecipher_algorithm_password_options)
+    - [fips](https://nodejs.org/dist/v10.0.0/docs/api/crypto.html#crypto_crypto_fips)
 - [domain](https://nodejs.org/dist/v4.0.0/docs/api/domain.html#domain_domain)
 - events
     - [EventEmitter.listenerCount](https://nodejs.org/dist/v4.0.0/docs/api/events.html#events_class_method_eventemitter_listenercount_emitter_event)
@@ -62,6 +71,7 @@ This rule reports the following deprecated API.
     - [_makeLong](https://nodejs.org/dist/v9.0.0/docs/api/deprecations.html#deprecations_dep0080_path_makelong)
 - process
     - `EventEmitter` (undocumented)
+    - `assert` (undocumented)
 - [punycode](https://nodejs.org/dist/v7.0.0/docs/api/punycode.html)
 - readline
     - `codePointAt` (undocumented)
@@ -71,11 +81,15 @@ This rule reports the following deprecated API.
 - repl
     - [process.env.NODE_REPL_HISTORY_FILE](https://nodejs.org/dist/v4.0.0/docs/api/repl.html#repl_node_repl_history_file)
 - [sys](https://nodejs.org/api/deprecations.html#deprecations_dep0025_require_sys)
+- timers
+    - `enroll` (undocumented)
+    - `unenroll` (undocumented)
 - tls
     - [CleartextStream](https://nodejs.org/dist/v0.10.0/docs/api/tls.html#tls_class_tls_cleartextstream)
       (this class was removed on v0.11.3, but never deprecated in documents)
     - [CryptoStream](https://nodejs.org/dist/v0.12.0/docs/api/tls.html#tls_class_cryptostream)
     - [SecurePair](https://nodejs.org/dist/v6.0.0/docs/api/tls.html#tls_class_securepair)
+    - `convertNPNProtocols` (undocumented)
     - [createSecurePair](https://nodejs.org/dist/v6.0.0/docs/api/tls.html#tls_tls_createsecurepair_context_isserver_requestcert_rejectunauthorized_options)
     - [parseCertString](https://nodejs.org/dist/v8.6.0/docs/api/deprecations.html#deprecations_dep0076_tls_parsecertstring)
 - tty
@@ -134,6 +148,10 @@ This rule ignores APIs that `ignoreModuleItems` includes.
 This option can include the following values:
 
 - `_linklist`
+- `assert.deepEqual`
+- `assert.equal`
+- `assert.notDeepEqual`
+- `assert.notEqual`
 - `async_hooks.currentId`
 - `async_hooks.triggerId`
 - `buffer.Buffer()`
@@ -141,7 +159,11 @@ This option can include the following values:
 - `buffer.SlowBuffer`
 - `constants`
 - `crypto.Credentials`
+- `crypto.DEFAULT_ENCODING`
+- `crypto.createCipher`
 - `crypto.createCredentials`
+- `crypto.createDecipher`
+- `crypto.fips`
 - `domain`
 - `events.EventEmitter.listenerCount`
 - `events.listenerCount`
@@ -159,15 +181,21 @@ This option can include the following values:
 - `module._debug`
 - `os.tmpDir`
 - `path._makeLong`
+- `process.EventEmitter`
+- `process.assert`
+- `process.env.NODE_REPL_HISTORY_FILE`
 - `punycode`
 - `readline.codePointAt`
 - `readline.getStringWidth`
 - `readline.isFullWidthCodePoint`
 - `readline.stripVTControlCharacters`
 - `sys`
+- `timers.enroll`
+- `timers.unenroll`
 - `tls.CleartextStream`
 - `tls.CryptoStream`
 - `tls.SecurePair`
+- `tls.convertNPNProtocols`
 - `tls.createSecurePair`
 - `tls.parseCertString`
 - `tty.setRawMode`
@@ -217,6 +245,7 @@ This option can include the following values:
 - `Intl.v8BreakIterator`
 - `require.extensions`
 - `process.EventEmitter`
+- `process.assert`
 - `process.env.NODE_REPL_HISTORY_FILE`
 
 Examples of :+1: **correct** code for the `{"ignoreGlobalItems": ["new Buffer()"]}`:
