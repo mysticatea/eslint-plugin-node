@@ -32,7 +32,7 @@ For example of `package.json`:
 }
 ```
 
-If the [engines] field is omitted, this rule chooses `4` since it's the minimum version the community is maintaining.
+If the [engines] field is omitted, this rule chooses `6` since it's the minimum version the community is maintaining.
 
 Examples of :-1: **incorrect** code for this rule:
 

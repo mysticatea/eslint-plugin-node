@@ -37,7 +37,7 @@ $ npm install --save-dev eslint eslint-plugin-node
     "name": "your-module",
     "version": "1.0.0",
     "engines": {
-        "node": ">=4.0.0"
+        "node": ">=6.0.0"
     }
 }
 ```
