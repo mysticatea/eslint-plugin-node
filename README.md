@@ -76,6 +76,11 @@ $ npm install --save-dev eslint eslint-plugin-node
 | Rule ID | Description |    |
 |:--------|:------------|:--:|
 | [node/exports-style](./docs/rules/exports-style.md) | enforce either `module.exports` or `exports` |  |
+| [node/prefer-global/buffer](./docs/rules/prefer-global/buffer.md) | enforce either `Buffer` or `require("buffer").Buffer` |  |
+| [node/prefer-global/console](./docs/rules/prefer-global/console.md) | enforce either `console` or `require("console")` |  |
+| [node/prefer-global/process](./docs/rules/prefer-global/process.md) | enforce either `process` or `require("process")` |  |
+| [node/prefer-global/url-search-params](./docs/rules/prefer-global/url-search-params.md) | enforce either `URLSearchParams` or `require("url").URLSearchParams` |  |
+| [node/prefer-global/url](./docs/rules/prefer-global/url.md) | enforce either `URL` or `require("url").URL` |  |
 
 <!--RULES_TABLE_END-->
 

@@ -31,5 +31,16 @@ module.exports = {
                 ],
             },
         },
+        {
+            files: ["**/rules/prefer-global/*.js"],
+            rules: {
+                "@mysticatea/eslint-plugin/require-meta-docs-url": [
+                    "error",
+                    {
+                        pattern: `https://github.com/mysticatea/eslint-plugin-node/blob/v${version}/docs/rules/prefer-global/{{name}}.md`,
+                    },
+                ],
+            },
+        },
     ],
 }
