@@ -71,6 +71,7 @@ $ npm install --save-dev eslint eslint-plugin-node
 | [node/no-unsupported-features/http2](./docs/rules/no-unsupported-features/http2.md) | disallow unsupported `http2` APIs on the specified version | ⭐️ |
 | [node/no-unsupported-features/inspector](./docs/rules/no-unsupported-features/inspector.md) | disallow unsupported `inspector` APIs on the specified version | ⭐️ |
 | [node/no-unsupported-features/module](./docs/rules/no-unsupported-features/module.md) | disallow unsupported `module` APIs on the specified version | ⭐️ |
+| [node/no-unsupported-features/os](./docs/rules/no-unsupported-features/os.md) | disallow unsupported `os` APIs on the specified version | ⭐️ |
 | [node/process-exit-as-throw](./docs/rules/process-exit-as-throw.md) | make `process.exit()` expressions the same code path as `throw` | ⭐️ |
 | [node/shebang](./docs/rules/shebang.md) | enforce the correct usage of shebang | ⭐️✒️ |
 
