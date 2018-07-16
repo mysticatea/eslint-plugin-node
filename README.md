@@ -77,6 +77,7 @@ $ npm install --save-dev eslint eslint-plugin-node
 | [node/no-unsupported-features/process](./docs/rules/no-unsupported-features/process.md) | disallow unsupported `process` APIs on the specified version | ⭐️ |
 | [node/no-unsupported-features/stream](./docs/rules/no-unsupported-features/stream.md) | disallow unsupported `stream` APIs on the specified version | ⭐️ |
 | [node/no-unsupported-features/trace_events](./docs/rules/no-unsupported-features/trace_events.md) | disallow unsupported `trace_events` APIs on the specified version | ⭐️ |
+| [node/no-unsupported-features/url](./docs/rules/no-unsupported-features/url.md) | disallow unsupported `url` APIs on the specified version | ⭐️ |
 | [node/process-exit-as-throw](./docs/rules/process-exit-as-throw.md) | make `process.exit()` expressions the same code path as `throw` | ⭐️ |
 | [node/shebang](./docs/rules/shebang.md) | enforce the correct usage of shebang | ⭐️✒️ |
 
