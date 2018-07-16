@@ -21,6 +21,7 @@ const config = {
         Atomics: false,
         SharedArrayBuffer: false,
     },
+    plugins: ["node"],
     rules: rules.filter(rule => !rule.deprecated).reduce(
         (obj, rule) => {
             obj[rule.id] = rule.recommended ? "error" : "off"
