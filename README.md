@@ -81,6 +81,7 @@ $ npm install --save-dev eslint eslint-plugin-node
 | [node/no-unsupported-features/util](./docs/rules/no-unsupported-features/util.md) | disallow unsupported `util` APIs on the specified version | ⭐️ |
 | [node/no-unsupported-features/v8](./docs/rules/no-unsupported-features/v8.md) | disallow unsupported `v8` APIs on the specified version | ⭐️ |
 | [node/no-unsupported-features/vm](./docs/rules/no-unsupported-features/vm.md) | disallow unsupported `vm` APIs on the specified version | ⭐️ |
+| [node/no-unsupported-features/worker_threads](./docs/rules/no-unsupported-features/worker_threads.md) | disallow unsupported `worker_threads` APIs on the specified version | ⭐️ |
 | [node/process-exit-as-throw](./docs/rules/process-exit-as-throw.md) | make `process.exit()` expressions the same code path as `throw` | ⭐️ |
 | [node/shebang](./docs/rules/shebang.md) | enforce the correct usage of shebang | ⭐️✒️ |
 
