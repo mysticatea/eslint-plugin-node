@@ -14,10 +14,10 @@ Additional ESLint's rules for Node.js
 $ npm install --save-dev eslint eslint-plugin-node
 ```
 
-- Requires Node.js `^4.0.0 || >=6.0.0`
-- Requires ESLint `>=3.1.0`
+- Requires Node.js `>=6.0.0`
+- Requires ESLint `>=4.19.1`
 
-**Note:** It recommends a use of [the "engines" field of package.json](https://docs.npmjs.com/files/package.json#engines). The "engines" field is used by [no-unsupported-features](docs/rules/no-unsupported-features.md) rule.
+**Note:** It recommends a use of [the "engines" field of package.json](https://docs.npmjs.com/files/package.json#engines). The "engines" field is used by `node/no-unsupported-features/*` rules.
 
 **.eslintrc.json** (An example)
 
@@ -25,7 +25,12 @@ $ npm install --save-dev eslint eslint-plugin-node
 {
     "extends": ["eslint:recommended", "plugin:node/recommended"],
     "rules": {
-        "node/exports-style": ["error", "module.exports"]
+        "node/exports-style": ["error", "module.exports"],
+        "node/prefer-global/buffer": ["error", "always"],
+        "node/prefer-global/console": ["error", "always"],
+        "node/prefer-global/process": ["error", "always"],
+        "node/prefer-global/url-search-params": ["error", "always"],
+        "node/prefer-global/url": ["error", "always"],
     }
 }
 ```
@@ -37,7 +42,7 @@ $ npm install --save-dev eslint eslint-plugin-node
     "name": "your-module",
     "version": "1.0.0",
     "engines": {
-        "node": ">=4.0.0"
+        "node": ">=6.0.0"
     }
 }
 ```
@@ -92,8 +97,9 @@ This preset config:
 - enables the environment of ES2015 (ES6) and Node.js.
 - enables rules which are given :star: in the above table.
 - enables [no-process-exit](http://eslint.org/docs/rules/no-process-exit) rule because [the official document](https://nodejs.org/api/process.html#process_process_exit_code) does not recommend a use of `process.exit()`.
-- adds `{ecmaVersion: 2018}` into `parserOptions`.
+- adds `{ecmaVersion: 2019}` into `parserOptions`.
 - adds `Atomics` and `SharedArrayBuffer` into `globals`.
+- adds this plugin into `plugins`.
 
 ## 👫 FAQ
 
