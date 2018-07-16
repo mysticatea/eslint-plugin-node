@@ -68,6 +68,7 @@ $ npm install --save-dev eslint eslint-plugin-node
 | [node/no-unsupported-features/dns](./docs/rules/no-unsupported-features/dns.md) | disallow unsupported `dns` APIs on the specified version | ⭐️ |
 | [node/no-unsupported-features/ecma](./docs/rules/no-unsupported-features/ecma.md) | disallow unsupported ECMAScript features on the specified version | ⭐️ |
 | [node/no-unsupported-features/fs](./docs/rules/no-unsupported-features/fs.md) | disallow unsupported `fs` APIs on the specified version | ⭐️ |
+| [node/no-unsupported-features/http2](./docs/rules/no-unsupported-features/http2.md) | disallow unsupported `http2` APIs on the specified version | ⭐️ |
 | [node/process-exit-as-throw](./docs/rules/process-exit-as-throw.md) | make `process.exit()` expressions the same code path as `throw` | ⭐️ |
 | [node/shebang](./docs/rules/shebang.md) | enforce the correct usage of shebang | ⭐️✒️ |
 
