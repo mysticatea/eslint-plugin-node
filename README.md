@@ -59,29 +59,9 @@ $ npm install --save-dev eslint eslint-plugin-node
 | [node/no-unpublished-bin](./docs/rules/no-unpublished-bin.md) | disallow 'bin' files which are ignored by npm | ⭐️ |
 | [node/no-unpublished-import](./docs/rules/no-unpublished-import.md) | disallow `import` declarations of private things |  |
 | [node/no-unpublished-require](./docs/rules/no-unpublished-require.md) | disallow `require()` expressions of private things | ⭐️ |
-| [node/no-unsupported-features/assert](./docs/rules/no-unsupported-features/assert.md) | disallow unsupported `assert` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/async_hooks](./docs/rules/no-unsupported-features/async_hooks.md) | disallow unsupported `async_hooks` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/buffer](./docs/rules/no-unsupported-features/buffer.md) | disallow unsupported `buffer` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/child_process](./docs/rules/no-unsupported-features/child_process.md) | disallow unsupported `child_process` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/console](./docs/rules/no-unsupported-features/console.md) | disallow unsupported `console` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/crypto](./docs/rules/no-unsupported-features/crypto.md) | disallow unsupported `crypto` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/dns](./docs/rules/no-unsupported-features/dns.md) | disallow unsupported `dns` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/ecma](./docs/rules/no-unsupported-features/ecma.md) | disallow unsupported ECMAScript features on the specified version | ⭐️ |
-| [node/no-unsupported-features/fs](./docs/rules/no-unsupported-features/fs.md) | disallow unsupported `fs` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/http2](./docs/rules/no-unsupported-features/http2.md) | disallow unsupported `http2` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/inspector](./docs/rules/no-unsupported-features/inspector.md) | disallow unsupported `inspector` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/module](./docs/rules/no-unsupported-features/module.md) | disallow unsupported `module` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/os](./docs/rules/no-unsupported-features/os.md) | disallow unsupported `os` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/path](./docs/rules/no-unsupported-features/path.md) | disallow unsupported `path` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/perf_hooks](./docs/rules/no-unsupported-features/perf_hooks.md) | disallow unsupported `perf_hooks` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/process](./docs/rules/no-unsupported-features/process.md) | disallow unsupported `process` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/stream](./docs/rules/no-unsupported-features/stream.md) | disallow unsupported `stream` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/trace_events](./docs/rules/no-unsupported-features/trace_events.md) | disallow unsupported `trace_events` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/url](./docs/rules/no-unsupported-features/url.md) | disallow unsupported `url` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/util](./docs/rules/no-unsupported-features/util.md) | disallow unsupported `util` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/v8](./docs/rules/no-unsupported-features/v8.md) | disallow unsupported `v8` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/vm](./docs/rules/no-unsupported-features/vm.md) | disallow unsupported `vm` APIs on the specified version | ⭐️ |
-| [node/no-unsupported-features/worker_threads](./docs/rules/no-unsupported-features/worker_threads.md) | disallow unsupported `worker_threads` APIs on the specified version | ⭐️ |
+| [node/no-unsupported-features/es-builtins](./docs/rules/no-unsupported-features/es-builtins.md) | disallow unsupported ECMAScript built-ins on the specified version | ⭐️ |
+| [node/no-unsupported-features/es-syntax](./docs/rules/no-unsupported-features/es-syntax.md) | disallow unsupported ECMAScript syntax on the specified version | ⭐️ |
+| [node/no-unsupported-features/node-builtins](./docs/rules/no-unsupported-features/node-builtins.md) | disallow unsupported Node.js built-in APIs on the specified version | ⭐️ |
 | [node/process-exit-as-throw](./docs/rules/process-exit-as-throw.md) | make `process.exit()` expressions the same code path as `throw` | ⭐️ |
 | [node/shebang](./docs/rules/shebang.md) | enforce the correct usage of shebang | ⭐️✒️ |
 

@@ -7,7 +7,7 @@
 const path = require("path")
 const RuleTester = require("eslint").RuleTester
 const { configs } = require("@mysticatea/eslint-plugin")
-const rule = require("../../../../lib/rules/no-unsupported-features/ecma")
+const rule = require("../../../../lib/rules/no-unsupported-features/es-syntax")
 
 /**
  * Makes a file path to a fixture.
@@ -24,27 +24,26 @@ function fixture(name) {
 
 /**
  * Clone given invalid patterns with adding `ignores` option.
- * @param {string[]} keywords The keywords of `ignores` option.
+ * @param {string} keyword The keyword of `ignores` option.
  * @returns {function(pattern:object):object} The cloned pattern.
  */
-function ignores(keywords) {
-    return original =>
-        keywords.map(key => {
-            const pattern = Object.assign({}, original)
-            delete pattern.error
+function ignores(keyword) {
+    return original => {
+        const pattern = Object.assign({}, original)
+        delete pattern.error
 
-            pattern.options = pattern.options.slice()
-            pattern.options[0] = Object.assign({}, pattern.options[0])
-            if (pattern.options[0].ignores) {
-                pattern.options[0].ignores = pattern.options[0].ignores.concat([
-                    key,
-                ])
-            } else {
-                pattern.options[0].ignores = [key]
-            }
+        pattern.options = pattern.options.slice()
+        pattern.options[0] = Object.assign({}, pattern.options[0])
+        if (pattern.options[0].ignores) {
+            pattern.options[0].ignores = pattern.options[0].ignores.concat([
+                keyword,
+            ])
+        } else {
+            pattern.options[0].ignores = [keyword]
+        }
 
-            return pattern
-        })
+        return pattern
+    }
 }
 
 /**
@@ -58,13 +57,13 @@ function concat(patterns) {
         invalid: [],
     }
 
-    for (const { keywords, valid, invalid } of patterns) {
+    for (const { keyword, valid, invalid } of patterns) {
         ret.valid.push(...valid)
         ret.invalid.push(...invalid)
 
         // Add the invalid patterns with `ignores` option into the valid patterns.
-        for (const ignoringPatterns of invalid.map(ignores(keywords))) {
-            ret.valid.push(...ignoringPatterns)
+        if (keyword) {
+            ret.valid.push(...invalid.map(ignores(keyword)))
         }
     }
 
@@ -76,14 +75,14 @@ const ruleTester = new RuleTester({
     globals: Object.assign({}, configs.es2015.globals, configs.es2017.globals),
 })
 ruleTester.run(
-    "no-unsupported-features/ecma",
+    "no-unsupported-features/es-syntax",
     rule,
     concat([
         //----------------------------------------------------------------------
         // ES2015
         //----------------------------------------------------------------------
         {
-            keywords: ["arrowFunctions", "syntax"],
+            keyword: "arrowFunctions",
             valid: [
                 {
                     code: "function f() {}",
@@ -126,7 +125,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["binaryNumericLiterals", "syntax"],
+            keyword: "binaryNumericLiterals",
             valid: [
                 {
                     code: "0x01",
@@ -155,7 +154,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["blockScopedFunctions", "syntax"],
+            keyword: "blockScopedFunctions",
             valid: [
                 {
                     code: "'use strict'; if (a) { function f() {} }",
@@ -200,7 +199,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["blockScopedVariables", "syntax"],
+            keyword: "blockScopedVariables",
             valid: [
                 {
                     code: "var a = 0",
@@ -275,7 +274,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["classes", "syntax"],
+            keyword: "classes",
             valid: [
                 {
                     code: "'use strict'; class A {}",
@@ -318,7 +317,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["computedProperties", "syntax"],
+            keyword: "computedProperties",
             valid: [
                 {
                     code: "({ 0: 0, key: 1, 'key2': 2, key3, key4() {} })",
@@ -389,7 +388,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["defaultParameters", "syntax"],
+            keyword: "defaultParameters",
             valid: [
                 {
                     code: "a = 0",
@@ -430,30 +429,6 @@ ruleTester.run(
                 {
                     code: "(class { key(a = 0) {} })",
                     options: [{ version: "6.0.0" }],
-                },
-                {
-                    code: "function f(a = 0) {}",
-                    options: [{ version: "5.9.9", ignores: ["syntax"] }],
-                },
-                {
-                    code: "(function(a = 0) {})",
-                    options: [{ version: "5.9.9", ignores: ["syntax"] }],
-                },
-                {
-                    code: "((a = 0) => a)",
-                    options: [{ version: "5.9.9", ignores: ["syntax"] }],
-                },
-                {
-                    code: "({ key(a = 0) {} })",
-                    options: [{ version: "5.9.9", ignores: ["syntax"] }],
-                },
-                {
-                    code: "class A { key(a = 0) {} }",
-                    options: [{ version: "5.9.9", ignores: ["syntax"] }],
-                },
-                {
-                    code: "(class { key(a = 0) {} })",
-                    options: [{ version: "5.9.9", ignores: ["syntax"] }],
                 },
                 {
                     code: "function f(a = 0) {}",
@@ -562,7 +537,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["destructuring", "syntax"],
+            keyword: "destructuring",
             valid: [
                 {
                     code: "function f(a = 0) {}",
@@ -688,7 +663,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["forOfLoops", "syntax"],
+            keyword: "forOfLoops",
             valid: [
                 {
                     code: "for (;;);",
@@ -750,7 +725,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["generators", "syntax"],
+            keyword: "generators",
             valid: [
                 {
                     code: "function f() {}",
@@ -841,7 +816,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["modules", "syntax"],
+            keyword: "modules",
             valid: [
                 {
                     code: "require('a')",
@@ -904,7 +879,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["new.target", "syntax"],
+            keyword: "new.target",
             valid: [
                 {
                     code: "new target",
@@ -943,7 +918,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["objectSuperProperties", "syntax"],
+            keyword: "objectSuperProperties",
             valid: [
                 {
                     code: "class A { foo() { super.foo } }",
@@ -998,7 +973,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["octalNumericLiterals", "syntax"],
+            keyword: "octalNumericLiterals",
             valid: [
                 {
                     code: "0755",
@@ -1063,7 +1038,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["propertyShorthands", "syntax"],
+            keyword: "propertyShorthands",
             valid: [
                 {
                     code: "({ a: 1 })",
@@ -1180,7 +1155,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["regexpU", "syntax"],
+            keyword: "regexpU",
             valid: [
                 {
                     code: "/foo/",
@@ -1213,7 +1188,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["regexpY", "syntax"],
+            keyword: "regexpY",
             valid: [
                 {
                     code: "/foo/",
@@ -1246,7 +1221,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["restParameters", "syntax"],
+            keyword: "restParameters",
             valid: [
                 {
                     code: "var [...a] = b",
@@ -1378,7 +1353,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["spreadElements", "syntax"],
+            keyword: "spreadElements",
             valid: [
                 {
                     code: "var [...a] = b",
@@ -1474,7 +1449,7 @@ ruleTester.run(
         },
         {
             /*eslint-disable no-template-curly-in-string */
-            keywords: ["templateLiterals", "syntax"],
+            keyword: "templateLiterals",
             valid: [
                 {
                     code: "'`foo`'",
@@ -1542,7 +1517,7 @@ ruleTester.run(
             /*eslint-enable no-template-curly-in-string */
         },
         {
-            keywords: ["unicodeCodePointEscapes", "syntax"],
+            keyword: "unicodeCodePointEscapes",
             valid: [
                 {
                     code: String.raw`var a = "\x61"`,
@@ -1628,1664 +1603,12 @@ ruleTester.run(
                 },
             ],
         },
-        {
-            keywords: ["Array.from", "Array.*", "runtime"],
-            valid: [
-                {
-                    code: "Array.foo(a)",
-                    options: [{ version: "3.9.9" }],
-                },
-                {
-                    code: "(function(Array) { Array.from(a) }(b))",
-                    options: [{ version: "3.9.9" }],
-                },
-                {
-                    code: "Array.from(a)",
-                    options: [{ version: "4.0.0" }],
-                },
-            ],
-            invalid: [
-                {
-                    code: "Array.from(a)",
-                    options: [{ version: "3.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-array-from",
-                            data: { supported: "4.0.0", version: "3.9.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Array.of", "Array.*", "runtime"],
-            valid: [
-                {
-                    code: "Array.foo(a)",
-                    options: [{ version: "3.9.9" }],
-                },
-                {
-                    code: "(function(Array) { Array.of(a) }(b))",
-                    options: [{ version: "3.9.9" }],
-                },
-                {
-                    code: "Array.of(a)",
-                    options: [{ version: "4.0.0" }],
-                },
-            ],
-            invalid: [
-                {
-                    code: "Array.of(a)",
-                    options: [{ version: "3.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-array-of",
-                            data: { supported: "4.0.0", version: "3.9.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Map", "runtime"],
-            valid: [
-                {
-                    code: "map",
-                    options: [{ version: "0.11.9" }],
-                },
-                {
-                    code: "(function(Map) { Map }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                {
-                    code: "Map",
-                    options: [{ version: "0.12.0" }],
-                },
-            ],
-            invalid: [
-                {
-                    code: "Map",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-map",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "(function() { Map })()",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-map",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.acosh", "Math.*", "runtime"],
-            valid: [
-                {
-                    code: "Math.foo(a)",
-                    options: [{ version: "0.11.9" }],
-                },
-                {
-                    code: "(function(Math) { Math.acosh(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                {
-                    code: "Math.acosh(a)",
-                    options: [{ version: "0.12.0" }],
-                },
-            ],
-            invalid: [
-                {
-                    code: "Math.acosh(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-acosh",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.asinh", "Math.*", "runtime"],
-            valid: [
-                { code: "Math.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Math) { Math.asinh(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Math.asinh(a)", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Math.asinh(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-asinh",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.atanh", "Math.*", "runtime"],
-            valid: [
-                { code: "Math.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Math) { Math.atanh(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Math.atanh(a)", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Math.atanh(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-atanh",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.cbrt", "Math.*", "runtime"],
-            valid: [
-                { code: "Math.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Math) { Math.cbrt(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Math.cbrt(a)", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Math.cbrt(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-cbrt",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.clz32", "Math.*", "runtime"],
-            valid: [
-                { code: "Math.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Math) { Math.clz32(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Math.clz32(a)", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Math.clz32(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-clz32",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.cosh", "Math.*", "runtime"],
-            valid: [
-                { code: "Math.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Math) { Math.cosh(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Math.cosh(a)", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Math.cosh(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-cosh",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.expm1", "Math.*", "runtime"],
-            valid: [
-                { code: "Math.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Math) { Math.expm1(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Math.expm1(a)", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Math.expm1(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-expm1",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.fround", "Math.*", "runtime"],
-            valid: [
-                { code: "Math.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Math) { Math.fround(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Math.fround(a)", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Math.fround(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-fround",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.hypot", "Math.*", "runtime"],
-            valid: [
-                { code: "Math.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Math) { Math.hypot(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Math.hypot(a)", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Math.hypot(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-hypot",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.imul", "Math.*", "runtime"],
-            valid: [
-                { code: "Math.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Math) { Math.imul(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Math.imul(a)", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Math.imul(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-imul",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.log10", "Math.*", "runtime"],
-            valid: [
-                { code: "Math.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Math) { Math.log10(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Math.log10(a)", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Math.log10(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-log10",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.log1p", "Math.*", "runtime"],
-            valid: [
-                { code: "Math.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Math) { Math.log1p(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Math.log1p(a)", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Math.log1p(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-log1p",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.log2", "Math.*", "runtime"],
-            valid: [
-                { code: "Math.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Math) { Math.log2(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Math.log2(a)", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Math.log2(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-log2",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.sign", "Math.*", "runtime"],
-            valid: [
-                { code: "Math.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Math) { Math.sign(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Math.sign(a)", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Math.sign(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-sign",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.sinh", "Math.*", "runtime"],
-            valid: [
-                { code: "Math.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Math) { Math.sinh(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Math.sinh(a)", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Math.sinh(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-sinh",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.tanh", "Math.*", "runtime"],
-            valid: [
-                { code: "Math.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Math) { Math.tanh(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Math.tanh(a)", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Math.tanh(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-tanh",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Math.trunc", "Math.*", "runtime"],
-            valid: [
-                { code: "Math.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Math) { Math.trunc(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Math.trunc(a)", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Math.trunc(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-math-trunc",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Number.isFinite", "Number.*", "runtime"],
-            valid: [
-                { code: "Number.foo(a)", options: [{ version: "0.9.9" }] },
-                {
-                    code: "(function(Number) { Number.isFinite(a) }(b))",
-                    options: [{ version: "0.9.9" }],
-                },
-                {
-                    code: "Number.isFinite(a)",
-                    options: [{ version: "0.10.0" }],
-                },
-            ],
-            invalid: [
-                {
-                    code: "Number.isFinite(a)",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-number-isfinite",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Number.isInteger", "Number.*", "runtime"],
-            valid: [
-                { code: "Number.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Number) { Number.isInteger(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                {
-                    code: "Number.isInteger(a)",
-                    options: [{ version: "0.12.0" }],
-                },
-            ],
-            invalid: [
-                {
-                    code: "Number.isInteger(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-number-isinteger",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Number.isNaN", "Number.*", "runtime"],
-            valid: [
-                { code: "Number.foo(a)", options: [{ version: "0.9.9" }] },
-                {
-                    code: "(function(Number) { Number.isNaN(a) }(b))",
-                    options: [{ version: "0.9.9" }],
-                },
-                { code: "Number.isNaN(a)", options: [{ version: "0.10.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Number.isNaN(a)",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-number-isnan",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Number.isSafeInteger", "Number.*", "runtime"],
-            valid: [
-                { code: "Number.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Number) { Number.isSafeInteger(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                {
-                    code: "Number.isSafeInteger(a)",
-                    options: [{ version: "0.12.0" }],
-                },
-            ],
-            invalid: [
-                {
-                    code: "Number.isSafeInteger(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-number-issafeinteger",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Number.parseFloat", "Number.*", "runtime"],
-            valid: [
-                { code: "Number.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Number) { Number.parseFloat(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                {
-                    code: "Number.parseFloat(a)",
-                    options: [{ version: "0.12.0" }],
-                },
-            ],
-            invalid: [
-                {
-                    code: "Number.parseFloat(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-number-parsefloat",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Number.parseInt", "Number.*", "runtime"],
-            valid: [
-                { code: "Number.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Number) { Number.parseInt(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                {
-                    code: "Number.parseInt(a)",
-                    options: [{ version: "0.12.0" }],
-                },
-            ],
-            invalid: [
-                {
-                    code: "Number.parseInt(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-number-parseint",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Object.assign", "Object.*", "runtime"],
-            valid: [
-                { code: "Object.foo(a)", options: [{ version: "3.9.9" }] },
-                {
-                    code: "(function(Object) { Object.assign(a) }(b))",
-                    options: [{ version: "3.9.9" }],
-                },
-                { code: "Object.assign(a)", options: [{ version: "4.0.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Object.assign(a)",
-                    options: [{ version: "3.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-object-assign",
-                            data: { supported: "4.0.0", version: "3.9.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Object.getOwnPropertySymbols", "Object.*", "runtime"],
-            valid: [
-                { code: "Object.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code:
-                        "(function(Object) { Object.getOwnPropertySymbols(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                {
-                    code: "Object.getOwnPropertySymbols(a)",
-                    options: [{ version: "0.12.0" }],
-                },
-            ],
-            invalid: [
-                {
-                    code: "Object.getOwnPropertySymbols(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-object-getownpropertysymbols",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Object.is", "Object.*", "runtime"],
-            valid: [
-                { code: "Object.foo(a)", options: [{ version: "0.9.9" }] },
-                {
-                    code: "(function(Object) { Object.is(a) }(b))",
-                    options: [{ version: "0.9.9" }],
-                },
-                { code: "Object.is(a)", options: [{ version: "0.10.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Object.is(a)",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-object-is",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Object.setPrototypeOf", "Object.*", "runtime"],
-            valid: [
-                { code: "Object.foo(a)", options: [{ version: "0.11.9" }] },
-                {
-                    code: "(function(Object) { Object.setPrototypeOf(a) }(b))",
-                    options: [{ version: "0.11.9" }],
-                },
-                {
-                    code: "Object.setPrototypeOf(a)",
-                    options: [{ version: "0.12.0" }],
-                },
-            ],
-            invalid: [
-                {
-                    code: "Object.setPrototypeOf(a)",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-object-setprototypeof",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Promise", "runtime"],
-            valid: [
-                {
-                    code: "(function(Promise) { Promise }(a))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Promise", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Promise",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-promise",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { Promise }",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-promise",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Proxy", "runtime"],
-            valid: [
-                {
-                    code: "(function(Proxy) { Proxy }(a))",
-                    options: [{ version: "5.9.9" }],
-                },
-                { code: "Proxy", options: [{ version: "6.0.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Proxy",
-                    options: [{ version: "5.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-proxy",
-                            data: { supported: "6.0.0", version: "5.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { Proxy }",
-                    options: [{ version: "5.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-proxy",
-                            data: { supported: "6.0.0", version: "5.9.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Reflect", "runtime"],
-            valid: [
-                {
-                    code: "(function(Reflect) { Reflect }(a))",
-                    options: [{ version: "5.9.9" }],
-                },
-                { code: "Reflect", options: [{ version: "6.0.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Reflect",
-                    options: [{ version: "5.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-reflect",
-                            data: { supported: "6.0.0", version: "5.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { Reflect }",
-                    options: [{ version: "5.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-reflect",
-                            data: { supported: "6.0.0", version: "5.9.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Set", "runtime"],
-            valid: [
-                {
-                    code: "(function(Set) { Set }(a))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Set", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Set",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-set",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { Set }",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-set",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["String.fromCodePoint", "String.*", "runtime"],
-            valid: [
-                { code: "String.foo(a)", options: [{ version: "3.9.9" }] },
-                {
-                    code: "(function(String) { String.fromCodePoint(a) }(b))",
-                    options: [{ version: "3.9.9" }],
-                },
-                {
-                    code: "String.fromCodePoint(a)",
-                    options: [{ version: "4.0.0" }],
-                },
-            ],
-            invalid: [
-                {
-                    code: "String.fromCodePoint(a)",
-                    options: [{ version: "3.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-string-fromcodepoint",
-                            data: { supported: "4.0.0", version: "3.9.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["String.raw", "String.*", "runtime"],
-            valid: [
-                { code: "String.foo(a)", options: [{ version: "3.9.9" }] },
-                {
-                    code: "(function(String) { String.raw(a) }(b))",
-                    options: [{ version: "3.9.9" }],
-                },
-                { code: "String.raw(a)", options: [{ version: "4.0.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "String.raw(a)",
-                    options: [{ version: "3.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-string-raw",
-                            data: { supported: "4.0.0", version: "3.9.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["subclassingBuiltins", "runtime"],
-            valid: [
-                {
-                    code: "class A extends Array {}",
-                    options: [{ version: "6.5.0" }],
-                },
-                {
-                    code: "(class extends Array {})",
-                    options: [{ version: "6.5.0" }],
-                },
-                {
-                    code: "class A extends Function {}",
-                    options: [{ version: "6.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "(class extends Function {})",
-                    options: [{ version: "6.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "class A extends String {}",
-                    options: [{ version: "6.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "(class extends String {})",
-                    options: [{ version: "6.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "class A extends RegExp {}",
-                    options: [{ version: "4.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "(class extends RegExp {})",
-                    options: [{ version: "4.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "class A extends Promise {}",
-                    options: [{ version: "4.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "(class extends Promise {})",
-                    options: [{ version: "4.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "class A extends Boolean {}",
-                    options: [{ version: "4.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "(class extends Boolean {})",
-                    options: [{ version: "4.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "class A extends Number {}",
-                    options: [{ version: "4.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "(class extends Number {})",
-                    options: [{ version: "4.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "class A extends Error {}",
-                    options: [{ version: "4.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "(class extends Error {})",
-                    options: [{ version: "4.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "class A extends Map {}",
-                    options: [{ version: "4.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "(class extends Map {})",
-                    options: [{ version: "4.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "class A extends Set {}",
-                    options: [{ version: "4.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "(class extends Set {})",
-                    options: [{ version: "4.0.0", ignores: ["classes"] }],
-                },
-                {
-                    code: "class A extends B {}",
-                    options: [{ version: "3.9.9", ignores: ["classes"] }],
-                },
-            ],
-            invalid: [
-                {
-                    code: "class A extends Array {}",
-                    options: [{ version: "6.4.9" }],
-                    errors: [
-                        {
-                            messageId: "no-subclassing-builtins-array",
-                            data: {
-                                name: "Array",
-                                supported: "6.5.0",
-                                version: "6.4.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "(class extends Array {})",
-                    options: [{ version: "6.4.9" }],
-                    errors: [
-                        {
-                            messageId: "no-subclassing-builtins-array",
-                            data: {
-                                name: "Array",
-                                supported: "6.5.0",
-                                version: "6.4.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "class A extends Function {}",
-                    options: [{ version: "5.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId:
-                                "no-subclassing-builtins-function-string",
-                            data: {
-                                name: "Function",
-                                supported: "6.0.0",
-                                version: "5.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "(class extends Function {})",
-                    options: [{ version: "5.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId:
-                                "no-subclassing-builtins-function-string",
-                            data: {
-                                name: "Function",
-                                supported: "6.0.0",
-                                version: "5.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "class A extends String {}",
-                    options: [{ version: "5.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId:
-                                "no-subclassing-builtins-function-string",
-                            data: {
-                                name: "String",
-                                supported: "6.0.0",
-                                version: "5.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "(class extends String {})",
-                    options: [{ version: "5.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId:
-                                "no-subclassing-builtins-function-string",
-                            data: {
-                                name: "String",
-                                supported: "6.0.0",
-                                version: "5.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "class A extends RegExp {}",
-                    options: [{ version: "3.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId: "no-subclassing-builtins",
-                            data: {
-                                name: "RegExp",
-                                supported: "4.0.0",
-                                version: "3.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "(class extends RegExp {})",
-                    options: [{ version: "3.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId: "no-subclassing-builtins",
-                            data: {
-                                name: "RegExp",
-                                supported: "4.0.0",
-                                version: "3.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "class A extends Promise {}",
-                    options: [{ version: "3.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId: "no-subclassing-builtins",
-                            data: {
-                                name: "Promise",
-                                supported: "4.0.0",
-                                version: "3.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "(class extends Promise {})",
-                    options: [{ version: "3.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId: "no-subclassing-builtins",
-                            data: {
-                                name: "Promise",
-                                supported: "4.0.0",
-                                version: "3.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "class A extends Boolean {}",
-                    options: [{ version: "3.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId: "no-subclassing-builtins",
-                            data: {
-                                name: "Boolean",
-                                supported: "4.0.0",
-                                version: "3.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "(class extends Boolean {})",
-                    options: [{ version: "3.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId: "no-subclassing-builtins",
-                            data: {
-                                name: "Boolean",
-                                supported: "4.0.0",
-                                version: "3.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "class A extends Number {}",
-                    options: [{ version: "3.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId: "no-subclassing-builtins",
-                            data: {
-                                name: "Number",
-                                supported: "4.0.0",
-                                version: "3.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "(class extends Number {})",
-                    options: [{ version: "3.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId: "no-subclassing-builtins",
-                            data: {
-                                name: "Number",
-                                supported: "4.0.0",
-                                version: "3.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "class A extends Error {}",
-                    options: [{ version: "3.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId: "no-subclassing-builtins",
-                            data: {
-                                name: "Error",
-                                supported: "4.0.0",
-                                version: "3.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "(class extends Error {})",
-                    options: [{ version: "3.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId: "no-subclassing-builtins",
-                            data: {
-                                name: "Error",
-                                supported: "4.0.0",
-                                version: "3.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "class A extends Map {}",
-                    options: [{ version: "3.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId: "no-subclassing-builtins",
-                            data: {
-                                name: "Map",
-                                supported: "4.0.0",
-                                version: "3.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "(class extends Map {})",
-                    options: [{ version: "3.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId: "no-subclassing-builtins",
-                            data: {
-                                name: "Map",
-                                supported: "4.0.0",
-                                version: "3.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "class A extends Set {}",
-                    options: [{ version: "3.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId: "no-subclassing-builtins",
-                            data: {
-                                name: "Set",
-                                supported: "4.0.0",
-                                version: "3.9.9",
-                            },
-                        },
-                    ],
-                },
-                {
-                    code: "(class extends Set {})",
-                    options: [{ version: "3.9.9", ignores: ["classes"] }],
-                    errors: [
-                        {
-                            messageId: "no-subclassing-builtins",
-                            data: {
-                                name: "Set",
-                                supported: "4.0.0",
-                                version: "3.9.9",
-                            },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Symbol", "runtime"],
-            valid: [
-                {
-                    code: "(function(Symbol) { Symbol }(a))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "Symbol", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Symbol",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-symbol",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { Symbol }",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-symbol",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["TypedArrays", "runtime"],
-            valid: [
-                {
-                    code: "(function(Int8Array) { Int8Array }(a))",
-                    options: [{ version: "0.9.9" }],
-                },
-                { code: "Int8Array", options: [{ version: "0.10.0" }] },
-                {
-                    code: "(function(Uint8Array) { Uint8Array }(a))",
-                    options: [{ version: "0.9.9" }],
-                },
-                { code: "Uint8Array", options: [{ version: "0.10.0" }] },
-                {
-                    code:
-                        "(function(Uint8ClampedArray) { Uint8ClampedArray }(a))",
-                    options: [{ version: "0.9.9" }],
-                },
-                { code: "Uint8ClampedArray", options: [{ version: "0.10.0" }] },
-                {
-                    code: "(function(Int16Array) { Int16Array }(a))",
-                    options: [{ version: "0.9.9" }],
-                },
-                { code: "Int16Array", options: [{ version: "0.10.0" }] },
-                {
-                    code: "(function(Uint16Array) { Uint16Array }(a))",
-                    options: [{ version: "0.9.9" }],
-                },
-                { code: "Uint16Array", options: [{ version: "0.10.0" }] },
-                {
-                    code: "(function(Int32Array) { Int32Array }(a))",
-                    options: [{ version: "0.9.9" }],
-                },
-                { code: "Int32Array", options: [{ version: "0.10.0" }] },
-                {
-                    code: "(function(Uint32Array) { Uint32Array }(a))",
-                    options: [{ version: "0.9.9" }],
-                },
-                { code: "Uint32Array", options: [{ version: "0.10.0" }] },
-                {
-                    code: "(function(Float32Array) { Float32Array }(a))",
-                    options: [{ version: "0.9.9" }],
-                },
-                { code: "Float32Array", options: [{ version: "0.10.0" }] },
-                {
-                    code: "(function(Float64Array) { Float64Array }(a))",
-                    options: [{ version: "0.9.9" }],
-                },
-                { code: "Float64Array", options: [{ version: "0.10.0" }] },
-                {
-                    code: "(function(DataView) { DataView }(a))",
-                    options: [{ version: "0.9.9" }],
-                },
-                { code: "DataView", options: [{ version: "0.10.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Int8Array",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { Int8Array }",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "Uint8Array",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { Uint8Array }",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "Uint8ClampedArray",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { Uint8ClampedArray }",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "Int16Array",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { Int16Array }",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "Uint16Array",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { Uint16Array }",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "Int32Array",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { Int32Array }",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "Uint32Array",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { Uint32Array }",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "Float32Array",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { Float32Array }",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "Float64Array",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { Float64Array }",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "DataView",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { DataView }",
-                    options: [{ version: "0.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-typed-arrays",
-                            data: { supported: "0.10.0", version: "0.9.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["WeakMap", "runtime"],
-            valid: [
-                {
-                    code: "(function(WeakMap) { WeakMap }(a))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "WeakMap", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "WeakMap",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-weak-map",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { WeakMap }",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-weak-map",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["WeakSet", "runtime"],
-            valid: [
-                {
-                    code: "(function(WeakSet) { WeakSet }(a))",
-                    options: [{ version: "0.11.9" }],
-                },
-                { code: "WeakSet", options: [{ version: "0.12.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "WeakSet",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-weak-set",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { WeakSet }",
-                    options: [{ version: "0.11.9" }],
-                    errors: [
-                        {
-                            messageId: "no-weak-set",
-                            data: { supported: "0.12.0", version: "0.11.9" },
-                        },
-                    ],
-                },
-            ],
-        },
 
         //----------------------------------------------------------------------
         // ES2016
         //----------------------------------------------------------------------
         {
-            keywords: ["exponentialOperators", "syntax"],
+            keyword: "exponentialOperators",
             valid: [
                 {
                     code: "a ** b",
@@ -3332,7 +1655,7 @@ ruleTester.run(
         // ES2017
         //----------------------------------------------------------------------
         {
-            keywords: ["asyncFunctions", "syntax"],
+            keyword: "asyncFunctions",
             valid: [
                 {
                     code: "async function f() {}",
@@ -3437,7 +1760,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["trailingCommasInFunctions", "syntax"],
+            keyword: "trailingCommasInFunctions",
             valid: [
                 {
                     code: "function f(a,) {}",
@@ -3550,148 +1873,6 @@ ruleTester.run(
                         {
                             messageId: "no-trailing-function-commas",
                             data: { supported: "8.0.0", version: "7.9.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Atomics", "runtime"],
-            valid: [
-                {
-                    code: "(function(Atomics) { Atomics }(a))",
-                    options: [{ version: "8.9.9" }],
-                },
-                { code: "Atomics", options: [{ version: "8.10.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Atomics",
-                    options: [{ version: "8.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-atomics",
-                            data: { supported: "8.10.0", version: "8.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { Atomics }",
-                    options: [{ version: "8.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-atomics",
-                            data: { supported: "8.10.0", version: "8.9.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Object.values", "Object.*", "runtime"],
-            valid: [
-                { code: "Object.foo(a)", options: [{ version: "6.9.9" }] },
-                {
-                    code: "(function(Object) { Object.values(a) }(b))",
-                    options: [{ version: "6.9.9" }],
-                },
-                { code: "Object.values(a)", options: [{ version: "7.0.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Object.values(a)",
-                    options: [{ version: "6.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-object-values",
-                            data: { supported: "7.0.0", version: "6.9.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["Object.entries", "Object.*", "runtime"],
-            valid: [
-                { code: "Object.foo(a)", options: [{ version: "6.9.9" }] },
-                {
-                    code: "(function(Object) { Object.entries(a) }(b))",
-                    options: [{ version: "6.9.9" }],
-                },
-                { code: "Object.entries(a)", options: [{ version: "7.0.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "Object.entries(a)",
-                    options: [{ version: "6.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-object-entries",
-                            data: { supported: "7.0.0", version: "6.9.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: [
-                "Object.getOwnPropertyDescriptors",
-                "Object.*",
-                "runtime",
-            ],
-            valid: [
-                { code: "Object.foo(a)", options: [{ version: "6.9.9" }] },
-                {
-                    code:
-                        "(function(Object) { Object.getOwnPropertyDescriptors(a) }(b))",
-                    options: [{ version: "6.9.9" }],
-                },
-                {
-                    code: "Object.getOwnPropertyDescriptors(a)",
-                    options: [{ version: "7.0.0" }],
-                },
-            ],
-            invalid: [
-                {
-                    code: "Object.getOwnPropertyDescriptors(a)",
-                    options: [{ version: "6.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-object-getownpropertydescriptors",
-                            data: { supported: "7.0.0", version: "6.9.9" },
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            keywords: ["SharedArrayBuffer", "runtime"],
-            valid: [
-                {
-                    code:
-                        "(function(SharedArrayBuffer) { SharedArrayBuffer }(a))",
-                    options: [{ version: "8.9.9" }],
-                },
-                { code: "SharedArrayBuffer", options: [{ version: "8.10.0" }] },
-            ],
-            invalid: [
-                {
-                    code: "SharedArrayBuffer",
-                    options: [{ version: "8.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-shared-array-buffer",
-                            data: { supported: "8.10.0", version: "8.9.9" },
-                        },
-                    ],
-                },
-                {
-                    code: "function wrap() { SharedArrayBuffer }",
-                    options: [{ version: "8.9.9" }],
-                    errors: [
-                        {
-                            messageId: "no-shared-array-buffer",
-                            data: { supported: "8.10.0", version: "8.9.9" },
                         },
                     ],
                 },
@@ -3702,7 +1883,7 @@ ruleTester.run(
         // ES2018
         //----------------------------------------------------------------------
         {
-            keywords: ["asyncIteration", "syntax"],
+            keyword: "asyncIteration",
             valid: [
                 {
                     code: "async function f() { for await (const x of xs) {} }",
@@ -3805,7 +1986,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["malformedTemplateLiterals", "syntax"],
+            keyword: "malformedTemplateLiterals",
             valid: [
                 {
                     code: "tag`\\unicode`",
@@ -3826,7 +2007,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["regexpLookbehind", "syntax"],
+            keyword: "regexpLookbehind",
             valid: [
                 {
                     code: "var a = /(?<=a)foo/",
@@ -3887,7 +2068,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["regexpNamedCaptureGroups", "syntax"],
+            keyword: "regexpNamedCaptureGroups",
             valid: [
                 {
                     code: "var a = /(?<key>a)foo/",
@@ -3948,7 +2129,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["regexpS", "syntax"],
+            keyword: "regexpS",
             valid: [
                 {
                     code: "var a = /foo/s",
@@ -3991,7 +2172,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["regexpUnicodeProperties", "syntax"],
+            keyword: "regexpUnicodeProperties",
             valid: [
                 {
                     code: "var a = /\\p{Letter}/u",
@@ -4052,7 +2233,7 @@ ruleTester.run(
             ],
         },
         {
-            keywords: ["restSpreadProperties", "syntax"],
+            keyword: "restSpreadProperties",
             valid: [
                 {
                     code: "({ ...obj })",
