@@ -64,7 +64,8 @@ The `"ignores"` option accepts an array of the following strings.
 
 **ES2019:**
 
-(nothing)
+- `"jsonSuperset"`
+- `"optionalCatchBinding"`
 
 **ES2018:**
 

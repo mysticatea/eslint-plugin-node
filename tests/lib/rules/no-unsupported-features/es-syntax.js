@@ -71,7 +71,7 @@ function concat(patterns) {
 }
 
 const ruleTester = new RuleTester({
-    parserOptions: { ecmaVersion: 2018 },
+    parserOptions: { ecmaVersion: 2019 },
     globals: Object.assign({}, configs.es2015.globals, configs.es2017.globals),
 })
 ruleTester.run(
@@ -2286,6 +2286,90 @@ ruleTester.run(
                         {
                             messageId: "no-rest-spread-properties",
                             data: { supported: "8.3.0", version: "8.2.9" },
+                        },
+                    ],
+                },
+            ],
+        },
+
+        //----------------------------------------------------------------------
+        // ES2019
+        //----------------------------------------------------------------------
+        {
+            keyword: "jsonSuperset",
+            valid: [
+                {
+                    code: "var s = 'foo'",
+                    options: [{ version: "9.99.99" }],
+                },
+                {
+                    code: "var s = '\\\u2028'",
+                    options: [{ version: "9.99.99" }],
+                },
+                {
+                    code: "var s = '\\\u2029'",
+                    options: [{ version: "9.99.99" }],
+                },
+                {
+                    code: "var s = '\u2028'",
+                    options: [{ version: "10.0.0" }],
+                },
+                {
+                    code: "var s = '\u2029'",
+                    options: [{ version: "10.0.0" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "var s = '\u2028'",
+                    options: [{ version: "9.99.99" }],
+                    errors: [
+                        {
+                            messageId: "no-json-superset",
+                            data: {
+                                code: "2028",
+                                supported: "10.0.0",
+                                version: "9.99.99",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "var s = '\u2029'",
+                    options: [{ version: "9.99.99" }],
+                    errors: [
+                        {
+                            messageId: "no-json-superset",
+                            data: {
+                                code: "2029",
+                                supported: "10.0.0",
+                                version: "9.99.99",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            keyword: "optionalCatchBinding",
+            valid: [
+                {
+                    code: "try {} catch {}",
+                    options: [{ version: "10.0.0" }],
+                },
+                {
+                    code: "try {} catch (error) {}",
+                    options: [{ version: "9.99.99" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "try {} catch {}",
+                    options: [{ version: "9.99.99" }],
+                    errors: [
+                        {
+                            messageId: "no-optional-catch-binding",
+                            data: { supported: "10.0.0", version: "9.99.99" },
                         },
                     ],
                 },
