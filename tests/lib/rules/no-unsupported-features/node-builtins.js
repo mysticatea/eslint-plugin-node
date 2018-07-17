@@ -3189,7 +3189,7 @@ new RuleTester({
                 },
                 {
                     code: "process.emitWarning",
-                    options: [{ version: "8.0.0" }],
+                    options: [{ version: "6.0.0" }],
                 },
                 {
                     code: "process.getegid",
@@ -3260,7 +3260,7 @@ new RuleTester({
                 {
                     code: "process.emitWarning",
                     options: [
-                        { version: "7.9.9", ignores: ["process.emitWarning"] },
+                        { version: "5.9.9", ignores: ["process.emitWarning"] },
                     ],
                 },
                 {
@@ -3421,14 +3421,14 @@ new RuleTester({
                 },
                 {
                     code: "process.emitWarning",
-                    options: [{ version: "7.9.9" }],
+                    options: [{ version: "5.9.9" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "process.emitWarning",
-                                supported: "8.0.0",
-                                version: "7.9.9",
+                                supported: "6.0.0",
+                                version: "5.9.9",
                             },
                         },
                     ],
