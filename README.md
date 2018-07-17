@@ -94,7 +94,7 @@ These rules have been deprecated in accordance with the [deprecation policy](htt
 
 | Deprecated rule | Replaced by |    |
 |:--------|:------------|:--:|
-| [node/no-unsupported-features](./docs/rules/no-unsupported-features.md) | [node/no-unsupported-ecma-features](./docs/rules/no-unsupported-ecma-features.md) |   |
+| [node/no-unsupported-features](./docs/rules/no-unsupported-features.md) | [node/no-unsupported-ecma-features](./docs/rules/no-unsupported-features/no-unsupported-ecma-features.md) |   |
 
 ## 🔧 Configs
 
