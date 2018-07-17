@@ -89,6 +89,13 @@ $ npm install --save-dev eslint eslint-plugin-node
 
 <!--RULES_TABLE_END-->
 
+### Deprecated
+These rules have been deprecated in accordance with the [deprecation policy](https://eslint.org/docs/user-guide/rule-deprecation), and replaced by newer rules:
+
+| Deprecated rule | Replaced by |    |
+|:--------|:------------|:--:|
+| [node/no-unsupported-features](./docs/rules/no-unsupported-features.md) | [node/no-unsupported-ecma-features](./docs/rules/no-unsupported-ecma-features.md) |   |
+
 ## 🔧 Configs
 
 This plugin provides `plugin:node/recommended` preset config.
