@@ -6,7 +6,7 @@
 
 const fs = require("fs")
 const path = require("path")
-const { categories } = require("./rules")
+const { categories, rules } = require("./rules")
 
 /**
  * Render a given rule as a table row.
@@ -18,6 +18,20 @@ function renderRule(rule) {
     const link = `[${rule.id}](./docs/rules/${rule.name}.md)`
     const description = rule.description || "(no description)"
     return `| ${link} | ${description} | ${mark} |`
+}
+
+/**
+ * Render a given rule as a table row.
+ * @param {RuleInfo} rule The rule information.
+ * @returns {string} The table row.
+ */
+function renderDeprecatedRule(rule) {
+    const link = `[${rule.id}](./docs/rules/${rule.name}.md)`
+    const replacedBy = rule.replacedBy
+        .map(name => `[node/${name}](./docs/rules/${name}.md)`)
+        .join(" and ")
+
+    return `| ${link} | ${replacedBy || "(nothing)"} |`
 }
 
 /**
@@ -35,7 +49,18 @@ ${category.rules.map(renderRule).join("\n")}
 }
 
 const filePath = path.resolve(__dirname, "../README.md")
-const content = categories.map(renderCategory).join("\n")
+const content = `${categories.map(renderCategory).join("\n")}
+### Deprecated rules
+
+These rules have been deprecated in accordance with the [deprecation policy](https://eslint.org/docs/user-guide/rule-deprecation), and replaced by newer rules:
+
+| Rule ID | Replaced by |
+|:--------|:------------|
+${rules
+    .filter(rule => rule.deprecated)
+    .map(renderDeprecatedRule)
+    .join("\n")}
+`
 
 fs.writeFileSync(
     filePath,

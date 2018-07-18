@@ -1,5 +1,7 @@
 # Disallow unsupported ECMAScript features on the specified version (no-unsupported-features)
 
+**:warning: This is deprecated since v7.0.0.** Use [node/no-unsupported-features/es-syntax](./no-unsupported-features/es-syntax.md) and [node/no-unsupported-features/es-builtins](./no-unsupported-features/es-builtins.md) instead.
+
 Node.js doesn't support all ECMAScript standard features.
 This rule reports when you used unsupported ECMAScript 2015-2018 features on the specified Node.js version.
 

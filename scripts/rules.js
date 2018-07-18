@@ -18,6 +18,7 @@ const rootDir = path.resolve(__dirname, "../lib/rules/")
  * @property {boolean} recommended The flag to indicate a recommended rule.
  * @property {boolean} deprecated The flag to indicate a deprecated rule.
  * @property {boolean} fixable The flag to indicate a fixable rule.
+ * @property {string[]} replacedBy The flag to indicate a fixable rule.
  */
 
 /**
@@ -41,6 +42,7 @@ const rules = glob
                 name,
                 deprecated: Boolean(meta.deprecated),
                 fixable: Boolean(meta.fixable),
+                replacedBy: [],
             },
             meta.docs
         )

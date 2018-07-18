@@ -87,14 +87,16 @@ $ npm install --save-dev eslint eslint-plugin-node
 | [node/prefer-global/url-search-params](./docs/rules/prefer-global/url-search-params.md) | enforce either `URLSearchParams` or `require("url").URLSearchParams` |  |
 | [node/prefer-global/url](./docs/rules/prefer-global/url.md) | enforce either `URL` or `require("url").URL` |  |
 
-<!--RULES_TABLE_END-->
+### Deprecated rules
 
-### Deprecated
 These rules have been deprecated in accordance with the [deprecation policy](https://eslint.org/docs/user-guide/rule-deprecation), and replaced by newer rules:
 
-| Deprecated rule | Replaced by |    |
-|:--------|:------------|:--:|
-| [node/no-unsupported-features](./docs/rules/no-unsupported-features.md) | [node/no-unsupported-ecma-features](./docs/rules/no-unsupported-features/no-unsupported-ecma-features.md) |   |
+| Rule ID | Replaced by |
+|:--------|:------------|
+| [node/no-hide-core-modules](./docs/rules/no-hide-core-modules.md) | (nothing) |
+| [node/no-unsupported-features](./docs/rules/no-unsupported-features.md) | [node/no-unsupported-features/es-syntax](./docs/rules/no-unsupported-features/es-syntax.md) and [node/no-unsupported-features/es-builtins](./docs/rules/no-unsupported-features/es-builtins.md) |
+
+<!--RULES_TABLE_END-->
 
 ## 🔧 Configs
 
