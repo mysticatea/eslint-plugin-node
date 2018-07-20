@@ -30,7 +30,7 @@ $ npm install --save-dev eslint eslint-plugin-node
         "node/prefer-global/console": ["error", "always"],
         "node/prefer-global/process": ["error", "always"],
         "node/prefer-global/url-search-params": ["error", "always"],
-        "node/prefer-global/url": ["error", "always"],
+        "node/prefer-global/url": ["error", "always"]
     }
 }
 ```
