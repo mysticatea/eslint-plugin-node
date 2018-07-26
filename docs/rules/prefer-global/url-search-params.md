@@ -1,4 +1,4 @@
-# enforce either `URLSearchParams` or `require("url").URLSearchParams` (prefer-global/url)
+# enforce either `URLSearchParams` or `require("url").URLSearchParams` (prefer-global/url-search-params)
 
 The `URLSearchParams` class of `url` module is defined as a global variable.
 
@@ -18,7 +18,7 @@ This rule has a string option.
 
 ```json
 {
-    "node/prefer-global/url": ["error", "always" | "never"]
+    "node/prefer-global/url-search-params": ["error", "always" | "never"]
 }
 ```
 
@@ -30,7 +30,7 @@ This rule has a string option.
 Examples of :-1: **incorrect** code for this rule:
 
 ```js
-/*eslint node/prefer-global/url: [error]*/
+/*eslint node/prefer-global/url-search-params: [error]*/
 
 const { URLSearchParams } = require("url")
 const u = new URLSearchParams(s)
@@ -39,7 +39,7 @@ const u = new URLSearchParams(s)
 Examples of :+1: **correct** code for this rule:
 
 ```js
-/*eslint node/prefer-global/url: [error]*/
+/*eslint node/prefer-global/url-search-params: [error]*/
 
 const u = new URLSearchParams(s)
 ```
@@ -49,7 +49,7 @@ const u = new URLSearchParams(s)
 Examples of :-1: **incorrect** code for the `"never"` option:
 
 ```js
-/*eslint node/prefer-global/url: [error, never]*/
+/*eslint node/prefer-global/url-search-params: [error, never]*/
 
 const u = new URLSearchParams(s)
 ```
@@ -57,7 +57,7 @@ const u = new URLSearchParams(s)
 Examples of :+1: **correct** code for the `"never"` option:
 
 ```js
-/*eslint node/prefer-global/url: [error, never]*/
+/*eslint node/prefer-global/url-search-params: [error, never]*/
 
 const { URLSearchParams } = require("url")
 const u = new URLSearchParams(s)
