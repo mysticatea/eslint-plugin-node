@@ -31,7 +31,7 @@ ruleTester.run("no-missing-require", rule, {
             env: { node: true },
         },
         {
-            code: "require('eslint/lib/ast-utils');",
+            code: "require('eslint/lib/api');",
             filename: fixture("test.js"),
             env: { node: true },
         },
