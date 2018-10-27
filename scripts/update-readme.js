@@ -67,7 +67,7 @@ fs.writeFileSync(
     fs
         .readFileSync(filePath, "utf8")
         .replace(
-            /<!--RULES_TABLE_START-->[\s\S]*<!--RULES_TABLE_END-->/,
+            /<!--RULES_TABLE_START-->[\s\S]*<!--RULES_TABLE_END-->/u,
             `<!--RULES_TABLE_START-->\n${content}\n<!--RULES_TABLE_END-->`
         )
 )

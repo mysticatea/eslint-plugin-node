@@ -37,9 +37,9 @@ describe("process-exit-as-throw", () => {
 
             const messages = linter.verify(code, options)
 
-            assert.equal(messages.length, 1)
-            assert.equal(messages[0].message, "Unreachable code.")
-            assert.equal(messages[0].line, 3)
+            assert.strictEqual(messages.length, 1)
+            assert.strictEqual(messages[0].message, "Unreachable code.")
+            assert.strictEqual(messages[0].line, 3)
         }
     )
     ;(supported ? it : xit)(
@@ -56,7 +56,7 @@ describe("process-exit-as-throw", () => {
 
             const messages = linter.verify(code, options)
 
-            assert.equal(messages.length, 0)
+            assert.strictEqual(messages.length, 0)
         }
     )
     ;(supported ? it : xit)(
@@ -81,7 +81,7 @@ describe("process-exit-as-throw", () => {
 
             const messages = linter.verify(code, options)
 
-            assert.equal(messages.length, 0)
+            assert.strictEqual(messages.length, 0)
         }
     )
 })
