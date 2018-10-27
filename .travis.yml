@@ -2,9 +2,11 @@ sudo: false
 
 language: node_js
 node_js:
-  - "6.5.0"
+  - "6.0.0"
+  - "6"
   - "8"
   - "10"
+  - "11"
 
 env:
   - ESLINT_VERSION=4
