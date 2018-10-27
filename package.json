@@ -15,15 +15,15 @@
   "dependencies": {
     "eslint-plugin-es": "^1.3.1",
     "eslint-utils": "^1.3.1",
-    "ignore": "^4.0.2",
+    "ignore": "^5.0.2",
     "minimatch": "^3.0.4",
     "resolve": "^1.8.1",
     "semver": "^5.5.0"
   },
   "devDependencies": {
-    "@mysticatea/eslint-plugin": "^5.1.0",
+    "@mysticatea/eslint-plugin": "^7.0.0",
     "codecov": "^3.0.4",
-    "eslint": "^5.1.0",
+    "eslint": "^5.8.0",
     "fast-glob": "^2.2.2",
     "mocha": "^5.2.0",
     "nyc": "^12.0.2",
