@@ -8,7 +8,7 @@ Editor integrations of ESLint would be useful to know it in real-time.
 
 ## Rule Details
 
-This rule reports APIs of Node.js built-in APIs on the basis of [Node.js v10.6.0 Documentation](https://nodejs.org/docs/v10.6.0/api/).
+This rule reports APIs of Node.js built-in APIs on the basis of [Node.js v11.0.0 Documentation](https://nodejs.org/docs/v11.0.0/api/).
 
 ### Configured Node.js version range
 
@@ -62,6 +62,8 @@ The `"ignores"` option accepts an array of the following strings.
 - `"Buffer.allocUnsafe"`
 - `"Buffer.allocUnsafeSlow"`
 - `"Buffer.from"`
+- `"TextDecoder"`
+- `"TextEncoder"`
 - `"URL"`
 - `"URLSearchParams"`
 - `"console.clear"`
@@ -76,6 +78,7 @@ The `"ignores"` option accepts an array of the following strings.
 - `"console.markTimeline"`
 - `"console.profile"`
 - `"console.profileEnd"`
+- `"console.timeLog"`
 - `"console.timeStamp"`
 - `"console.timeline"`
 - `"console.timelineEnd"`
@@ -86,11 +89,13 @@ The `"ignores"` option accepts an array of the following strings.
 - `"process.getegid"`
 - `"process.geteuid"`
 - `"process.hasUncaughtExceptionCaptureCallback"`
+- `"process.hrtime.bigint"`
 - `"process.ppid"`
 - `"process.release"`
 - `"process.setegid"`
 - `"process.seteuid"`
 - `"process.setUncaughtExceptionCaptureCallback"`
+- `"queueMicrotask"`
 - `"require.resolve.paths"`
 
 **`assert` module:**
@@ -136,6 +141,7 @@ The `"ignores"` option accepts an array of the following strings.
 - `"console.markTimeline"`
 - `"console.profile"`
 - `"console.profileEnd"`
+- `"console.timeLog"`
 - `"console.timeStamp"`
 - `"console.timeline"`
 - `"console.timelineEnd"`
@@ -147,6 +153,8 @@ The `"ignores"` option accepts an array of the following strings.
 - `"crypto.Certificate.verifySpkac"`
 - `"crypto.constants"`
 - `"crypto.fips"`
+- `"crypto.generateKeyPair"`
+- `"crypto.generateKeyPairSync"`
 - `"crypto.getCurves"`
 - `"crypto.getFips"`
 - `"crypto.privateEncrypt"`
@@ -166,6 +174,7 @@ The `"ignores"` option accepts an array of the following strings.
 
 **`fs` module:**
 
+- `"fs.Dirent"`
 - `"fs.copyFile"`
 - `"fs.copyFileSync"`
 - `"fs.mkdtemp"`
@@ -189,7 +198,10 @@ The `"ignores"` option accepts an array of the following strings.
 **`os` module:**
 
 - `"os.constants"`
+- `"os.constants.priority"`
+- `"os.getPriority"`
 - `"os.homedir"`
+- `"os.setPriority"`
 - `"os.userInfo"`
 
 **`path` module:**
@@ -202,6 +214,7 @@ The `"ignores"` option accepts an array of the following strings.
 
 **`process` module:**
 
+- `"process.allowedNodeEnvironmentFlags"`
 - `"process.argv0"`
 - `"process.channel"`
 - `"process.cpuUsage"`
@@ -209,6 +222,7 @@ The `"ignores"` option accepts an array of the following strings.
 - `"process.getegid"`
 - `"process.geteuid"`
 - `"process.hasUncaughtExceptionCaptureCallback"`
+- `"process.hrtime.bigint"`
 - `"process.ppid"`
 - `"process.release"`
 - `"process.setegid"`
@@ -243,6 +257,7 @@ The `"ignores"` option accepts an array of the following strings.
 - `"util.TextDecoder"`
 - `"util.TextEncoder"`
 - `"util.types"`
+- `"util.types.isBoxedPrimitive"`
 
 **`v8` module:**
 
@@ -259,6 +274,7 @@ The `"ignores"` option accepts an array of the following strings.
 **`vm` module:**
 
 - `"vm.Module"`
+- `"vm.compileFunction"`
 
 **`worker_threads` module:**
 
