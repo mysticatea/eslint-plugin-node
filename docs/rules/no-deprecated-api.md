@@ -37,12 +37,16 @@ This rule reports the following deprecated API.
     - [SlowBuffer class](https://nodejs.org/dist/v6.0.0/docs/api/buffer.html#buffer_class_slowbuffer)
 - constants (undocumented)
 - crypto
+    - [_toBuf](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0114_crypto_tobuf)
     - `Credentials` (undocumented)
     - [DEFAULT_ENCODING](https://nodejs.org/dist/v10.0.0/docs/api/crypto.html#crypto_crypto_default_encoding)
     - [createCredentials](https://nodejs.org/dist/v0.12.0/docs/api/crypto.html#crypto_crypto_createcredentials_details)
     - [createCipher](https://nodejs.org/dist/v10.0.0/docs/api/crypto.html#crypto_crypto_createcipher_algorithm_password_options)
     - [createDecipher](https://nodejs.org/dist/v10.0.0/docs/api/crypto.html#crypto_crypto_createdecipher_algorithm_password_options)
     - [fips](https://nodejs.org/dist/v10.0.0/docs/api/crypto.html#crypto_crypto_fips)
+    - [prng](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0115_crypto_prng_crypto_pseudorandombytes_crypto_rng)
+    - [pseudoRandomBytes](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0115_crypto_prng_crypto_pseudorandombytes_crypto_rng)
+    - [rng](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0115_crypto_prng_crypto_pseudorandombytes_crypto_rng)
 - [domain](https://nodejs.org/dist/v4.0.0/docs/api/domain.html#domain_domain)
 - events
     - [EventEmitter.listenerCount](https://nodejs.org/dist/v4.0.0/docs/api/events.html#events_class_method_eventemitter_listenercount_emitter_event)
@@ -59,6 +63,12 @@ This rule reports the following deprecated API.
     - [GLOBAL](https://nodejs.org/api/deprecations.html#deprecations_dep0016_global_root)
     - [root](https://nodejs.org/api/deprecations.html#deprecations_dep0016_global_root)
     - [Intl.v8BreakIterator](https://nodejs.org/api/deprecations.html#deprecations_dep0017_intl_v8breakiterator)
+    - [COUNTER_NET_SERVER_CONNECTION](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
+    - [COUNTER_NET_SERVER_CONNECTION_CLOSE](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
+    - [COUNTER_HTTP_SERVER_REQUEST](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
+    - [COUNTER_HTTP_SERVER_RESPONSE](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
+    - [COUNTER_HTTP_CLIENT_REQUEST](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
+    - [COUNTER_HTTP_CLIENT_RESPONSE](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
 - http
     - [createClient](https://nodejs.org/dist/v0.10.0/docs/api/http.html#http_http_createclient_port_host)
 - module
@@ -72,6 +82,7 @@ This rule reports the following deprecated API.
 - process
     - `EventEmitter` (undocumented)
     - `assert` (undocumented)
+    - [binding](https://nodejs.org/dist/v10.9.0/docs/api/deprecations.html#deprecations_dep0111_process_binding)
 - [punycode](https://nodejs.org/dist/v7.0.0/docs/api/punycode.html)
 - readline
     - `codePointAt` (undocumented)
@@ -94,6 +105,9 @@ This rule reports the following deprecated API.
     - [parseCertString](https://nodejs.org/dist/v8.6.0/docs/api/deprecations.html#deprecations_dep0076_tls_parsecertstring)
 - tty
     - [setRawMode](https://nodejs.org/dist/v0.10.0/docs/api/tty.html#tty_tty_setrawmode_mode)
+- url
+    - [parse](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0116_legacy_url_api)
+    - [resolve](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0116_legacy_url_api)
 - util
     - [debug](https://nodejs.org/dist/v0.12.0/docs/api/util.html#util_util_debug_string)
     - [error](https://nodejs.org/dist/v0.12.0/docs/api/util.html#util_util_error)
@@ -158,12 +172,16 @@ This option can include the following values:
 - `new buffer.Buffer()`
 - `buffer.SlowBuffer`
 - `constants`
+- `crypto._toBuf`
 - `crypto.Credentials`
 - `crypto.DEFAULT_ENCODING`
 - `crypto.createCipher`
 - `crypto.createCredentials`
 - `crypto.createDecipher`
 - `crypto.fips`
+- `crypto.prng`
+- `crypto.pseudoRandomBytes`
+- `crypto.rng`
 - `domain`
 - `events.EventEmitter.listenerCount`
 - `events.listenerCount`
@@ -183,6 +201,7 @@ This option can include the following values:
 - `path._makeLong`
 - `process.EventEmitter`
 - `process.assert`
+- `process.binding`
 - `process.env.NODE_REPL_HISTORY_FILE`
 - `punycode`
 - `readline.codePointAt`
@@ -199,6 +218,8 @@ This option can include the following values:
 - `tls.createSecurePair`
 - `tls.parseCertString`
 - `tty.setRawMode`
+- `url.parse`
+- `url.resolve`
 - `util.debug`
 - `util.error`
 - `util.isArray`
@@ -242,10 +263,17 @@ This option can include the following values:
 
 - `Buffer()`
 - `new Buffer()`
+- `COUNTER_NET_SERVER_CONNECTION`
+- `COUNTER_NET_SERVER_CONNECTION_CLOSE`
+- `COUNTER_HTTP_SERVER_REQUEST`
+- `COUNTER_HTTP_SERVER_RESPONSE`
+- `COUNTER_HTTP_CLIENT_REQUEST`
+- `COUNTER_HTTP_CLIENT_RESPONSE`
 - `Intl.v8BreakIterator`
 - `require.extensions`
 - `process.EventEmitter`
 - `process.assert`
+- `process.binding`
 - `process.env.NODE_REPL_HISTORY_FILE`
 
 Examples of :+1: **correct** code for the `{"ignoreGlobalItems": ["new Buffer()"]}`:
@@ -283,6 +311,8 @@ This rule cannot report the following cases:
 
 - fs
     - `fs.truncate()` and `fs.truncateSync()` usage with a file descriptor has been deprecated.
+- url
+    - `url.format()` with legacy `urlObject` has been deprecated.
 
 ### dynamic things
 
