@@ -1,5 +1,10 @@
 sudo: false
 
+os:
+  - linux
+  - osx
+  - windows
+
 language: node_js
 node_js:
   - "6.0.0"
@@ -11,6 +16,17 @@ node_js:
 env:
   - ESLINT_VERSION=4
   - ESLINT_VERSION=5
+
+matrix:
+  exclude:
+    # ESLint 5 supports Node.js 6.14.0 and up.
+    - node_js: "6.0.0"
+      env: ESLINT_VERSION=5
+    # Reduce build jobs.
+    - os: osx
+      env: ESLINT_VERSION=4
+    - os: windows
+      env: ESLINT_VERSION=4
 
 before_script:
   - npm i --no-save async
