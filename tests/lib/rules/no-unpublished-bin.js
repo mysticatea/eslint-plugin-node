@@ -63,6 +63,10 @@ new RuleTester().run("no-unpublished-bin", rule, {
             code: "'multi-npmignore/lib/a.js'",
             filename: fixture("multi-npmignore/lib/a.js"),
         },
+        {
+            code: "'issue115/lib/a.js'",
+            filename: fixture("issue115/lib/a.js"),
+        },
 
         // empty name
         "'stdin'",
