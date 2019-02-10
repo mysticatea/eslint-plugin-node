@@ -87,7 +87,7 @@ ruleTester.run("no-missing-import", rule, {
 
         // no source.
         {
-            code: "export {foo, bar};",
+            code: "const foo=0, bar=1; export {foo, bar};",
             filename: fixture("test.js"),
         },
 
