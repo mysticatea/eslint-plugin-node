@@ -7,7 +7,7 @@ This rule suggests correct usage of shebang.
 
 ## Rule Details
 
-This rule looks up `package.json` file from each linitng target file.
+This rule looks up `package.json` file from each linting target file.
 Starting from the directory of the target file, it goes up ancestor directories until found.
 
 If `package.json` was not found, this rule does nothing.
