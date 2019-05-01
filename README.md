@@ -14,7 +14,7 @@ Additional ESLint's rules for Node.js
 $ npm install --save-dev eslint eslint-plugin-node
 ```
 
-- Requires Node.js `>=6.0.0`
+- Requires Node.js `>=8.10.0`
 - Requires ESLint `>=4.19.1` (`plugin:node/recommended` preset requires `>=5.0.0`)
 
 **Note:** It recommends a use of [the "engines" field of package.json](https://docs.npmjs.com/files/package.json#engines). The "engines" field is used by `node/no-unsupported-features/*` rules.
@@ -42,7 +42,7 @@ $ npm install --save-dev eslint eslint-plugin-node
     "name": "your-module",
     "version": "1.0.0",
     "engines": {
-        "node": ">=6.0.0"
+        "node": ">=8.10.0"
     }
 }
 ```

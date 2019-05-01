@@ -3,7 +3,7 @@
   "version": "8.0.1",
   "description": "Additional ESLint's rules for Node.js",
   "engines": {
-    "node": ">=6"
+    "node": ">=8.10.0"
   },
   "main": "lib/index.js",
   "files": [

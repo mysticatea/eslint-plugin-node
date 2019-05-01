@@ -7,11 +7,9 @@ os:
 
 language: node_js
 node_js:
-  - "6.0.0"
-  - "6"
-  - "8"
+  - "8.10.0"
   - "10"
-  - "11"
+  - "12"
 
 env:
   - ESLINT_VERSION=4
@@ -19,9 +17,6 @@ env:
 
 matrix:
   exclude:
-    # ESLint 5 supports Node.js 6.14.0 and up.
-    - node_js: "6.0.0"
-      env: ESLINT_VERSION=5
     # Reduce build jobs.
     - os: osx
       env: ESLINT_VERSION=4
