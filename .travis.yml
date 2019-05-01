@@ -12,16 +12,16 @@ node_js:
   - "12"
 
 env:
-  - ESLINT_VERSION=4
   - ESLINT_VERSION=5
+#  - ESLINT_VERSION=6
 
 matrix:
   exclude:
     # Reduce build jobs.
     - os: osx
-      env: ESLINT_VERSION=4
+      env: ESLINT_VERSION=6
     - os: windows
-      env: ESLINT_VERSION=4
+      env: ESLINT_VERSION=6
 
 before_script:
   - npm i --no-save async
