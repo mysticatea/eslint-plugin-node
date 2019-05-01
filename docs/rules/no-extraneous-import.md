@@ -1,6 +1,6 @@
 # Disallow `import` declarations which import extraneous modules (no-extraneous-import)
 
-If a `import` declaration's source is extraneous (it's not written in `package.json`), the program works in local, but will not work after dependencies are re-installed. It will cause troubles to your team/contributors.
+If an `import` declaration's source is extraneous (it's not written in `package.json`), the program works in local, but will not work after dependencies are re-installed. It will cause troubles to your team/contributors.
 This rule disallows `import` declarations of extraneous modules.
 
 ## Rule Details
