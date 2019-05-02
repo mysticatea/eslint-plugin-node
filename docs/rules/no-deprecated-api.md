@@ -23,7 +23,8 @@ const {exists} = require("fs");       /*ERROR: 'fs.exists' was deprecated since 
 
 This rule reports the following deprecated API.
 
-- _linklist (undocumented)
+- [_linklist](https://nodejs.org/docs/v8.0.0/api/deprecations.html#deprecations_dep0002_require_linklist)
+- [_stream_wrap](https://nodejs.org/docs/v12.0.0/api/deprecations.html#deprecations_dep0125_require_stream_wrap)
 - assert
     - [deepEqual](https://nodejs.org/dist/v10.0.0/docs/api/assert.html#assert_assert_deepequal_actual_expected_message)
     - [equal](https://nodejs.org/dist/v10.0.0/docs/api/assert.html#assert_assert_equal_actual_expected_message)
@@ -74,6 +75,8 @@ This rule reports the following deprecated API.
 - module
     - `requireRepl` (undocumented)
     - [_debug](https://nodejs.org/dist/v9.0.0/docs/api/deprecations.html#deprecations_dep0077_module_debug)
+- net
+    - [_setSimultaneousAccepts](https://nodejs.org/docs/v12.0.0/api/deprecations.html#deprecations_dep0121_net_setsimultaneousaccepts)
 - os
     - `tmpDir` (undocumented)
     - `getNetworkInterfaces` (undocumented)
@@ -162,6 +165,7 @@ This rule ignores APIs that `ignoreModuleItems` includes.
 This option can include the following values:
 
 - `_linklist`
+- `_stream_wrap`
 - `assert.deepEqual`
 - `assert.equal`
 - `assert.notDeepEqual`
@@ -197,12 +201,14 @@ This option can include the following values:
 - `module.requireRepl`
 - `module.Module._debug`
 - `module._debug`
+- `net._setSimultaneousAccepts`
 - `os.tmpDir`
 - `path._makeLong`
 - `process.EventEmitter`
 - `process.assert`
 - `process.binding`
 - `process.env.NODE_REPL_HISTORY_FILE`
+- `process.report.triggerReport`
 - `punycode`
 - `readline.codePointAt`
 - `readline.getStringWidth`
