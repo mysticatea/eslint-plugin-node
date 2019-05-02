@@ -2440,11 +2440,11 @@ ruleTester.run(
                 },
                 {
                     filename: fixture("invalid/a.js"),
-                    code: "var a = (b,) => 1",
+                    code: "var a = { ...obj }",
                     errors: [
                         {
-                            messageId: "no-trailing-function-commas",
-                            data: { supported: "8.0.0", version: ">=6.0.0" },
+                            messageId: "no-rest-spread-properties",
+                            data: { supported: "8.3.0", version: ">=8.0.0" },
                         },
                     ],
                 },
@@ -2460,11 +2460,11 @@ ruleTester.run(
                 },
                 {
                     filename: fixture("nothing/a.js"),
-                    code: "var a = (b,) => 1",
+                    code: "var a = { ...obj }",
                     errors: [
                         {
-                            messageId: "no-trailing-function-commas",
-                            data: { supported: "8.0.0", version: ">=6.0.0" },
+                            messageId: "no-rest-spread-properties",
+                            data: { supported: "8.3.0", version: ">=8.0.0" },
                         },
                     ],
                 },

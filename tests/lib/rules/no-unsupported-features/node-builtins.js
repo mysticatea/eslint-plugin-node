@@ -2165,7 +2165,7 @@ new RuleTester({
                 },
                 {
                     code: "require('dns').promises",
-                    options: [{ version: "10.6.0" }],
+                    options: [{ version: "11.14.0" }],
                 },
 
                 // Ignores
@@ -2197,7 +2197,9 @@ new RuleTester({
                 },
                 {
                     code: "require('dns').promises",
-                    options: [{ version: "10.5.9", ignores: ["dns.promises"] }],
+                    options: [
+                        { version: "11.13.9", ignores: ["dns.promises"] },
+                    ],
                 },
             ],
             invalid: [
@@ -2287,14 +2289,14 @@ new RuleTester({
                 },
                 {
                     code: "require('dns').promises",
-                    options: [{ version: "10.5.9" }],
+                    options: [{ version: "11.13.9" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "dns.promises",
-                                supported: "10.6.0",
-                                version: "10.5.9",
+                                supported: "11.14.0",
+                                version: "11.13.9",
                             },
                         },
                     ],
@@ -2309,23 +2311,23 @@ new RuleTester({
             valid: [
                 {
                     code: "require('fs').promises",
-                    options: [{ version: "10.1.0" }],
+                    options: [{ version: "11.14.0" }],
                 },
                 {
                     code: "var fs = require('fs'); fs.promises",
-                    options: [{ version: "10.1.0" }],
+                    options: [{ version: "11.14.0" }],
                 },
                 {
                     code: "var { promises } = require('fs'); promises",
-                    options: [{ version: "10.1.0" }],
+                    options: [{ version: "11.14.0" }],
                 },
                 {
                     code: "import fs from 'fs'; fs.promises",
-                    options: [{ version: "10.1.0" }],
+                    options: [{ version: "11.14.0" }],
                 },
                 {
                     code: "import { promises } from 'fs'",
-                    options: [{ version: "10.1.0" }],
+                    options: [{ version: "11.14.0" }],
                 },
                 {
                     code: "require('fs').copyFile",
@@ -2355,23 +2357,23 @@ new RuleTester({
                 // Ignores
                 {
                     code: "require('fs').promises",
-                    options: [{ version: "10.0.9", ignores: ["fs.promises"] }],
+                    options: [{ version: "11.13.9", ignores: ["fs.promises"] }],
                 },
                 {
                     code: "var fs = require('fs'); fs.promises",
-                    options: [{ version: "10.0.9", ignores: ["fs.promises"] }],
+                    options: [{ version: "11.13.9", ignores: ["fs.promises"] }],
                 },
                 {
                     code: "var { promises } = require('fs'); promises",
-                    options: [{ version: "10.0.9", ignores: ["fs.promises"] }],
+                    options: [{ version: "11.13.9", ignores: ["fs.promises"] }],
                 },
                 {
                     code: "import fs from 'fs'; fs.promises",
-                    options: [{ version: "10.0.9", ignores: ["fs.promises"] }],
+                    options: [{ version: "11.13.9", ignores: ["fs.promises"] }],
                 },
                 {
                     code: "import { promises } from 'fs'",
-                    options: [{ version: "10.0.9", ignores: ["fs.promises"] }],
+                    options: [{ version: "11.13.9", ignores: ["fs.promises"] }],
                 },
                 {
                     code: "require('fs').copyFile",
@@ -2412,70 +2414,70 @@ new RuleTester({
             invalid: [
                 {
                     code: "require('fs').promises",
-                    options: [{ version: "10.0.9" }],
+                    options: [{ version: "11.13.9" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "fs.promises",
-                                supported: "10.1.0",
-                                version: "10.0.9",
+                                supported: "11.14.0",
+                                version: "11.13.9",
                             },
                         },
                     ],
                 },
                 {
                     code: "var fs = require('fs'); fs.promises",
-                    options: [{ version: "10.0.9" }],
+                    options: [{ version: "11.13.9" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "fs.promises",
-                                supported: "10.1.0",
-                                version: "10.0.9",
+                                supported: "11.14.0",
+                                version: "11.13.9",
                             },
                         },
                     ],
                 },
                 {
                     code: "var { promises } = require('fs'); promises",
-                    options: [{ version: "10.0.9" }],
+                    options: [{ version: "11.13.9" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "fs.promises",
-                                supported: "10.1.0",
-                                version: "10.0.9",
+                                supported: "11.14.0",
+                                version: "11.13.9",
                             },
                         },
                     ],
                 },
                 {
                     code: "import fs from 'fs'; fs.promises",
-                    options: [{ version: "10.0.9" }],
+                    options: [{ version: "11.13.9" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "fs.promises",
-                                supported: "10.1.0",
-                                version: "10.0.9",
+                                supported: "11.14.0",
+                                version: "11.13.9",
                             },
                         },
                     ],
                 },
                 {
                     code: "import { promises } from 'fs'",
-                    options: [{ version: "10.0.9" }],
+                    options: [{ version: "11.13.9" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "fs.promises",
-                                supported: "10.1.0",
-                                version: "10.0.9",
+                                supported: "11.14.0",
+                                version: "11.13.9",
                             },
                         },
                     ],
@@ -4902,14 +4904,6 @@ new RuleTester({
             valid: [
                 {
                     code: "require('worker_threads')",
-                    options: [{ version: "10.5.0" }],
-                },
-                {
-                    code: "import worker_threads from 'worker_threads'",
-                    options: [{ version: "10.5.0" }],
-                },
-                {
-                    code: "require('worker_threads')",
                     options: [
                         { version: "10.4.99", ignores: ["worker_threads"] },
                     ],
@@ -4924,42 +4918,42 @@ new RuleTester({
             invalid: [
                 {
                     code: "require('worker_threads')",
-                    options: [{ version: "10.4.99" }],
+                    options: [{ version: "10.5.0" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "worker_threads",
-                                supported: "10.5.0",
-                                version: "10.4.99",
+                                supported: "???",
+                                version: "10.5.0",
                             },
                         },
                     ],
                 },
                 {
                     code: "import worker_threads from 'worker_threads'",
-                    options: [{ version: "10.4.99" }],
+                    options: [{ version: "10.5.0" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "worker_threads",
-                                supported: "10.5.0",
-                                version: "10.4.99",
+                                supported: "???",
+                                version: "10.5.0",
                             },
                         },
                     ],
                 },
                 {
                     code: "import { Worker } from 'worker_threads'",
-                    options: [{ version: "10.4.99" }],
+                    options: [{ version: "10.5.0" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "worker_threads",
-                                supported: "10.5.0",
-                                version: "10.4.99",
+                                supported: "???",
+                                version: "10.5.0",
                             },
                         },
                     ],
