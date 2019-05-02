@@ -84,6 +84,7 @@ $ npm install --save-dev eslint eslint-plugin-node
 | Rule ID | Description |    |
 |:--------|:------------|:--:|
 | [node/exports-style](./docs/rules/exports-style.md) | enforce either `module.exports` or `exports` |  |
+| [node/file-extension-in-import](./docs/rules/file-extension-in-import.md) | enforce the style of file extensions in `import` declarations | ✒️ |
 | [node/prefer-global/buffer](./docs/rules/prefer-global/buffer.md) | enforce either `Buffer` or `require("buffer").Buffer` |  |
 | [node/prefer-global/console](./docs/rules/prefer-global/console.md) | enforce either `console` or `require("console")` |  |
 | [node/prefer-global/process](./docs/rules/prefer-global/process.md) | enforce either `process` or `require("process")` |  |
