@@ -8,7 +8,7 @@ Editor integrations of ESLint would be useful to know it in real-time.
 
 ## Rule Details
 
-This rule reports APIs of Node.js built-in APIs on the basis of [Node.js v11.0.0 Documentation](https://nodejs.org/docs/v11.0.0/api/).
+This rule reports APIs of Node.js built-in APIs on the basis of [Node.js v12.0.0 Documentation](https://nodejs.org/docs/v12.0.0/api/).
 
 ### Configured Node.js version range
 
@@ -22,19 +22,19 @@ For example of `package.json`:
     "name": "your-module",
     "version": "1.0.0",
     "engines": {
-        "node": ">=6.0.0"
+        "node": ">=8.0.0"
     }
 }
 ```
 
-If you omit the [engines] field, this rule chooses `>=6.0.0` as the configured Node.js version since `6` is the minimum version the community is maintaining (see also [Node.js Release Working Group](https://github.com/nodejs/Release#readme)).
+If you omit the [engines] field, this rule chooses `>=8.0.0` as the configured Node.js version since `8` is the minimum version the community is maintaining (see also [Node.js Release Working Group](https://github.com/nodejs/Release#readme)).
 
 ### Options
 
 ```json
 {
     "node/no-unsupported-features/node-builtins": ["error", {
-        "version": ">=6.0.0",
+        "version": ">=8.0.0",
         "ignores": []
     }]
 }
@@ -82,6 +82,7 @@ The `"ignores"` option accepts an array of the following strings.
 - `"console.timeStamp"`
 - `"console.timeline"`
 - `"console.timelineEnd"`
+- `"process.allowedNodeEnvironmentFlags"`
 - `"process.argv0"`
 - `"process.channel"`
 - `"process.cpuUsage"`
@@ -92,9 +93,14 @@ The `"ignores"` option accepts an array of the following strings.
 - `"process.hrtime.bigint"`
 - `"process.ppid"`
 - `"process.release"`
+- `"process.report"`
 - `"process.setegid"`
 - `"process.seteuid"`
 - `"process.setUncaughtExceptionCaptureCallback"`
+- `"process.stdout.getColorDepth"`
+- `"process.stdout.hasColor"`
+- `"process.stderr.getColorDepth"`
+- `"process.stderr.hasColor"`
 - `"queueMicrotask"`
 - `"require.resolve.paths"`
 
@@ -151,6 +157,10 @@ The `"ignores"` option accepts an array of the following strings.
 - `"crypto.Certificate.exportChallenge"`
 - `"crypto.Certificate.exportPublicKey"`
 - `"crypto.Certificate.verifySpkac"`
+- `"crypto.KeyObject"`
+- `"crypto.createPrivateKey"`
+- `"crypto.createPublicKey"`
+- `"crypto.createSecretKey"`
 - `"crypto.constants"`
 - `"crypto.fips"`
 - `"crypto.generateKeyPair"`
@@ -164,13 +174,20 @@ The `"ignores"` option accepts an array of the following strings.
 - `"crypto.scrypt"`
 - `"crypto.scryptSync"`
 - `"crypto.setFips"`
+- `"crypto.sign"`
 - `"crypto.timingSafeEqual"`
+- `"crypto.verify"`
 
 **`dns` module:**
 
 - `"dns.Resolver"`
 - `"dns.resolvePtr"`
 - `"dns.promises"`
+
+**`events` module:**
+
+- `"events.EventEmitter.once"`
+- `"events.once"`
 
 **`fs` module:**
 
@@ -211,6 +228,7 @@ The `"ignores"` option accepts an array of the following strings.
 **`perf_hooks` module:**
 
 - `"perf_hooks"`
+- `"perf_hooks.monitorEventLoopDelay"`
 
 **`process` module:**
 
@@ -225,9 +243,14 @@ The `"ignores"` option accepts an array of the following strings.
 - `"process.hrtime.bigint"`
 - `"process.ppid"`
 - `"process.release"`
+- `"process.report"`
 - `"process.setegid"`
 - `"process.seteuid"`
 - `"process.setUncaughtExceptionCaptureCallback"`
+- `"process.stdout.getColorDepth"`
+- `"process.stdout.hasColor"`
+- `"process.stderr.getColorDepth"`
+- `"process.stderr.hasColor"`
 
 **`stream` module:**
 
@@ -252,6 +275,7 @@ The `"ignores"` option accepts an array of the following strings.
 - `"util.getSystemErrorName"`
 - `"util.inspect.custom"`
 - `"util.inspect.defaultOptions"`
+- `"util.inspect.replDefaults"`
 - `"util.isDeepStrictEqual"`
 - `"util.promisify"`
 - `"util.TextDecoder"`
@@ -262,14 +286,16 @@ The `"ignores"` option accepts an array of the following strings.
 **`v8` module:**
 
 - `"v8"`
+- `"v8.DefaultDeserializer"`
+- `"v8.DefaultSerializer"`
+- `"v8.Deserializer"`
+- `"v8.Serializer"`
 - `"v8.cachedDataVersionTag"`
+- `"v8.deserialize"`
+- `"v8.getHeapSnapshot"`
 - `"v8.getHeapSpaceStatistics"`
 - `"v8.serialize"`
-- `"v8.deserialize"`
-- `"v8.Serializer"`
-- `"v8.Deserializer"`
-- `"v8.DefaultSerializer"`
-- `"v8.DefaultDeserializer"`
+- `"v8.writeHeapSnapshot"`
 
 **`vm` module:**
 
