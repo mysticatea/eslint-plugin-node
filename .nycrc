@@ -1,0 +1,14 @@
+{
+    "include": [
+        "lib/**/*.js"
+    ],
+    "exclude": [
+        "lib/rules/no-hide-core-modules.js",
+        "lib/rules/no-unsupported-features.js"
+    ],
+    "reporter": [
+        "lcov",
+        "text"
+    ],
+    "sourceMap": true
+}
