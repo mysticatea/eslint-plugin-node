@@ -10,7 +10,7 @@ Editor integrations of ESLint would be useful to know it in real-time.
 
 ### Supported ECMAScript features
 
-This rule supports ECMAScript 2018 and the features which are arrived at Stage 4 by May 2018.
+This rule supports ECMAScript 2019.
 See also [TC39 finished proposals](https://github.com/tc39/proposals/blob/master/finished-proposals.md).
 
 ### Configured Node.js version range
@@ -37,7 +37,7 @@ If you omit the [engines] field, this rule chooses `>=8.0.0` as the configured N
 ```json
 {
     "node/no-unsupported-features/es-builtins": ["error", {
-        "version": ">=6.0.0",
+        "version": ">=8.0.0",
         "ignores": []
     }]
 }
@@ -58,6 +58,10 @@ You can use this `ignores` option to ignore the given features.
 The `"ignores"` option accepts an array of the following strings.
 
 <details>
+
+**ES2019:**
+
+- `"Object.fromEntries"`
 
 **ES2017:**
 
