@@ -10,7 +10,7 @@ Editor integrations of ESLint would be useful to know it in real-time.
 
 ### Supported ECMAScript features
 
-This rule supports ECMAScript 2018 and the syntax which are arrived at Stage 4 by May 2018.
+This rule supports ECMAScript 2019.
 See also [TC39 finished proposals](https://github.com/tc39/proposals/blob/master/finished-proposals.md).
 
 Please configure your `.eslintrc` file to succeed to succeed in parsing the syntax.
