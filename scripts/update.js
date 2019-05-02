@@ -4,6 +4,5 @@
  */
 "use strict"
 
-require("./update-lib-configs-recommended")
 require("./update-lib-index")
 require("./update-readme")
