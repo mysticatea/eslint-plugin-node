@@ -8,6 +8,22 @@ const version = require("./package.json").version
 
 module.exports = {
     extends: ["plugin:@mysticatea/es2015", "plugin:@mysticatea/+eslint-plugin"],
+    rules: {
+        "@mysticatea/eslint-plugin/test-case-property-ordering": [
+            "error",
+            [
+                "filename",
+                "code",
+                "output",
+                "options",
+                "parser",
+                "parserOptions",
+                "globals",
+                "env",
+                "errors",
+            ],
+        ],
+    },
     overrides: [
         {
             files: ["**/rules/*.js"],

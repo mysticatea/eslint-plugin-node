@@ -182,536 +182,536 @@ ruleTester.run("no-deprecated-api", rule, {
         //----------------------------------------------------------------------
         {
             code: "new (require('buffer').Buffer)()",
+            env: { node: true },
             errors: [
                 "'new buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('buffer').Buffer()",
+            env: { node: true },
             errors: [
                 "'buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "var b = require('buffer'); new b.Buffer()",
+            env: { node: true },
             errors: [
                 "'new buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "var b = require('buffer'); new b['Buffer']()",
+            env: { node: true },
             errors: [
                 "'new buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "var b = require('buffer'); new b[`Buffer`]()",
+            env: { node: true, es6: true },
             errors: [
                 "'new buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { node: true, es6: true },
         },
         {
             code: "var b = require('buffer').Buffer; new b()",
+            env: { node: true },
             errors: [
                 "'new buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { node: true },
         },
         {
             code:
                 "var b; new ((b = require('buffer')).Buffer)(); new b.Buffer()",
+            env: { node: true },
             errors: [
                 "'new buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
                 "'new buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "var {Buffer: b} = require('buffer'); new b()",
+            env: { node: true, es6: true },
             errors: [
                 "'new buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { node: true, es6: true },
         },
         {
             code: "var {['Buffer']: b = null} = require('buffer'); new b()",
+            env: { node: true, es6: true },
             errors: [
                 "'new buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { node: true, es6: true },
         },
         {
             code: "var {'Buffer': b = null} = require('buffer'); new b()",
+            env: { node: true, es6: true },
             errors: [
                 "'new buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { node: true, es6: true },
         },
         {
             code: "var {Buffer: b = require('buffer').Buffer} = {}; new b()",
+            env: { node: true, es6: true },
             errors: [
                 "'new buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { node: true, es6: true },
         },
         {
             code: "require('buffer').SlowBuffer",
+            env: { node: true },
             errors: [
                 "'buffer.SlowBuffer' was deprecated since v6.0.0. Use 'buffer.Buffer.allocUnsafeSlow()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "var b = require('buffer'); b.SlowBuffer",
+            env: { node: true },
             errors: [
                 "'buffer.SlowBuffer' was deprecated since v6.0.0. Use 'buffer.Buffer.allocUnsafeSlow()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "var {SlowBuffer: b} = require('buffer');",
+            env: { node: true, es6: true },
             errors: [
                 "'buffer.SlowBuffer' was deprecated since v6.0.0. Use 'buffer.Buffer.allocUnsafeSlow()' instead.",
             ],
-            env: { node: true, es6: true },
         },
 
         //----------------------------------------------------------------------
         {
             code: "require('_linklist');",
-            errors: ["'_linklist' module was deprecated since v5.0.0."],
             env: { node: true },
+            errors: ["'_linklist' module was deprecated since v5.0.0."],
         },
         {
             code: "require('async_hooks').currentId;",
+            env: { node: true },
             errors: [
                 "'async_hooks.currentId' was deprecated since v8.2.0. Use 'async_hooks.executionAsyncId()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('async_hooks').triggerId;",
+            env: { node: true },
             errors: [
                 "'async_hooks.triggerId' was deprecated since v8.2.0. Use 'async_hooks.triggerAsyncId()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('constants');",
+            env: { node: true },
             errors: [
                 "'constants' module was deprecated since v6.3.0. Use 'constants' property of each module instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('crypto').Credentials;",
+            env: { node: true },
             errors: [
                 "'crypto.Credentials' was deprecated since v0.12.0. Use 'tls.SecureContext' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('crypto').createCredentials;",
+            env: { node: true },
             errors: [
                 "'crypto.createCredentials' was deprecated since v0.12.0. Use 'tls.createSecureContext()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('domain');",
-            errors: ["'domain' module was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'domain' module was deprecated since v4.0.0."],
         },
         {
             code: "require('events').EventEmitter.listenerCount;",
+            env: { node: true },
             errors: [
                 "'events.EventEmitter.listenerCount' was deprecated since v4.0.0. Use 'events.EventEmitter#listenerCount()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('events').listenerCount;",
+            env: { node: true },
             errors: [
                 "'events.listenerCount' was deprecated since v4.0.0. Use 'events.EventEmitter#listenerCount()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('freelist');",
-            errors: ["'freelist' module was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'freelist' module was deprecated since v4.0.0."],
         },
         {
             code: "require('fs').SyncWriteStream;",
-            errors: ["'fs.SyncWriteStream' was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'fs.SyncWriteStream' was deprecated since v4.0.0."],
         },
         {
             code: "require('fs').exists;",
+            env: { node: true },
             errors: [
                 "'fs.exists' was deprecated since v4.0.0. Use 'fs.stat()' or 'fs.access()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('fs').lchmod;",
-            errors: ["'fs.lchmod' was deprecated since v0.4.0."],
             env: { node: true },
+            errors: ["'fs.lchmod' was deprecated since v0.4.0."],
         },
         {
             code: "require('fs').lchmodSync;",
-            errors: ["'fs.lchmodSync' was deprecated since v0.4.0."],
             env: { node: true },
+            errors: ["'fs.lchmodSync' was deprecated since v0.4.0."],
         },
         {
             code: "require('fs').lchown;",
-            errors: ["'fs.lchown' was deprecated since v0.4.0."],
             env: { node: true },
+            errors: ["'fs.lchown' was deprecated since v0.4.0."],
         },
         {
             code: "require('fs').lchownSync;",
-            errors: ["'fs.lchownSync' was deprecated since v0.4.0."],
             env: { node: true },
+            errors: ["'fs.lchownSync' was deprecated since v0.4.0."],
         },
         {
             code: "require('http').createClient;",
+            env: { node: true },
             errors: [
                 "'http.createClient' was deprecated since v0.10.0. Use 'http.request()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('module').requireRepl;",
+            env: { node: true },
             errors: [
                 "'module.requireRepl' was deprecated since v6.0.0. Use 'require(\"repl\")' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('module').Module.requireRepl;",
+            env: { node: true },
             errors: [
                 "'module.Module.requireRepl' was deprecated since v6.0.0. Use 'require(\"repl\")' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('module')._debug;",
-            errors: ["'module._debug' was deprecated since v9.0.0."],
             env: { node: true },
+            errors: ["'module._debug' was deprecated since v9.0.0."],
         },
         {
             code: "require('module').Module._debug;",
-            errors: ["'module.Module._debug' was deprecated since v9.0.0."],
             env: { node: true },
+            errors: ["'module.Module._debug' was deprecated since v9.0.0."],
         },
         {
             code: "require('os').getNetworkInterfaces;",
+            env: { node: true },
             errors: [
                 "'os.getNetworkInterfaces' was deprecated since v0.6.0. Use 'os.networkInterfaces()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('os').tmpDir;",
+            env: { node: true },
             errors: [
                 "'os.tmpDir' was deprecated since v7.0.0. Use 'os.tmpdir()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('path')._makeLong;",
+            env: { node: true },
             errors: [
                 "'path._makeLong' was deprecated since v9.0.0. Use 'path.toNamespacedPath()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('punycode');",
+            env: { node: true },
             errors: [
                 "'punycode' module was deprecated since v7.0.0. Use 'https://www.npmjs.com/package/punycode' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('readline').codePointAt;",
-            errors: ["'readline.codePointAt' was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'readline.codePointAt' was deprecated since v4.0.0."],
         },
         {
             code: "require('readline').getStringWidth;",
-            errors: ["'readline.getStringWidth' was deprecated since v6.0.0."],
             env: { node: true },
+            errors: ["'readline.getStringWidth' was deprecated since v6.0.0."],
         },
         {
             code: "require('readline').isFullWidthCodePoint;",
+            env: { node: true },
             errors: [
                 "'readline.isFullWidthCodePoint' was deprecated since v6.0.0.",
             ],
-            env: { node: true },
         },
         {
             code: "require('readline').stripVTControlCharacters;",
+            env: { node: true },
             errors: [
                 "'readline.stripVTControlCharacters' was deprecated since v6.0.0.",
             ],
-            env: { node: true },
         },
         {
             code: "require('sys');",
+            env: { node: true },
             errors: [
                 "'sys' module was deprecated since v0.3.0. Use 'util' module instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('tls').CleartextStream;",
-            errors: ["'tls.CleartextStream' was deprecated since v0.10.0."],
             env: { node: true },
+            errors: ["'tls.CleartextStream' was deprecated since v0.10.0."],
         },
         {
             code: "require('tls').CryptoStream;",
+            env: { node: true },
             errors: [
                 "'tls.CryptoStream' was deprecated since v0.12.0. Use 'tls.TLSSocket' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('tls').SecurePair;",
+            env: { node: true },
             errors: [
                 "'tls.SecurePair' was deprecated since v6.0.0. Use 'tls.TLSSocket' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('tls').createSecurePair;",
+            env: { node: true },
             errors: [
                 "'tls.createSecurePair' was deprecated since v6.0.0. Use 'tls.TLSSocket' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('tls').parseCertString;",
+            env: { node: true },
             errors: [
                 "'tls.parseCertString' was deprecated since v8.6.0. Use 'querystring.parse()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('tty').setRawMode;",
+            env: { node: true },
             errors: [
                 "'tty.setRawMode' was deprecated since v0.10.0. Use 'tty.ReadStream#setRawMode()' (e.g. 'process.stdin.setRawMode()') instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('util').debug;",
+            env: { node: true },
             errors: [
                 "'util.debug' was deprecated since v0.12.0. Use 'console.error()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('util').error;",
+            env: { node: true },
             errors: [
                 "'util.error' was deprecated since v0.12.0. Use 'console.error()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('util').isArray;",
+            env: { node: true },
             errors: [
                 "'util.isArray' was deprecated since v4.0.0. Use 'Array.isArray()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('util').isBoolean;",
-            errors: ["'util.isBoolean' was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'util.isBoolean' was deprecated since v4.0.0."],
         },
         {
             code: "require('util').isBuffer;",
+            env: { node: true },
             errors: [
                 "'util.isBuffer' was deprecated since v4.0.0. Use 'Buffer.isBuffer()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('util').isDate;",
-            errors: ["'util.isDate' was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'util.isDate' was deprecated since v4.0.0."],
         },
         {
             code: "require('util').isError;",
-            errors: ["'util.isError' was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'util.isError' was deprecated since v4.0.0."],
         },
         {
             code: "require('util').isFunction;",
-            errors: ["'util.isFunction' was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'util.isFunction' was deprecated since v4.0.0."],
         },
         {
             code: "require('util').isNull;",
-            errors: ["'util.isNull' was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'util.isNull' was deprecated since v4.0.0."],
         },
         {
             code: "require('util').isNullOrUndefined;",
-            errors: ["'util.isNullOrUndefined' was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'util.isNullOrUndefined' was deprecated since v4.0.0."],
         },
         {
             code: "require('util').isNumber;",
-            errors: ["'util.isNumber' was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'util.isNumber' was deprecated since v4.0.0."],
         },
         {
             code: "require('util').isObject;",
-            errors: ["'util.isObject' was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'util.isObject' was deprecated since v4.0.0."],
         },
         {
             code: "require('util').isPrimitive;",
-            errors: ["'util.isPrimitive' was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'util.isPrimitive' was deprecated since v4.0.0."],
         },
         {
             code: "require('util').isRegExp;",
-            errors: ["'util.isRegExp' was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'util.isRegExp' was deprecated since v4.0.0."],
         },
         {
             code: "require('util').isString;",
-            errors: ["'util.isString' was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'util.isString' was deprecated since v4.0.0."],
         },
         {
             code: "require('util').isSymbol;",
-            errors: ["'util.isSymbol' was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'util.isSymbol' was deprecated since v4.0.0."],
         },
         {
             code: "require('util').isUndefined;",
-            errors: ["'util.isUndefined' was deprecated since v4.0.0."],
             env: { node: true },
+            errors: ["'util.isUndefined' was deprecated since v4.0.0."],
         },
         {
             code: "require('util').log;",
+            env: { node: true },
             errors: [
                 "'util.log' was deprecated since v6.0.0. Use a third party module instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('util').print;",
+            env: { node: true },
             errors: [
                 "'util.print' was deprecated since v0.12.0. Use 'console.log()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('util').pump;",
+            env: { node: true },
             errors: [
                 "'util.pump' was deprecated since v0.10.0. Use 'stream.Readable#pipe()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('util').puts;",
+            env: { node: true },
             errors: [
                 "'util.puts' was deprecated since v0.12.0. Use 'console.log()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('util')._extend;",
+            env: { node: true },
             errors: [
                 "'util._extend' was deprecated since v6.0.0. Use 'Object.assign()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('vm').runInDebugContext;",
-            errors: ["'vm.runInDebugContext' was deprecated since v8.0.0."],
             env: { node: true },
+            errors: ["'vm.runInDebugContext' was deprecated since v8.0.0."],
         },
 
         // ES2015 Modules
         {
             code: "import b from 'buffer'; new b.Buffer()",
             parserOptions: { sourceType: "module" },
+            env: { es6: true },
             errors: [
                 "'new buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { es6: true },
         },
         {
             code: "import * as b from 'buffer'; new b.Buffer()",
             parserOptions: { sourceType: "module" },
+            env: { es6: true },
             errors: [
                 "'new buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { es6: true },
         },
         {
             code: "import * as b from 'buffer'; new b.default.Buffer()",
             parserOptions: { sourceType: "module" },
+            env: { es6: true },
             errors: [
                 "'new buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { es6: true },
         },
         {
             code: "import {Buffer as b} from 'buffer'; new b()",
             parserOptions: { sourceType: "module" },
+            env: { es6: true },
             errors: [
                 "'new buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { es6: true },
         },
         {
             code: "import b from 'buffer'; b.SlowBuffer",
             parserOptions: { sourceType: "module" },
+            env: { es6: true },
             errors: [
                 "'buffer.SlowBuffer' was deprecated since v6.0.0. Use 'buffer.Buffer.allocUnsafeSlow()' instead.",
             ],
-            env: { es6: true },
         },
         {
             code: "import * as b from 'buffer'; b.SlowBuffer",
             parserOptions: { sourceType: "module" },
+            env: { es6: true },
             errors: [
                 "'buffer.SlowBuffer' was deprecated since v6.0.0. Use 'buffer.Buffer.allocUnsafeSlow()' instead.",
             ],
-            env: { es6: true },
         },
         {
             code: "import * as b from 'buffer'; b.default.SlowBuffer",
             parserOptions: { sourceType: "module" },
+            env: { es6: true },
             errors: [
                 "'buffer.SlowBuffer' was deprecated since v6.0.0. Use 'buffer.Buffer.allocUnsafeSlow()' instead.",
             ],
-            env: { es6: true },
         },
         {
             code: "import {SlowBuffer as b} from 'buffer';",
             parserOptions: { sourceType: "module" },
+            env: { es6: true },
             errors: [
                 "'buffer.SlowBuffer' was deprecated since v6.0.0. Use 'buffer.Buffer.allocUnsafeSlow()' instead.",
             ],
-            env: { es6: true },
         },
         {
             code: "import domain from 'domain';",
             parserOptions: { sourceType: "module" },
-            errors: ["'domain' module was deprecated since v4.0.0."],
             env: { es6: true },
+            errors: ["'domain' module was deprecated since v4.0.0."],
         },
 
         {
@@ -723,10 +723,10 @@ ruleTester.run("no-deprecated-api", rule, {
                     ignoreGlobalItems: ["Buffer()", "new Buffer()"],
                 },
             ],
+            env: { node: true },
             errors: [
                 "'new buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "require('buffer').Buffer()",
@@ -737,10 +737,10 @@ ruleTester.run("no-deprecated-api", rule, {
                     ignoreGlobalItems: ["Buffer()", "new Buffer()"],
                 },
             ],
+            env: { node: true },
             errors: [
                 "'buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
-            env: { node: true },
         },
 
         //----------------------------------------------------------------------
@@ -748,65 +748,65 @@ ruleTester.run("no-deprecated-api", rule, {
         //----------------------------------------------------------------------
         {
             code: "new Buffer;",
+            env: { node: true },
             errors: [
                 "'new Buffer()' was deprecated since v6.0.0. Use 'Buffer.alloc()' or 'Buffer.from()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "Buffer();",
+            env: { node: true },
             errors: [
                 "'Buffer()' was deprecated since v6.0.0. Use 'Buffer.alloc()' or 'Buffer.from()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "GLOBAL; /*globals GLOBAL*/",
+            env: { node: true },
             errors: [
                 "'GLOBAL' was deprecated since v6.0.0. Use 'global' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "Intl.v8BreakIterator;",
-            errors: ["'Intl.v8BreakIterator' was deprecated since v7.0.0."],
             env: { node: true },
+            errors: ["'Intl.v8BreakIterator' was deprecated since v7.0.0."],
         },
         {
             code: "require.extensions;",
+            env: { node: true },
             errors: [
                 "'require.extensions' was deprecated since v0.12.0. Use compiling them ahead of time instead.",
             ],
-            env: { node: true },
         },
         {
             code: "root;",
+            globals: { root: false },
+            env: { node: true },
             errors: [
                 "'root' was deprecated since v6.0.0. Use 'global' instead.",
             ],
-            env: { node: true },
-            globals: { root: false },
         },
         {
             code: "process.EventEmitter;",
+            env: { node: true },
             errors: [
                 "'process.EventEmitter' was deprecated since v0.6.0. Use 'require(\"events\")' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "process.env.NODE_REPL_HISTORY_FILE;",
+            env: { node: true },
             errors: [
                 "'process.env.NODE_REPL_HISTORY_FILE' was deprecated since v4.0.0. Use 'NODE_REPL_HISTORY' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "let {env: {NODE_REPL_HISTORY_FILE}} = process;",
+            env: { node: true, es6: true },
             errors: [
                 "'process.env.NODE_REPL_HISTORY_FILE' was deprecated since v4.0.0. Use 'NODE_REPL_HISTORY' instead.",
             ],
-            env: { node: true, es6: true },
         },
         {
             code: "import domain from 'domain';",
@@ -826,10 +826,10 @@ ruleTester.run("no-deprecated-api", rule, {
                     ignoreGlobalItems: ["Buffer()"],
                 },
             ],
+            env: { node: true },
             errors: [
                 "'new Buffer()' was deprecated since v6.0.0. Use 'Buffer.alloc()' or 'Buffer.from()' instead.",
             ],
-            env: { node: true },
         },
         {
             code: "Buffer()",
@@ -843,10 +843,10 @@ ruleTester.run("no-deprecated-api", rule, {
                     ignoreGlobalItems: ["new Buffer()"],
                 },
             ],
+            env: { node: true },
             errors: [
                 "'Buffer()' was deprecated since v6.0.0. Use 'Buffer.alloc()' or 'Buffer.from()' instead.",
             ],
-            env: { node: true },
         },
     ],
 })

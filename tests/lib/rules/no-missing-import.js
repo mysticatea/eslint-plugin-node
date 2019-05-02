@@ -21,63 +21,63 @@ const ruleTester = new RuleTester({ parserOptions: { sourceType: "module" } })
 ruleTester.run("no-missing-import", rule, {
     valid: [
         {
+            filename: fixture("test.js"),
             code: "import eslint from 'eslint';",
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import fs from 'fs';",
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import eslint from 'eslint/lib/api';",
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import a from './a'; a();",
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import a from './a.js';",
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import aConfig from './a.config';",
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import aConfig from './a.config.js';",
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import b from './b';",
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import b from './b.json';",
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import c from './c.coffee';",
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import mocha from 'mocha';",
-            filename: fixture("test.js"),
         },
         {
-            code: "import mocha from 'mocha!foo?a=b&c=d';",
             filename: fixture("test.js"),
+            code: "import mocha from 'mocha!foo?a=b&c=d';",
         },
 
         // tryExtensions
         {
+            filename: fixture("test.js"),
             code: "import c from './c';",
             options: [{ tryExtensions: [".coffee"] }],
-            filename: fixture("test.js"),
         },
         {
-            code: "import c from './c';",
             filename: fixture("test.js"),
+            code: "import c from './c';",
             settings: { node: { tryExtensions: [".coffee"] } },
         },
 
@@ -87,123 +87,123 @@ ruleTester.run("no-missing-import", rule, {
 
         // no source.
         {
-            code: "const foo=0, bar=1; export {foo, bar};",
             filename: fixture("test.js"),
+            code: "const foo=0, bar=1; export {foo, bar};",
         },
 
         // Should work fine if the filename is relative.
         {
-            code: "import eslint from 'eslint'",
             filename: "tests/fixtures/no-missing/test.js",
+            code: "import eslint from 'eslint'",
         },
         {
-            code: "import a from './a';",
             filename: "tests/fixtures/no-missing/test.js",
+            code: "import a from './a';",
         },
 
         // Relative paths to a directory should work.
         {
+            filename: fixture("test.js"),
             code: "import a from '.';",
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import a from './';",
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import a from './foo';",
-            filename: fixture("test.js"),
         },
         {
-            code: "import a from './foo/';",
             filename: fixture("test.js"),
+            code: "import a from './foo/';",
         },
 
         // allow option.
         {
+            filename: fixture("test.js"),
             code: "import electron from 'electron';",
             options: [{ allowModules: ["electron"] }],
-            filename: fixture("test.js"),
         },
 
         // resolvePaths
         {
-            code: "import a from 'fixtures/no-missing/a';",
             filename: fixture("test.js"),
+            code: "import a from 'fixtures/no-missing/a';",
             env: { node: true },
             settings: {
                 node: { resolvePaths: [path.resolve(__dirname, "../../")] },
             },
         },
         {
+            filename: fixture("test.js"),
             code: "import a from 'fixtures/no-missing/a';",
             options: [{ resolvePaths: [path.resolve(__dirname, "../../")] }],
-            filename: fixture("test.js"),
             env: { node: true },
         },
         {
+            filename: fixture("test.js"),
             code: "import a from 'fixtures/no-missing/a';",
             options: [{ resolvePaths: ["tests"] }],
-            filename: fixture("test.js"),
             env: { node: true },
         },
     ],
     invalid: [
         {
+            filename: fixture("test.js"),
             code: "import abc from 'no-exist-package-0';",
             errors: ['"no-exist-package-0" is not found.'],
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import test from '@mysticatea/test';",
             errors: ['"@mysticatea/test" is not found.'],
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import c from './c';",
             errors: ['"./c" is not found.'],
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import d from './d';",
             errors: ['"./d" is not found.'],
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import a from './a.json';",
             errors: ['"./a.json" is not found.'],
-            filename: fixture("test.js"),
         },
 
         // Should work fine if the filename is relative.
         {
+            filename: "tests/fixtures/no-missing/test.js",
             code: "import eslint from 'no-exist-package-0';",
             errors: ['"no-exist-package-0" is not found.'],
-            filename: "tests/fixtures/no-missing/test.js",
         },
         {
+            filename: "tests/fixtures/no-missing/test.js",
             code: "import c from './c';",
             errors: ['"./c" is not found.'],
-            filename: "tests/fixtures/no-missing/test.js",
         },
 
         // Relative paths to a directory should work.
         {
+            filename: fixture("test.js"),
             code: "import a from './bar';",
             errors: ['"./bar" is not found.'],
-            filename: fixture("test.js"),
         },
         {
+            filename: fixture("test.js"),
             code: "import a from './bar/';",
             errors: ['"./bar/" is not found.'],
-            filename: fixture("test.js"),
         },
 
         // Case sensitive
         {
+            filename: fixture("test.js"),
             code: "import a from './A.js';",
             errors: ['"./A.js" is not found.'],
-            filename: fixture("test.js"),
         },
     ],
 })

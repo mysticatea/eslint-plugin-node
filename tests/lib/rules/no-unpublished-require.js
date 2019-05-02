@@ -21,95 +21,95 @@ const ruleTester = new RuleTester()
 ruleTester.run("no-unpublished-require", rule, {
     valid: [
         {
+            filename: fixture("1/test.js"),
             code: "require('fs');",
-            filename: fixture("1/test.js"),
             env: { node: true },
         },
         {
+            filename: fixture("1/test.js"),
             code: "require('aaa');",
-            filename: fixture("1/test.js"),
             env: { node: true },
         },
         {
+            filename: fixture("1/test.js"),
             code: "require('aaa/a/b/c');",
-            filename: fixture("1/test.js"),
             env: { node: true },
         },
         {
+            filename: fixture("1/test.js"),
             code: "require('./a');",
-            filename: fixture("1/test.js"),
             env: { node: true },
         },
         {
+            filename: fixture("1/test.js"),
             code: "require('./a.js');",
-            filename: fixture("1/test.js"),
             env: { node: true },
         },
         {
+            filename: fixture("2/ignore1.js"),
             code: "require('./test');",
-            filename: fixture("2/ignore1.js"),
             env: { node: true },
         },
         {
+            filename: fixture("2/ignore1.js"),
             code: "require('bbb');",
-            filename: fixture("2/ignore1.js"),
             env: { node: true },
         },
         {
+            filename: fixture("2/ignore1.js"),
             code: "require('bbb/a/b/c');",
-            filename: fixture("2/ignore1.js"),
             env: { node: true },
         },
         {
+            filename: fixture("2/ignore1.js"),
             code: "require('./ignore2');",
-            filename: fixture("2/ignore1.js"),
             env: { node: true },
         },
         {
+            filename: fixture("3/test.js"),
             code: "require('./pub/a');",
-            filename: fixture("3/test.js"),
             env: { node: true },
         },
         {
+            filename: fixture("3/test.js"),
             code: "require('./test2');",
-            filename: fixture("3/test.js"),
             env: { node: true },
         },
         {
+            filename: fixture("3/test.js"),
             code: "require('aaa');",
-            filename: fixture("3/test.js"),
             env: { node: true },
         },
         {
-            code: "require('bbb');",
             filename: fixture("3/test.js"),
+            code: "require('bbb');",
             env: { node: true },
         },
         {
-            code: "require('bbb');",
             filename: fixture("3/pub/ignore1.js"),
-            env: { node: true },
-        },
-        {
-            code: "require('../package.json');",
-            filename: fixture("3/pub/test.js"),
-            env: { node: true },
-        },
-        {
             code: "require('bbb');",
-            filename: fixture("3/src/pub/test.js"),
             env: { node: true },
         },
         {
-            code: "require('bbb!foo?a=b&c=d');",
+            filename: fixture("3/pub/test.js"),
+            code: "require('../package.json');",
+            env: { node: true },
+        },
+        {
             filename: fixture("3/src/pub/test.js"),
+            code: "require('bbb');",
+            env: { node: true },
+        },
+        {
+            filename: fixture("3/src/pub/test.js"),
+            code: "require('bbb!foo?a=b&c=d');",
             env: { node: true },
         },
 
         // `convertPath` option.
         {
-            code: "require('./a');",
             filename: fixture("3/src/test.jsx"),
+            code: "require('./a');",
             env: { node: true },
             settings: {
                 node: {
@@ -121,6 +121,7 @@ ruleTester.run("no-unpublished-require", rule, {
             },
         },
         {
+            filename: fixture("3/src/test.jsx"),
             code: "require('./a');",
             options: [
                 {
@@ -130,12 +131,11 @@ ruleTester.run("no-unpublished-require", rule, {
                     tryExtensions: [".js", ".jsx", ".json"],
                 },
             ],
-            filename: fixture("3/src/test.jsx"),
             env: { node: true },
         },
         {
-            code: "require('../test');",
             filename: fixture("3/src/test.jsx"),
+            code: "require('../test');",
             env: { node: true },
             settings: {
                 node: {
@@ -150,6 +150,7 @@ ruleTester.run("no-unpublished-require", rule, {
             },
         },
         {
+            filename: fixture("3/src/test.jsx"),
             code: "require('../test');",
             options: [
                 {
@@ -162,21 +163,20 @@ ruleTester.run("no-unpublished-require", rule, {
                     ],
                 },
             ],
-            filename: fixture("3/src/test.jsx"),
             env: { node: true },
         },
 
         // Ignores it if not callee.
         {
-            code: "require;",
             filename: fixture("1/test.js"),
+            code: "require;",
             env: { node: true },
         },
 
         // Ignores it if the global variable of `require` is not defined.
         {
-            code: "require('no-exist-package-0');",
             filename: fixture("1/test.js"),
+            code: "require('no-exist-package-0');",
         },
 
         // Ignores it if the filename is unknown.
@@ -191,122 +191,122 @@ ruleTester.run("no-unpublished-require", rule, {
 
         // Ignores it if the target is not string.
         {
+            filename: fixture("1/test.js"),
             code: "require();",
-            filename: fixture("1/test.js"),
             env: { node: true },
         },
         {
+            filename: fixture("1/test.js"),
             code: "require(foo);",
-            filename: fixture("1/test.js"),
             env: { node: true },
         },
         {
+            filename: fixture("1/test.js"),
             code: "require(777);",
-            filename: fixture("1/test.js"),
             env: { node: true },
         },
         {
-            code: "require(`foo${bar}`);", //eslint-disable-line no-template-curly-in-string
             filename: fixture("1/test.js"),
+            code: "require(`foo${bar}`);", //eslint-disable-line no-template-curly-in-string
             env: { node: true, es6: true },
         },
 
         // Should work fine if the filename is relative.
         {
-            code: "require('aaa');",
             filename: "tests/fixtures/no-unpublished/2/test.js",
+            code: "require('aaa');",
             env: { node: true },
         },
         {
-            code: "require('./a');",
             filename: "tests/fixtures/no-unpublished/2/test.js",
+            code: "require('./a');",
             env: { node: true },
         },
 
         // allowModules option
         {
+            filename: fixture("1/test.js"),
             code: "require('electron');",
             options: [{ allowModules: ["electron"] }],
-            filename: fixture("1/test.js"),
             env: { node: true },
         },
 
         // Auto-published files only apply to root package directory
         {
-            code: "require('bbb');",
             filename: fixture("3/src/readme.js"),
+            code: "require('bbb');",
             env: { node: true },
         },
 
         // Negative patterns in files field.
         {
-            code: "require('bbb');",
             filename: fixture("negative-in-files/lib/__test__/index.js"),
+            code: "require('bbb');",
             env: { node: true },
         },
         {
-            code: "require('bbb');",
             filename: fixture("issue126/lib/test.js"),
+            code: "require('bbb');",
             env: { node: true },
         },
     ],
     invalid: [
         {
+            filename: fixture("2/test.js"),
             code: "require('./ignore1.js');",
+            env: { node: true },
             errors: ['"./ignore1.js" is not published.'],
-            filename: fixture("2/test.js"),
-            env: { node: true },
         },
         {
+            filename: fixture("2/test.js"),
             code: "require('./ignore1');",
-            errors: ['"./ignore1" is not published.'],
-            filename: fixture("2/test.js"),
             env: { node: true },
+            errors: ['"./ignore1" is not published.'],
         },
         {
+            filename: fixture("3/pub/test.js"),
             code: "require('bbb');",
+            env: { node: true },
             errors: ['"bbb" is not published.'],
-            filename: fixture("3/pub/test.js"),
-            env: { node: true },
         },
         {
+            filename: fixture("3/pub/test.js"),
             code: "require('./ignore1');",
+            env: { node: true },
             errors: ['"./ignore1" is not published.'],
-            filename: fixture("3/pub/test.js"),
-            env: { node: true },
         },
         {
+            filename: fixture("3/pub/test.js"),
             code: "require('./abc');",
+            env: { node: true },
             errors: ['"./abc" is not published.'],
-            filename: fixture("3/pub/test.js"),
-            env: { node: true },
         },
         {
+            filename: fixture("3/pub/test.js"),
             code: "require('../test');",
-            errors: ['"../test" is not published.'],
-            filename: fixture("3/pub/test.js"),
             env: { node: true },
+            errors: ['"../test" is not published.'],
         },
         {
-            code: "require('../src/pub/a.js');",
-            errors: ['"../src/pub/a.js" is not published.'],
             filename: fixture("3/pub/test.js"),
+            code: "require('../src/pub/a.js');",
             env: { node: true },
+            errors: ['"../src/pub/a.js" is not published.'],
         },
 
         {
-            code: "require('../a.js');",
-            errors: ['"../a.js" is not published.'],
             filename: fixture("1/test.js"),
+            code: "require('../a.js');",
             env: { node: true },
+            errors: ['"../a.js" is not published.'],
         },
 
         // `convertPath` option.
         {
-            code: "require('../test');",
-            errors: ['"../test" is not published.'],
             filename: fixture("3/src/test.jsx"),
+            code: "require('../test');",
             env: { node: true },
+            errors: ['"../test" is not published.'],
             settings: {
                 node: {
                     convertPath: {
@@ -316,6 +316,7 @@ ruleTester.run("no-unpublished-require", rule, {
             },
         },
         {
+            filename: fixture("3/src/test.jsx"),
             code: "require('../test');",
             options: [
                 {
@@ -324,15 +325,14 @@ ruleTester.run("no-unpublished-require", rule, {
                     },
                 },
             ],
-            errors: ['"../test" is not published.'],
-            filename: fixture("3/src/test.jsx"),
             env: { node: true },
+            errors: ['"../test" is not published.'],
         },
         {
-            code: "require('../test');",
-            errors: ['"../test" is not published.'],
             filename: fixture("3/src/test.jsx"),
+            code: "require('../test');",
             env: { node: true },
+            errors: ['"../test" is not published.'],
             settings: {
                 node: {
                     convertPath: [
@@ -345,6 +345,7 @@ ruleTester.run("no-unpublished-require", rule, {
             },
         },
         {
+            filename: fixture("3/src/test.jsx"),
             code: "require('../test');",
             options: [
                 {
@@ -356,25 +357,24 @@ ruleTester.run("no-unpublished-require", rule, {
                     ],
                 },
             ],
-            errors: ['"../test" is not published.'],
-            filename: fixture("3/src/test.jsx"),
             env: { node: true },
+            errors: ['"../test" is not published.'],
         },
 
         // Should work fine if the filename is relative.
         {
-            code: "require('./ignore1');",
-            errors: ['"./ignore1" is not published.'],
             filename: "tests/fixtures/no-unpublished/2/test.js",
+            code: "require('./ignore1');",
             env: { node: true },
+            errors: ['"./ignore1" is not published.'],
         },
 
         // outside of the package.
         {
-            code: "require('../2/a.js');",
-            errors: ['"../2/a.js" is not published.'],
             filename: fixture("1/test.js"),
+            code: "require('../2/a.js');",
             env: { node: true },
+            errors: ['"../2/a.js" is not published.'],
         },
     ],
 })

@@ -68,123 +68,123 @@ new RuleTester().run("exports-style", rule, {
     invalid: [
         {
             code: "exports = {foo: 1}",
+            globals: { module: false, exports: true },
             errors: [
                 "Unexpected access to 'exports'. Use 'module.exports' instead.",
             ],
-            globals: { module: false, exports: true },
         },
         {
             code: "exports.foo = 1",
+            globals: { module: false, exports: true },
             errors: [
                 "Unexpected access to 'exports'. Use 'module.exports' instead.",
             ],
-            globals: { module: false, exports: true },
         },
         {
             code: "module.exports = exports = {foo: 1}",
+            globals: { module: false, exports: true },
             errors: [
                 "Unexpected access to 'exports'. Use 'module.exports' instead.",
             ],
-            globals: { module: false, exports: true },
         },
         {
             code: "exports = module.exports = {foo: 1}",
+            globals: { module: false, exports: true },
             errors: [
                 "Unexpected access to 'exports'. Use 'module.exports' instead.",
             ],
-            globals: { module: false, exports: true },
         },
 
         {
             code: "exports = {foo: 1}",
             options: ["module.exports"],
+            globals: { module: false, exports: true },
             errors: [
                 "Unexpected access to 'exports'. Use 'module.exports' instead.",
             ],
-            globals: { module: false, exports: true },
         },
         {
             code: "exports.foo = 1",
             options: ["module.exports"],
+            globals: { module: false, exports: true },
             errors: [
                 "Unexpected access to 'exports'. Use 'module.exports' instead.",
             ],
-            globals: { module: false, exports: true },
         },
         {
             code: "module.exports = exports = {foo: 1}",
             options: ["module.exports"],
+            globals: { module: false, exports: true },
             errors: [
                 "Unexpected access to 'exports'. Use 'module.exports' instead.",
             ],
-            globals: { module: false, exports: true },
         },
         {
             code: "exports = module.exports = {foo: 1}",
             options: ["module.exports"],
+            globals: { module: false, exports: true },
             errors: [
                 "Unexpected access to 'exports'. Use 'module.exports' instead.",
             ],
-            globals: { module: false, exports: true },
         },
 
         {
             code: "exports = {foo: 1}",
             options: ["exports"],
+            globals: { module: false, exports: true },
             errors: [
                 "Unexpected assignment to 'exports'. Don't modify 'exports' itself.",
             ],
-            globals: { module: false, exports: true },
         },
         {
             code: "module.exports = {foo: 1}",
             options: ["exports"],
+            globals: { module: false, exports: true },
             errors: [
                 "Unexpected access to 'module.exports'. Use 'exports' instead.",
             ],
-            globals: { module: false, exports: true },
         },
         {
             code: "module.exports.foo = 1",
             options: ["exports"],
+            globals: { module: false, exports: true },
             errors: [
                 "Unexpected access to 'module.exports'. Use 'exports' instead.",
             ],
-            globals: { module: false, exports: true },
         },
         {
             code: "module.exports = exports = {foo: 1}",
             options: ["exports"],
+            globals: { module: false, exports: true },
             errors: [
                 "Unexpected access to 'module.exports'. Use 'exports' instead.",
                 "Unexpected assignment to 'exports'. Don't modify 'exports' itself.",
             ],
-            globals: { module: false, exports: true },
         },
         {
             code: "exports = module.exports = {foo: 1}",
             options: ["exports"],
+            globals: { module: false, exports: true },
             errors: [
                 "Unexpected assignment to 'exports'. Don't modify 'exports' itself.",
                 "Unexpected access to 'module.exports'. Use 'exports' instead.",
             ],
-            globals: { module: false, exports: true },
         },
         {
             code: "module.exports = exports = {foo: 1}; exports = obj",
             options: ["exports", { allowBatchAssign: true }],
+            globals: { module: false, exports: true },
             errors: [
                 "Unexpected assignment to 'exports'. Don't modify 'exports' itself.",
             ],
-            globals: { module: false, exports: true },
         },
         {
             code: "exports = module.exports = {foo: 1}; exports = obj",
             options: ["exports", { allowBatchAssign: true }],
+            globals: { module: false, exports: true },
             errors: [
                 "Unexpected assignment to 'exports'. Don't modify 'exports' itself.",
             ],
-            globals: { module: false, exports: true },
         },
     ],
 })

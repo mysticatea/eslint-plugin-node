@@ -22,64 +22,64 @@ const tester = new RuleTester({ parserOptions: { sourceType: "module" } })
 tester.run("no-extraneous-import", rule, {
     valid: [
         {
+            filename: fixture("dependencies/a.js"),
             code: "import bbb from './bbb'",
-            filename: fixture("dependencies/a.js"),
         },
         {
+            filename: fixture("dependencies/a.js"),
             code: "import aaa from 'aaa'",
-            filename: fixture("dependencies/a.js"),
         },
         {
+            filename: fixture("dependencies/a.js"),
             code: "import bbb from 'aaa/bbb'",
-            filename: fixture("dependencies/a.js"),
         },
         {
+            filename: fixture("dependencies/a.js"),
             code: "import aaa from '@bbb/aaa'",
-            filename: fixture("dependencies/a.js"),
         },
         {
+            filename: fixture("dependencies/a.js"),
             code: "import bbb from '@bbb/aaa/bbb'",
-            filename: fixture("dependencies/a.js"),
         },
         {
-            code: "import aaa from 'aaa'",
             filename: fixture("devDependencies/a.js"),
+            code: "import aaa from 'aaa'",
         },
         {
-            code: "import aaa from 'aaa'",
             filename: fixture("peerDependencies/a.js"),
+            code: "import aaa from 'aaa'",
         },
         {
-            code: "import aaa from 'aaa'",
             filename: fixture("optionalDependencies/a.js"),
+            code: "import aaa from 'aaa'",
         },
 
         // missing packages are warned by no-missing-import
         {
-            code: "import ccc from 'ccc'",
             filename: fixture("dependencies/a.js"),
+            code: "import ccc from 'ccc'",
         },
     ],
     invalid: [
         {
-            code: "import bbb from 'bbb'",
-            errors: ['"bbb" is extraneous.'],
             filename: fixture("dependencies/a.js"),
-        },
-        {
             code: "import bbb from 'bbb'",
             errors: ['"bbb" is extraneous.'],
+        },
+        {
             filename: fixture("devDependencies/a.js"),
-        },
-        {
             code: "import bbb from 'bbb'",
             errors: ['"bbb" is extraneous.'],
+        },
+        {
             filename: fixture("peerDependencies/a.js"),
-        },
-        {
             code: "import bbb from 'bbb'",
             errors: ['"bbb" is extraneous.'],
+        },
+        {
             filename: fixture("optionalDependencies/a.js"),
+            code: "import bbb from 'bbb'",
+            errors: ['"bbb" is extraneous.'],
         },
     ],
 })
