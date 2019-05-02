@@ -23,7 +23,10 @@ $ npm install --save-dev eslint eslint-plugin-node
 
 ```json
 {
-    "extends": ["eslint:recommended", "plugin:node/recommended"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:node/recommended"
+    ],
     "rules": {
         "node/exports-style": ["error", "module.exports"],
         "node/prefer-global/buffer": ["error", "always"],
@@ -102,15 +105,19 @@ These rules have been deprecated in accordance with the [deprecation policy](htt
 
 ## 🔧 Configs
 
-This plugin provides `plugin:node/recommended` preset config.
-This preset config:
+This plugin provides three configs:
 
-- enables the environment of ES2015 (ES6) and Node.js.
-- enables rules which are given :star: in the above table.
-- enables [no-process-exit](http://eslint.org/docs/rules/no-process-exit) rule because [the official document](https://nodejs.org/api/process.html#process_process_exit_code) does not recommend a use of `process.exit()`.
-- adds `{ecmaVersion: 2019}` into `parserOptions`.
-- adds `Atomics` and `SharedArrayBuffer` into `globals`.
-- adds this plugin into `plugins`.
+- `plugin:node/recommended` condiders both CommonJS and ES Modules. If [`"type":"module"` field](https://medium.com/@nodejs/announcing-a-new-experimental-modules-1be8d2d6c2ff#b023) existed in package.json then it considers files as ES Modules. Otherwise it considers files as CommonJS. In addition, it considers `*.mjs` files as ES Modules and `*.cjs` files as CommonJS.
+- `plugin:node/recommended-module` considers all files as ES Modules.
+- `plugin:node/recommended-script` considers all files as CommonJS.
+
+Those preset config:
+
+- enable [no-process-exit](http://eslint.org/docs/rules/no-process-exit) rule because [the official document](https://nodejs.org/api/process.html#process_process_exit_code) does not recommend a use of `process.exit()`.
+- enable plugin rules which are given :star: in the above table.
+- add `{ecmaVersion: 2019}` and etc into `parserOptions`.
+- add proper globals into `globals`.
+- add this plugin into `plugins`.
 
 ## 👫 FAQ
 

@@ -24,6 +24,7 @@
     "@mysticatea/eslint-plugin": "^10.0.3",
     "codecov": "^3.3.0",
     "eslint": "^5.16.0",
+    "eslint-plugin-node": "file:.",
     "fast-glob": "^2.2.6",
     "mocha": "^6.1.4",
     "nyc": "^14.0.0",
