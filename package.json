@@ -38,7 +38,7 @@
     "coverage": "opener ./coverage/lcov-report/index.html",
     "lint": "eslint lib scripts tests/lib .eslintrc.js",
     "test": "nyc npm run -s test:_mocha",
-    "test:_mocha": "_mocha tests/lib/**/*.js --reporter progress",
+    "test:_mocha": "_mocha \"tests/lib/**/*.js\" --reporter progress",
     "preversion": "npm t && npm run -s build",
     "version": "eslint lib/rules --fix && git add lib/rules",
     "postversion": "git push && git push --tags",
