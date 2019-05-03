@@ -1,6 +1,8 @@
 # node/no-extraneous-import
 > disallow `import` declarations which import extraneous modules
 
+- ⭐️ This rule is included in `plugin:node/recommended` preset.
+
 If an `import` declaration's source is extraneous (it's not written in `package.json`), the program works in local, but will not work after dependencies are re-installed. It will cause troubles to your team/contributors.
 This rule disallows `import` declarations of extraneous modules.
 

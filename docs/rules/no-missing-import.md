@@ -1,6 +1,8 @@
 # node/no-missing-import
 > disallow `import` declarations which import non-existence modules
 
+- ⭐️ This rule is included in `plugin:node/recommended` preset.
+
 This is similar to [no-missing-require](no-missing-require.md), but this rule handles `import` and `export` declarations.
 
 :warning: ECMAScript 2015 (ES6) does not define the lookup logic and Node does not support modules yet. So this rule spec might be changed in future.

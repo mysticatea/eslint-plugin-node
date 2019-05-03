@@ -37,7 +37,7 @@ function renderHeader(rule) {
     }
     if (rule.deprecated) {
         const replace = rule.replacedBy.map(
-            ruleId => `[${ruleId}](./${ruleId}.md)`
+            ruleId => `[${ruleId}](./${ruleId.replace("node/", "")}.md)`
         )
         const replaceText =
             replace.length === 0
@@ -73,7 +73,7 @@ for (const rule of rules) {
     const filePath = path.resolve(docsRoot, `${rule.name}.md`)
     const original = fs.readFileSync(filePath, "utf8")
     const body = original.replace(headerPattern, "").replace(footerPattern, "")
-    const content = `${renderHeader(rule)}${body}${renderFooter(rule)}`
+    const content = `${renderHeader(rule)}${body}${renderFooter(rule)}\n`
 
     fs.writeFileSync(filePath, content)
 }

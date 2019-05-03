@@ -1,6 +1,8 @@
 # node/no-unpublished-import
 > disallow `import` declarations which import private modules
 
+- ⭐️ This rule is included in `plugin:node/recommended` preset.
+
 This is similar to [no-unpublished-require](no-unpublished-require.md), but this rule handles `import` declarations.
 
 :warning: ECMAScript 2015 (ES6) does not define the lookup logic and Node does not support modules yet. So this rule spec might be changed in future.
