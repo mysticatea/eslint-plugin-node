@@ -1,7 +1,6 @@
 # node/no-hide-core-modules
 > disallow third-party modules which are hiding core modules
-
-- ⛔ This rule has been deprecated.
+> - ⛔ This rule has been deprecated.
 
 **:warning: This is deprecated since v4.2.0.** This rule was based on an invalid assumption. See also [#69](https://github.com/mysticatea/eslint-plugin-node/issues/69).
 

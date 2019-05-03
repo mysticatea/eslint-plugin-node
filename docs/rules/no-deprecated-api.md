@@ -1,7 +1,6 @@
 # node/no-deprecated-api
 > disallow deprecated APIs
-
-- ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:node/recommended` preset.
 
 Node has many deprecated API.
 The community is going to remove those API from Node in future, so we should not use those.

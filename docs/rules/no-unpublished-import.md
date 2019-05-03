@@ -1,7 +1,6 @@
 # node/no-unpublished-import
 > disallow `import` declarations which import private modules
-
-- ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:node/recommended` preset.
 
 This is similar to [no-unpublished-require](no-unpublished-require.md), but this rule handles `import` declarations.
 

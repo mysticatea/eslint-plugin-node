@@ -1,7 +1,6 @@
 # node/no-missing-import
 > disallow `import` declarations which import non-existence modules
-
-- ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:node/recommended` preset.
 
 This is similar to [no-missing-require](no-missing-require.md), but this rule handles `import` and `export` declarations.
 

@@ -1,7 +1,6 @@
 # node/no-missing-require
 > disallow `require()` expressions which import non-existence modules
-
-- ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:node/recommended` preset.
 
 Maybe we cannot find typo of import paths until run it, so this rule checks import paths.
 

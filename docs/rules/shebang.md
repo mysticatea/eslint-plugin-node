@@ -1,8 +1,7 @@
 # node/shebang
 > suggest correct usage of shebang
-
-- ⭐️ This rule is included in `plugin:node/recommended` preset.
-- ✒️ The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+> - ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ✒️ The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
 
 When we make a CLI tool with Node.js, we add `bin` field to `package.json`, then we add a shebang the entry file.
 This rule suggests correct usage of shebang.

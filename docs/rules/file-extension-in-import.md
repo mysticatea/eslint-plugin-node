@@ -1,7 +1,6 @@
 # node/file-extension-in-import
 > enforce the style of file extensions in `import` declarations
-
-- ✒️ The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+> - ✒️ The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
 
 We can omit file extensions in `import`/`export` declarations.
 

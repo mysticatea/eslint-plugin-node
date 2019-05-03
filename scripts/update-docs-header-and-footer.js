@@ -7,7 +7,7 @@
 const fs = require("fs")
 const path = require("path")
 const { rules } = require("./rules")
-const headerPattern = /^#.+\n(?:>.+\n)?(?:\n(?:-.+\n)+)?\n+/u
+const headerPattern = /^#.+\n(?:>.+\n)*\n+/u
 const footerPattern = /\n+## 🔎 Implementation[\s\S]*$/u
 const ruleRoot = path.resolve(__dirname, "../lib/rules")
 const testRoot = path.resolve(__dirname, "../tests/lib/rules")
@@ -22,17 +22,16 @@ const listFormatter = new Intl.ListFormat("en", { type: "conjunction" })
  * @returns {string} The document header.
  */
 function renderHeader(rule) {
-    const title = `# ${rule.id}\n> ${rule.description}`
-    const notes = []
+    const lines = [`# ${rule.id}`, `> ${rule.description}`]
 
     if (rule.recommended) {
-        notes.push(
-            "- ⭐️ This rule is included in `plugin:node/recommended` preset."
+        lines.push(
+            "> - ⭐️ This rule is included in `plugin:node/recommended` preset."
         )
     }
     if (rule.fixable) {
-        notes.push(
-            "- ✒️ The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule."
+        lines.push(
+            "> - ✒️ The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule."
         )
     }
     if (rule.deprecated) {
@@ -43,13 +42,11 @@ function renderHeader(rule) {
             replace.length === 0
                 ? ""
                 : ` Use ${listFormatter.format(replace)} instead.`
-        notes.push(`- ⛔ This rule has been deprecated.${replaceText}`)
+        lines.push(`> - ⛔ This rule has been deprecated.${replaceText}`)
     }
+    lines.push("", "")
 
-    if (notes.length > 0) {
-        return `${title}\n\n${notes.join("\n")}\n\n`
-    }
-    return `${title}\n\n`
+    return lines.join("\n")
 }
 
 /**

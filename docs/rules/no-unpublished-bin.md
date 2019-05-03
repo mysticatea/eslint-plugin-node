@@ -1,7 +1,6 @@
 # node/no-unpublished-bin
 > disallow `bin` files that npm ignores
-
-- ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:node/recommended` preset.
 
 We can publish CLI commands by `npm`. It uses `bin` field of `package.json`.
 

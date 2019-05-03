@@ -1,7 +1,6 @@
 # node/process-exit-as-throw
 > make `process.exit()` expressions the same code path as `throw`
-
-- ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:node/recommended` preset.
 
 ## 📖 Rule Details
 

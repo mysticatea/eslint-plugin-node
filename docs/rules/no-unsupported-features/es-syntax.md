@@ -1,7 +1,6 @@
 # node/no-unsupported-features/es-syntax
 > disallow unsupported ECMAScript syntax on the specified version
-
-- ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:node/recommended` preset.
 
 ECMAScript standard is updating every two months.
 You can check [node.green](https://node.green/) to know which Node.js version supports each ECMAScript feature.

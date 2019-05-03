@@ -1,7 +1,6 @@
 # node/no-unsupported-features
 > disallow unsupported ECMAScript features on the specified version
-
-- ⛔ This rule has been deprecated. Use [node/no-unsupported-features/es-syntax](./no-unsupported-features/es-syntax.md) and [node/no-unsupported-features/es-builtins](./no-unsupported-features/es-builtins.md) instead.
+> - ⛔ This rule has been deprecated. Use [node/no-unsupported-features/es-syntax](./no-unsupported-features/es-syntax.md) and [node/no-unsupported-features/es-builtins](./no-unsupported-features/es-builtins.md) instead.
 
 **:warning: This is deprecated since v7.0.0.** Use [node/no-unsupported-features/es-syntax](./no-unsupported-features/es-syntax.md) and [node/no-unsupported-features/es-builtins](./no-unsupported-features/es-builtins.md) instead.
 
