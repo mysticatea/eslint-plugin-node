@@ -1,10 +1,11 @@
-# Disallow `import` declarations which import unpublished files/modules (no-unpublished-import)
+# node/no-unpublished-import
+> disallow `import` declarations which import private modules
 
 This is similar to [no-unpublished-require](no-unpublished-require.md), but this rule handles `import` declarations.
 
 :warning: ECMAScript 2015 (ES6) does not define the lookup logic and Node does not support modules yet. So this rule spec might be changed in future.
 
-## Rule Details
+## 📖 Rule Details
 
 If a source code file satisfies all of the following conditions, the file is \*published\*.
 
@@ -136,3 +137,8 @@ For Example:
     }
 }
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../lib/rules/no-unpublished-import.js)
+- [Test source](../../tests/lib/rules/no-unpublished-import.js)

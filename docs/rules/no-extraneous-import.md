@@ -1,9 +1,10 @@
-# Disallow `import` declarations which import extraneous modules (no-extraneous-import)
+# node/no-extraneous-import
+> disallow `import` declarations which import extraneous modules
 
 If an `import` declaration's source is extraneous (it's not written in `package.json`), the program works in local, but will not work after dependencies are re-installed. It will cause troubles to your team/contributors.
 This rule disallows `import` declarations of extraneous modules.
 
-## Rule Details
+## 📖 Rule Details
 
 This rule warns `import` declarations of extraneous modules.
 
@@ -77,3 +78,8 @@ module.exports = {
     }
 }
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../lib/rules/no-extraneous-import.js)
+- [Test source](../../tests/lib/rules/no-extraneous-import.js)

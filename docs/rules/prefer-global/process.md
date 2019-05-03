@@ -1,4 +1,5 @@
-# enforce either `process` or `require("process")` (prefer-global/process)
+# node/prefer-global/process
+> enforce either `process` or `require("process")`
 
 The `process` module is defined as a global variable.
 
@@ -8,7 +9,7 @@ process.log(process === require("process")) //→ true
 
 It will be readable if we use either `process` consistently.
 
-## Rule Details
+## 📖 Rule Details
 
 This rule enforces which `process` we should use.
 
@@ -62,3 +63,8 @@ Examples of :+1: **correct** code for the `"never"` option:
 const process = require("process")
 process.exit(0)
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../../lib/rules/prefer-global/process.js)
+- [Test source](../../../tests/lib/rules/prefer-global/process.js)

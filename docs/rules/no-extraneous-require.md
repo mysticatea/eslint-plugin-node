@@ -1,9 +1,12 @@
-# Disallow `require()`s which import extraneous modules (no-extraneous-require)
+# node/no-extraneous-require
+> disallow `require()` expressions which import extraneous modules
+
+- ⭐️ This rule is included in `plugin:node/recommended` preset.
 
 If a `require()`'s target is extraneous (it's not written in `package.json`), the program works in local, but will not work after dependencies are re-installed. It will cause troubles to your team/contributors.
 This rule disallows `require()` of extraneous modules.
 
-## Rule Details
+## 📖 Rule Details
 
 This rule warns `require()` of extraneous modules.
 
@@ -77,3 +80,8 @@ module.exports = {
     }
 }
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../lib/rules/no-extraneous-require.js)
+- [Test source](../../tests/lib/rules/no-extraneous-require.js)

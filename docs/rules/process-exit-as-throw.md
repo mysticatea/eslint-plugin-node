@@ -1,6 +1,9 @@
-# Make the same code path as throw at `process.exit()` (process-exit-as-throw)
+# node/process-exit-as-throw
+> make `process.exit()` expressions the same code path as `throw`
 
-## Rule Details
+- ⭐️ This rule is included in `plugin:node/recommended` preset.
+
+## 📖 Rule Details
 
 ```js
 function foo(a) {
@@ -27,3 +30,8 @@ This rule itself never warn code.
 [consistent-return]: http://eslint.org/docs/rules/consistent-return
 [no-fallthrough]: http://eslint.org/docs/rules/no-fallthrough
 [no-unreachable]: http://eslint.org/docs/rules/no-unreachable
+
+## 🔎 Implementation
+
+- [Rule source](../../lib/rules/process-exit-as-throw.js)
+- [Test source](../../tests/lib/rules/process-exit-as-throw.js)

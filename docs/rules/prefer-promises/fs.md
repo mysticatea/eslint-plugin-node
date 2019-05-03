@@ -1,9 +1,10 @@
-# enforce `require("fs").promises` (prefer-promises/fs)
+# node/prefer-promises/fs
+> enforce `require("fs").promises`
 
 Since Node.js v11.14.0, `require("fs").promises` API has been stable.
 Promise API and `async`/`await` syntax will make code more readable than callback API.
 
-## Rule Details
+## 📖 Rule Details
 
 This rule disallows callback API in favor of promise API.
 
@@ -52,3 +53,8 @@ async function readData(filePath) {
     //...
 }
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../../lib/rules/prefer-promises/fs.js)
+- [Test source](../../../tests/lib/rules/prefer-promises/fs.js)

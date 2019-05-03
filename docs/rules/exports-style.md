@@ -1,4 +1,5 @@
-# enforce either `module.exports` or `exports` (exports-style)
+# node/exports-style
+> enforce either `module.exports` or `exports`
 
 `module.exports` and `exports` are the same instance by default.
 But those come to be different if one of them is modified.
@@ -13,7 +14,7 @@ exports.bar = 2
 
 In this case, `exports.bar` will be lost since only the instance of `module.exports` will be exported.
 
-## Rule Details
+## 📖 Rule Details
 
 This rule enforces the export style.
 
@@ -104,3 +105,8 @@ module.exports = exports = function foo() {
 
 exports.bar = 1
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../lib/rules/exports-style.js)
+- [Test source](../../tests/lib/rules/exports-style.js)

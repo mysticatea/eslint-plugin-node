@@ -1,4 +1,7 @@
-# enforce the style of file extensions in `import` declarations (file-extension-in-import)
+# node/file-extension-in-import
+> enforce the style of file extensions in `import` declarations
+
+- ✒️ The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
 
 We can omit file extensions in `import`/`export` declarations.
 
@@ -11,7 +14,7 @@ However, [--experimental-modules](https://medium.com/@nodejs/announcing-a-new-ex
 
 Also, we can import a variety kind of files with bundlers such as Webpack. In the situation, probably explicit file extensions help us to understand code.
 
-## Rule Details
+## 📖 Rule Details
 
 This rule enforces the style of file extensions in `import`/`export` declarations.
 
@@ -108,3 +111,8 @@ module.exports = {
     }
 }
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../lib/rules/file-extension-in-import.js)
+- [Test source](../../tests/lib/rules/file-extension-in-import.js)

@@ -1,4 +1,7 @@
-# Disallow unsupported Node.js built-in APIs on the specified version (no-unsupported-features/node-builtins)
+# node/no-unsupported-features/node-builtins
+> disallow unsupported Node.js built-in APIs on the specified version
+
+- ⭐️ This rule is included in `plugin:node/recommended` preset.
 
 Node.js community is improving built-in APIs continuously.
 You can check [Node.js Documentation](https://nodejs.org/api/) to know which Node.js version supports each Node.js API.
@@ -6,7 +9,7 @@ You can check [Node.js Documentation](https://nodejs.org/api/) to know which Nod
 This rule reports unsupported Node.js built-in APIs on the configured Node.js version as lint errors.
 Editor integrations of ESLint would be useful to know it in real-time.
 
-## Rule Details
+## 📖 Rule Details
 
 This rule reports APIs of Node.js built-in APIs on the basis of [Node.js v12.0.0 Documentation](https://nodejs.org/docs/v12.0.0/api/).
 
@@ -319,3 +322,8 @@ For example:
 - New events.
 
 [engines]: https://docs.npmjs.com/files/package.json#engines
+
+## 🔎 Implementation
+
+- [Rule source](../../../lib/rules/no-unsupported-features/node-builtins.js)
+- [Test source](../../../tests/lib/rules/no-unsupported-features/node-builtins.js)

@@ -1,9 +1,10 @@
-# enforce `require("dns").promises` (prefer-promises/dns)
+# node/prefer-promises/dns
+> enforce `require("dns").promises`
 
 Since Node.js v11.14.0, `require("dns").promises` API has been stable.
 Promise API and `async`/`await` syntax will make code more readable than callback API.
 
-## Rule Details
+## 📖 Rule Details
 
 This rule disallows callback API in favor of promise API.
 
@@ -52,3 +53,8 @@ async function lookup(hostname) {
     //...
 }
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../../lib/rules/prefer-promises/dns.js)
+- [Test source](../../../tests/lib/rules/prefer-promises/dns.js)

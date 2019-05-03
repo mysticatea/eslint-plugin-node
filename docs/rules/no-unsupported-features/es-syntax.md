@@ -1,4 +1,7 @@
-# Disallow unsupported ECMAScript syntax on the specified version (no-unsupported-features/es-syntax)
+# node/no-unsupported-features/es-syntax
+> disallow unsupported ECMAScript syntax on the specified version
+
+- ⭐️ This rule is included in `plugin:node/recommended` preset.
 
 ECMAScript standard is updating every two months.
 You can check [node.green](https://node.green/) to know which Node.js version supports each ECMAScript feature.
@@ -6,7 +9,7 @@ You can check [node.green](https://node.green/) to know which Node.js version su
 This rule reports unsupported ECMAScript syntax on the configured Node.js version as lint errors.
 Editor integrations of ESLint would be useful to know it in real-time.
 
-## Rule Details
+## 📖 Rule Details
 
 ### Supported ECMAScript features
 
@@ -113,3 +116,8 @@ The `"ignores"` option accepts an array of the following strings.
 </details>
 
 [engines]: https://docs.npmjs.com/files/package.json#engines
+
+## 🔎 Implementation
+
+- [Rule source](../../../lib/rules/no-unsupported-features/es-syntax.js)
+- [Test source](../../../tests/lib/rules/no-unsupported-features/es-syntax.js)

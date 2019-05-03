@@ -1,11 +1,15 @@
-# Suggest correct usage of shebang (node/shebang)
+# node/shebang
+> suggest correct usage of shebang
+
+- ⭐️ This rule is included in `plugin:node/recommended` preset.
+- ✒️ The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
 
 When we make a CLI tool with Node.js, we add `bin` field to `package.json`, then we add a shebang the entry file.
 This rule suggests correct usage of shebang.
 
 **Fixable:** This rule is automatically fixable using the `--fix` flag on the command line.
 
-## Rule Details
+## 📖 Rule Details
 
 This rule looks up `package.json` file from each linting target file.
 Starting from the directory of the target file, it goes up ancestor directories until found.
@@ -137,3 +141,8 @@ For Example:
     }
 }
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../lib/rules/shebang.js)
+- [Test source](../../tests/lib/rules/shebang.js)

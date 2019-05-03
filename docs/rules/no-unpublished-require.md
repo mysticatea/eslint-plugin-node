@@ -1,9 +1,12 @@
-# Disallow `require()` expressions which import unpublished files/modules (no-unpublished-require)
+# node/no-unpublished-require
+> disallow `require()` expressions which import private modules
+
+- ⭐️ This rule is included in `plugin:node/recommended` preset.
 
 If a `require()` expression's target is not published, the program works in local, but will not work after published to npm.
 This rule disallows `require()` expressions of unpublished files/modules.
 
-## Rule Details
+## 📖 Rule Details
 
 If a source code file satisfies all of the following conditions, the file is \*published\*.
 
@@ -135,3 +138,8 @@ For Example:
     }
 }
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../lib/rules/no-unpublished-require.js)
+- [Test source](../../tests/lib/rules/no-unpublished-require.js)

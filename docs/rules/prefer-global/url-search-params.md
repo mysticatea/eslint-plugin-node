@@ -1,4 +1,5 @@
-# enforce either `URLSearchParams` or `require("url").URLSearchParams` (prefer-global/url-search-params)
+# node/prefer-global/url-search-params
+> enforce either `URLSearchParams` or `require("url").URLSearchParams`
 
 The `URLSearchParams` class of `url` module is defined as a global variable.
 
@@ -8,7 +9,7 @@ console.log(URLSearchParams === require("url").URLSearchParams) //→ true
 
 It will be readable if we use either `URLSearchParams` consistently.
 
-## Rule Details
+## 📖 Rule Details
 
 This rule enforces which `URLSearchParams` we should use.
 
@@ -62,3 +63,8 @@ Examples of :+1: **correct** code for the `"never"` option:
 const { URLSearchParams } = require("url")
 const u = new URLSearchParams(s)
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../../lib/rules/prefer-global/url-search-params.js)
+- [Test source](../../../tests/lib/rules/prefer-global/url-search-params.js)

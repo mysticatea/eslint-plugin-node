@@ -1,4 +1,7 @@
-# disallow 'bin' files that npm ignores (no-unpublished-bin)
+# node/no-unpublished-bin
+> disallow `bin` files that npm ignores
+
+- ⭐️ This rule is included in `plugin:node/recommended` preset.
 
 We can publish CLI commands by `npm`. It uses `bin` field of `package.json`.
 
@@ -11,7 +14,7 @@ We can publish CLI commands by `npm`. It uses `bin` field of `package.json`.
 
 At this time, if `npm` ignores the file, your package will fail to install.
 
-## Rule Details
+## 📖 Rule Details
 
 If `npm` ignores the files in `bin` field, this rule warns the files.
 
@@ -107,3 +110,8 @@ For Example:
     }
 }
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../lib/rules/no-unpublished-bin.js)
+- [Test source](../../tests/lib/rules/no-unpublished-bin.js)

@@ -1,4 +1,7 @@
-# Disallow third-party modules which are hiding core modules (node/no-hide-core-modules)
+# node/no-hide-core-modules
+> disallow third-party modules which are hiding core modules
+
+- ⛔ This rule has been deprecated.
 
 **:warning: This is deprecated since v4.2.0.** This rule was based on an invalid assumption. See also [#69](https://github.com/mysticatea/eslint-plugin-node/issues/69).
 
@@ -8,7 +11,7 @@ This might cause unintentional behaviors.
 
 This rule warns `require()` expressions and `import` declarations if those import a third-party module which has the same name as core modules.
 
-## Rule Details
+## 📖 Rule Details
 
 :-1: Examples of **incorrect** code for this rule:
 
@@ -58,3 +61,8 @@ This option would allow all explicit dependencies which are hiding core modules.
 If `ignoreIndirectDependencies: true`, if the third-party module which has the same name as a core module does not exist in your `package.json`, this rule ignores it.
 
 This option would allow all implicit dependencies which are hiding core modules.
+
+## 🔎 Implementation
+
+- [Rule source](../../lib/rules/no-hide-core-modules.js)
+- [Test source](../../tests/lib/rules/no-hide-core-modules.js)

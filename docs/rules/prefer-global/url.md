@@ -1,4 +1,5 @@
-# enforce either `URL` or `require("url").URL` (prefer-global/url)
+# node/prefer-global/url
+> enforce either `URL` or `require("url").URL`
 
 The `URL` class of `url` module is defined as a global variable.
 
@@ -8,7 +9,7 @@ console.log(URL === require("url").URL) //→ true
 
 It will be readable if we use either `URL` consistently.
 
-## Rule Details
+## 📖 Rule Details
 
 This rule enforces which `URL` we should use.
 
@@ -62,3 +63,8 @@ Examples of :+1: **correct** code for the `"never"` option:
 const { URL } = require("url")
 const u = new URL(s)
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../../lib/rules/prefer-global/url.js)
+- [Test source](../../../tests/lib/rules/prefer-global/url.js)

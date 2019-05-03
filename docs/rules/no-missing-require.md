@@ -1,4 +1,7 @@
-# Disallow `require()`s for files that don't exist (no-missing-require)
+# node/no-missing-require
+> disallow `require()` expressions which import non-existence modules
+
+- ⭐️ This rule is included in `plugin:node/recommended` preset.
 
 Maybe we cannot find typo of import paths until run it, so this rule checks import paths.
 
@@ -7,7 +10,7 @@ Maybe we cannot find typo of import paths until run it, so this rule checks impo
 const foo = require("./foo");
 ```
 
-## Rule Details
+## 📖 Rule Details
 
 This rule checks the file paths of `require()`s, then reports the path of files which don't exist.
 
@@ -102,3 +105,8 @@ module.exports = {
     }
 }
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../lib/rules/no-missing-require.js)
+- [Test source](../../tests/lib/rules/no-missing-require.js)

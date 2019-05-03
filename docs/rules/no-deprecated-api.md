@@ -1,9 +1,12 @@
-# Disallow deprecated API (no-deprecated-api)
+# node/no-deprecated-api
+> disallow deprecated APIs
+
+- ⭐️ This rule is included in `plugin:node/recommended` preset.
 
 Node has many deprecated API.
 The community is going to remove those API from Node in future, so we should not use those.
 
-## Rule Details
+## 📖 Rule Details
 
 Examples of :-1: **incorrect** code for this rule:
 
@@ -357,3 +360,8 @@ var Buffer = require("buffer").Buffer;
 Buffer = require("another-buffer");
 new Buffer(); /*ERROR: 'buffer.Buffer' constructor was deprecated.*/
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../lib/rules/no-deprecated-api.js)
+- [Test source](../../tests/lib/rules/no-deprecated-api.js)

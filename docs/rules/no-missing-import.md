@@ -1,10 +1,11 @@
-# Disallow `import` and `export` declarations for files that don't exist (no-missing-import)
+# node/no-missing-import
+> disallow `import` declarations which import non-existence modules
 
 This is similar to [no-missing-require](no-missing-require.md), but this rule handles `import` and `export` declarations.
 
 :warning: ECMAScript 2015 (ES6) does not define the lookup logic and Node does not support modules yet. So this rule spec might be changed in future.
 
-## Rule Details
+## 📖 Rule Details
 
 This rule checks the file paths of `import` and `export` declarations.
 If the file paths don't exist, this reports these.
@@ -97,3 +98,8 @@ module.exports = {
     }
 }
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../lib/rules/no-missing-import.js)
+- [Test source](../../tests/lib/rules/no-missing-import.js)

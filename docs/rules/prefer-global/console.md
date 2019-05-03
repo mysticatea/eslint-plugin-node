@@ -1,4 +1,5 @@
-# enforce either `console` or `require("console")` (prefer-global/console)
+# node/prefer-global/console
+> enforce either `console` or `require("console")`
 
 The `console` module is defined as a global variable.
 
@@ -8,7 +9,7 @@ console.log(console === require("console")) //→ true
 
 It will be readable if we use either `console` consistently.
 
-## Rule Details
+## 📖 Rule Details
 
 This rule enforces which `console` we should use.
 
@@ -62,3 +63,8 @@ Examples of :+1: **correct** code for the `"never"` option:
 const console = require("console")
 console.log("hello")
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../../lib/rules/prefer-global/console.js)
+- [Test source](../../../tests/lib/rules/prefer-global/console.js)

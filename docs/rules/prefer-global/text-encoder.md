@@ -1,4 +1,5 @@
-# enforce either `TextEncoder` or `require("util").TextEncoder` (prefer-global/text-encoder)
+# node/prefer-global/text-encoder
+> enforce either `TextEncoder` or `require("util").TextEncoder`
 
 The `TextEncoder` class of `util` module is defined as a global variable.
 
@@ -8,7 +9,7 @@ console.log(TextEncoder === require("util").TextEncoder) //→ true
 
 It will be readable if we use either `TextEncoder` consistently.
 
-## Rule Details
+## 📖 Rule Details
 
 This rule enforces which `TextEncoder` we should use.
 
@@ -62,3 +63,8 @@ Examples of :+1: **correct** code for the `"never"` option:
 const { TextEncoder } = require("util")
 const u = new TextEncoder(s)
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../../lib/rules/prefer-global/text-encoder.js)
+- [Test source](../../../tests/lib/rules/prefer-global/text-encoder.js)

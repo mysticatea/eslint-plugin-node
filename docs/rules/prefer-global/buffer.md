@@ -1,4 +1,5 @@
-# enforce either `Buffer` or `require("buffer").Buffer` (prefer-global/buffer)
+# node/prefer-global/buffer
+> enforce either `Buffer` or `require("buffer").Buffer`
 
 The `Buffer` class of `buffer` module is defined as a global variable.
 
@@ -8,7 +9,7 @@ console.log(Buffer === require("buffer").Buffer) //→ true
 
 It will be readable if we use either `Buffer` consistently.
 
-## Rule Details
+## 📖 Rule Details
 
 This rule enforces which `Buffer` we should use.
 
@@ -62,3 +63,8 @@ Examples of :+1: **correct** code for the `"never"` option:
 const { Buffer } = require("buffer")
 const b = Buffer.alloc(16)
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../../lib/rules/prefer-global/buffer.js)
+- [Test source](../../../tests/lib/rules/prefer-global/buffer.js)

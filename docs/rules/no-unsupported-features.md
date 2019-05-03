@@ -1,4 +1,7 @@
-# Disallow unsupported ECMAScript features on the specified version (no-unsupported-features)
+# node/no-unsupported-features
+> disallow unsupported ECMAScript features on the specified version
+
+- ⛔ This rule has been deprecated. Use [node/no-unsupported-features/es-syntax](./node/no-unsupported-features/es-syntax.md) and [node/no-unsupported-features/es-builtins](./node/no-unsupported-features/es-builtins.md) instead.
 
 **:warning: This is deprecated since v7.0.0.** Use [node/no-unsupported-features/es-syntax](./no-unsupported-features/es-syntax.md) and [node/no-unsupported-features/es-builtins](./no-unsupported-features/es-builtins.md) instead.
 
@@ -8,7 +11,7 @@ This rule reports when you used unsupported ECMAScript 2015-2018 features on the
 > ※ About ECMAScript 2018, this rule reports only features which have arrived at stage 4 until 2018-02-01.
 > It needs a major version bump in order to cover newer features.
 
-## Rule Details
+## 📖 Rule Details
 
 :warning: This rule expects to be used with the following configuration:
 
@@ -299,3 +302,8 @@ E.g., a use of instance methods.
 - http://node.green/
 
 [engines]: https://docs.npmjs.com/files/package.json#engines
+
+## 🔎 Implementation
+
+- [Rule source](../../lib/rules/no-unsupported-features.js)
+- [Test source](../../tests/lib/rules/no-unsupported-features.js)

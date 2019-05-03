@@ -1,4 +1,5 @@
-# enforce either `TextDecoder` or `require("util").TextDecoder` (prefer-global/text-decoder)
+# node/prefer-global/text-decoder
+> enforce either `TextDecoder` or `require("util").TextDecoder`
 
 The `TextDecoder` class of `util` module is defined as a global variable.
 
@@ -8,7 +9,7 @@ console.log(TextDecoder === require("util").TextDecoder) //→ true
 
 It will be readable if we use either `TextDecoder` consistently.
 
-## Rule Details
+## 📖 Rule Details
 
 This rule enforces which `TextDecoder` we should use.
 
@@ -62,3 +63,8 @@ Examples of :+1: **correct** code for the `"never"` option:
 const { TextDecoder } = require("util")
 const u = new TextDecoder(s)
 ```
+
+## 🔎 Implementation
+
+- [Rule source](../../../lib/rules/prefer-global/text-decoder.js)
+- [Test source](../../../tests/lib/rules/prefer-global/text-decoder.js)
