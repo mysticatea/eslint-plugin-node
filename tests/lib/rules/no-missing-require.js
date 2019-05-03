@@ -209,6 +209,13 @@ ruleTester.run("no-missing-require", rule, {
             options: [{ allowModules: ["jquery.cookie"] }],
             env: { node: true },
         },
+
+        // require.resolve
+        {
+            filename: fixture("test.js"),
+            code: "require.resolve('eslint');",
+            env: { node: true },
+        },
     ],
     invalid: [
         {
@@ -277,10 +284,17 @@ ruleTester.run("no-missing-require", rule, {
             env: { node: true },
             errors: ['"./A" is not found.'],
         },
+
+        // require.resolve
+        {
+            filename: fixture("test.js"),
+            code: "require.resolve('no-exist-package-0');",
+            env: { node: true },
+            errors: ['"no-exist-package-0" is not found.'],
+        },
     ],
 })
 
-/*eslint-env mocha */
 describe("On specific working directory:", () => {
     const filename = fixture("test.js")
     let originalDir = null
