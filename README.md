@@ -92,6 +92,8 @@ $ npm install --save-dev eslint eslint-plugin-node
 | [node/prefer-global/text-encoder](./docs/rules/prefer-global/text-encoder.md) | enforce either `TextEncoder` or `require("util").TextEncoder` |  |
 | [node/prefer-global/url-search-params](./docs/rules/prefer-global/url-search-params.md) | enforce either `URLSearchParams` or `require("url").URLSearchParams` |  |
 | [node/prefer-global/url](./docs/rules/prefer-global/url.md) | enforce either `URL` or `require("url").URL` |  |
+| [node/prefer-promises/dns](./docs/rules/prefer-promises/dns.md) | enforce `require("dns").promises` |  |
+| [node/prefer-promises/fs](./docs/rules/prefer-promises/fs.md) | enforce `require("fs").promises` |  |
 
 ### Deprecated rules
 
