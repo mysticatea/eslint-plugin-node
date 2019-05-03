@@ -23,7 +23,7 @@ If you use `exports`, this rule disallows `module.exports`.
 
 You can select it by an option.
 
-## Options
+### Options
 
 This rule has a string option.
 
@@ -43,7 +43,7 @@ This rule has a string option.
 - `"exports"` requires `exports` and disallows `module.exports`.
 - `allowBatchAssign` (default is `false`) allows `module.exports = exports = obj` if this is `true`.
 
-### module.exports
+#### module.exports
 
 Examples of :-1: **incorrect** code for the `"module.exports"` option:
 
@@ -67,7 +67,7 @@ module.exports = {
 module.exports.baz = 3
 ```
 
-### exports
+#### exports
 
 Examples of :-1: **incorrect** code for the `"exports"` option:
 
@@ -91,7 +91,7 @@ exports.foo = 1
 exports.bar = 2
 ```
 
-### allowBatchAssign
+#### allowBatchAssign
 
 Examples of :+1: **correct** code for the `"exports"` and `{"allowBatchAssign": true}` option:
 

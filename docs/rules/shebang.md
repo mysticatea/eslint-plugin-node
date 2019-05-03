@@ -57,7 +57,7 @@ The following patterns are not considered problems for other files:
 console.log("hello");
 ```
 
-## Options
+### Options
 
 ```json
 {
@@ -65,7 +65,7 @@ console.log("hello");
 }
 ```
 
-### convertPath
+#### convertPath
 
 If we use transpilers (e.g. Babel), perhaps the file path to a source code is never handled as a bin file.
 `convertPath` option tells to the rule, it needs to convert file paths.
@@ -118,7 +118,7 @@ For example:
 In this style, this option has the following shape as the same expression as above: `{include: [<targetFiles>], replace: [<fromRegExp>, <toString>]}`.
 In addition, we can specify glob patterns to exclude files.
 
-## Shared Settings
+### Shared Settings
 
 The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
 Several rules have the same option, but we can set this option at once.

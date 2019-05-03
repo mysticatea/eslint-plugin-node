@@ -144,7 +144,7 @@ This rule reports the following deprecated API.
 > For example, `require("punycode")` still imports the deprecated core module even if you executed `npm install punycode`.
 > Use `require("punycode/")` to import userland modules rather than core modules.
 
-## Options
+### Options
 
 This rule has 2 options.
 
@@ -159,7 +159,7 @@ This rule has 2 options.
 }
 ```
 
-### ignoreModuleItems
+#### ignoreModuleItems
 
 This is the array of module names and module's member names.
 Default is an empty array.
@@ -262,7 +262,7 @@ const buffer = require("buffer")
 const data = new buffer.Buffer(10) // OK since it's in ignoreModuleItems.
 ```
 
-### ignoreGlobalItems
+#### ignoreGlobalItems
 
 This is the array of global variable names and global variable's member names.
 Default is an empty array.
@@ -293,7 +293,7 @@ Examples of :+1: **correct** code for the `{"ignoreGlobalItems": ["new Buffer()"
 const data = new Buffer(10) // OK since it's in ignoreGlobalItems.
 ```
 
-## Known Limitations
+## ⚠️ Known Limitations
 
 This rule cannot report the following cases:
 

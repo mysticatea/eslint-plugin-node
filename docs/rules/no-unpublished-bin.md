@@ -21,7 +21,7 @@ If `npm` ignores the files in `bin` field, this rule warns the files.
 - If `files` field does not includes the files in `bin` field.
 - If `.npmignore` file includes the files in `bin` field.
 
-## Options
+### Options
 
 ```json
 {
@@ -33,7 +33,7 @@ If `npm` ignores the files in `bin` field, this rule warns the files.
 }
 ```
 
-### convertPath
+#### convertPath
 
 If we use transpilers (e.g. Babel), perhaps the file path to a source code is never published.
 `convertPath` option tells to the rule, it needs to convert file paths.
@@ -87,7 +87,7 @@ In this style, this option has the following shape as the same expression as abo
 In addition, we can specify glob patterns to exclude files.
 
 
-## Shared Settings
+### Shared Settings
 
 The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
 Several rules have the same option, but we can set this option at once.

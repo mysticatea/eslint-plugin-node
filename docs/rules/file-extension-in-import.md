@@ -18,7 +18,7 @@ Also, we can import a variety kind of files with bundlers such as Webpack. In th
 
 This rule enforces the style of file extensions in `import`/`export` declarations.
 
-## Options
+### Options
 
 This rule has a string option and an object option.
 
@@ -40,7 +40,7 @@ This rule has a string option and an object option.
 - `tryExtensions` is the file extensions to resolve import paths. Default is `[".js", ".json", ".node"]`.
 - `.xxx` is the overriding setting for specific file extensions. You can use arbitrary property names which start with `.`.
 
-### always
+#### always
 
 Examples of :-1: **incorrect** code for the `"always"` option:
 
@@ -59,7 +59,7 @@ import eslint from "eslint"
 import foo from "./path/to/a/file.js"
 ```
 
-### never
+#### never
 
 Examples of :-1: **incorrect** code for the `"never"` option:
 
@@ -78,7 +78,7 @@ import eslint from "eslint"
 import foo from "./path/to/a/file"
 ```
 
-### .xxx
+#### .xxx
 
 Examples of :+1: **correct** code for the `["always", { ".js": "never" }]` option:
 
@@ -91,7 +91,7 @@ import styles from "./styles.css"
 import logo from "./logo.png"
 ```
 
-## Shared Settings
+### Shared Settings
 
 The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
 Several rules have the same option, but we can set this option at once.

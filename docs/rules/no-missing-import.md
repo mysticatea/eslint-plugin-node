@@ -28,7 +28,7 @@ import existingFile from "./existing-file";
 import existingModule from "existing-module";
 ```
 
-## Options
+### Options
 
 ```json
 {
@@ -42,7 +42,7 @@ import existingModule from "existing-module";
 }
 ```
 
-### allowModules
+#### allowModules
 
 Some platforms have additional embedded modules.
 For example, Electron has `electron` module.
@@ -60,21 +60,21 @@ This option is an array of strings as module names.
 }
 ```
 
-### resolvePaths
+#### resolvePaths
 
 Adds additional paths to try for when resolving imports.
 If a path is relative, it will be resolved from CWD.
 
 Default is `[]`
 
-### tryExtensions
+#### tryExtensions
 
 When an import path does not exist, this rule checks whether or not any of `path.js`, `path.json`, and `path.node` exists.
 `tryExtensions` option is the extension list this rule uses at the time.
 
 Default is `[".js", ".json", ".node"]`.
 
-## Shared Settings
+### Shared Settings
 
 The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
 Several rules have the same option, but we can set this option at once.

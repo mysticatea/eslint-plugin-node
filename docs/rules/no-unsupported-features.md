@@ -108,7 +108,7 @@ var p = new Promise((resolve, reject) => {
 });
 ```
 
-## Options
+### Options
 
 ```json
 {
@@ -119,7 +119,7 @@ var p = new Promise((resolve, reject) => {
 }
 ```
 
-### version
+#### version
 
 As mentioned above, this rule reads the [engines] field of `package.json` to detect Node.js version.
 Also, you can overwrite the version by `version` option.
@@ -138,7 +138,7 @@ The `version` option accepts the following version number:
 - `9.0` ... Illegal escape sequences in taggled templates, RegExp 's' flags, RegExp lookbehind assertions, `SharedArrayBuffer`, and `Atomics`.
 - `10.0` ... RegExp named capture groups, RegExp Unicode property escapes, Async generators, and `for-await-of` loops.
 
-### ignores
+#### ignores
 
 If you are using transpilers, maybe you want to ignore the warnings about some features.
 You can use this `ignores` option to ignore the given features.
@@ -292,12 +292,12 @@ function foo(a = 1) {
 }
 ```
 
-## Known Limitations
+## ⚠️ Known Limitations
 
 This rule cannot report non-static things.
 E.g., a use of instance methods.
 
-## Further Reading
+## 📚 Further Reading
 
 - http://node.green/
 

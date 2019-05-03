@@ -32,7 +32,7 @@ const util = require("util")  // OK if this is the core module 'util' surely.
 const path = require("path")  // OK if this is the core module 'path' surely.
 ```
 
-## Options
+### Options
 
 ```json
 {
@@ -44,19 +44,19 @@ const path = require("path")  // OK if this is the core module 'path' surely.
 }
 ```
 
-### allow
+#### allow
 
 If you are sure that your module depends on the third-party module which has the same name as a core module, you can allow it by `allow` option.
 E.g. `{"allow": ["util", "path"]}`.
 Default is en empty array.
 
-### ignoreDirectDependencies
+#### ignoreDirectDependencies
 
 If `ignoreDirectDependencies: true`, if the third-party module which has the same name as a core module exists in your `package.json`, this rule ignores it.
 
 This option would allow all explicit dependencies which are hiding core modules.
 
-### ignoreIndirectDependencies
+#### ignoreIndirectDependencies
 
 If `ignoreIndirectDependencies: true`, if the third-party module which has the same name as a core module does not exist in your `package.json`, this rule ignores it.
 
