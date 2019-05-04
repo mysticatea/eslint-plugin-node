@@ -34,6 +34,18 @@ new RuleTester({
         },
         {
             filename: fixture("test.js"),
+            code: "import '@typescript-eslint/parser'",
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import '@typescript-eslint\\parser'",
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import 'punycode/'",
+        },
+        {
+            filename: fixture("test.js"),
             code: "import 'xxx'",
         },
         {
