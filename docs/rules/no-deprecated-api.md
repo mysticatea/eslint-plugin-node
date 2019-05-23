@@ -143,20 +143,47 @@ This rule reports the following deprecated API.
 > For example, `require("punycode")` still imports the deprecated core module even if you executed `npm install punycode`.
 > Use `require("punycode/")` to import userland modules rather than core modules.
 
+### Configured Node.js version range
+
+This rule reads the [engines] field of `package.json` to detect which Node.js versions your module is supporting.
+
+I recommend the use of the [engines] field because it's the official way that indicates which Node.js versions your module is supporting.
+For example of `package.json`:
+
+```json
+{
+    "name": "your-module",
+    "version": "1.0.0",
+    "engines": {
+        "node": ">=8.0.0"
+    }
+}
+```
+
+If you omit the [engines] field, this rule chooses `>=8.0.0` as the configured Node.js version since `8` is the minimum version the community is maintaining (see also [Node.js Release Working Group](https://github.com/nodejs/Release#readme)).
+
 ### Options
 
-This rule has 2 options.
+This rule has 3 options.
 
 ```json
 {
     "rules": {
         "node/no-deprecated-api": ["error", {
+            "version": ">=8.0.0",
             "ignoreModuleItems": [],
             "ignoreGlobalItems": []
         }]
     }
 }
 ```
+
+#### version
+
+As mentioned above, this rule reads the [engines] field of `package.json`.
+But, you can overwrite the version by `version` option.
+
+The `version` option accepts [the valid version range of `node-semver`](https://github.com/npm/node-semver#range-grammar).
 
 #### ignoreModuleItems
 
