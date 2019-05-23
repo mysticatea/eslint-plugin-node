@@ -18,7 +18,7 @@
     "ignore": "^5.1.1",
     "minimatch": "^3.0.4",
     "resolve": "^1.10.1",
-    "semver": "^6.0.0"
+    "semver": "^6.1.0"
   },
   "devDependencies": {
     "@mysticatea/eslint-plugin": "^10.0.3",

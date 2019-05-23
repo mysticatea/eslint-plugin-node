@@ -2479,6 +2479,16 @@ ruleTester.run(
                     ],
                 },
                 {
+                    filename: fixture("star/a.js"),
+                    code: '"use strict"; let a = 1',
+                    errors: [
+                        {
+                            messageId: "no-block-scoped-variables-strict",
+                            data: { supported: "4.0.0", version: "*" },
+                        },
+                    ],
+                },
+                {
                     code: "var a = async () => 1",
                     options: [{ version: "7.1.0" }],
                     errors: [
