@@ -37,7 +37,7 @@ jobs:
         displayName: Install Packages
       - script: npm test
         displayName: Test
-      - script: npm run -s codecov
+      - script: npm run -s codecov -- -t $(CODECOV_TOKEN)
         displayName: Send Coverage
 
   - job: tests_on_linux_with_eslint6
@@ -54,7 +54,7 @@ jobs:
         displayName: Install Packages
       - script: npm test
         displayName: Test
-      - script: npm run -s codecov
+      - script: npm run -s codecov -- -t $(CODECOV_TOKEN)
         displayName: Send Coverage
 
   - job: tests_on_windows
@@ -70,7 +70,7 @@ jobs:
         displayName: Install Packages
       - script: npm test
         displayName: Test
-      - script: npm run -s codecov
+      - script: npm run -s codecov -- -t $(CODECOV_TOKEN)
         displayName: Send Coverage
 
   - job: tests_on_macos
@@ -86,5 +86,5 @@ jobs:
         displayName: Install Packages
       - script: npm test
         displayName: Test
-      - script: npm run -s codecov
+      - script: npm run -s codecov -- -t $(CODECOV_TOKEN)
         displayName: Send Coverage
