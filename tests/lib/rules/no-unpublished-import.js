@@ -5,7 +5,7 @@
 "use strict"
 
 const path = require("path")
-const RuleTester = require("eslint").RuleTester
+const { RuleTester } = require("eslint")
 const rule = require("../../../lib/rules/no-unpublished-import")
 
 /**
@@ -17,7 +17,12 @@ function fixture(name) {
     return path.resolve(__dirname, "../../fixtures/no-unpublished", name)
 }
 
-const ruleTester = new RuleTester({ parserOptions: { sourceType: "module" } })
+const ruleTester = new RuleTester({
+    parserOptions: {
+        ecmaVersion: 2015,
+        sourceType: "module",
+    },
+})
 ruleTester.run("no-unpublished-import", rule, {
     valid: [
         {

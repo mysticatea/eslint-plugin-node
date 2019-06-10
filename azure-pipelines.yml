@@ -1,8 +1,3 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
   - master
 
@@ -39,6 +34,23 @@ jobs:
         inputs:
           versionSpec: $(node_version)
       - script: npm install && npm install --no-save async
+        displayName: Install Packages
+      - script: npm test
+        displayName: Test
+      - script: npm run -s codecov
+        displayName: Send Coverage
+
+  - job: tests_on_linux_with_eslint6
+    displayName: Test ESLint 6 on Linux
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    steps:
+      - task: NodeTool@0
+        displayName: Install Node.js
+        inputs:
+          versionSpec: 12.x
+      # It needs twice due to npm's bug: https://npm.community/t/error-node-modules-staging-eslint-e7cf6846-node-modules-eslint
+      - script: npm install && npm install --no-save async eslint@^6.0.0-rc.0 && npm install --no-save async eslint@^6.0.0-rc.0
         displayName: Install Packages
       - script: npm test
         displayName: Test
