@@ -5,8 +5,8 @@
 "use strict"
 
 const path = require("path")
-const RuleTester = require("eslint").RuleTester
-const { configs } = require("@mysticatea/eslint-plugin")
+const { RuleTester } = require("eslint")
+const globals = require("globals")
 const rule = require("../../../../lib/rules/no-unsupported-features/es-syntax")
 
 /**
@@ -72,7 +72,7 @@ function concat(patterns) {
 
 const ruleTester = new RuleTester({
     parserOptions: { ecmaVersion: 2019 },
-    globals: Object.assign({}, configs.es2015.globals, configs.es2017.globals),
+    globals: globals.es2017,
 })
 ruleTester.run(
     "no-unsupported-features/es-syntax",

@@ -4,7 +4,7 @@
  */
 "use strict"
 
-const RuleTester = require("eslint/lib/testers/rule-tester")
+const { RuleTester } = require("eslint")
 const rule = require("../../../lib/rules/no-deprecated-api")
 
 const ruleTester = new RuleTester()
@@ -63,6 +63,7 @@ ruleTester.run("no-deprecated-api", rule, {
         {
             code: "import domain from 'domain/';",
             parserOptions: { sourceType: "module" },
+            env: { es6: true },
         },
 
         // https://github.com/mysticatea/eslint-plugin-node/issues/55
@@ -947,12 +948,6 @@ ruleTester.run("no-deprecated-api", rule, {
             errors: [
                 "'process.env.NODE_REPL_HISTORY_FILE' was deprecated since v4.0.0. Use 'NODE_REPL_HISTORY' instead.",
             ],
-        },
-        {
-            code: "import domain from 'domain';",
-            options: [{ version: "4.0.0" }],
-            parserOptions: { sourceType: "module" },
-            errors: ["'domain' module was deprecated since v4.0.0."],
         },
 
         {

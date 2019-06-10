@@ -5,7 +5,7 @@
 "use strict"
 
 const path = require("path")
-const RuleTester = require("eslint").RuleTester
+const { RuleTester } = require("eslint")
 const rule = require("../../../lib/rules/no-extraneous-import")
 
 /**
@@ -17,9 +17,13 @@ function fixture(name) {
     return path.resolve(__dirname, "../../fixtures/no-extraneous", name)
 }
 
-const tester = new RuleTester({ parserOptions: { sourceType: "module" } })
-
-tester.run("no-extraneous-import", rule, {
+const ruleTester = new RuleTester({
+    parserOptions: {
+        ecmaVersion: 2015,
+        sourceType: "module",
+    },
+})
+ruleTester.run("no-extraneous-import", rule, {
     valid: [
         {
             filename: fixture("dependencies/a.js"),
