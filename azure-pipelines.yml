@@ -12,7 +12,7 @@ jobs:
         inputs:
           versionSpec: 12.x
       - script: npm install
-        displayName: Install packages
+        displayName: Install Packages
       - script: npm run -s lint
         displayName: Lint code
 
