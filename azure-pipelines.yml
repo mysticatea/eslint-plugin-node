@@ -1,0 +1,78 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+  - master
+
+jobs:
+  - job: lint
+    displayName: Lint code
+    pool:
+      vmImage: Ubuntu-16.04
+    steps:
+      - task: NodeTool@0
+        displayName: Install Node.js
+        inputs:
+          versionSpec: 12.x
+      - script: npm install
+        displayName: Install packages
+      - script: npm run -s lint
+        displayName: Lint code
+
+  - job: tests_on_linux
+    displayName: Test on Linux
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    strategy:
+      matrix:
+        "Node.js v12":
+          node_version: 12.x
+        "Node.js v10":
+          node_version: 10.x
+        "Node.js v8.10.0":
+          node_version: "8.10.0"
+    steps:
+      - task: NodeTool@0
+        displayName: Install Node.js
+        inputs:
+          versionSpec: $(node_version)
+      - script: npm install && npm install --no-save async
+        displayName: Install Packages
+      - script: npm test
+        displayName: Test
+      - script: npm run -s codecov
+        displayName: Send Coverage
+
+  - job: tests_on_windows
+    displayName: Test on Windows
+    pool:
+      vmImage: 'Windows-2019'
+    steps:
+      - task: NodeTool@0
+        displayName: Install Node.js
+        inputs:
+          versionSpec: 12.x
+      - script: npm install && npm install --no-save async
+        displayName: Install Packages
+      - script: npm test
+        displayName: Test
+      - script: npm run -s codecov
+        displayName: Send Coverage
+
+  - job: tests_on_macos
+    displayName: Test on macOS
+    pool:
+      vmImage: 'macOS-10.14'
+    steps:
+      - task: NodeTool@0
+        displayName: Install Node.js
+        inputs:
+          versionSpec: 12.x
+      - script: npm install && npm install --no-save async
+        displayName: Install Packages
+      - script: npm test
+        displayName: Test
+      - script: npm run -s codecov
+        displayName: Send Coverage
