@@ -118,6 +118,12 @@ ruleTester.run("shebang", rule, {
             filename: fixture("string-bin/bin/test.js"),
             code: "#!/usr/bin/env node --harmony\nhello();",
         },
+
+        // use node resolution
+        {
+            filename: fixture("object-bin/bin/index.js"),
+            code: "#!/usr/bin/env node\nhello();",
+        },
     ],
     invalid: [
         {
@@ -304,6 +310,14 @@ ruleTester.run("shebang", rule, {
             code: "#!/usr/bin/env node --harmony\nhello();",
             output: "hello();",
             errors: ["This file needs no shebang."],
+        },
+
+        // use node resolution
+        {
+            filename: fixture("object-bin/bin/index.js"),
+            code: "hello();",
+            output: "#!/usr/bin/env node\nhello();",
+            errors: ['This file needs shebang "#!/usr/bin/env node".'],
         },
     ],
 })

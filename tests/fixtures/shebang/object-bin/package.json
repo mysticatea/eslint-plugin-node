@@ -4,6 +4,7 @@
     "version": "0.0.0",
     "bin": {
         "a": "./bin/a.js",
-        "b": "./bin/b.js"
+        "b": "./bin/b.js",
+        "c": "./bin"
     }
 }
