@@ -1,0 +1,30 @@
+parameters:
+  name: ""
+  displayName: ""
+  vmImage: ""
+  nodeVersion: ""
+  eslintVersion: ""
+
+jobs:
+  - job: ${{parameters.name}}
+    displayName: ${{parameters.displayName}}
+    pool:
+      vmImage: ${{parameters.vmImage}}
+    steps:
+      - task: NodeTool@0
+        displayName: Install Node.js
+        inputs:
+          versionSpec: ${{parameters.nodeVersion}}
+
+      - script: npm install && npm install --no-save async
+        displayName: Install Packages
+
+      - script: npm install --no-save eslint@${{parameters.eslintVersion}}
+        displayName: Install Specific ESLint
+        condition: ne('${{parameters.eslintVersion}}', '')
+
+      - script: npm run -s test:ci
+        displayName: Test
+
+      - script: npm run -s codecov -- -t $(CODECOV_TOKEN)
+        displayName: Send Coverage
