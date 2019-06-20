@@ -19,7 +19,10 @@ jobs:
       - script: npm install && npm install --no-save async
         displayName: Install Packages
 
-      - script: npm install --no-save eslint@${{parameters.eslintVersion}}
+      - script: |
+          # We need to execute this command twice because of npm's bug.
+          npm install --no-save eslint@${{parameters.eslintVersion}}
+          npm install --no-save eslint@${{parameters.eslintVersion}}
         displayName: Install Specific ESLint
         condition: ne('${{parameters.eslintVersion}}', '')
 

@@ -27,13 +27,6 @@ jobs:
 
   - template: .azure-pipelines/test-job.yml
     parameters:
-      name: test_on_linux_node6_eslint5
-      displayName: Test on Node 6, ESLint 5, Linux
-      vmImage: Ubuntu-16.04
-      nodeVersion: 6.x
-
-  - template: .azure-pipelines/test-job.yml
-    parameters:
       name: test_on_linux_node12_eslint6rc
       displayName: Test on Node 12, ESLint 6 RC, Linux
       vmImage: Ubuntu-16.04
