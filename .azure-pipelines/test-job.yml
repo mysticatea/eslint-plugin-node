@@ -21,6 +21,7 @@ jobs:
 
       - script: |
           # We need to execute this command twice because of npm's bug.
+          # See also: https://npm.community/t/error-node-modules-staging-eslint-e7cf6846-node-modules-eslint
           npm install --no-save eslint@${{parameters.eslintVersion}}
           npm install --no-save eslint@${{parameters.eslintVersion}}
         displayName: Install Specific ESLint
