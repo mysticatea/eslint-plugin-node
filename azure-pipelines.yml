@@ -2,89 +2,47 @@ trigger:
   - master
 
 jobs:
-  - job: lint
-    displayName: Lint code
-    pool:
+  - template: .azure-pipelines/lint-job.yml
+
+  - template: .azure-pipelines/test-job.yml
+    parameters:
+      name: test_on_linux_node12_eslint5
+      displayName: Test on Node 12, ESLint 5, Linux
       vmImage: Ubuntu-16.04
-    steps:
-      - task: NodeTool@0
-        displayName: Install Node.js
-        inputs:
-          versionSpec: 12.x
-      - script: npm install
-        displayName: Install Packages
-      - script: npm run -s lint
-        displayName: Lint code
+      nodeVersion: 12.x
 
-  - job: tests_on_linux
-    displayName: Test on Linux
-    pool:
-      vmImage: 'Ubuntu-16.04'
-    strategy:
-      matrix:
-        "Node.js v12":
-          node_version: 12.x
-        "Node.js v10":
-          node_version: 10.x
-        "Node.js v8.10.0":
-          node_version: "8.10.0"
-    steps:
-      - task: NodeTool@0
-        displayName: Install Node.js
-        inputs:
-          versionSpec: $(node_version)
-      - script: npm install && npm install --no-save async
-        displayName: Install Packages
-      - script: npm test
-        displayName: Test
-      - script: npm run -s codecov -- -t $(CODECOV_TOKEN)
-        displayName: Send Coverage
+  - template: .azure-pipelines/test-job.yml
+    parameters:
+      name: test_on_linux_node10_eslint5
+      displayName: Test on Node 10, ESLint 5, Linux
+      vmImage: Ubuntu-16.04
+      nodeVersion: 10.x
 
-  - job: tests_on_linux_with_eslint6
-    displayName: Test ESLint 6 on Linux
-    pool:
-      vmImage: 'Ubuntu-16.04'
-    steps:
-      - task: NodeTool@0
-        displayName: Install Node.js
-        inputs:
-          versionSpec: 12.x
-      # It needs twice due to npm's bug: https://npm.community/t/error-node-modules-staging-eslint-e7cf6846-node-modules-eslint
-      - script: npm install && npm install --no-save async eslint@^6.0.0-rc.0 && npm install --no-save async eslint@^6.0.0-rc.0
-        displayName: Install Packages
-      - script: npm test
-        displayName: Test
-      - script: npm run -s codecov -- -t $(CODECOV_TOKEN)
-        displayName: Send Coverage
+  - template: .azure-pipelines/test-job.yml
+    parameters:
+      name: test_on_linux_node8_eslint5
+      displayName: Test on Node 8, ESLint 5, Linux
+      vmImage: Ubuntu-16.04
+      nodeVersion: 8.x
 
-  - job: tests_on_windows
-    displayName: Test on Windows
-    pool:
-      vmImage: 'Windows-2019'
-    steps:
-      - task: NodeTool@0
-        displayName: Install Node.js
-        inputs:
-          versionSpec: 12.x
-      - script: npm install && npm install --no-save async
-        displayName: Install Packages
-      - script: npm test
-        displayName: Test
-      - script: npm run -s codecov -- -t $(CODECOV_TOKEN)
-        displayName: Send Coverage
+  - template: .azure-pipelines/test-job.yml
+    parameters:
+      name: test_on_linux_node12_eslint6rc
+      displayName: Test on Node 12, ESLint 6 RC, Linux
+      vmImage: Ubuntu-16.04
+      nodeVersion: 12.x
+      eslintVersion: ^6.0.0-rc.0
 
-  - job: tests_on_macos
-    displayName: Test on macOS
-    pool:
-      vmImage: 'macOS-10.14'
-    steps:
-      - task: NodeTool@0
-        displayName: Install Node.js
-        inputs:
-          versionSpec: 12.x
-      - script: npm install && npm install --no-save async
-        displayName: Install Packages
-      - script: npm test
-        displayName: Test
-      - script: npm run -s codecov -- -t $(CODECOV_TOKEN)
-        displayName: Send Coverage
+  - template: .azure-pipelines/test-job.yml
+    parameters:
+      name: test_on_windows_node12_eslint5
+      displayName: Test on Node 12, ESLint 5, Windows
+      vmImage: Windows-2019
+      nodeVersion: 12.x
+
+  - template: .azure-pipelines/test-job.yml
+    parameters:
+      name: test_on_macos_node12_eslint5
+      displayName: Test on Node 12, ESLint 5, macOS
+      vmImage: macOS-10.14
+      nodeVersion: 12.x
