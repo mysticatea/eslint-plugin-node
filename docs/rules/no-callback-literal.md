@@ -1,6 +1,5 @@
 # node/no-callback-literal
-
-> Ensures the Node.js error-first callback pattern is followed
+> ensure Node.js-style error-first callback pattern is followed
 
 When invoking a callback function which uses the Node.js error-first callback pattern, all of your errors should either use the `Error` class or a subclass of it. It is also acceptable to use `undefined` or `null` if there is no error.
 
