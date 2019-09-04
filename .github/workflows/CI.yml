@@ -1,0 +1,65 @@
+name: CI
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  schedule:
+    - cron: 0 0 * * 0
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node: 12.x
+      - name: Install Packages
+        run: npm install
+      - name: Lint
+        run: npm run -s lint
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        eslint: [6.x, 5.x]
+        node: [12.x, 10.x, 8.x]
+        exclude:
+          # Run ESLint 5.x only on the latest Node.
+          - eslint: 5.x
+            node: 8.x
+          - eslint: 5.x
+            node: 10.x
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: Install Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install Packages
+        run: npm install
+      - name: Install ESLint ${{ matrix.eslint }}
+        run: |
+          # We need to execute this command twice because of npm's bug.
+          # See also: https://npm.community/t/error-node-modules-staging-eslint-e7cf6846-node-modules-eslint
+          npm install --no-save eslint@${{ matrix.eslint }}
+          npm install --no-save eslint@${{ matrix.eslint }}
+      - name: Test
+        run: npm run -s test:ci
+      - name: Send Coverage
+        run: npm run -s codecov
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
