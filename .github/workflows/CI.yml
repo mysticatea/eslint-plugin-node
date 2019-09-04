@@ -1,7 +1,7 @@
 name: CI
 on:
   push:
-    branches: [master]
+    branches: [master, gha]
   pull_request:
     branches: [master]
   schedule:
@@ -27,19 +27,54 @@ jobs:
 
   test:
     name: Test
-    runs-on: ubuntu-latest
 
     strategy:
       matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
         eslint: [6.x, 5.x]
         node: [12.x, 10.x, 8.x]
         exclude:
-          # Run ESLint 5.x only on the latest Node.
-          - eslint: 5.x
-            node: 8.x
-          - eslint: 5.x
+          # On Windows, run tests with only the latest environments.
+          - os: windows-latest
+            eslint: 6.x
             node: 10.x
+          - os: windows-latest
+            eslint: 6.x
+            node: 8.x
+          - os: windows-latest
+            eslint: 5.x
+            node: 12.x
+          - os: windows-latest
+            eslint: 5.x
+            node: 10.x
+          - os: windows-latest
+            eslint: 5.x
+            node: 8.x
+          # On macOS, run tests with only the latest environments.
+          - os: macOS-latest
+            eslint: 6.x
+            node: 10.x
+          - os: macOS-latest
+            eslint: 6.x
+            node: 8.x
+          - os: macOS-latest
+            eslint: 5.x
+            node: 12.x
+          - os: macOS-latest
+            eslint: 5.x
+            node: 10.x
+          - os: macOS-latest
+            eslint: 5.x
+            node: 8.x
+          # Run ESLint 5.x tests on only the latest Node.
+          - os: ubuntu-latest
+            eslint: 5.x
+            node: 10.x
+          - os: ubuntu-latest
+            eslint: 5.x
+            node: 8.x
 
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -52,10 +87,10 @@ jobs:
       - name: Install Packages
         run: npm install
       - name: Install ESLint ${{ matrix.eslint }}
-        run: |
-          # We need to execute this command twice because of npm's bug.
-          # See also: https://npm.community/t/error-node-modules-staging-eslint-e7cf6846-node-modules-eslint
-          npm install --no-save eslint@${{ matrix.eslint }}
+        # We need to execute this command twice because of npm's bug.
+        # See also: https://npm.community/t/error-node-modules-staging-eslint-e7cf6846-node-modules-eslint
+        run: >
+          npm install --no-save eslint@${{ matrix.eslint }} &&
           npm install --no-save eslint@${{ matrix.eslint }}
       - name: Test
         run: npm run -s test:ci
