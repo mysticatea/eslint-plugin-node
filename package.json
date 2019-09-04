@@ -34,11 +34,12 @@
     "rimraf": "^2.6.3"
   },
   "scripts": {
-    "build": "node scripts/update.js",
+    "build": "node scripts/update",
     "clean": "rimraf .nyc_output coverage",
     "codecov": "nyc report --reporter text-lcov | codecov --pipe --disable=gcov -t $CODECOV_TOKEN",
     "coverage": "opener ./coverage/lcov-report/index.html",
     "lint": "eslint lib scripts tests/lib .eslintrc.js",
+    "new": "node scripts/new-rule",
     "pretest": "npm run -s lint",
     "test": "nyc npm run -s test:_mocha",
     "test:ci": "nyc npm run -s test:_mocha",
