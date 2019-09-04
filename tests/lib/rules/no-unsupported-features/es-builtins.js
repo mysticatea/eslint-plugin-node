@@ -5,7 +5,7 @@
 "use strict"
 
 const { RuleTester } = require("eslint")
-const globals = require("globals")
+const { builtin } = require("globals")
 const rule = require("../../../../lib/rules/no-unsupported-features/es-builtins")
 
 /**
@@ -56,7 +56,7 @@ function concat(patterns) {
 
 const ruleTester = new RuleTester({
     parserOptions: { ecmaVersion: 2018 },
-    globals: globals.es2017,
+    globals: builtin,
 })
 ruleTester.run(
     "no-unsupported-features/es-builtins",
@@ -122,6 +122,53 @@ ruleTester.run(
                                 name: "Array.of",
                                 supported: "4.0.0",
                                 version: "3.9.9",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            keyword: "BigInt",
+            valid: [
+                {
+                    code: "bigint",
+                    options: [{ version: "10.3.0" }],
+                },
+                {
+                    code: "(function(BigInt) { BigInt }(b))",
+                    options: [{ version: "10.3.0" }],
+                },
+                {
+                    code: "BigInt",
+                    options: [{ version: "10.4.0" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "BigInt",
+                    options: [{ version: "10.3.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "BigInt",
+                                supported: "10.4.0",
+                                version: "10.3.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "(function() { BigInt })()",
+                    options: [{ version: "10.3.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "BigInt",
+                                supported: "10.4.0",
+                                version: "10.3.0",
                             },
                         },
                     ],
@@ -1111,6 +1158,49 @@ ruleTester.run(
             ],
         },
         {
+            keyword: "Promise.allSettled",
+            valid: [
+                {
+                    code: "(function(Promise) { Promise.allSettled }(a))",
+                    options: [{ version: "12.8.1" }],
+                },
+                {
+                    code: "Promise.allSettled",
+                    options: [{ version: "12.9.0" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "Promise.allSettled",
+                    options: [{ version: "12.8.1" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "Promise.allSettled",
+                                supported: "12.9.0",
+                                version: "12.8.1",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "function wrap() { Promise.allSettled }",
+                    options: [{ version: "12.8.1" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "Promise.allSettled",
+                                supported: "12.9.0",
+                                version: "12.8.1",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
             keyword: "Proxy",
             valid: [
                 {
@@ -1644,6 +1734,92 @@ ruleTester.run(
                                 name: "Uint32Array",
                                 supported: "0.10.0",
                                 version: "0.9.9",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            keyword: "BigInt64Array",
+            valid: [
+                {
+                    code: "(function(BigInt64Array) { BigInt64Array }(b))",
+                    options: [{ version: "10.3.0" }],
+                },
+                {
+                    code: "BigInt64Array",
+                    options: [{ version: "10.4.0" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "BigInt64Array",
+                    options: [{ version: "10.3.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "BigInt64Array",
+                                supported: "10.4.0",
+                                version: "10.3.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "(function() { BigInt64Array })()",
+                    options: [{ version: "10.3.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "BigInt64Array",
+                                supported: "10.4.0",
+                                version: "10.3.0",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            keyword: "BigUint64Array",
+            valid: [
+                {
+                    code: "(function(BigUint64Array) { BigUint64Array }(b))",
+                    options: [{ version: "10.3.0" }],
+                },
+                {
+                    code: "BigUint64Array",
+                    options: [{ version: "10.4.0" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "BigUint64Array",
+                    options: [{ version: "10.3.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "BigUint64Array",
+                                supported: "10.4.0",
+                                version: "10.3.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "(function() { BigUint64Array })()",
+                    options: [{ version: "10.3.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "BigUint64Array",
+                                supported: "10.4.0",
+                                version: "10.3.0",
                             },
                         },
                     ],

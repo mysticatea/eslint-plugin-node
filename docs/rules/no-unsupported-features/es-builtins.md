@@ -12,7 +12,7 @@ Editor integrations of ESLint would be useful to know it in real-time.
 
 ### Supported ECMAScript features
 
-This rule supports ECMAScript 2019.
+This rule supports ECMAScript 2019 and proposals that have been approved as Stage 4 by August 2019.
 See also [TC39 finished proposals](https://github.com/tc39/proposals/blob/master/finished-proposals.md).
 
 ### Configured Node.js version range
@@ -60,6 +60,13 @@ You can use this `ignores` option to ignore the given features.
 The `"ignores"` option accepts an array of the following strings.
 
 <details>
+
+**ES2020:**
+
+- `"BigInt"`
+- `"BigInt64Array"`
+- `"BigUint64Array"`
+- `"Promise.allSettled"`
 
 **ES2019:**
 
