@@ -4,6 +4,7 @@
  */
 "use strict"
 
+const path = require("path")
 const { RuleTester } = require("eslint")
 const rule = require("../../../lib/rules/no-deprecated-api")
 
@@ -984,6 +985,19 @@ ruleTester.run("no-deprecated-api", rule, {
             env: { node: true },
             errors: [
                 "'Buffer()' was deprecated since v6.0.0. Use 'Buffer.alloc()' or 'Buffer.from()' instead.",
+            ],
+        },
+
+        // https://github.com/mysticatea/eslint-plugin-node/issues/176
+        {
+            filename: path.resolve(
+                __dirname,
+                "../../fixtures/no-deprecated-api/gte4/test.js"
+            ),
+            code: "require('assert').equal",
+            env: { node: true },
+            errors: [
+                "'assert.equal' was deprecated since v10.0.0. Use 'assert.strictEqual' instead.",
             ],
         },
     ],
