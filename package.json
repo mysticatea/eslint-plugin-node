@@ -13,7 +13,7 @@
     "eslint": ">=5.16.0"
   },
   "dependencies": {
-    "eslint-plugin-es": "^1.4.1",
+    "eslint-plugin-es": "^2.0.0",
     "eslint-utils": "^1.4.2",
     "ignore": "^5.1.1",
     "minimatch": "^3.0.4",
@@ -23,7 +23,7 @@
   "devDependencies": {
     "@mysticatea/eslint-plugin": "^10.0.3",
     "codecov": "^3.3.0",
-    "eslint": "^5.16.0",
+    "eslint": "^6.3.0",
     "eslint-plugin-node": "file:.",
     "fast-glob": "^2.2.6",
     "globals": "^11.12.0",

@@ -5,9 +5,16 @@
 "use strict"
 
 const path = require("path")
-const { RuleTester } = require("eslint")
-const globals = require("globals")
+const { Linter, RuleTester } = require("eslint")
+const { builtin } = require("globals")
 const rule = require("../../../../lib/rules/no-unsupported-features/es-syntax")
+
+const ES2020Supported = (() => {
+    const config = { parserOptions: { ecmaVersion: 2020 } }
+    const messages = new Linter().verify("0n", config)
+    return messages.length === 0
+})()
+const ecmaVersion = ES2020Supported ? 2020 : 2019
 
 /**
  * Makes a file path to a fixture.
@@ -57,7 +64,11 @@ function concat(patterns) {
         invalid: [],
     }
 
-    for (const { keyword, valid, invalid } of patterns) {
+    for (const { requiredEcmaVersion, keyword, valid, invalid } of patterns) {
+        if (requiredEcmaVersion && ecmaVersion < requiredEcmaVersion) {
+            continue
+        }
+
         ret.valid.push(...valid)
         ret.invalid.push(...invalid)
 
@@ -71,8 +82,8 @@ function concat(patterns) {
 }
 
 const ruleTester = new RuleTester({
-    parserOptions: { ecmaVersion: 2019 },
-    globals: globals.es2017,
+    parserOptions: { ecmaVersion },
+    globals: builtin,
 })
 ruleTester.run(
     "no-unsupported-features/es-syntax",
@@ -2370,6 +2381,72 @@ ruleTester.run(
                         {
                             messageId: "no-optional-catch-binding",
                             data: { supported: "10.0.0", version: "9.99.99" },
+                        },
+                    ],
+                },
+            ],
+        },
+
+        //----------------------------------------------------------------------
+        // ES2020
+        //----------------------------------------------------------------------
+        {
+            keyword: "bigint",
+            requiredEcmaVersion: 2020,
+            valid: [
+                {
+                    code: "var n = 0n",
+                    options: [{ version: "10.4.0" }],
+                },
+                {
+                    code: "var n = BigInt(0)",
+                    options: [{ version: "10.3.0" }],
+                },
+                {
+                    code: "var n = new BigInt64Array()",
+                    options: [{ version: "10.3.0" }],
+                },
+                {
+                    code: "var n = new BigUint64Array()",
+                    options: [{ version: "10.3.0" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "var n = 0n",
+                    options: [{ version: "10.3.0" }],
+                    errors: [
+                        {
+                            messageId: "no-bigint",
+                            data: {
+                                supported: "10.4.0",
+                                version: "10.3.0",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            keyword: "dynamicImport",
+            requiredEcmaVersion: 2020,
+            valid: [
+                {
+                    code: "obj.import(source)",
+                    options: [{ version: "12.0.0" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "import(source)",
+                    options: [{ version: "12.0.0" }],
+                    errors: [
+                        {
+                            messageId: "no-dynamic-import",
+                            data: {
+                                supported: null,
+                                version: "12.0.0",
+                            },
                         },
                     ],
                 },
