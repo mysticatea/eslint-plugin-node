@@ -5,8 +5,22 @@
 "use strict"
 
 const path = require("path")
-const { RuleTester } = require("eslint")
+const { Linter, RuleTester } = require("eslint")
 const rule = require("../../../lib/rules/no-missing-import")
+
+const DynamicImportSupported = (() => {
+    const config = { parserOptions: { ecmaVersion: 2020 } }
+    const messages = new Linter().verify("import(s)", config)
+    return messages.length === 0
+})()
+
+if (!DynamicImportSupported) {
+    //eslint-disable-next-line no-console
+    console.warn(
+        "[%s] Skip tests for 'import()'",
+        path.basename(__filename, ".js")
+    )
+}
 
 /**
  * Makes a file path to a fixture.
@@ -212,11 +226,15 @@ ruleTester.run("no-missing-import", rule, {
         },
 
         // import()
-        {
-            filename: fixture("test.js"),
-            code: "function f() { import('no-exist-package-0') }",
-            parserOptions: { ecmaVersion: 2020 },
-            errors: ['"no-exist-package-0" is not found.'],
-        },
+        ...(DynamicImportSupported
+            ? [
+                  {
+                      filename: fixture("test.js"),
+                      code: "function f() { import('no-exist-package-0') }",
+                      parserOptions: { ecmaVersion: 2020 },
+                      errors: ['"no-exist-package-0" is not found.'],
+                  },
+              ]
+            : []),
     ],
 })

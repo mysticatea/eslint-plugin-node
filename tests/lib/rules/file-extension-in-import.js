@@ -5,8 +5,22 @@
 "use strict"
 
 const path = require("path")
-const RuleTester = require("eslint").RuleTester
+const { Linter, RuleTester } = require("eslint")
 const rule = require("../../../lib/rules/file-extension-in-import")
+
+const DynamicImportSupported = (() => {
+    const config = { parserOptions: { ecmaVersion: 2020 } }
+    const messages = new Linter().verify("import(s)", config)
+    return messages.length === 0
+})()
+
+if (!DynamicImportSupported) {
+    //eslint-disable-next-line no-console
+    console.warn(
+        "[%s] Skip tests for 'import()'",
+        path.basename(__filename, ".js")
+    )
+}
 
 function fixture(filename) {
     return path.resolve(
@@ -240,20 +254,28 @@ new RuleTester({
         },
 
         // import()
-        {
-            filename: fixture("test.js"),
-            code: "function f() { import('./a') }",
-            output: "function f() { import('./a.js') }",
-            parserOptions: { ecmaVersion: 2020 },
-            errors: [{ messageId: "requireExt", data: { ext: ".js" } }],
-        },
-        {
-            filename: fixture("test.js"),
-            code: "function f() { import('./a.js') }",
-            output: "function f() { import('./a') }",
-            options: ["never"],
-            parserOptions: { ecmaVersion: 2020 },
-            errors: [{ messageId: "forbidExt", data: { ext: ".js" } }],
-        },
+        ...(DynamicImportSupported
+            ? [
+                  {
+                      filename: fixture("test.js"),
+                      code: "function f() { import('./a') }",
+                      output: "function f() { import('./a.js') }",
+                      parserOptions: { ecmaVersion: 2020 },
+                      errors: [
+                          { messageId: "requireExt", data: { ext: ".js" } },
+                      ],
+                  },
+                  {
+                      filename: fixture("test.js"),
+                      code: "function f() { import('./a.js') }",
+                      output: "function f() { import('./a') }",
+                      options: ["never"],
+                      parserOptions: { ecmaVersion: 2020 },
+                      errors: [
+                          { messageId: "forbidExt", data: { ext: ".js" } },
+                      ],
+                  },
+              ]
+            : []),
     ],
 })

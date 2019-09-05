@@ -5,8 +5,22 @@
 "use strict"
 
 const path = require("path")
-const { RuleTester } = require("eslint")
+const { Linter, RuleTester } = require("eslint")
 const rule = require("../../../lib/rules/no-unpublished-import")
+
+const DynamicImportSupported = (() => {
+    const config = { parserOptions: { ecmaVersion: 2020 } }
+    const messages = new Linter().verify("import(s)", config)
+    return messages.length === 0
+})()
+
+if (!DynamicImportSupported) {
+    //eslint-disable-next-line no-console
+    console.warn(
+        "[%s] Skip tests for 'import()'",
+        path.basename(__filename, ".js")
+    )
+}
 
 /**
  * Makes a file path to a fixture.
@@ -246,11 +260,15 @@ ruleTester.run("no-unpublished-import", rule, {
         },
 
         // import()
-        {
-            filename: fixture("2/test.js"),
-            code: "function f() { import('./ignore1.js') }",
-            parserOptions: { ecmaVersion: 2020 },
-            errors: ['"./ignore1.js" is not published.'],
-        },
+        ...(DynamicImportSupported
+            ? [
+                  {
+                      filename: fixture("2/test.js"),
+                      code: "function f() { import('./ignore1.js') }",
+                      parserOptions: { ecmaVersion: 2020 },
+                      errors: ['"./ignore1.js" is not published.'],
+                  },
+              ]
+            : []),
     ],
 })

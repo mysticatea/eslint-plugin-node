@@ -5,8 +5,22 @@
 "use strict"
 
 const path = require("path")
-const { RuleTester } = require("eslint")
+const { Linter, RuleTester } = require("eslint")
 const rule = require("../../../lib/rules/no-extraneous-import")
+
+const DynamicImportSupported = (() => {
+    const config = { parserOptions: { ecmaVersion: 2020 } }
+    const messages = new Linter().verify("import(s)", config)
+    return messages.length === 0
+})()
+
+if (!DynamicImportSupported) {
+    //eslint-disable-next-line no-console
+    console.warn(
+        "[%s] Skip tests for 'import()'",
+        path.basename(__filename, ".js")
+    )
+}
 
 /**
  * Makes a file path to a fixture.
@@ -87,11 +101,15 @@ ruleTester.run("no-extraneous-import", rule, {
         },
 
         // import()
-        {
-            filename: fixture("dependencies/a.js"),
-            code: "function f() { import('bbb') }",
-            parserOptions: { ecmaVersion: 2020 },
-            errors: ['"bbb" is extraneous.'],
-        },
+        ...(DynamicImportSupported
+            ? [
+                  {
+                      filename: fixture("dependencies/a.js"),
+                      code: "function f() { import('bbb') }",
+                      parserOptions: { ecmaVersion: 2020 },
+                      errors: ['"bbb" is extraneous.'],
+                  },
+              ]
+            : []),
     ],
 })
