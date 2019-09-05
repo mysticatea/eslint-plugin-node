@@ -112,7 +112,7 @@ These rules have been deprecated in accordance with the [deprecation policy](htt
 | Rule ID | Replaced by |
 |:--------|:------------|
 | [node/no-hide-core-modules](./docs/rules/no-hide-core-modules.md) | (nothing) |
-| [node/no-unsupported-features](./docs/rules/no-unsupported-features.md) | [node/node/no-unsupported-features/es-syntax](./docs/rules/node/no-unsupported-features/es-syntax.md) and [node/node/no-unsupported-features/es-builtins](./docs/rules/node/no-unsupported-features/es-builtins.md) |
+| [node/no-unsupported-features](./docs/rules/no-unsupported-features.md) | [node/no-unsupported-features/es-syntax](./docs/rules/no-unsupported-features/es-syntax.md) and [node/no-unsupported-features/es-builtins](./docs/rules/no-unsupported-features/es-builtins.md) |
 
 <!--RULES_TABLE_END-->
 
