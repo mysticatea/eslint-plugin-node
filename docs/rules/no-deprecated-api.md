@@ -75,6 +75,7 @@ This rule reports the following deprecated API.
 - http
     - [createClient](https://nodejs.org/dist/v0.10.0/docs/api/http.html#http_http_createclient_port_host)
 - module
+    - [createRequireFromPath](https://nodejs.org/dist/v12.2.0/docs/api/deprecations.html#deprecations_dep0130_module_createrequirefrompath)
     - `requireRepl` (undocumented)
     - [_debug](https://nodejs.org/dist/v9.0.0/docs/api/deprecations.html#deprecations_dep0077_module_debug)
 - net
@@ -226,6 +227,8 @@ This option can include the following values:
 - `fs.lchown`
 - `fs.lchownSync`
 - `http.createClient`
+- `module.Module.createRequireFromPath`
+- `module.createRequireFromPath`
 - `module.Module.requireRepl`
 - `module.requireRepl`
 - `module.Module._debug`

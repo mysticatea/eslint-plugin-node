@@ -875,6 +875,22 @@ ruleTester.run("no-deprecated-api", rule, {
                 "'buffer.Buffer()' was deprecated since v6.0.0. Use 'buffer.Buffer.alloc()' or 'buffer.Buffer.from()' instead.",
             ],
         },
+        {
+            code: "require('module').createRequireFromPath()",
+            options: [{ version: "12.0.0" }],
+            env: { node: true },
+            errors: [
+                "'module.createRequireFromPath' was deprecated since v12.2.0.",
+            ],
+        },
+        {
+            code: "require('module').createRequireFromPath()",
+            options: [{ version: "12.2.0" }],
+            env: { node: true },
+            errors: [
+                "'module.createRequireFromPath' was deprecated since v12.2.0. Use 'module.createRequire()' instead.",
+            ],
+        },
 
         //----------------------------------------------------------------------
         // Global Variables
