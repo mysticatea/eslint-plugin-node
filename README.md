@@ -21,12 +21,16 @@ $ npm install --save-dev eslint eslint-plugin-node
 
 **.eslintrc.json** (An example)
 
-```json
+```jsonc
 {
     "extends": [
         "eslint:recommended",
         "plugin:node/recommended"
     ],
+    "parserOptions": {
+        // Only ESLint 6.2.0 and later support ES2020.
+        "ecmaVersion": 2020
+    },
     "rules": {
         "node/exports-style": ["error", "module.exports"],
         "node/file-extension-in-import": ["error", "always"],
@@ -159,7 +163,7 @@ Those preset config:
 
 - [GitHub Releases](https://github.com/mysticatea/eslint-plugin-node/releases)
 
-## 💎 Contributing
+## ❤️ Contributing
 
 Welcome contributing!
 
