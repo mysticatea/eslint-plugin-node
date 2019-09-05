@@ -65,7 +65,7 @@ $ npm install --save-dev eslint eslint-plugin-node
 | Rule ID | Description |    |
 |:--------|:------------|:--:|
 | [node/no-callback-literal](./docs/rules/no-callback-literal.md) | ensure Node.js-style error-first callback pattern is followed |  |
-| [node/no-exports-assign](./docs/rules/no-exports-assign.md) | disallow the assignment to `exports` |  |
+| [node/no-exports-assign](./docs/rules/no-exports-assign.md) | disallow the assignment to `exports` | ⭐️ |
 | [node/no-extraneous-import](./docs/rules/no-extraneous-import.md) | disallow `import` declarations which import extraneous modules | ⭐️ |
 | [node/no-extraneous-require](./docs/rules/no-extraneous-require.md) | disallow `require()` expressions which import extraneous modules | ⭐️ |
 | [node/no-missing-import](./docs/rules/no-missing-import.md) | disallow `import` declarations which import non-existence modules | ⭐️ |

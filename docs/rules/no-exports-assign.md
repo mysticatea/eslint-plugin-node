@@ -1,5 +1,6 @@
 # node/no-exports-assign
 > disallow the assignment to `exports`
+> - ⭐️ This rule is included in `plugin:node/recommended` preset.
 
 To assign to `exports` variable would not work as expected.
 
@@ -37,7 +38,6 @@ exports = module.exports = {}
 
 exports = {}
 ```
-
 
 ## 🔎 Implementation
 
