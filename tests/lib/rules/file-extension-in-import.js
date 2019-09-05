@@ -238,5 +238,22 @@ new RuleTester({
             options: ["never"],
             errors: [{ messageId: "forbidExt", data: { ext: ".cjs" } }],
         },
+
+        // import()
+        {
+            filename: fixture("test.js"),
+            code: "function f() { import('./a') }",
+            output: "function f() { import('./a.js') }",
+            parserOptions: { ecmaVersion: 2020 },
+            errors: [{ messageId: "requireExt", data: { ext: ".js" } }],
+        },
+        {
+            filename: fixture("test.js"),
+            code: "function f() { import('./a.js') }",
+            output: "function f() { import('./a') }",
+            options: ["never"],
+            parserOptions: { ecmaVersion: 2020 },
+            errors: [{ messageId: "forbidExt", data: { ext: ".js" } }],
+        },
     ],
 })

@@ -85,5 +85,13 @@ ruleTester.run("no-extraneous-import", rule, {
             code: "import bbb from 'bbb'",
             errors: ['"bbb" is extraneous.'],
         },
+
+        // import()
+        {
+            filename: fixture("dependencies/a.js"),
+            code: "function f() { import('bbb') }",
+            parserOptions: { ecmaVersion: 2020 },
+            errors: ['"bbb" is extraneous.'],
+        },
     ],
 })

@@ -210,5 +210,13 @@ ruleTester.run("no-missing-import", rule, {
             code: "import a from './A.js';",
             errors: ['"./A.js" is not found.'],
         },
+
+        // import()
+        {
+            filename: fixture("test.js"),
+            code: "function f() { import('no-exist-package-0') }",
+            parserOptions: { ecmaVersion: 2020 },
+            errors: ['"no-exist-package-0" is not found.'],
+        },
     ],
 })

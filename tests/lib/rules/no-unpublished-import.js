@@ -244,5 +244,13 @@ ruleTester.run("no-unpublished-import", rule, {
             env: { node: true },
             errors: ['"../2/a.js" is not published.'],
         },
+
+        // import()
+        {
+            filename: fixture("2/test.js"),
+            code: "function f() { import('./ignore1.js') }",
+            parserOptions: { ecmaVersion: 2020 },
+            errors: ['"./ignore1.js" is not published.'],
+        },
     ],
 })
