@@ -89,8 +89,8 @@ jobs:
       - name: Install ESLint ${{ matrix.eslint }}
         # We need to execute this command twice because of npm's bug.
         # See also: https://npm.community/t/error-node-modules-staging-eslint-e7cf6846-node-modules-eslint
-        run: >
-          npm install --no-save eslint@${{ matrix.eslint }} &&
+        run: |
+          npm install --no-save eslint@${{ matrix.eslint }}
           npm install --no-save eslint@${{ matrix.eslint }}
       - name: Test
         run: npm run -s test:ci
