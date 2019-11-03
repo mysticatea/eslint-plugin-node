@@ -3791,27 +3791,31 @@ new RuleTester({
                 },
                 {
                     code: "require('url').URL",
-                    options: [{ version: "7.0.0" }],
+                    options: [{ version: "6.13.0" }],
                 },
                 {
                     code: "var cp = require('url'); cp.URL",
-                    options: [{ version: "7.0.0" }],
+                    options: [{ version: "6.13.0" }],
                 },
                 {
                     code: "var { URL } = require('url');",
-                    options: [{ version: "7.0.0" }],
+                    options: [{ version: "6.13.0" }],
                 },
                 {
                     code: "import cp from 'url'; cp.URL",
-                    options: [{ version: "7.0.0" }],
+                    options: [{ version: "6.13.0" }],
                 },
                 {
                     code: "import { URL } from 'url'",
-                    options: [{ version: "7.0.0" }],
+                    options: [{ version: "6.13.0" }],
                 },
                 {
                     code: "require('url').URLSearchParams",
                     options: [{ version: "7.5.0" }],
+                },
+                {
+                    code: "require('url').URLSearchParams",
+                    options: [{ version: "6.13.0" }],
                 },
                 {
                     code: "require('url').domainToASCII",
@@ -3847,16 +3851,22 @@ new RuleTester({
                 },
                 {
                     code: "import cp from 'url'; cp.URL",
-                    options: [{ version: "6.9.9", ignores: ["url.URL"] }],
+                    options: [{ version: "6.12.3", ignores: ["url.URL"] }],
                 },
                 {
                     code: "import { URL } from 'url'",
-                    options: [{ version: "6.9.9", ignores: ["url.URL"] }],
+                    options: [{ version: "6.12.3", ignores: ["url.URL"] }],
                 },
                 {
                     code: "require('url').URLSearchParams",
                     options: [
                         { version: "7.4.9", ignores: ["url.URLSearchParams"] },
+                    ],
+                },
+                {
+                    code: "require('url').URLSearchParams",
+                    options: [
+                        { version: "6.12.3", ignores: ["url.URLSearchParams"] },
                     ],
                 },
                 {
@@ -3903,70 +3913,70 @@ new RuleTester({
                 },
                 {
                     code: "require('url').URL",
-                    options: [{ version: "6.9.9" }],
+                    options: [{ version: "6.12.3" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "url.URL",
-                                supported: "7.0.0",
-                                version: "6.9.9",
+                                supported: "6.13.0",
+                                version: "6.12.3",
                             },
                         },
                     ],
                 },
                 {
                     code: "var cp = require('url'); cp.URL",
-                    options: [{ version: "6.9.9" }],
+                    options: [{ version: "6.12.3" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "url.URL",
-                                supported: "7.0.0",
-                                version: "6.9.9",
+                                supported: "6.13.0",
+                                version: "6.12.3",
                             },
                         },
                     ],
                 },
                 {
                     code: "var { URL } = require('url');",
-                    options: [{ version: "6.9.9" }],
+                    options: [{ version: "6.12.3" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "url.URL",
-                                supported: "7.0.0",
-                                version: "6.9.9",
+                                supported: "6.13.0",
+                                version: "6.12.3",
                             },
                         },
                     ],
                 },
                 {
                     code: "import cp from 'url'; cp.URL",
-                    options: [{ version: "6.9.9" }],
+                    options: [{ version: "6.12.3" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "url.URL",
-                                supported: "7.0.0",
-                                version: "6.9.9",
+                                supported: "6.13.0",
+                                version: "6.12.3",
                             },
                         },
                     ],
                 },
                 {
                     code: "import { URL } from 'url'",
-                    options: [{ version: "6.9.9" }],
+                    options: [{ version: "6.12.3" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "url.URL",
-                                supported: "7.0.0",
-                                version: "6.9.9",
+                                supported: "6.13.0",
+                                version: "6.12.3",
                             },
                         },
                     ],
@@ -3979,8 +3989,22 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "url.URLSearchParams",
-                                supported: "7.5.0",
+                                supported: "6.13.0 || >=7.0.0 <7.5.0",
                                 version: "7.4.9",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('url').URLSearchParams",
+                    options: [{ version: "6.12.3" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "url.URLSearchParams",
+                                supported: "6.13.0 || >=7.0.0 <7.5.0",
+                                version: "6.12.3",
                             },
                         },
                     ],
