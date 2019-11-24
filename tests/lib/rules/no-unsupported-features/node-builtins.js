@@ -366,7 +366,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "assert.strict",
-                                supported: "9.9.0",
+                                supported: "9.9.0 (backported: ^8.13.0)",
                                 version: "9.8.9",
                             },
                         },
@@ -381,7 +381,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "assert.strict",
-                                supported: "9.9.0",
+                                supported: "9.9.0 (backported: ^8.13.0)",
                                 version: "9.8.9",
                             },
                         },
@@ -1353,7 +1353,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "console.clear",
-                                supported: "8.3.0",
+                                supported: "8.3.0 (backported: ^6.13.0)",
                                 version: "8.2.9",
                             },
                         },
@@ -1367,7 +1367,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "console.clear",
-                                supported: "8.3.0",
+                                supported: "8.3.0 (backported: ^6.13.0)",
                                 version: "8.2.9",
                             },
                         },
@@ -1381,7 +1381,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "console.clear",
-                                supported: "8.3.0",
+                                supported: "8.3.0 (backported: ^6.13.0)",
                                 version: "8.2.9",
                             },
                         },
@@ -1395,7 +1395,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "console.clear",
-                                supported: "8.3.0",
+                                supported: "8.3.0 (backported: ^6.13.0)",
                                 version: "8.2.9",
                             },
                         },
@@ -1409,7 +1409,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "console.clear",
-                                supported: "8.3.0",
+                                supported: "8.3.0 (backported: ^6.13.0)",
                                 version: "8.2.9",
                             },
                         },
@@ -1423,7 +1423,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "console.count",
-                                supported: "8.3.0",
+                                supported: "8.3.0 (backported: ^6.13.0)",
                                 version: "8.2.9",
                             },
                         },
@@ -1437,7 +1437,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "console.countReset",
-                                supported: "8.3.0",
+                                supported: "8.3.0 (backported: ^6.13.0)",
                                 version: "8.2.9",
                             },
                         },
@@ -2055,7 +2055,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "crypto.randomFillSync",
-                                supported: "7.10.0",
+                                supported: "7.10.0 (backported: ^6.13.0)",
                                 version: "7.9.9",
                             },
                         },
@@ -2069,7 +2069,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "crypto.randomFill",
-                                supported: "7.10.0",
+                                supported: "7.10.0 (backported: ^6.13.0)",
                                 version: "7.9.9",
                             },
                         },
@@ -2295,7 +2295,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "dns.promises",
-                                supported: "11.14.0",
+                                supported: "11.14.0 (backported: ^10.17.0)",
                                 version: "11.13.9",
                             },
                         },
@@ -2420,7 +2420,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "fs.promises",
-                                supported: "11.14.0",
+                                supported: "11.14.0 (backported: ^10.17.0)",
                                 version: "11.13.9",
                             },
                         },
@@ -2434,7 +2434,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "fs.promises",
-                                supported: "11.14.0",
+                                supported: "11.14.0 (backported: ^10.17.0)",
                                 version: "11.13.9",
                             },
                         },
@@ -2448,7 +2448,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "fs.promises",
-                                supported: "11.14.0",
+                                supported: "11.14.0 (backported: ^10.17.0)",
                                 version: "11.13.9",
                             },
                         },
@@ -2462,7 +2462,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "fs.promises",
-                                supported: "11.14.0",
+                                supported: "11.14.0 (backported: ^10.17.0)",
                                 version: "11.13.9",
                             },
                         },
@@ -2476,7 +2476,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "fs.promises",
-                                supported: "11.14.0",
+                                supported: "11.14.0 (backported: ^10.17.0)",
                                 version: "11.13.9",
                             },
                         },
@@ -2600,7 +2600,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "http2",
-                                supported: "10.10.0",
+                                supported: "10.10.0 (backported: ^8.13.0)",
                                 version: "8.3.9",
                             },
                         },
@@ -2614,7 +2614,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "http2",
-                                supported: "10.10.0",
+                                supported: "10.10.0 (backported: ^8.13.0)",
                                 version: "8.3.9",
                             },
                         },
@@ -2628,7 +2628,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "http2",
-                                supported: "10.10.0",
+                                supported: "10.10.0 (backported: ^8.13.0)",
                                 version: "8.3.9",
                             },
                         },
@@ -2660,7 +2660,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "inspector",
-                                supported: "???",
+                                supported: "(none yet)",
                                 version: "7.9.9",
                             },
                         },
@@ -2674,7 +2674,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "inspector",
-                                supported: "???",
+                                supported: "(none yet)",
                                 version: "7.9.9",
                             },
                         },
@@ -2688,7 +2688,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "inspector",
-                                supported: "???",
+                                supported: "(none yet)",
                                 version: "7.9.9",
                             },
                         },
@@ -2752,7 +2752,8 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "module.builtinModules",
-                                supported: "9.3.0",
+                                supported:
+                                    "9.3.0 (backported: ^6.13.0, ^8.10.0)",
                                 version: "9.2.9",
                             },
                         },
@@ -3478,7 +3479,8 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "process.ppid",
-                                supported: "9.2.0",
+                                supported:
+                                    "9.2.0 (backported: ^6.13.0, ^8.10.0)",
                                 version: "9.1.9",
                             },
                         },
@@ -3786,6 +3788,10 @@ new RuleTester({
                     options: [{ version: "7.0.0" }],
                 },
                 {
+                    code: "require('url').URL",
+                    options: [{ version: "6.13.0" }],
+                },
+                {
                     code: "var cp = require('url'); cp.URL",
                     options: [{ version: "7.0.0" }],
                 },
@@ -3804,6 +3810,10 @@ new RuleTester({
                 {
                     code: "require('url').URLSearchParams",
                     options: [{ version: "7.5.0" }],
+                },
+                {
+                    code: "require('url').URLSearchParams",
+                    options: [{ version: "6.13.0" }],
                 },
                 {
                     code: "require('url').domainToASCII",
@@ -3901,7 +3911,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "url.URL",
-                                supported: "7.0.0",
+                                supported: "7.0.0 (backported: ^6.13.0)",
                                 version: "6.9.9",
                             },
                         },
@@ -3915,7 +3925,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "url.URL",
-                                supported: "7.0.0",
+                                supported: "7.0.0 (backported: ^6.13.0)",
                                 version: "6.9.9",
                             },
                         },
@@ -3929,7 +3939,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "url.URL",
-                                supported: "7.0.0",
+                                supported: "7.0.0 (backported: ^6.13.0)",
                                 version: "6.9.9",
                             },
                         },
@@ -3943,7 +3953,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "url.URL",
-                                supported: "7.0.0",
+                                supported: "7.0.0 (backported: ^6.13.0)",
                                 version: "6.9.9",
                             },
                         },
@@ -3957,7 +3967,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "url.URL",
-                                supported: "7.0.0",
+                                supported: "7.0.0 (backported: ^6.13.0)",
                                 version: "6.9.9",
                             },
                         },
@@ -3971,7 +3981,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "url.URLSearchParams",
-                                supported: "7.5.0",
+                                supported: "7.5.0 (backported: ^6.13.0)",
                                 version: "7.4.9",
                             },
                         },
@@ -4059,11 +4069,11 @@ new RuleTester({
                 },
                 {
                     code: "require('util').TextDecoder",
-                    options: [{ version: "8.3.0" }],
+                    options: [{ version: "8.9.0" }],
                 },
                 {
                     code: "require('util').TextEncoder",
-                    options: [{ version: "8.3.0" }],
+                    options: [{ version: "8.9.0" }],
                 },
                 {
                     code: "require('util').types",
@@ -4259,7 +4269,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "util.getSystemErrorName",
-                                supported: "9.7.0",
+                                supported: "9.7.0 (backported: ^8.12.0)",
                                 version: "9.6.9",
                             },
                         },
@@ -4323,28 +4333,28 @@ new RuleTester({
                 },
                 {
                     code: "require('util').TextDecoder",
-                    options: [{ version: "8.2.9" }],
+                    options: [{ version: "8.8.9" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "util.TextDecoder",
-                                supported: "8.3.0",
-                                version: "8.2.9",
+                                supported: "8.9.0",
+                                version: "8.8.9",
                             },
                         },
                     ],
                 },
                 {
                     code: "require('util').TextEncoder",
-                    options: [{ version: "8.2.9" }],
+                    options: [{ version: "8.8.9" }],
                     errors: [
                         {
                             messageId: "unsupported",
                             data: {
                                 name: "util.TextEncoder",
-                                supported: "8.3.0",
-                                version: "8.2.9",
+                                supported: "8.9.0",
+                                version: "8.8.9",
                             },
                         },
                     ],
