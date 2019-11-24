@@ -10,7 +10,7 @@ Editor integrations of ESLint would be useful to know it in real-time.
 
 ## 📖 Rule Details
 
-This rule reports APIs of Node.js built-in APIs on the basis of [Node.js v12.0.0 Documentation](https://nodejs.org/docs/v12.0.0/api/).
+This rule reports APIs of Node.js built-in APIs on the basis of [Node.js v13.2.0 Documentation](https://nodejs.org/docs/v13.2.0/api/).
 
 ### Configured Node.js version range
 
@@ -201,6 +201,8 @@ The `"ignores"` option accepts an array of the following strings.
 - `"fs.realpath.native"`
 - `"fs.realpathSync.native"`
 - `"fs.promises"`
+- `"fs.writev"`
+- `"fs.writevSync"`
 
 **`http2` module:**
 
@@ -212,7 +214,14 @@ The `"ignores"` option accepts an array of the following strings.
 
 **`module` module:**
 
+- `"module.Module.builtinModules"`
+- `"module.Module.createRequireFromPath"`
+- `"module.Module.createRequire"`
+- `"module.Module.syncBuiltinESMExports"`
 - `"module.builtinModules"`
+- `"module.createRequireFromPath"`
+- `"module.createRequire"`
+- `"module.syncBuiltinESMExports"`
 
 **`os` module:**
 
@@ -246,6 +255,7 @@ The `"ignores"` option accepts an array of the following strings.
 - `"process.ppid"`
 - `"process.release"`
 - `"process.report"`
+- `"process.resourceUsage"`
 - `"process.setegid"`
 - `"process.seteuid"`
 - `"process.setUncaughtExceptionCaptureCallback"`
@@ -256,6 +266,7 @@ The `"ignores"` option accepts an array of the following strings.
 
 **`stream` module:**
 
+- `"stream.Readable.from"`
 - `"stream.finished"`
 - `"stream.pipeline"`
 
@@ -294,6 +305,7 @@ The `"ignores"` option accepts an array of the following strings.
 - `"v8.Serializer"`
 - `"v8.cachedDataVersionTag"`
 - `"v8.deserialize"`
+- `"v8.getHeapCodeStatistics"`
 - `"v8.getHeapSnapshot"`
 - `"v8.getHeapSpaceStatistics"`
 - `"v8.serialize"`

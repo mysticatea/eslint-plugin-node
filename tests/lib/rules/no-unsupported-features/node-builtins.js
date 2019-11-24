@@ -2576,11 +2576,11 @@ new RuleTester({
             valid: [
                 {
                     code: "require('http2')",
-                    options: [{ version: "8.4.0" }],
+                    options: [{ version: "10.10.0" }],
                 },
                 {
                     code: "import http2 from 'http2'",
-                    options: [{ version: "8.4.0" }],
+                    options: [{ version: "10.10.0" }],
                 },
                 {
                     code: "require('http2')",
@@ -2600,7 +2600,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "http2",
-                                supported: "8.4.0",
+                                supported: "10.10.0",
                                 version: "8.3.9",
                             },
                         },
@@ -2614,7 +2614,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "http2",
-                                supported: "8.4.0",
+                                supported: "10.10.0",
                                 version: "8.3.9",
                             },
                         },
@@ -2628,7 +2628,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "http2",
-                                supported: "8.4.0",
+                                supported: "10.10.0",
                                 version: "8.3.9",
                             },
                         },
@@ -2644,14 +2644,6 @@ new RuleTester({
             valid: [
                 {
                     code: "require('inspector')",
-                    options: [{ version: "8.0.0" }],
-                },
-                {
-                    code: "import inspector from 'inspector'",
-                    options: [{ version: "8.0.0" }],
-                },
-                {
-                    code: "require('inspector')",
                     options: [{ version: "7.9.9", ignores: ["inspector"] }],
                 },
                 {
@@ -2668,7 +2660,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "inspector",
-                                supported: "8.0.0",
+                                supported: "???",
                                 version: "7.9.9",
                             },
                         },
@@ -2682,7 +2674,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "inspector",
-                                supported: "8.0.0",
+                                supported: "???",
                                 version: "7.9.9",
                             },
                         },
@@ -2696,7 +2688,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "inspector",
-                                supported: "8.0.0",
+                                supported: "???",
                                 version: "7.9.9",
                             },
                         },
@@ -4914,6 +4906,14 @@ new RuleTester({
                         { version: "10.4.99", ignores: ["worker_threads"] },
                     ],
                 },
+                {
+                    code: "require('worker_threads')",
+                    options: [{ version: "12.11.0" }],
+                },
+                {
+                    code: "import worker_threads from 'worker_threads'",
+                    options: [{ version: "12.11.0" }],
+                },
             ],
             invalid: [
                 {
@@ -4924,7 +4924,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "worker_threads",
-                                supported: "???",
+                                supported: "12.11.0",
                                 version: "10.5.0",
                             },
                         },
@@ -4938,7 +4938,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "worker_threads",
-                                supported: "???",
+                                supported: "12.11.0",
                                 version: "10.5.0",
                             },
                         },
@@ -4952,7 +4952,7 @@ new RuleTester({
                             messageId: "unsupported",
                             data: {
                                 name: "worker_threads",
-                                supported: "???",
+                                supported: "12.11.0",
                                 version: "10.5.0",
                             },
                         },
