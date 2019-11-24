@@ -4,7 +4,6 @@
  */
 "use strict"
 
-const path = require("path")
 const { RuleTester } = require("eslint")
 const rule = require("../../../lib/rules/no-deprecated-api")
 
@@ -305,53 +304,6 @@ ruleTester.run("no-deprecated-api", rule, {
             errors: ["'_linklist' module was deprecated since v5.0.0."],
         },
         {
-            code: "require('assert').deepEqual",
-            options: [{ version: "10.0.0" }],
-            env: { node: true },
-            errors: [
-                "'assert.deepEqual' was deprecated since v10.0.0. Use 'assert.deepStrictEqual' or 'assert.strict.deepEqual' instead.",
-            ],
-        },
-        // https://github.com/mysticatea/eslint-plugin-node/issues/141
-        {
-            code: "require('assert').deepEqual",
-            options: [{ version: "6.0.0" }],
-            env: { node: true },
-            errors: [
-                "'assert.deepEqual' was deprecated since v10.0.0. Use 'assert.deepStrictEqual' instead.",
-            ],
-        },
-        {
-            code: "require('assert').deepEqual",
-            options: [{ version: "1.0.0" }],
-            env: { node: true },
-            errors: ["'assert.deepEqual' was deprecated since v10.0.0."],
-        },
-        {
-            code: "require('assert').equal",
-            options: [{ version: "10.0.0" }],
-            env: { node: true },
-            errors: [
-                "'assert.equal' was deprecated since v10.0.0. Use 'assert.strictEqual' or 'assert.strict.equal' instead.",
-            ],
-        },
-        {
-            code: "require('assert').notDeepEqual",
-            options: [{ version: "10.0.0" }],
-            env: { node: true },
-            errors: [
-                "'assert.notDeepEqual' was deprecated since v10.0.0. Use 'assert.notDeepStrictEqual' or 'assert.strict.notDeepEqual' instead.",
-            ],
-        },
-        {
-            code: "require('assert').notEqual",
-            options: [{ version: "10.0.0" }],
-            env: { node: true },
-            errors: [
-                "'assert.notEqual' was deprecated since v10.0.0. Use 'assert.notStrictEqual' or 'assert.strict.notEqual' instead.",
-            ],
-        },
-        {
             code: "require('async_hooks').currentId;",
             options: [{ version: "8.2.0" }],
             env: { node: true },
@@ -444,18 +396,6 @@ ruleTester.run("no-deprecated-api", rule, {
             options: [{ version: "0.4.0" }],
             env: { node: true },
             errors: ["'fs.lchmodSync' was deprecated since v0.4.0."],
-        },
-        {
-            code: "require('fs').lchown;",
-            options: [{ version: "0.4.0" }],
-            env: { node: true },
-            errors: ["'fs.lchown' was deprecated since v0.4.0."],
-        },
-        {
-            code: "require('fs').lchownSync;",
-            options: [{ version: "0.4.0" }],
-            env: { node: true },
-            errors: ["'fs.lchownSync' was deprecated since v0.4.0."],
         },
         {
             code: "require('http').createClient;",
@@ -1001,19 +941,6 @@ ruleTester.run("no-deprecated-api", rule, {
             env: { node: true },
             errors: [
                 "'Buffer()' was deprecated since v6.0.0. Use 'Buffer.alloc()' or 'Buffer.from()' instead.",
-            ],
-        },
-
-        // https://github.com/mysticatea/eslint-plugin-node/issues/176
-        {
-            filename: path.resolve(
-                __dirname,
-                "../../fixtures/no-deprecated-api/gte4/test.js"
-            ),
-            code: "require('assert').equal",
-            env: { node: true },
-            errors: [
-                "'assert.equal' was deprecated since v10.0.0. Use 'assert.strictEqual' instead.",
             ],
         },
     ],
