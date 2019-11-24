@@ -1,7 +1,7 @@
 name: CI
 on:
   push:
-    branches: [master, gha]
+    branches: [master]
   pull_request:
     branches: [master]
   schedule:
@@ -32,15 +32,21 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
         eslint: [6.x, 5.x]
-        node: [12.x, 10.x, 8.x]
+        node: [13.x, 12.x, 10.x, 8.x]
         exclude:
-          # On Windows, run tests with only the latest environments.
+          # On Windows, run tests with only the latest LTS environments.
+          - os: windows-latest
+            eslint: 6.x
+            node: 13.x
           - os: windows-latest
             eslint: 6.x
             node: 10.x
           - os: windows-latest
             eslint: 6.x
             node: 8.x
+          - os: windows-latest
+            eslint: 5.x
+            node: 13.x
           - os: windows-latest
             eslint: 5.x
             node: 12.x
@@ -50,13 +56,19 @@ jobs:
           - os: windows-latest
             eslint: 5.x
             node: 8.x
-          # On macOS, run tests with only the latest environments.
+          # On macOS, run tests with only the latest LTS environments.
+          - os: macOS-latest
+            eslint: 6.x
+            node: 13.x
           - os: macOS-latest
             eslint: 6.x
             node: 10.x
           - os: macOS-latest
             eslint: 6.x
             node: 8.x
+          - os: macOS-latest
+            eslint: 5.x
+            node: 13.x
           - os: macOS-latest
             eslint: 5.x
             node: 12.x
@@ -66,7 +78,10 @@ jobs:
           - os: macOS-latest
             eslint: 5.x
             node: 8.x
-          # Run ESLint 5.x tests on only the latest Node.
+          # Run ESLint 5.x tests on only the latest LTS Node.
+          - os: ubuntu-latest
+            eslint: 5.x
+            node: 13.x
           - os: ubuntu-latest
             eslint: 5.x
             node: 10.x
