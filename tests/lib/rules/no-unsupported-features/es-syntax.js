@@ -841,6 +841,46 @@ ruleTester.run(
                     code: "exports.a = {}",
                     options: [{ version: "0.0.0" }],
                 },
+                {
+                    code: "import a from 'a'",
+                    parserOptions: { sourceType: "module" },
+                    options: [{ version: "13.1.0", ignores: ["modules"] }],
+                },
+                {
+                    code: "export default {}",
+                    parserOptions: { sourceType: "module" },
+                    options: [{ version: "13.1.0", ignores: ["modules"] }],
+                },
+                {
+                    code: "export const a = {}",
+                    parserOptions: { sourceType: "module" },
+                    options: [{ version: "13.1.0", ignores: ["modules"] }],
+                },
+                {
+                    code: "export {}",
+                    parserOptions: { sourceType: "module" },
+                    options: [{ version: "13.1.0", ignores: ["modules"] }],
+                },
+                {
+                    code: "import a from 'a'",
+                    parserOptions: { sourceType: "module" },
+                    options: [{ version: "13.2.0" }],
+                },
+                {
+                    code: "export default {}",
+                    parserOptions: { sourceType: "module" },
+                    options: [{ version: "13.2.0" }],
+                },
+                {
+                    code: "export const a = {}",
+                    parserOptions: { sourceType: "module" },
+                    options: [{ version: "13.2.0" }],
+                },
+                {
+                    code: "export {}",
+                    parserOptions: { sourceType: "module" },
+                    options: [{ version: "13.2.0" }],
+                },
             ],
             invalid: [
                 {
@@ -850,7 +890,7 @@ ruleTester.run(
                     errors: [
                         {
                             messageId: "no-modules",
-                            data: { version: "10.0.0" },
+                            data: { supported: "13.2.0", version: "10.0.0" },
                         },
                     ],
                 },
@@ -861,7 +901,7 @@ ruleTester.run(
                     errors: [
                         {
                             messageId: "no-modules",
-                            data: { version: "10.0.0" },
+                            data: { supported: "13.2.0", version: "10.0.0" },
                         },
                     ],
                 },
@@ -872,7 +912,7 @@ ruleTester.run(
                     errors: [
                         {
                             messageId: "no-modules",
-                            data: { version: "10.0.0" },
+                            data: { supported: "13.2.0", version: "10.0.0" },
                         },
                     ],
                 },
@@ -883,7 +923,7 @@ ruleTester.run(
                     errors: [
                         {
                             messageId: "no-modules",
-                            data: { version: "10.0.0" },
+                            data: { supported: "13.2.0", version: "10.0.0" },
                         },
                     ],
                 },
@@ -2435,6 +2475,16 @@ ruleTester.run(
                     code: "obj.import(source)",
                     options: [{ version: "12.0.0" }],
                 },
+                {
+                    code: "import(source)",
+                    options: [
+                        { version: "13.1.0", ignores: ["dynamicImport"] },
+                    ],
+                },
+                {
+                    code: "import(source)",
+                    options: [{ version: "13.2.0" }],
+                },
             ],
             invalid: [
                 {
@@ -2444,7 +2494,7 @@ ruleTester.run(
                         {
                             messageId: "no-dynamic-import",
                             data: {
-                                supported: null,
+                                supported: "13.2.0",
                                 version: "12.0.0",
                             },
                         },
