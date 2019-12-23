@@ -166,6 +166,17 @@ ruleTester.run("no-missing-import", rule, {
             options: [{ resolvePaths: ["tests"] }],
             env: { node: true },
         },
+
+        // import()
+        ...(DynamicImportSupported
+            ? [
+                  {
+                      filename: fixture("test.js"),
+                      code: "function f() { import(foo) }",
+                      parserOptions: { ecmaVersion: 2020 },
+                  },
+              ]
+            : []),
     ],
     invalid: [
         {
