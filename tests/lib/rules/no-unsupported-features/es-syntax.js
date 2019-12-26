@@ -2450,6 +2450,14 @@ ruleTester.run(
                     code: "var n = new BigUint64Array()",
                     options: [{ version: "10.3.0" }],
                 },
+                {
+                    code: "var n = { [0n]: 0 }",
+                    options: [{ version: "10.4.0" }],
+                },
+                {
+                    code: "var n = class { [0n]() {} }",
+                    options: [{ version: "10.4.0" }],
+                },
             ],
             invalid: [
                 {
@@ -2461,6 +2469,32 @@ ruleTester.run(
                             data: {
                                 supported: "10.4.0",
                                 version: "10.3.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "var n = { 0n: 0 }",
+                    options: [{ version: "12.0.0" }],
+                    errors: [
+                        {
+                            messageId: "no-bigint-property-names",
+                            data: {
+                                supported: null,
+                                version: "12.0.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "var n = class { 0n() {} }",
+                    options: [{ version: "12.0.0" }],
+                    errors: [
+                        {
+                            messageId: "no-bigint-property-names",
+                            data: {
+                                supported: null,
+                                version: "12.0.0",
                             },
                         },
                     ],
