@@ -861,26 +861,6 @@ ruleTester.run(
                     parserOptions: { sourceType: "module" },
                     options: [{ version: "13.1.0", ignores: ["modules"] }],
                 },
-                {
-                    code: "import a from 'a'",
-                    parserOptions: { sourceType: "module" },
-                    options: [{ version: "13.2.0" }],
-                },
-                {
-                    code: "export default {}",
-                    parserOptions: { sourceType: "module" },
-                    options: [{ version: "13.2.0" }],
-                },
-                {
-                    code: "export const a = {}",
-                    parserOptions: { sourceType: "module" },
-                    options: [{ version: "13.2.0" }],
-                },
-                {
-                    code: "export {}",
-                    parserOptions: { sourceType: "module" },
-                    options: [{ version: "13.2.0" }],
-                },
             ],
             invalid: [
                 {
@@ -890,7 +870,7 @@ ruleTester.run(
                     errors: [
                         {
                             messageId: "no-modules",
-                            data: { supported: "13.2.0", version: "10.0.0" },
+                            data: { supported: null, version: "10.0.0" },
                         },
                     ],
                 },
@@ -901,7 +881,7 @@ ruleTester.run(
                     errors: [
                         {
                             messageId: "no-modules",
-                            data: { supported: "13.2.0", version: "10.0.0" },
+                            data: { supported: null, version: "10.0.0" },
                         },
                     ],
                 },
@@ -912,7 +892,7 @@ ruleTester.run(
                     errors: [
                         {
                             messageId: "no-modules",
-                            data: { supported: "13.2.0", version: "10.0.0" },
+                            data: { supported: null, version: "10.0.0" },
                         },
                     ],
                 },
@@ -923,7 +903,7 @@ ruleTester.run(
                     errors: [
                         {
                             messageId: "no-modules",
-                            data: { supported: "13.2.0", version: "10.0.0" },
+                            data: { supported: null, version: "10.0.0" },
                         },
                     ],
                 },
@@ -2515,21 +2495,17 @@ ruleTester.run(
                         { version: "13.1.0", ignores: ["dynamicImport"] },
                     ],
                 },
-                {
-                    code: "import(source)",
-                    options: [{ version: "13.2.0" }],
-                },
             ],
             invalid: [
                 {
                     code: "import(source)",
-                    options: [{ version: "12.0.0" }],
+                    options: [{ version: "13.3.0" }],
                     errors: [
                         {
                             messageId: "no-dynamic-import",
                             data: {
-                                supported: "13.2.0",
-                                version: "12.0.0",
+                                supported: null,
+                                version: "13.3.0",
                             },
                         },
                     ],
