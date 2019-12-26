@@ -67,6 +67,7 @@ The `"ignores"` option accepts an array of the following strings.
 - `"BigInt64Array"`
 - `"BigUint64Array"`
 - `"Promise.allSettled"`
+- `"globalThis"`
 
 **ES2019:**
 

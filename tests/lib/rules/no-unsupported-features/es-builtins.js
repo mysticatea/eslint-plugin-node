@@ -2228,5 +2228,48 @@ ruleTester.run(
                 },
             ],
         },
+        {
+            keyword: "globalThis",
+            valid: [
+                {
+                    code: "(function(globalThis) { globalThis }(a))",
+                    options: [{ version: "12.0.0" }],
+                },
+                {
+                    code: "globalThis",
+                    options: [{ version: "12.0.0" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "globalThis",
+                    options: [{ version: "11.9.9" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "globalThis",
+                                supported: "12.0.0",
+                                version: "11.9.9",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "function wrap() { globalThis }",
+                    options: [{ version: "11.9.9" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "globalThis",
+                                supported: "12.0.0",
+                                version: "11.9.9",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
     ])
 )
