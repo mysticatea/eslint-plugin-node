@@ -2346,6 +2346,14 @@ new RuleTester({
                     options: [{ version: "5.10.0" }],
                 },
                 {
+                    code: "require('fs').opendir",
+                    options: [{ version: "12.12.0" }],
+                },
+                {
+                    code: "require('fs').opendirSync",
+                    options: [{ version: "12.12.0" }],
+                },
+                {
                     code: "require('fs').realpath.native",
                     options: [{ version: "9.2.0" }],
                 },
@@ -2534,6 +2542,34 @@ new RuleTester({
                                 name: "fs.mkdtempSync",
                                 supported: "5.10.0",
                                 version: "5.9.9",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').opendir",
+                    options: [{ version: "12.11.9" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.opendir",
+                                supported: "12.12.0",
+                                version: "12.11.9",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').opendirSync",
+                    options: [{ version: "12.11.9" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.opendirSync",
+                                supported: "12.12.0",
+                                version: "12.11.9",
                             },
                         },
                     ],
