@@ -110,4 +110,3 @@ var pick = require('lodash/pick');
 
 - [Rule source](../../lib/rules/no-restricted-modules.js)
 - [Test source](../../tests/lib/rules/no-restricted-modules.js)
-disallow specified modules when loaded by `require

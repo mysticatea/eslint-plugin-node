@@ -48,4 +48,3 @@ var exit = process.exit;
 
 - [Rule source](../../lib/rules/no-process-exit.js)
 - [Test source](../../tests/lib/rules/no-process-exit.js)
-disallow the use of `process.exit()`

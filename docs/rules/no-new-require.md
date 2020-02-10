@@ -46,4 +46,3 @@ var appHeader = new AppHeader();
 
 - [Rule source](../../lib/rules/no-new-require.js)
 - [Test source](../../tests/lib/rules/no-new-require.js)
-disallow `new` operators with calls to `require`
