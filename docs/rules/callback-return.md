@@ -1,5 +1,5 @@
 # node/callback-return
-> enforce return after callback
+> require `return` statements after callbacks
 
 The callback pattern is at the heart of most I/O and event-driven programming
  in JavaScript.

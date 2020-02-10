@@ -1,5 +1,5 @@
 # node/no-process-exit
-> disallow process.exit()
+> disallow the use of `process.exit()`
 
 The `process.exit()` method in Node.js is used to immediately stop the Node.js process and exit. This is a dangerous operation because it can occur in any method at any point in time, potentially stopping a Node.js application completely when an error occurs. For example:
 
@@ -48,3 +48,4 @@ var exit = process.exit;
 
 - [Rule source](../../lib/rules/no-process-exit.js)
 - [Test source](../../tests/lib/rules/no-process-exit.js)
+disallow the use of `process.exit()`

@@ -1,5 +1,5 @@
 # node/global-require
-> enforce require() on the top-level module scope
+> require `require()` calls to be placed at top-level module scope
 
 In Node.js, module dependencies are included using the `require()` function, such as:
 

@@ -1,5 +1,5 @@
 # node/no-new-require
-> disallow new require
+> disallow `new` operators with calls to `require`
 
 The `require` function is used to include modules that exist in separate files, such as:
 
@@ -46,3 +46,4 @@ var appHeader = new AppHeader();
 
 - [Rule source](../../lib/rules/no-new-require.js)
 - [Test source](../../tests/lib/rules/no-new-require.js)
+disallow `new` operators with calls to `require`
