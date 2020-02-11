@@ -1,4 +1,4 @@
-# node/no-restricted-modules
+# node/no-restricted-require
 > disallow specified modules when loaded by `require`
 
 A module in Node.js is a simple or complex functionality organized in a JavaScript file which can be reused throughout the Node.js
@@ -17,17 +17,17 @@ This rule allows you to specify modules that you don’t want to use in your app
 The rule takes one or more strings as options: the names of restricted modules.
 
 ```json
-"no-restricted-modules": ["error", "foo-module", "bar-module"]
+"no-restricted-require": ["error", "foo-module", "bar-module"]
 ```
 
 It can also take an object with lists of `paths` and gitignore-style `patterns` strings.
 
 ```json
-"no-restricted-modules": ["error", { "paths": ["foo-module", "bar-module"] }]
+"no-restricted-require": ["error", { "paths": ["foo-module", "bar-module"] }]
 ```
 
 ```json
-"no-restricted-modules": ["error", {
+"no-restricted-require": ["error", {
     "paths": ["foo-module", "bar-module"],
     "patterns": ["foo-module/private/*", "bar-module/*","!baz-module/good"]
 }]
@@ -36,7 +36,7 @@ It can also take an object with lists of `paths` and gitignore-style `patterns` 
 You may also specify a custom message for any paths you want to restrict as follows:
 
 ```json
-"no-restricted-modules": ["error", {
+"no-restricted-require": ["error", {
   "name": "foo-module",
   "message": "Please use bar-module instead."
   }
@@ -46,7 +46,7 @@ You may also specify a custom message for any paths you want to restrict as foll
 or like this:
 
 ```json
-"no-restricted-modules": ["error",{
+"no-restricted-require": ["error",{
 "paths":[{
   "name": "foo-module",
   "message": "Please use bar-module instead."
@@ -61,7 +61,7 @@ To restrict the use of all Node.js core modules (via https://github.com/nodejs/n
 
 ```json
 {
-    "no-restricted-modules": ["error",
+    "no-restricted-require": ["error",
         "assert","buffer","child_process","cluster","crypto","dgram","dns","domain","events","freelist","fs","http","https","module","net","os","path","punycode","querystring","readline","repl","smalloc","stream","string_decoder","sys","timers","tls","tracing","tty","url","util","vm","zlib"
     ]
 }
@@ -70,20 +70,20 @@ To restrict the use of all Node.js core modules (via https://github.com/nodejs/n
 Examples of **incorrect** code for this rule  with sample `"fs", "cluster", "lodash"` restricted modules:
 
 ```js
-/*eslint no-restricted-modules: ["error", "fs", "cluster"]*/
+/*eslint no-restricted-require: ["error", "fs", "cluster"]*/
 
 var fs = require('fs');
 var cluster = require('cluster');
 ```
 
 ```js
-/*eslint no-restricted-modules: ["error", {"paths": ["cluster"] }]*/
+/*eslint no-restricted-require: ["error", {"paths": ["cluster"] }]*/
 
 var cluster = require('cluster');
 ```
 
 ```js
-/*eslint no-restricted-modules: ["error", { "patterns": ["lodash/*"] }]*/
+/*eslint no-restricted-require: ["error", { "patterns": ["lodash/*"] }]*/
 
 var pick = require('lodash/pick');
 ```
@@ -91,13 +91,13 @@ var pick = require('lodash/pick');
 Examples of **correct** code for this rule with sample `"fs", "cluster", "lodash"` restricted modules:
 
 ```js
-/*eslint no-restricted-modules: ["error", "fs", "cluster"]*/
+/*eslint no-restricted-require: ["error", "fs", "cluster"]*/
 
 var crypto = require('crypto');
 ```
 
 ```js
-/*eslint no-restricted-modules: ["error", {
+/*eslint no-restricted-require: ["error", {
     "paths": ["fs", "cluster"],
     "patterns": ["lodash/*", "!lodash/pick"]
 }]*/
@@ -108,5 +108,5 @@ var pick = require('lodash/pick');
 
 ## 🔎 Implementation
 
-- [Rule source](../../lib/rules/no-restricted-modules.js)
-- [Test source](../../tests/lib/rules/no-restricted-modules.js)
+- [Rule source](../../lib/rules/no-restricted-require.js)
+- [Test source](../../tests/lib/rules/no-restricted-require.js)

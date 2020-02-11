@@ -5,9 +5,9 @@
 "use strict"
 
 const RuleTester = require("eslint").RuleTester
-const rule = require("../../../lib/rules/no-restricted-modules")
+const rule = require("../../../lib/rules/no-restricted-require")
 
-new RuleTester().run("no-restricted-modules", rule, {
+new RuleTester().run("no-restricted-require", rule, {
     valid: [
         { code: 'require("fs")', options: ["crypto"] },
         { code: 'require("path")', options: ["crypto", "stream", "os"] },
