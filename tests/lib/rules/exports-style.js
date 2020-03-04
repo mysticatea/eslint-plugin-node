@@ -182,6 +182,17 @@ new RuleTester().run("exports-style", rule, {
             ],
         },
         {
+            code:
+                "module.exports = { // before a\na: 1, // between a and b\nb: 2 // after b\n}",
+            output:
+                "// before a\nexports.a = 1;\n\n// between a and b\nexports.b = 2;\n// after b",
+            options: ["exports"],
+            globals: { module: false, exports: true },
+            errors: [
+                "Unexpected access to 'module.exports'. Use 'exports' instead.",
+            ],
+        },
+        {
             code: "module.exports = { get a() {} }",
             output: null,
             options: ["exports"],
