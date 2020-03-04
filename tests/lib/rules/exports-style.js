@@ -241,6 +241,16 @@ new RuleTester().run("exports-style", rule, {
             ],
         },
         {
+            code: "module.exports = { *foo(a) {} }",
+            output: "exports.foo = function* (a) {}",
+            options: ["exports"],
+            parserOptions: { ecmaVersion: 6 },
+            globals: { module: false, exports: true },
+            errors: [
+                "Unexpected access to 'module.exports'. Use 'exports' instead.",
+            ],
+        },
+        {
             code: "module.exports = { async foo(a) {} }",
             output: "exports.foo = async function (a) {}",
             options: ["exports"],
