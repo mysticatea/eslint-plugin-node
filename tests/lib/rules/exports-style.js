@@ -212,7 +212,7 @@ new RuleTester().run("exports-style", rule, {
         },
         {
             code: "module.exports = { a }",
-            output: null,
+            output: "exports.a = a;",
             options: ["exports"],
             parserOptions: { ecmaVersion: 6 },
             globals: { module: false, exports: true },
