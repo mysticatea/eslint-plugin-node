@@ -193,6 +193,15 @@ new RuleTester().run("exports-style", rule, {
             ],
         },
         {
+            code: "foo(module.exports = {foo: 1})",
+            output: null,
+            options: ["exports"],
+            globals: { module: false, exports: true },
+            errors: [
+                "Unexpected access to 'module.exports'. Use 'exports' instead.",
+            ],
+        },
+        {
             code: "module.exports = { get a() {} }",
             output: null,
             options: ["exports"],
