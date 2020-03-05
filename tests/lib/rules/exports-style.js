@@ -156,7 +156,7 @@ new RuleTester().run("exports-style", rule, {
         },
         {
             code: "module.exports.foo = 1",
-            output: null,
+            output: "exports.foo = 1",
             options: ["exports"],
             globals: { module: false, exports: true },
             errors: [
@@ -277,6 +277,27 @@ new RuleTester().run("exports-style", rule, {
             parserOptions: { ecmaVersion: 8 },
             globals: { module: false, exports: true },
             errors: [
+                "Unexpected access to 'module.exports'. Use 'exports' instead.",
+            ],
+        },
+        {
+            code: "module.exports.foo()",
+            output: "exports.foo()",
+            options: ["exports"],
+            parserOptions: { ecmaVersion: 8 },
+            globals: { module: false, exports: true },
+            errors: [
+                "Unexpected access to 'module.exports'. Use 'exports' instead.",
+            ],
+        },
+        {
+            code: "a = module.exports.foo + module.exports['bar']",
+            output: "a = exports.foo + exports['bar']",
+            options: ["exports"],
+            parserOptions: { ecmaVersion: 8 },
+            globals: { module: false, exports: true },
+            errors: [
+                "Unexpected access to 'module.exports'. Use 'exports' instead.",
                 "Unexpected access to 'module.exports'. Use 'exports' instead.",
             ],
         },
