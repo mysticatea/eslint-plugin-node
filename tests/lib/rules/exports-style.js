@@ -147,7 +147,7 @@ new RuleTester().run("exports-style", rule, {
         },
         {
             code: "module.exports = {foo: 1}",
-            output: "exports.foo = 1",
+            output: "exports.foo = 1;",
             options: ["exports"],
             globals: { module: false, exports: true },
             errors: [
@@ -165,7 +165,7 @@ new RuleTester().run("exports-style", rule, {
         },
         {
             code: "module.exports = { a: 1 }",
-            output: "exports.a = 1",
+            output: "exports.a = 1;",
             options: ["exports"],
             globals: { module: false, exports: true },
             errors: [
@@ -174,7 +174,7 @@ new RuleTester().run("exports-style", rule, {
         },
         {
             code: "module.exports = { a: 1, b: 2 }",
-            output: "exports.a = 1;\n\nexports.b = 2",
+            output: "exports.a = 1;\n\nexports.b = 2;",
             options: ["exports"],
             globals: { module: false, exports: true },
             errors: [
@@ -223,7 +223,7 @@ new RuleTester().run("exports-style", rule, {
         },
         {
             code: "module.exports = { ['a' + 'b']: 1 }",
-            output: "exports['a' + 'b'] = 1",
+            output: "exports['a' + 'b'] = 1;",
             options: ["exports"],
             parserOptions: { ecmaVersion: 6 },
             globals: { module: false, exports: true },
@@ -233,7 +233,7 @@ new RuleTester().run("exports-style", rule, {
         },
         {
             code: "module.exports = { 'foo': 1 }",
-            output: "exports['foo'] = 1",
+            output: "exports['foo'] = 1;",
             options: ["exports"],
             parserOptions: { ecmaVersion: 6 },
             globals: { module: false, exports: true },
@@ -243,7 +243,7 @@ new RuleTester().run("exports-style", rule, {
         },
         {
             code: "module.exports = { foo(a) {} }",
-            output: "exports.foo = function (a) {}",
+            output: "exports.foo = function (a) {};",
             options: ["exports"],
             parserOptions: { ecmaVersion: 8 },
             globals: { module: false, exports: true },
@@ -253,7 +253,7 @@ new RuleTester().run("exports-style", rule, {
         },
         {
             code: "module.exports = { *foo(a) {} }",
-            output: "exports.foo = function* (a) {}",
+            output: "exports.foo = function* (a) {};",
             options: ["exports"],
             parserOptions: { ecmaVersion: 6 },
             globals: { module: false, exports: true },
@@ -263,7 +263,7 @@ new RuleTester().run("exports-style", rule, {
         },
         {
             code: "module.exports = { async foo(a) {} }",
-            output: "exports.foo = async function (a) {}",
+            output: "exports.foo = async function (a) {};",
             options: ["exports"],
             parserOptions: { ecmaVersion: 8 },
             globals: { module: false, exports: true },
