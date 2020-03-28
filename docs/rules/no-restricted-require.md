@@ -14,96 +14,107 @@ This rule allows you to specify modules that you don’t want to use in your app
 
 ### Options
 
-The rule takes one or more strings as options: the names of restricted modules.
-
-```json
-"no-restricted-require": ["error", "foo-module", "bar-module"]
-```
-
-It can also take an object with lists of `paths` and gitignore-style `patterns` strings.
-
-```json
-"no-restricted-require": ["error", { "paths": ["foo-module", "bar-module"] }]
-```
-
-```json
-"no-restricted-require": ["error", {
-    "paths": ["foo-module", "bar-module"],
-    "patterns": ["foo-module/private/*", "bar-module/*","!baz-module/good"]
-}]
-```
-
-You may also specify a custom message for any paths you want to restrict as follows:
-
-```json
-"no-restricted-require": ["error", {
-  "name": "foo-module",
-  "message": "Please use bar-module instead."
-  }
-]
-```
-
-or like this:
-
-```json
-"no-restricted-require": ["error",{
-"paths":[{
-  "name": "foo-module",
-  "message": "Please use bar-module instead."
-  }]
-}]
-```
-
-The custom message will be appended to the default error message. Please note that you may not specify custom error messages for restricted patterns as a particular module may match more than one pattern.
-
-
-To restrict the use of all Node.js core modules (via https://github.com/nodejs/node/tree/master/lib):
+The rule takes an array as options: the names of restricted modules.
 
 ```json
 {
-    "no-restricted-require": ["error",
-        "assert","buffer","child_process","cluster","crypto","dgram","dns","domain","events","freelist","fs","http","https","module","net","os","path","punycode","querystring","readline","repl","smalloc","stream","string_decoder","sys","timers","tls","tracing","tty","url","util","vm","zlib"
-    ]
+  "no-restricted-require": ["error", [
+    "foo-module",
+    "bar-module"
+  ]]
 }
 ```
 
-Examples of **incorrect** code for this rule  with sample `"fs", "cluster", "lodash"` restricted modules:
+You may also specify a custom message for each module you want to restrict as follows:
 
-```js
-/*eslint no-restricted-require: ["error", "fs", "cluster"]*/
-
-var fs = require('fs');
-var cluster = require('cluster');
+```json
+{
+  "no-restricted-require": ["error", [
+    {
+      "name": "foo-module",
+      "message": "Please use foo-module2 instead."
+    },
+    {
+      "name": "bar-module",
+      "message": "Please use bar-module2 instead."
+    }
+  ]]
+}
 ```
 
-```js
-/*eslint no-restricted-require: ["error", {"paths": ["cluster"] }]*/
+And you can use glob patterns in the `name` property.
 
-var cluster = require('cluster');
+```json
+{
+  "no-restricted-require": ["error", [
+    {
+      "name": "lodash/*",
+      "message": "Please use xyz-module instead."
+    },
+    {
+      "name": ["foo-module/private/*", "bar-module/*", "!baz-module/good"],
+      "message": "Please use xyz-module instead."
+    }
+  ]]
+}
 ```
 
-```js
-/*eslint no-restricted-require: ["error", { "patterns": ["lodash/*"] }]*/
+And you can use absolute paths in the `name` property.
 
-var pick = require('lodash/pick');
+```js
+module.exports = {
+  overrides: [
+    {
+      files: "client/**",
+      rules: {
+        "no-restricted-require": ["error", [
+          {
+            name: path.resolve(__dirname, "server/**"),
+            message: "Don't use server code from client code."
+          }
+        ]]
+      }
+    },
+    {
+      files: "server/**",
+      rules: {
+        "no-restricted-require": ["error", [
+          {
+            name: path.resolve(__dirname, "client/**"),
+            message: "Don't use client code from server code."
+          }
+        ]]
+      }
+    }
+  ]
+}
+```
+
+### Examples
+
+Examples of **incorrect** code for this rule with sample `"fs", "cluster", "lodash"` restricted modules:
+
+```js
+/*eslint no-restricted-require: ["error", ["fs", "cluster", "lodash/*"]]*/
+
+const fs = require('fs');
+const cluster = require('cluster');
+const pick = require('lodash/pick');
 ```
 
 Examples of **correct** code for this rule with sample `"fs", "cluster", "lodash"` restricted modules:
 
 ```js
-/*eslint no-restricted-require: ["error", "fs", "cluster"]*/
+/*eslint no-restricted-require: ["error", ["fs", "cluster", "lodash/*"]]*/
 
-var crypto = require('crypto');
+const crypto = require('crypto');
+const _ = require('lodash');
 ```
 
 ```js
-/*eslint no-restricted-require: ["error", {
-    "paths": ["fs", "cluster"],
-    "patterns": ["lodash/*", "!lodash/pick"]
-}]*/
+/*eslint no-restricted-require: ["error", ["fs", "cluster", { "name": ["lodash/*", "!lodash/pick"] }]]*/
 
-var crypto = require('crypto');
-var pick = require('lodash/pick');
+const pick = require('lodash/pick');
 ```
 
 ## 🔎 Implementation

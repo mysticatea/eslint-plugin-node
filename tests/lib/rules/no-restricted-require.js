@@ -4,173 +4,201 @@
  */
 "use strict"
 
+const path = require("path")
 const RuleTester = require("eslint").RuleTester
 const rule = require("../../../lib/rules/no-restricted-require")
 
-new RuleTester().run("no-restricted-require", rule, {
+new RuleTester({
+    globals: { require: "readonly" },
+}).run("no-restricted-require", rule, {
     valid: [
-        { code: 'require("fs")', options: ["crypto"] },
-        { code: 'require("path")', options: ["crypto", "stream", "os"] },
+        { code: 'require("fs")', options: [["crypto"]] },
+        { code: 'require("path")', options: [["crypto", "stream", "os"]] },
         'require("fs ")',
-        { code: "require(2)", options: ["crypto"] },
-        { code: "require(foo)", options: ["crypto"] },
-        { code: "var foo = bar('crypto');", options: ["crypto"] },
-        { code: 'require("foo/bar");', options: ["foo"] },
+        { code: "require(2)", options: [["crypto"]] },
+        { code: "require(foo)", options: [["crypto"]] },
+        { code: "bar('crypto');", options: [["crypto"]] },
+        { code: 'require("foo/bar");', options: [["foo"]] },
         {
-            code: 'var withPaths = require("foo/bar");',
-            options: [{ paths: ["foo", "bar"] }],
+            code: 'require("foo/bar");',
+            options: [[{ name: ["foo", "bar"] }]],
         },
         {
-            code: 'var withPatterns = require("foo/bar");',
-            options: [{ patterns: ["foo/c*"] }],
+            code: 'require("foo/bar");',
+            options: [[{ name: ["foo/c*"] }]],
         },
         {
-            code: 'var withPatternsAndPaths = require("foo/bar");',
-            options: [{ paths: ["foo"], patterns: ["foo/c*"] }],
+            code: 'require("foo/bar");',
+            options: [[{ name: ["foo"] }, { name: ["foo/c*"] }]],
         },
         {
-            code: 'var withGitignores = require("foo/bar");',
-            options: [{ paths: ["foo"], patterns: ["foo/*", "!foo/bar"] }],
+            code: 'require("foo/bar");',
+            options: [[{ name: ["foo"] }, { name: ["foo/*", "!foo/bar"] }]],
+        },
+        {
+            code: 'require("os ")',
+            options: [["fs", "crypto ", "stream", "os"]],
+        },
+        {
+            code: 'require("./foo")',
+            options: [["foo"]],
+        },
+        {
+            code: 'require("foo")',
+            options: [["./foo"]],
+        },
+        {
+            code: 'require("foo/bar");',
+            options: [[{ name: "@foo/bar" }]],
+        },
+        {
+            filename: path.resolve(__dirname, "lib/sub/test.js"),
+            code: 'require("../foo");',
+            options: [[{ name: path.resolve(__dirname, "foo") }]],
         },
     ],
     invalid: [
         {
             code: 'require("fs")',
-            options: ["fs"],
+            options: [["fs"]],
             errors: [
                 {
-                    messageId: "defaultMessage",
-                    data: { name: "fs" },
-                    type: "CallExpression",
-                },
-            ],
-        },
-        {
-            code: 'require("os ")',
-            options: ["fs", "crypto ", "stream", "os"],
-            errors: [
-                {
-                    messageId: "defaultMessage",
-                    data: { name: "os" },
-                    type: "CallExpression",
+                    messageId: "restricted",
+                    data: { name: "fs", customMessage: "" },
                 },
             ],
         },
         {
             code: 'require("foo/bar");',
-            options: ["foo/bar"],
+            options: [["foo/bar"]],
             errors: [
                 {
-                    messageId: "defaultMessage",
-                    data: { name: "foo/bar" },
-                    type: "CallExpression",
+                    messageId: "restricted",
+                    data: { name: "foo/bar", customMessage: "" },
                 },
             ],
         },
         {
-            code: 'var withPaths = require("foo/bar");',
-            options: [{ paths: ["foo/bar"] }],
+            code: 'require("foo/bar");',
+            options: [[{ name: ["foo/bar"] }]],
             errors: [
                 {
-                    messageId: "defaultMessage",
-                    data: { name: "foo/bar" },
-                    type: "CallExpression",
+                    messageId: "restricted",
+                    data: { name: "foo/bar", customMessage: "" },
                 },
             ],
         },
         {
-            code: 'var withPatterns = require("foo/bar");',
-            options: [{ patterns: ["foo/*"] }],
+            code: 'require("foo/bar");',
+            options: [[{ name: ["foo/*"] }]],
             errors: [
                 {
-                    messageId: "patternMessage",
-                    data: { name: "foo/bar" },
-                    type: "CallExpression",
+                    messageId: "restricted",
+                    data: { name: "foo/bar", customMessage: "" },
                 },
             ],
         },
         {
-            code: 'var withPatternsAndPaths = require("foo/bar");',
-            options: [{ patterns: ["foo/*"], paths: ["foo"] }],
+            code: 'require("foo/bar");',
+            options: [[{ name: ["foo/*"] }, { name: ["foo"] }]],
             errors: [
                 {
-                    messageId: "patternMessage",
-                    data: { name: "foo/bar" },
-                    type: "CallExpression",
+                    messageId: "restricted",
+                    data: { name: "foo/bar", customMessage: "" },
                 },
             ],
         },
         {
-            code: 'var withGitignores = require("foo/bar");',
-            options: [{ patterns: ["foo/*", "!foo/baz"], paths: ["foo"] }],
+            code: 'require("foo/bar");',
+            options: [[{ name: ["foo/*", "!foo/baz"] }, { name: ["foo"] }]],
             errors: [
                 {
-                    messageId: "patternMessage",
-                    data: { name: "foo/bar" },
-                    type: "CallExpression",
+                    messageId: "restricted",
+                    data: { name: "foo/bar", customMessage: "" },
                 },
             ],
         },
         {
-            code: 'var withGitignores = require("foo");',
+            code: 'require("foo");',
             options: [
-                {
-                    name: "foo",
-                    message: "Please use 'bar' module instead.",
-                },
+                [
+                    {
+                        name: "foo",
+                        message: "Please use 'bar' module instead.",
+                    },
+                ],
             ],
             errors: [
                 {
-                    messageId: "customMessage",
+                    messageId: "restricted",
                     data: {
                         name: "foo",
-                        customMessage: "Please use 'bar' module instead.",
+                        customMessage: " Please use 'bar' module instead.",
                     },
-                    type: "CallExpression",
                 },
             ],
         },
         {
-            code: 'var withGitignores = require("bar");',
+            code: 'require("bar");',
             options: [
-                "foo",
-                {
-                    name: "bar",
-                    message: "Please use 'baz' module instead.",
-                },
-                "baz",
+                [
+                    "foo",
+                    {
+                        name: "bar",
+                        message: "Please use 'baz' module instead.",
+                    },
+                    "baz",
+                ],
             ],
             errors: [
                 {
-                    messageId: "customMessage",
+                    messageId: "restricted",
                     data: {
                         name: "bar",
-                        customMessage: "Please use 'baz' module instead.",
+                        customMessage: " Please use 'baz' module instead.",
                     },
-                    type: "CallExpression",
                 },
             ],
         },
         {
-            code: 'var withGitignores = require("foo");',
-            options: [
-                {
-                    paths: [
-                        {
-                            name: "foo",
-                            message: "Please use 'bar' module instead.",
-                        },
-                    ],
-                },
-            ],
+            code: 'require("@foo/bar");',
+            options: [[{ name: "@foo/*" }]],
             errors: [
                 {
-                    messageId: "customMessage",
-                    data: {
-                        name: "foo",
-                        customMessage: "Please use 'bar' module instead.",
-                    },
-                    type: "CallExpression",
+                    messageId: "restricted",
+                    data: { name: "@foo/bar", customMessage: "" },
+                },
+            ],
+        },
+        {
+            code: 'require("./foo/bar");',
+            options: [[{ name: "./foo/*" }]],
+            errors: [
+                {
+                    messageId: "restricted",
+                    data: { name: "./foo/bar", customMessage: "" },
+                },
+            ],
+        },
+        {
+            filename: path.resolve(__dirname, "lib/test.js"),
+            code: 'require("../foo");',
+            options: [[{ name: path.resolve(__dirname, "foo") }]],
+            errors: [
+                {
+                    messageId: "restricted",
+                    data: { name: "../foo", customMessage: "" },
+                },
+            ],
+        },
+        {
+            filename: path.resolve(__dirname, "lib/sub/test.js"),
+            code: 'require("../../foo");',
+            options: [[{ name: path.resolve(__dirname, "foo") }]],
+            errors: [
+                {
+                    messageId: "restricted",
+                    data: { name: "../../foo", customMessage: "" },
                 },
             ],
         },
