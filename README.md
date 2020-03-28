@@ -103,7 +103,7 @@ $ npm install --save-dev eslint eslint-plugin-node
 | [node/global-require](./docs/rules/global-require.md) | require `require()` calls to be placed at top-level module scope |  |
 | [node/no-mixed-requires](./docs/rules/no-mixed-requires.md) | disallow `require` calls to be mixed with regular variable declarations |  |
 | [node/no-process-env](./docs/rules/no-process-env.md) | disallow the use of `process.env` |  |
-| [node/no-restricted-import](./docs/rules/no-restricted-import.md) | disallow specified modules when loaded by `require` |  |
+| [node/no-restricted-import](./docs/rules/no-restricted-import.md) | disallow specified modules when loaded by `import` declarations |  |
 | [node/no-restricted-require](./docs/rules/no-restricted-require.md) | disallow specified modules when loaded by `require` |  |
 | [node/no-sync](./docs/rules/no-sync.md) | disallow synchronous methods |  |
 | [node/prefer-global/buffer](./docs/rules/prefer-global/buffer.md) | enforce either `Buffer` or `require("buffer").Buffer` |  |

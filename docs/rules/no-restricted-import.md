@@ -1,5 +1,5 @@
 # node/no-restricted-import
-> disallow specified modules when loaded by `require`
+> disallow specified modules when loaded by `import` declarations
 
 ## 📖 Rule Details
 
