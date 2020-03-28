@@ -44,8 +44,8 @@
     "test": "nyc npm run -s test:_mocha",
     "test:ci": "nyc npm run -s test:_mocha",
     "test:_mocha": "_mocha \"tests/lib/**/*.js\" --reporter progress --timeout 4000",
-    "preversion": "npm t && npm run -s build",
-    "version": "eslint lib/rules --fix && git add lib/rules",
+    "preversion": "npm test",
+    "version": "npm run -s build && eslint lib/rules --fix && git add .",
     "postversion": "git push && git push --tags",
     "watch": "npm run test:_mocha -- --watch --growl"
   },
