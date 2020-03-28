@@ -71,5 +71,6 @@
   "bugs": {
     "url": "https://github.com/mysticatea/eslint-plugin-node/issues"
   },
-  "homepage": "https://github.com/mysticatea/eslint-plugin-node#readme"
+  "homepage": "https://github.com/mysticatea/eslint-plugin-node#readme",
+  "funding": "https://github.com/sponsors/mysticatea"
 }
