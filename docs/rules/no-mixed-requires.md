@@ -39,7 +39,7 @@ Configuring this rule with one boolean option `true` is deprecated.
 Examples of **incorrect** code for this rule with the default `{ "grouping": false, "allowCall": false }` options:
 
 ```js
-/*eslint no-mixed-requires: "error"*/
+/*eslint node/no-mixed-requires: "error"*/
 
 var fs = require('fs'),
     i = 0;
@@ -52,7 +52,7 @@ var async = require('async'),
 Examples of **correct** code for this rule with the default `{ "grouping": false, "allowCall": false }` options:
 
 ```js
-/*eslint no-mixed-requires: "error"*/
+/*eslint node/no-mixed-requires: "error"*/
 
 // only require declarations (grouping off)
 var eventEmitter = require('events').EventEmitter,
@@ -75,7 +75,7 @@ var foo = require('foo' + VERSION),
 Examples of **incorrect** code for this rule with the `{ "grouping": true }` option:
 
 ```js
-/*eslint no-mixed-requires: ["error", { "grouping": true }]*/
+/*eslint node/no-mixed-requires: ["error", { "grouping": true }]*/
 
 // invalid because of mixed types "core" and "module"
 var fs = require('fs'),
@@ -91,7 +91,7 @@ var foo = require('foo'),
 Examples of **incorrect** code for this rule with the `{ "allowCall": true }` option:
 
 ```js
-/*eslint no-mixed-requires: ["error", { "allowCall": true }]*/
+/*eslint node/no-mixed-requires: ["error", { "allowCall": true }]*/
 
 var async = require('async'),
     debug = require('diagnostics').someFunction('my-module'), /* allowCall doesn't allow calling any function */
@@ -101,7 +101,7 @@ var async = require('async'),
 Examples of **correct** code for this rule with the `{ "allowCall": true }` option:
 
 ```js
-/*eslint no-mixed-requires: ["error", { "allowCall": true }]*/
+/*eslint node/no-mixed-requires: ["error", { "allowCall": true }]*/
 
 var async = require('async'),
     debug = require('diagnostics')('my-module'),

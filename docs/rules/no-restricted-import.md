@@ -11,7 +11,7 @@ The rule takes an array as options: the names of restricted modules.
 
 ```json
 {
-  "no-restricted-import": ["error", [
+  "node/no-restricted-import": ["error", [
     "foo-module",
     "bar-module"
   ]]
@@ -22,7 +22,7 @@ You may also specify a custom message for each module you want to restrict as fo
 
 ```json
 {
-  "no-restricted-import": ["error", [
+  "node/no-restricted-import": ["error", [
     {
       "name": "foo-module",
       "message": "Please use foo-module2 instead."
@@ -39,7 +39,7 @@ And you can use glob patterns in the `name` property.
 
 ```json
 {
-  "no-restricted-import": ["error", [
+  "node/no-restricted-import": ["error", [
     {
       "name": "lodash/*",
       "message": "Please use xyz-module instead."
@@ -60,7 +60,7 @@ module.exports = {
     {
       files: "client/**",
       rules: {
-        "no-restricted-import": ["error", [
+        "node/no-restricted-import": ["error", [
           {
             name: path.resolve(__dirname, "server/**"),
             message: "Don't use server code from client code."
@@ -71,7 +71,7 @@ module.exports = {
     {
       files: "server/**",
       rules: {
-        "no-restricted-import": ["error", [
+        "node/no-restricted-import": ["error", [
           {
             name: path.resolve(__dirname, "client/**"),
             message: "Don't use client code from server code."
@@ -88,7 +88,7 @@ module.exports = {
 Examples of **incorrect** code for this rule with sample `"fs", "cluster", "lodash"` restricted modules:
 
 ```js
-/*eslint no-restricted-import: ["error", ["fs", "cluster", "lodash/*"]]*/
+/*eslint node/no-restricted-import: ["error", ["fs", "cluster", "lodash/*"]]*/
 
 import fs from 'fs';
 import cluster from 'cluster';
@@ -98,14 +98,14 @@ import pick from 'lodash/pick';
 Examples of **correct** code for this rule with sample `"fs", "cluster", "lodash"` restricted modules:
 
 ```js
-/*eslint no-restricted-import: ["error", ["fs", "cluster", "lodash/*"]]*/
+/*eslint node/no-restricted-import: ["error", ["fs", "cluster", "lodash/*"]]*/
 
 import crypto from 'crypto';
 import _ from 'lodash';
 ```
 
 ```js
-/*eslint no-restricted-import: ["error", ["fs", "cluster", { "name": ["lodash/*", "!lodash/pick"] }]]*/
+/*eslint node/no-restricted-import: ["error", ["fs", "cluster", { "name": ["lodash/*", "!lodash/pick"] }]]*/
 
 import pick from 'lodash/pick';
 ```

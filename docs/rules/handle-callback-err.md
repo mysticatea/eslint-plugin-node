@@ -71,7 +71,6 @@ If the configured name of the error variable begins with a `^` it is considered 
 * If the option is `"^.+Error$"`, the rule reports unhandled errors where the parameter name ends with `Error` (for example, `connectionError` or `validationError` will match).
 * If the option is `"^.*(e|E)rr"`, the rule reports unhandled errors where the parameter name matches any string that contains `err` or `Err` (for example, `err`, `error`, `anyError`, `some_err` will match).
 
-
 ## 🔎 Implementation
 
 - [Rule source](../../lib/rules/handle-callback-err.js)

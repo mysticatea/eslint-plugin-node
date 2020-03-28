@@ -29,7 +29,7 @@ This rule aims to prevent the use of `process.exit()` in Node.js JavaScript. As 
 Examples of **incorrect** code for this rule:
 
 ```js
-/*eslint no-process-exit: "error"*/
+/*eslint node/no-process-exit: "error"*/
 
 process.exit(1);
 process.exit(0);
@@ -38,7 +38,7 @@ process.exit(0);
 Examples of **correct** code for this rule:
 
 ```js
-/*eslint no-process-exit: "error"*/
+/*eslint node/no-process-exit: "error"*/
 
 Process.exit();
 var exit = process.exit;

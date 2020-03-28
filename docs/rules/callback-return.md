@@ -32,7 +32,7 @@ The rule takes a single option - an array of possible callback names - which may
 Examples of **incorrect** code for this rule with the default `["callback", "cb", "next"]` option:
 
 ```js
-/*eslint callback-return: "error"*/
+/*eslint node/callback-return: "error"*/
 
 function foo(err, callback) {
     if (err) {
@@ -45,7 +45,7 @@ function foo(err, callback) {
 Examples of **correct** code for this rule with the default `["callback", "cb", "next"]` option:
 
 ```js
-/*eslint callback-return: "error"*/
+/*eslint node/callback-return: "error"*/
 
 function foo(err, callback) {
     if (err) {
@@ -60,7 +60,7 @@ function foo(err, callback) {
 Examples of **incorrect** code for this rule with the option `["done", "send.error", "send.success"]`:
 
 ```js
-/*eslint callback-return: ["error", ["done", "send.error", "send.success"]]*/
+/*eslint node/callback-return: ["error", ["done", "send.error", "send.success"]]*/
 
 function foo(err, done) {
     if (err) {

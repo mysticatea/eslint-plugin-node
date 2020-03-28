@@ -14,7 +14,7 @@ This rule has an optional object option `{ allowAtRootLevel: <boolean> }`, which
 Examples of **incorrect** code for this rule with the default `{ allowAtRootLevel: false }` option:
 
 ```js
-/*eslint no-sync: "error"*/
+/*eslint node/no-sync: "error"*/
 
 fs.existsSync(somePath);
 
@@ -26,7 +26,7 @@ function foo() {
 Examples of **correct** code for this rule with the default `{ allowAtRootLevel: false }` option:
 
 ```js
-/*eslint no-sync: "error"*/
+/*eslint node/no-sync: "error"*/
 
 obj.sync();
 
@@ -38,7 +38,7 @@ async(function() {
 Examples of **incorrect** code for this rule with the `{ allowAtRootLevel: true }` option
 
 ```js
-/*eslint no-sync: ["error", { allowAtRootLevel: true }]*/
+/*eslint node/no-sync: ["error", { allowAtRootLevel: true }]*/
 
 function foo() {
   var contents = fs.readFileSync(somePath).toString();
@@ -50,7 +50,7 @@ var bar = baz => fs.readFileSync(qux);
 Examples of **correct** code for this rule with the `{ allowAtRootLevel: true }` option
 
 ```js
-/*eslint no-sync: ["error", { allowAtRootLevel: true }]*/
+/*eslint node/no-sync: ["error", { allowAtRootLevel: true }]*/
 
 fs.readFileSync(somePath).toString();
 ```
