@@ -68,12 +68,16 @@ $ npm install --save-dev eslint eslint-plugin-node
 
 | Rule ID | Description |    |
 |:--------|:------------|:--:|
+| [node/handle-callback-err](./docs/rules/handle-callback-err.md) | require error handling in callbacks |  |
 | [node/no-callback-literal](./docs/rules/no-callback-literal.md) | ensure Node.js-style error-first callback pattern is followed |  |
 | [node/no-exports-assign](./docs/rules/no-exports-assign.md) | disallow the assignment to `exports` | ⭐️ |
 | [node/no-extraneous-import](./docs/rules/no-extraneous-import.md) | disallow `import` declarations which import extraneous modules | ⭐️ |
 | [node/no-extraneous-require](./docs/rules/no-extraneous-require.md) | disallow `require()` expressions which import extraneous modules | ⭐️ |
 | [node/no-missing-import](./docs/rules/no-missing-import.md) | disallow `import` declarations which import non-existence modules | ⭐️ |
 | [node/no-missing-require](./docs/rules/no-missing-require.md) | disallow `require()` expressions which import non-existence modules | ⭐️ |
+| [node/no-new-require](./docs/rules/no-new-require.md) | disallow `new` operators with calls to `require` |  |
+| [node/no-path-concat](./docs/rules/no-path-concat.md) | disallow string concatenation with `__dirname` and `__filename` |  |
+| [node/no-process-exit](./docs/rules/no-process-exit.md) | disallow the use of `process.exit()` |  |
 | [node/no-unpublished-bin](./docs/rules/no-unpublished-bin.md) | disallow `bin` files that npm ignores | ⭐️ |
 | [node/no-unpublished-import](./docs/rules/no-unpublished-import.md) | disallow `import` declarations which import private modules | ⭐️ |
 | [node/no-unpublished-require](./docs/rules/no-unpublished-require.md) | disallow `require()` expressions which import private modules | ⭐️ |
@@ -93,8 +97,15 @@ $ npm install --save-dev eslint eslint-plugin-node
 
 | Rule ID | Description |    |
 |:--------|:------------|:--:|
+| [node/callback-return](./docs/rules/callback-return.md) | require `return` statements after callbacks |  |
 | [node/exports-style](./docs/rules/exports-style.md) | enforce either `module.exports` or `exports` |  |
 | [node/file-extension-in-import](./docs/rules/file-extension-in-import.md) | enforce the style of file extensions in `import` declarations | ✒️ |
+| [node/global-require](./docs/rules/global-require.md) | require `require()` calls to be placed at top-level module scope |  |
+| [node/no-mixed-requires](./docs/rules/no-mixed-requires.md) | disallow `require` calls to be mixed with regular variable declarations |  |
+| [node/no-process-env](./docs/rules/no-process-env.md) | disallow the use of `process.env` |  |
+| [node/no-restricted-import](./docs/rules/no-restricted-import.md) | disallow specified modules when loaded by `require` |  |
+| [node/no-restricted-require](./docs/rules/no-restricted-require.md) | disallow specified modules when loaded by `require` |  |
+| [node/no-sync](./docs/rules/no-sync.md) | disallow synchronous methods |  |
 | [node/prefer-global/buffer](./docs/rules/prefer-global/buffer.md) | enforce either `Buffer` or `require("buffer").Buffer` |  |
 | [node/prefer-global/console](./docs/rules/prefer-global/console.md) | enforce either `console` or `require("console")` |  |
 | [node/prefer-global/process](./docs/rules/prefer-global/process.md) | enforce either `process` or `require("process")` |  |
