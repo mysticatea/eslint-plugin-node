@@ -27,11 +27,6 @@ This rule reports the following deprecated API.
 
 - [_linklist](https://nodejs.org/docs/v8.0.0/api/deprecations.html#deprecations_dep0002_require_linklist)
 - [_stream_wrap](https://nodejs.org/docs/v12.0.0/api/deprecations.html#deprecations_dep0125_require_stream_wrap)
-- assert
-    - [deepEqual](https://nodejs.org/dist/v10.0.0/docs/api/assert.html#assert_assert_deepequal_actual_expected_message)
-    - [equal](https://nodejs.org/dist/v10.0.0/docs/api/assert.html#assert_assert_equal_actual_expected_message)
-    - [notDeepEqual](https://nodejs.org/dist/v10.0.0/docs/api/assert.html#assert_assert_notdeepequal_actual_expected_message)
-    - [notEqual](https://nodejs.org/dist/v10.0.0/docs/api/assert.html#assert_assert_notequal_actual_expected_message)
 - async_hooks
     - [currentId](https://nodejs.org/dist/v8.2.0/docs/api/deprecations.html#deprecations_dep0070_async_hooks_currentid)
     - [triggerId](https://nodejs.org/dist/v8.2.0/docs/api/deprecations.html#deprecations_dep0071_async_hooks_triggerid)
@@ -59,8 +54,6 @@ This rule reports the following deprecated API.
     - [exists](https://nodejs.org/dist/v4.0.0/docs/api/fs.html#fs_fs_exists_path_callback)
     - [lchmod](https://nodejs.org/dist/v8.0.0/docs/api/fs.html#fs_fs_lchmod_path_mode_callback)
     - [lchmodSync](https://nodejs.org/dist/v8.0.0/docs/api/fs.html#fs_fs_lchmodsync_path_mode)
-    - [lchown](https://nodejs.org/dist/v8.0.0/docs/api/fs.html#fs_fs_lchown_path_uid_gid_callback)
-    - [lchownSync](https://nodejs.org/dist/v8.0.0/docs/api/fs.html#fs_fs_lchownsync_path_uid_gid)
 - globals
     - [require.extensions](https://nodejs.org/dist/v0.12.0/docs/api/globals.html#globals_require_extensions)
     - [GLOBAL](https://nodejs.org/api/deprecations.html#deprecations_dep0016_global_root)
@@ -196,10 +189,6 @@ This option can include the following values:
 
 - `_linklist`
 - `_stream_wrap`
-- `assert.deepEqual`
-- `assert.equal`
-- `assert.notDeepEqual`
-- `assert.notEqual`
 - `async_hooks.currentId`
 - `async_hooks.triggerId`
 - `buffer.Buffer()`
@@ -224,8 +213,6 @@ This option can include the following values:
 - `fs.exists`
 - `fs.lchmod`
 - `fs.lchmodSync`
-- `fs.lchown`
-- `fs.lchownSync`
 - `http.createClient`
 - `module.Module.createRequireFromPath`
 - `module.createRequireFromPath`
