@@ -28,7 +28,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        eslint: [6]
+        eslint: [7]
         node: [10, 12, 14, 16]
         include:
           # On other platforms
@@ -37,6 +37,8 @@ jobs:
           - os: macos-latest
             node: 16
           # On old ESLint versions
+          - eslint: 6
+            node: 16
           - eslint: 5
             node: 16
           # On the minimum supported ESLint/Node.js version
