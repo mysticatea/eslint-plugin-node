@@ -131,7 +131,7 @@ These rules have been deprecated in accordance with the [deprecation policy](htt
 
 This plugin provides three configs:
 
-- `plugin:node/recommended` condiders both CommonJS and ES Modules. If [`"type":"module"` field](https://medium.com/@nodejs/announcing-a-new-experimental-modules-1be8d2d6c2ff#b023) existed in package.json then it considers files as ES Modules. Otherwise it considers files as CommonJS. In addition, it considers `*.mjs` files as ES Modules and `*.cjs` files as CommonJS.
+- `plugin:node/recommended` considers both CommonJS and ES Modules. If [`"type":"module"` field](https://medium.com/@nodejs/announcing-a-new-experimental-modules-1be8d2d6c2ff#b023) existed in package.json then it considers files as ES Modules. Otherwise it considers files as CommonJS. In addition, it considers `*.mjs` files as ES Modules and `*.cjs` files as CommonJS.
 - `plugin:node/recommended-module` considers all files as ES Modules.
 - `plugin:node/recommended-script` considers all files as CommonJS.
 
