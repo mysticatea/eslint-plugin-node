@@ -22,7 +22,7 @@ The rule takes a single string option: the name of the error parameter. The defa
 Examples of **incorrect** code for this rule with the default `"err"` parameter name:
 
 ```js
-/*eslint handle-callback-err: "error"*/
+/*eslint node/handle-callback-err: "error"*/
 
 function loadData (err, data) {
     doSomething();
@@ -33,7 +33,7 @@ function loadData (err, data) {
 Examples of **correct** code for this rule with the default `"err"` parameter name:
 
 ```js
-/*eslint handle-callback-err: "error"*/
+/*eslint node/handle-callback-err: "error"*/
 
 function loadData (err, data) {
     if (err) {
@@ -50,7 +50,7 @@ function generateError (err) {
 Examples of **correct** code for this rule with a sample `"error"` parameter name:
 
 ```js
-/*eslint handle-callback-err: ["error", "error"]*/
+/*eslint node/handle-callback-err: ["error", "error"]*/
 
 function loadData (error, data) {
     if (error) {
