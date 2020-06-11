@@ -13,13 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
+        uses: actions/checkout@v2
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
-          node: 14
+          node-version: 14
       - name: Install Packages
         run: npm install
       - name: Lint
@@ -27,120 +25,41 @@ jobs:
 
   test:
     name: Test
-
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
-        eslint: [7, 6, 5]
-        node: [14, 12, 12.0, 10, 10.12]
-        exclude:
-          # On Windows, run tests with only the latest LTS environments.
-          - os: windows-latest
-            eslint: 7
+        os: [ubuntu-latest]
+        eslint: [7]
+        node: [14]
+        include:
+          # On other platforms
+#          - eslint: 7
+#            node: 14
+#            os: windows-latest
+          - eslint: 7
             node: 14
-          - os: windows-latest
-            eslint: 7
-            node: 12.0
-          - os: windows-latest
-            eslint: 7
+            os: macos-latest
+          # On old Node.js versions
+          - eslint: 7
+            node: 12
+            os: ubuntu-latest
+          - eslint: 7
             node: 10
-          - os: windows-latest
-            eslint: 7
-            node: 10.12
-          - os: windows-latest
-            eslint: 6
+            os: ubuntu-latest
+          # On old ESLint versions
+          - eslint: 6
             node: 14
-          - os: windows-latest
-            eslint: 6
-            node: 12.0
-          - os: windows-latest
-            eslint: 6
-            node: 10
-          - os: windows-latest
-            eslint: 6
-            node: 10.12
-          - os: windows-latest
-            eslint: 5
+            os: ubuntu-latest
+          - eslint: 5
             node: 14
-          - os: windows-latest
-            eslint: 5
-            node: 12.0
-          - os: windows-latest
-            eslint: 5
-            node: 10
-          - os: windows-latest
-            eslint: 5
-            node: 10.12
-          # On macOS, run tests with only the latest LTS environments.
-          - os: macOS-latest
-            eslint: 7
-            node: 14
-          - os: macOS-latest
-            eslint: 7
-            node: 12.0
-          - os: macOS-latest
-            eslint: 7
-            node: 10
-          - os: macOS-latest
-            eslint: 7
-            node: 10.12
-          - os: macOS-latest
-            eslint: 6
-            node: 14
-          - os: macOS-latest
-            eslint: 6
-            node: 12.0
-          - os: macOS-latest
-            eslint: 6
-            node: 10
-          - os: macOS-latest
-            eslint: 6
-            node: 10.12
-          - os: macOS-latest
-            eslint: 5
-            node: 14
-          - os: macOS-latest
-            eslint: 5
-            node: 12.0
-          - os: macOS-latest
-            eslint: 5
-            node: 10
-          - os: macOS-latest
-            eslint: 5
-            node: 10.12
-          # Run ESLint 6 tests on only the latest LTS Node.
-          - os: ubuntu-latest
-            eslint: 6
-            node: 14
-          - os: ubuntu-latest
-            eslint: 6
-            node: 12.0
-          - os: ubuntu-latest
-            eslint: 6
-            node: 10
-          - os: ubuntu-latest
-            eslint: 6
-            node: 10.12
-          # Run ESLint 5 tests on only the latest LTS Node.
-          - os: ubuntu-latest
-            eslint: 5
-            node: 14
-          - os: ubuntu-latest
-            eslint: 6
-            node: 12.0
-          - os: ubuntu-latest
-            eslint: 5
-            node: 10
-          - os: ubuntu-latest
-            eslint: 5
-            node: 10.12
-
+            os: ubuntu-latest
+          # On the minimum supported ESLint/Node.js version
+          - eslint: 5
+            node: 8.10.0
+            os: ubuntu-latest
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
+        uses: actions/checkout@v2
       - name: Install Node.js ${{ matrix.node }}
         uses: actions/setup-node@v1
         with:
