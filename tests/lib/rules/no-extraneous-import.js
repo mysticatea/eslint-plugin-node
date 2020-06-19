@@ -71,11 +71,50 @@ ruleTester.run("no-extraneous-import", rule, {
             filename: fixture("optionalDependencies/a.js"),
             code: "import aaa from 'aaa'",
         },
+        {
+            filename: fixture("yarnWorkspaces/a.js"),
+            code: "import aaa from 'aaa'",
+        },
+        {
+            filename: fixture("yarnWorkspaces/b.js"),
+            code: "import bbb from 'bbb'",
+        },
+        {
+            filename: fixture("yarnWorkspaces/c.js"),
+            code: "import ccc from 'ccc'",
+        },
 
         // missing packages are warned by no-missing-import
         {
             filename: fixture("dependencies/a.js"),
             code: "import ccc from 'ccc'",
+        },
+
+        // yarnWorkspaces
+        {
+            filename: fixture("yarnWorkspaces/a.js"),
+            code: "import aaa from 'aaa'",
+            options: [{ yarnWorkspaces: true }],
+        },
+        {
+            filename: fixture("yarnWorkspaces/b.js"),
+            code: "import bbb from 'bbb'",
+            options: [{ yarnWorkspaces: true }],
+        },
+        {
+            filename: fixture("yarnWorkspaces/c.js"),
+            code: "import ccc from 'ccc'",
+            options: [{ yarnWorkspaces: true }],
+        },
+        {
+            filename: fixture("yarnWorkspaces/aaa/c.js"),
+            code: "import ccc from 'ccc'",
+            options: [{ yarnWorkspaces: true }],
+        },
+        {
+            filename: fixture("yarnWorkspaces/bbb/c.js"),
+            code: "import ccc from 'ccc'",
+            options: [{ yarnWorkspaces: true }],
         },
     ],
     invalid: [
@@ -98,6 +137,17 @@ ruleTester.run("no-extraneous-import", rule, {
             filename: fixture("optionalDependencies/a.js"),
             code: "import bbb from 'bbb'",
             errors: ['"bbb" is extraneous.'],
+        },
+
+        {
+            filename: fixture("yarnWorkspaces/aaa/c.js"),
+            code: "import ccc from 'ccc'",
+            errors: ['"ccc" is extraneous.'],
+        },
+        {
+            filename: fixture("yarnWorkspaces/bbb/c.js"),
+            code: "import ccc from 'ccc'",
+            errors: ['"ccc" is extraneous.'],
         },
 
         // import()
