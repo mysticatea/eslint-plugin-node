@@ -4,6 +4,7 @@
  */
 "use strict"
 
+const fs = require("fs")
 const path = require("path")
 const { Linter, RuleTester } = require("eslint")
 const rule = require("../../../lib/rules/no-extraneous-import")
@@ -30,6 +31,16 @@ if (!DynamicImportSupported) {
 function fixture(name) {
     return path.resolve(__dirname, "../../fixtures/no-extraneous", name)
 }
+
+// We need to simulate `yarn workspaces` by creating symlinks inside `node_modules`
+fs.symlinkSync(
+    fixture("yarnWorkspaces/aaa"),
+    fixture("yarnWorkspaces/node_modules/aaa")
+)
+fs.symlinkSync(
+    fixture("yarnWorkspaces/bbb"),
+    fixture("yarnWorkspaces/node_modules/bbb")
+)
 
 const ruleTester = new RuleTester({
     parserOptions: {
