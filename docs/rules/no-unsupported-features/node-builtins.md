@@ -120,6 +120,7 @@ The `"ignores"` option accepts an array of the following strings.
 
 - `"async_hooks"`
 - `"async_hooks.createHook"`
+- `"async_hooks.AsyncLocalStorage`
 
 **`buffer` module:**
 
