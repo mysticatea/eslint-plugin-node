@@ -42,7 +42,8 @@ var foo = require(FOO_NAME);
         "node/no-missing-require": ["error", {
             "allowModules": [],
             "resolvePaths": ["/path/to/a/modules/directory"],
-            "tryExtensions": [".js", ".json", ".node"]
+            "tryExtensions": [".js", ".json", ".node"],
+            "onlyRelativePath": true
         }]
     }
 }
@@ -79,6 +80,12 @@ When an import path does not exist, this rule checks whether or not any of `path
 `tryExtensions` option is the extension list this rule uses at the time.
 
 Default is `[".js", ".json", ".node"]`.
+
+#### onlyRelativePath
+
+Checks only relative path.
+
+Default is `false`
 
 ### Shared Settings
 
