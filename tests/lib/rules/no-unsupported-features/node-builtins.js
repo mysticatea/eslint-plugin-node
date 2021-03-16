@@ -795,6 +795,14 @@ new RuleTester({
                         { version: "7.0.9", ignores: ["buffer.transcode"] },
                     ],
                 },
+                {
+                    code: "const { Blob } = require('buffer'); new Blob();",
+                    options: [{ version: "15.7.0", ignores: ["buffer.Blob"] }],
+                },
+                {
+                    code: "import buffer from 'buffer'; new buffer.Blob();",
+                    options: [{ version: "15.7.0", ignores: ["buffer.Blob"] }],
+                },
             ],
             invalid: [
                 {
@@ -1004,6 +1012,34 @@ new RuleTester({
                                 name: "buffer.transcode",
                                 supported: "7.1.0",
                                 version: "7.0.9",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "const { Blob } = require('buffer'); new Blob();",
+                    options: [{ version: "15.7.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "buffer.Blob",
+                                supported: "(none yet)",
+                                version: "15.7.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "import buffer from 'buffer'; new buffer.Blob();",
+                    options: [{ version: "15.7.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "buffer.Blob",
+                                supported: "(none yet)",
+                                version: "15.7.0",
                             },
                         },
                     ],
