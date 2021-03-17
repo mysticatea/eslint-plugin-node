@@ -212,6 +212,20 @@ new RuleTester({
                         },
                     ],
                 },
+                {
+                    code:
+                        "const { CallTracker } = require('assert'); new CallTracker();",
+                    options: [
+                        { version: "14.2.0", ignores: ["assert.CallTracker"] },
+                    ],
+                },
+                {
+                    code:
+                        "import { CallTracker } from 'assert'; new CallTracker();",
+                    options: [
+                        { version: "14.2.0", ignores: ["assert.CallTracker"] },
+                    ],
+                },
             ],
             invalid: [
                 {
@@ -391,6 +405,36 @@ new RuleTester({
                                 name: "assert.strict.rejects",
                                 supported: "10.0.0",
                                 version: "9.8.9",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code:
+                        "const { CallTracker } = require('assert'); new CallTracker();",
+                    options: [{ version: "14.2.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "assert.CallTracker",
+                                supported: "(none yet)",
+                                version: "14.2.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code:
+                        "import { CallTracker } from 'assert'; new CallTracker();",
+                    options: [{ version: "14.2.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "assert.CallTracker",
+                                supported: "(none yet)",
+                                version: "14.2.0",
                             },
                         },
                     ],
