@@ -13,7 +13,7 @@
     "eslint": ">=5.16.0"
   },
   "dependencies": {
-    "eslint-plugin-es": "^3.0.0",
+    "eslint-plugin-es": "^4.1.0",
     "eslint-utils": "^2.0.0",
     "ignore": "^5.1.1",
     "minimatch": "^3.0.4",
