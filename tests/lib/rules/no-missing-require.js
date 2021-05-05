@@ -27,6 +27,11 @@ ruleTester.run("no-missing-require", rule, {
         },
         {
             filename: fixture("test.js"),
+            code: "require('node:fs');",
+            env: { node: true },
+        },
+        {
+            filename: fixture("test.js"),
             code: "require('eslint');",
             env: { node: true },
         },

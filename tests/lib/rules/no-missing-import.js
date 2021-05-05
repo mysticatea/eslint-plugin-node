@@ -49,6 +49,10 @@ ruleTester.run("no-missing-import", rule, {
         },
         {
             filename: fixture("test.js"),
+            code: "import fs from 'node:fs';",
+        },
+        {
+            filename: fixture("test.js"),
             code: "import eslint from 'eslint/lib/api';",
         },
         {
