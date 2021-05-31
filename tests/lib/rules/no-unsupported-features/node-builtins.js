@@ -478,6 +478,26 @@ new RuleTester({
                         "import { createHook } from 'async_hooks'; createHook()",
                     options: [{ version: "8.1.0" }],
                 },
+                {
+                    code:
+                        "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
+                    options: [{ version: "13.10.0" }],
+                },
+                {
+                    code:
+                        "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
+                    options: [{ version: "13.10.0" }],
+                },
+                {
+                    code:
+                        "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
+                    options: [{ version: "12.17.0" }],
+                },
+                {
+                    code:
+                        "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
+                    options: [{ version: "12.17.0" }],
+                },
 
                 // Ignores
                 {
@@ -543,6 +563,46 @@ new RuleTester({
                         {
                             version: "8.0.9",
                             ignores: ["async_hooks.createHook"],
+                        },
+                    ],
+                },
+                {
+                    code:
+                        "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
+                    options: [
+                        {
+                            version: "13.9.0",
+                            ignores: ["async_hooks.AsyncLocalStorage"],
+                        },
+                    ],
+                },
+                {
+                    code:
+                        "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
+                    options: [
+                        {
+                            version: "13.9.0",
+                            ignores: ["async_hooks.AsyncLocalStorage"],
+                        },
+                    ],
+                },
+                {
+                    code:
+                        "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
+                    options: [
+                        {
+                            version: "12.16.0",
+                            ignores: ["async_hooks.AsyncLocalStorage"],
+                        },
+                    ],
+                },
+                {
+                    code:
+                        "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
+                    options: [
+                        {
+                            version: "12.16.0",
+                            ignores: ["async_hooks.AsyncLocalStorage"],
                         },
                     ],
                 },
@@ -668,6 +728,66 @@ new RuleTester({
                                 name: "async_hooks.createHook",
                                 supported: "8.1.0",
                                 version: "8.0.9",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code:
+                        "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
+                    options: [{ version: "13.9.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "async_hooks.AsyncLocalStorage",
+                                supported: "13.10.0 (backported: ^12.17.0)",
+                                version: "13.9.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code:
+                        "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
+                    options: [{ version: "13.9.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "async_hooks.AsyncLocalStorage",
+                                supported: "13.10.0 (backported: ^12.17.0)",
+                                version: "13.9.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code:
+                        "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
+                    options: [{ version: "12.16.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "async_hooks.AsyncLocalStorage",
+                                supported: "13.10.0 (backported: ^12.17.0)",
+                                version: "12.16.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code:
+                        "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
+                    options: [{ version: "12.16.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "async_hooks.AsyncLocalStorage",
+                                supported: "13.10.0 (backported: ^12.17.0)",
+                                version: "12.16.0",
                             },
                         },
                     ],
