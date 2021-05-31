@@ -2512,6 +2512,56 @@ ruleTester.run(
                 },
             ],
         },
+        {
+            keyword: "optionalChaining",
+            requiredEcmaVersion: 2020,
+            valid: [
+                {
+                    code: "foo?.bar;",
+                    options: [{ version: "14.0.0" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "foo?.bar",
+                    options: [{ version: "13.0.0" }],
+                    errors: [
+                        {
+                            messageId: "no-optional-chaining",
+                            data: {
+                                supported: "14.0.0",
+                                version: "13.0.0",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            keyword: "nullishCoalescingOperators",
+            requiredEcmaVersion: 2020,
+            valid: [
+                {
+                    code: "foo ?? bar;",
+                    options: [{ version: "14.0.0" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "foo ?? bar",
+                    options: [{ version: "13.0.0" }],
+                    errors: [
+                        {
+                            messageId: "no-nullish-coalescing-operators",
+                            data: {
+                                supported: "14.0.0",
+                                version: "13.0.0",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
 
         //----------------------------------------------------------------------
         // MISC
