@@ -2454,6 +2454,150 @@ new RuleTester({
                         },
                     ],
                 },
+                {
+                    code: "require('fs').readv",
+                    options: [{ version: "13.13.0" }],
+                },
+                {
+                    code: "require('fs').readvSync",
+                    options: [{ version: "13.13.0" }],
+                },
+                {
+                    code: "require('fs').readv",
+                    options: [{ version: "12.17.0" }],
+                },
+                {
+                    code: "require('fs').readvSync",
+                    options: [{ version: "12.17.0" }],
+                },
+                {
+                    code: "require('fs').readv",
+                    options: [{ version: "13.12.0", ignores: ["fs.readv"] }],
+                },
+                {
+                    code: "require('fs').readvSync",
+                    options: [
+                        {
+                            version: "13.12.0",
+                            ignores: ["fs.readvSync"],
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').lutimes",
+                    options: [{ version: "14.5.0" }],
+                },
+                {
+                    code: "require('fs').lutimesSync",
+                    options: [{ version: "14.5.0" }],
+                },
+                {
+                    code: "require('fs').lutimes",
+                    options: [{ version: "12.19.0" }],
+                },
+                {
+                    code: "require('fs').lutimesSync",
+                    options: [{ version: "12.19.0" }],
+                },
+                {
+                    code: "require('fs').lutimes",
+                    options: [{ version: "13.14.0", ignores: ["fs.lutimes"] }],
+                },
+                {
+                    code: "require('fs').lutimesSync",
+                    options: [
+                        {
+                            version: "13.14.0",
+                            ignores: ["fs.lutimesSync"],
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').opendir",
+                    options: [{ version: "12.12.0" }],
+                },
+                {
+                    code: "require('fs').opendirSync",
+                    options: [{ version: "12.12.0" }],
+                },
+                {
+                    code: "require('fs').opendir",
+                    options: [{ version: "12.11.0", ignores: ["fs.opendir"] }],
+                },
+                {
+                    code: "require('fs').opendirSync",
+                    options: [
+                        { version: "12.11.0", ignores: ["fs.opendirSync"] },
+                    ],
+                },
+                {
+                    code: "require('fs').rm",
+                    options: [{ version: "14.14.0" }],
+                },
+                {
+                    code: "require('fs').rmSync",
+                    options: [{ version: "14.14.0" }],
+                },
+                {
+                    code: "require('fs').rm",
+                    options: [{ version: "14.13.0", ignores: ["fs.rm"] }],
+                },
+                {
+                    code: "require('fs').rmSync",
+                    options: [{ version: "14.13.0", ignores: ["fs.rmSync"] }],
+                },
+                {
+                    code: "require('fs').read",
+                    options: [{ version: "13.11.0" }],
+                },
+                {
+                    code: "require('fs').readSync",
+                    options: [{ version: "13.11.0" }],
+                },
+                {
+                    code: "require('fs').read",
+                    options: [{ version: "12.17.0" }],
+                },
+                {
+                    code: "require('fs').readSync",
+                    options: [{ version: "12.17.0" }],
+                },
+                {
+                    code: "require('fs').read",
+                    options: [{ version: "13.10.0", ignores: ["fs.read"] }],
+                },
+                {
+                    code: "require('fs').readSync",
+                    options: [{ version: "13.10.0", ignores: ["fs.readSync"] }],
+                },
+                {
+                    code: "require('fs').Dir",
+                    options: [{ version: "12.12.0" }],
+                },
+                {
+                    code: "require('fs').Dir",
+                    options: [{ version: "12.11.0", ignores: ["fs.Dir"] }],
+                },
+                {
+                    code: "require('fs').StatWatcher",
+                    options: [{ version: "14.3.0" }],
+                },
+                {
+                    code: "require('fs').StatWatcher",
+                    options: [
+                        { version: "14.2.0", ignores: ["fs.StatWatcher"] },
+                    ],
+                },
+                {
+                    code: "require('fs').StatWatcher",
+                    options: [{ version: "12.20.0" }],
+                },
+                {
+                    code: "require('fs').StatWatcher",
+                    options: [
+                        { version: "12.19.0", ignores: ["fs.StatWatcher"] },
+                    ],
+                },
             ],
             invalid: [
                 {
@@ -2606,6 +2750,288 @@ new RuleTester({
                                 name: "fs.realpathSync.native",
                                 supported: "9.2.0",
                                 version: "9.1.9",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').lutimes",
+                    options: [{ version: "14.4.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.lutimes",
+                                supported: "14.5.0 (backported: ^12.19.0)",
+                                version: "14.4.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').lutimesSync",
+                    options: [{ version: "14.4.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.lutimesSync",
+                                supported: "14.5.0 (backported: ^12.19.0)",
+                                version: "14.4.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').readv",
+                    options: [{ version: "13.12.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.readv",
+                                supported: "13.13.0 (backported: ^12.17.0)",
+                                version: "13.12.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').readvSync",
+                    options: [
+                        {
+                            version: "13.12.0",
+                        },
+                    ],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.readvSync",
+                                supported: "13.13.0 (backported: ^12.17.0)",
+                                version: "13.12.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').opendir",
+                    options: [{ version: "12.11.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.opendir",
+                                supported: "12.12.0",
+                                version: "12.11.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').opendirSync",
+                    options: [{ version: "12.11.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.opendirSync",
+                                supported: "12.12.0",
+                                version: "12.11.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').rm",
+                    options: [{ version: "14.13.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.rm",
+                                supported: "14.14.0",
+                                version: "14.13.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').rmSync",
+                    options: [{ version: "14.13.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.rmSync",
+                                supported: "14.14.0",
+                                version: "14.13.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').read",
+                    options: [{ version: "13.10.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.read",
+                                supported: "13.11.0 (backported: ^12.17.0)",
+                                version: "13.10.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').readSync",
+                    options: [{ version: "13.10.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.readSync",
+                                supported: "13.11.0 (backported: ^12.17.0)",
+                                version: "13.10.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').read",
+                    options: [{ version: "12.16.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.read",
+                                supported: "13.11.0 (backported: ^12.17.0)",
+                                version: "12.16.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').readSync",
+                    options: [{ version: "12.16.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.readSync",
+                                supported: "13.11.0 (backported: ^12.17.0)",
+                                version: "12.16.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').Dir",
+                    options: [{ version: "12.11.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.Dir",
+                                supported: "12.12.0",
+                                version: "12.11.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').StatWatcher",
+                    options: [{ version: "14.2.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.StatWatcher",
+                                supported: "14.3.0 (backported: ^12.20.0)",
+                                version: "14.2.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs').StatWatcher",
+                    options: [{ version: "12.19.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs.StatWatcher",
+                                supported: "14.3.0 (backported: ^12.20.0)",
+                                version: "12.19.0",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+
+        //----------------------------------------------------------------------
+        // fs/promises
+        //----------------------------------------------------------------------
+        {
+            valid: [
+                {
+                    code: "import * as fs from 'fs/promises';",
+                    options: [{ version: "14.0.0" }],
+                },
+                {
+                    code: "require('fs/promise')",
+                    options: [{ version: "14.0.0" }],
+                },
+                {
+                    code: "import * as fs from 'fs/promises';",
+                    options: [{ version: "13.14.0", ignores: ["fs/promises"] }],
+                },
+                {
+                    code: "require('fs/promise')",
+                    options: [{ version: "13.14.0", ignores: ["fs/promises"] }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "import * as fs from 'fs/promises';",
+                    options: [{ version: "13.14.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs/promises",
+                                supported: "14.0.0",
+                                version: "13.14.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('fs/promises');",
+                    options: [{ version: "13.14.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs/promises",
+                                supported: "14.0.0",
+                                version: "13.14.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "const fs = require('fs/promises');",
+                    options: [{ version: "13.14.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "fs/promises",
+                                supported: "14.0.0",
+                                version: "13.14.0",
                             },
                         },
                     ],
