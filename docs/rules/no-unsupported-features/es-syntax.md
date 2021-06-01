@@ -68,6 +68,8 @@ The `"ignores"` option accepts an array of the following strings.
 
 - `"bigint"`
 - `"dynamicImport"`
+- `"optionalChaining"`
+- `"nullishCoalescingOperators"`
 
 **ES2019:**
 
