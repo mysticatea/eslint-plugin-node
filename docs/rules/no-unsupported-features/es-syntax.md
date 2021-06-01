@@ -64,6 +64,11 @@ The `"ignores"` option accepts an array of the following strings.
 
 <details>
 
+**ES2021:**
+
+- `"logicalAssignmentOperators"`
+- `"numericSeparators"`
+
 **ES2020:**
 
 - `"bigint"`

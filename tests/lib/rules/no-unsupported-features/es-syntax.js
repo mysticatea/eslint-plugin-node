@@ -9,12 +9,19 @@ const { Linter, RuleTester } = require("eslint")
 const { builtin } = require("globals")
 const rule = require("../../../../lib/rules/no-unsupported-features/es-syntax")
 
-const ES2020Supported = (() => {
-    const config = { parserOptions: { ecmaVersion: 2020 } }
+const ES2021Supported = (() => {
+    const config = { parserOptions: { ecmaVersion: 2021 } }
     const messages = new Linter().verify("0n", config)
     return messages.length === 0
 })()
-const ecmaVersion = ES2020Supported ? 2020 : 2019
+const ES2020Supported =
+    ES2021Supported ||
+    (() => {
+        const config = { parserOptions: { ecmaVersion: 2020 } }
+        const messages = new Linter().verify("0n", config)
+        return messages.length === 0
+    })()
+const ecmaVersion = ES2021Supported ? 2021 : ES2020Supported ? 2020 : 2019
 
 /**
  * Makes a file path to a fixture.
@@ -2556,6 +2563,94 @@ ruleTester.run(
                             data: {
                                 supported: "14.0.0",
                                 version: "13.0.0",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+
+        //----------------------------------------------------------------------
+        // ES2021
+        //----------------------------------------------------------------------
+        {
+            keyword: "logicalAssignmentOperators",
+            requiredEcmaVersion: 2021,
+            valid: [
+                {
+                    code: "a ||= b",
+                    options: [{ version: "15.0.0" }],
+                },
+                {
+                    code: "a &&= b",
+                    options: [{ version: "15.0.0" }],
+                },
+                {
+                    code: "a ??= b",
+                    options: [{ version: "15.0.0" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "a ||= b",
+                    options: [{ version: "14.0.0" }],
+                    errors: [
+                        {
+                            messageId: "no-logical-assignment-operators",
+                            data: {
+                                supported: "15.0.0",
+                                version: "14.0.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "a &&= b",
+                    options: [{ version: "14.0.0" }],
+                    errors: [
+                        {
+                            messageId: "no-logical-assignment-operators",
+                            data: {
+                                supported: "15.0.0",
+                                version: "14.0.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "a ??= b",
+                    options: [{ version: "14.0.0" }],
+                    errors: [
+                        {
+                            messageId: "no-logical-assignment-operators",
+                            data: {
+                                supported: "15.0.0",
+                                version: "14.0.0",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            keyword: "numericSeparators",
+            requiredEcmaVersion: 2021,
+            valid: [
+                {
+                    code: "a = 123_456_789",
+                    options: [{ version: "12.5.0" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "a = 123_456_789",
+                    options: [{ version: "12.4.0" }],
+                    errors: [
+                        {
+                            messageId: "no-numeric-separators",
+                            data: {
+                                supported: "12.5.0",
+                                version: "12.4.0",
                             },
                         },
                     ],
