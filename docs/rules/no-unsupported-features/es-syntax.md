@@ -15,7 +15,7 @@ Editor integrations of ESLint would be useful to know it in real-time.
 This rule supports ECMAScript 2019 and proposals that have been approved as Stage 4 by August 2019.
 See also [TC39 finished proposals](https://github.com/tc39/proposals/blob/master/finished-proposals.md).
 
-Please configure your `.eslintrc` file to succeed to succeed in parsing the syntax.
+Please configure your `.eslintrc` file to succeed in parsing the syntax.
 For example, set `2020` to `parserOptions.ecmaVersion`.
 
 ### Configured Node.js version range
