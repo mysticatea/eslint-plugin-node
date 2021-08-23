@@ -6,7 +6,7 @@
 
 const fs = require("fs")
 const path = require("path")
-const { CLIEngine } = require("eslint")
+const { ESLint } = require("eslint")
 const { rules } = require("./rules")
 
 const filePath = path.resolve(__dirname, "../lib/index.js")
@@ -35,8 +35,8 @@ module.exports = {
     },
 }
 `
-const engine = new CLIEngine({ fix: true })
-const lintResult = engine.executeOnText(rawContent, filePath)
+const engine = new ESLint({ fix: true })
+const lintResult = engine.lintText(rawContent, { filePath })
 const content = lintResult.results[0].output || rawContent
 
 fs.writeFileSync(filePath, content)

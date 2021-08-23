@@ -28,27 +28,27 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        eslint: [7]
+        eslint: ["^8.0.0-0"]
         node: [16]
         include:
           # On other platforms
-          - eslint: 7
+          - eslint: "^8.0.0-0"
             node: 16
             os: windows-latest
-          - eslint: 7
+          - eslint: "^8.0.0-0"
             node: 16
             os: macos-latest
           # On old Node.js versions
-          - eslint: 7
+          - eslint: "^8.0.0-0"
             node: 14
             os: ubuntu-latest
-          - eslint: 7
+          - eslint: "^8.0.0-0"
             node: 12
             os: ubuntu-latest
-          - eslint: 7
-            node: 10
-            os: ubuntu-latest
           # On old ESLint versions
+          - eslint: 7
+            node: 16
+            os: ubuntu-latest
           - eslint: 6
             node: 16
             os: ubuntu-latest
@@ -57,7 +57,7 @@ jobs:
             os: ubuntu-latest
           # On the minimum supported ESLint/Node.js version
           - eslint: 5.16.0
-            node: 10.0.0
+            node: 12.22.0
             os: ubuntu-latest
 
     runs-on: ${{ matrix.os }}
