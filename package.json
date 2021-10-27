@@ -1,5 +1,5 @@
 {
-  "name": "eslint-plugin-node",
+  "name": "@weiran.zsd/eslint-plugin-node",
   "version": "11.1.0",
   "description": "Additional ESLint's rules for Node.js",
   "engines": {
@@ -52,7 +52,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mysticatea/eslint-plugin-node.git"
+    "url": "git+https://github.com/weiran-zsd/eslint-plugin-node.git"
   },
   "keywords": [
     "eslint",
@@ -70,8 +70,8 @@
   "author": "Toru Nagashima",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mysticatea/eslint-plugin-node/issues"
+    "url": "https://github.com/weiran-zsd/eslint-plugin-node/issues"
   },
-  "homepage": "https://github.com/mysticatea/eslint-plugin-node#readme",
+  "homepage": "https://github.com/weiran-zsd/eslint-plugin-node#readme",
   "funding": "https://github.com/sponsors/mysticatea"
 }
