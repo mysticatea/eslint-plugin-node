@@ -32,6 +32,7 @@
     "nyc": "^14.0.0",
     "opener": "^1.5.1",
     "punycode": "^2.1.1",
+    "release-it": "^14.11.6",
     "rimraf": "^2.6.3"
   },
   "scripts": {
@@ -73,5 +74,14 @@
     "url": "https://github.com/weiran-zsd/eslint-plugin-node/issues"
   },
   "homepage": "https://github.com/weiran-zsd/eslint-plugin-node#readme",
-  "funding": "https://github.com/sponsors/mysticatea"
+  "funding": "https://github.com/sponsors/mysticatea",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "release-it": {
+    "github": {
+      "release": true
+    }
+  }
 }
