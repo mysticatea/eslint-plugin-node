@@ -78,7 +78,7 @@ function convertPattern(retv, pattern) {
             })
         } else {
             // If this is not supported, add to a valid pattern with a "ignores" option.
-            ;[].push.apply(
+            [].push.apply(
                 retv.valid,
                 pattern.keys.map(key => ({
                     code: `/*${
