@@ -6,7 +6,7 @@
 
 const fs = require("fs")
 const path = require("path")
-const { CLIEngine } = require("eslint")
+const { ESLint } = require("eslint")
 const { rules } = require("./rules")
 
 const filePath = path.resolve(__dirname, "../lib/index.js")
@@ -35,8 +35,11 @@ module.exports = {
     },
 }
 `
-const engine = new CLIEngine({ fix: true })
-const lintResult = engine.executeOnText(rawContent, filePath)
-const content = lintResult.results[0].output || rawContent
+const linter = new ESLint({ fix: true })
 
-fs.writeFileSync(filePath, content)
+// tla is not allowed in scripts. :)
+linter.lintText(rawContent, { filePath }).then(lintResult => {
+    const content = lintResult[0].output || rawContent
+    fs.writeFileSync(filePath, content)
+})
+
