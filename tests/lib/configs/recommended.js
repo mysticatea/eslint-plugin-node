@@ -2,19 +2,19 @@
 
 const assert = require("assert")
 const path = require("path")
-const { CLIEngine } = require("eslint")
+const { ESLint } = require("eslint")
 const originalCwd = process.cwd()
 
 describe("node/recommended config", () => {
     describe("in CJS directory", () => {
         const root = path.resolve(__dirname, "../../fixtures/configs/cjs/")
 
-        /** @type {CLIEngine} */
-        let engine = null
+        /** @type {Linter} */
+        let linter = null
 
         beforeEach(() => {
             process.chdir(root)
-            engine = new CLIEngine({
+            linter = new ESLint({
                 baseConfig: { extends: "plugin:node/recommended" },
                 useEslintrc: false,
             })
@@ -24,13 +24,14 @@ describe("node/recommended config", () => {
             process.chdir(originalCwd)
         })
 
-        it("*.js files should be a script.", () => {
-            const report = engine.executeOnText(
+        it("*.js files should be a script.", async () => {
+            const report = await linter.lintText(
                 "import 'foo'",
-                path.join(root, "test.js")
+                {filePath: path.join(root, "test.js")}
+                
             )
 
-            assert.deepStrictEqual(report.results[0].messages, [
+            assert.deepStrictEqual(report[0].messages, [
                 {
                     column: 1,
                     fatal: true,
@@ -43,13 +44,13 @@ describe("node/recommended config", () => {
             ])
         })
 
-        it("*.cjs files should be a script.", () => {
-            const report = engine.executeOnText(
+        it("*.cjs files should be a script.", async () => {
+            const report = await linter.lintText(
                 "import 'foo'",
-                path.join(root, "test.cjs")
+                {filePath: path.join(root, "test.cjs")}
             )
 
-            assert.deepStrictEqual(report.results[0].messages, [
+            assert.deepStrictEqual(report[0].messages, [
                 {
                     column: 1,
                     fatal: true,
@@ -62,13 +63,14 @@ describe("node/recommended config", () => {
             ])
         })
 
-        it("*.mjs files should be a module.", () => {
-            const report = engine.executeOnText(
+        it("*.mjs files should be a module.", async () => {
+            const report = await linter.lintText(
                 "import 'foo'",
-                path.join(root, "test.mjs")
+                {filePath: path.join(root, "test.mjs")}
+                
             )
 
-            assert.deepStrictEqual(report.results[0].messages, [
+            assert.deepStrictEqual(report[0].messages, [
                 {
                     column: 8,
                     endColumn: 13,
@@ -86,12 +88,12 @@ describe("node/recommended config", () => {
     describe("in ESM directory", () => {
         const root = path.resolve(__dirname, "../../fixtures/configs/esm/")
 
-        /** @type {CLIEngine} */
-        let engine = null
+        /** @type {Linter} */
+        let linter = null
 
         beforeEach(() => {
             process.chdir(root)
-            engine = new CLIEngine({
+            linter = new ESLint({
                 baseConfig: { extends: "plugin:node/recommended" },
                 useEslintrc: false,
             })
@@ -101,13 +103,14 @@ describe("node/recommended config", () => {
             process.chdir(originalCwd)
         })
 
-        it("*.js files should be a module.", () => {
-            const report = engine.executeOnText(
+        it("*.js files should be a module.", async () => {
+            const report = await linter.lintText(
                 "import 'foo'",
-                path.join(root, "test.js")
+                {filePath: path.join(root, "test.js")}
+                
             )
 
-            assert.deepStrictEqual(report.results[0].messages, [
+            assert.deepStrictEqual(report[0].messages, [
                 {
                     column: 8,
                     endColumn: 13,
@@ -121,13 +124,14 @@ describe("node/recommended config", () => {
             ])
         })
 
-        it("*.cjs files should be a script.", () => {
-            const report = engine.executeOnText(
+        it("*.cjs files should be a script.", async () => {
+            const report = await linter.lintText(
                 "import 'foo'",
-                path.join(root, "test.cjs")
+                {filePath: path.join(root, "test.cjs")}
+                
             )
 
-            assert.deepStrictEqual(report.results[0].messages, [
+            assert.deepStrictEqual(report[0].messages, [
                 {
                     column: 1,
                     fatal: true,
@@ -140,13 +144,14 @@ describe("node/recommended config", () => {
             ])
         })
 
-        it("*.mjs files should be a module.", () => {
-            const report = engine.executeOnText(
+        it("*.mjs files should be a module.", async () => {
+            const report = await linter.lintText(
                 "import 'foo'",
-                path.join(root, "test.mjs")
+                {filePath: path.join(root, "test.mjs")}
+                
             )
 
-            assert.deepStrictEqual(report.results[0].messages, [
+            assert.deepStrictEqual(report[0].messages, [
                 {
                     column: 8,
                     endColumn: 13,
