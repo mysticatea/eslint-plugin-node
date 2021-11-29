@@ -1,6 +1,6 @@
 {
   "name": "@weiran.zsd/eslint-plugin-node",
-  "version": "12.0.0",
+  "version": "13.0.0",
   "description": "Additional ESLint's rules for Node.js",
   "engines": {
     "node": ">=12.22.0"
