@@ -83,6 +83,9 @@
   "release-it": {
     "github": {
       "release": true
+    },
+    "npm": {
+      "skipChecks": true
     }
   }
 }
