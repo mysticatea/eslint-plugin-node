@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           fetch-depth: 1
       - name: Install Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
-          node: 12.x
+          node: 16.x
       - name: Install Packages
         run: npm install
       - name: Lint
@@ -31,72 +31,28 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
-        eslint: [6.x, 5.x]
-        node: [13.x, 12.x, 10.x, 8.x]
-        exclude:
-          # On Windows, run tests with only the latest LTS environments.
-          - os: windows-latest
-            eslint: 6.x
-            node: 13.x
-          - os: windows-latest
-            eslint: 6.x
-            node: 10.x
-          - os: windows-latest
-            eslint: 6.x
-            node: 8.x
-          - os: windows-latest
-            eslint: 5.x
-            node: 13.x
-          - os: windows-latest
-            eslint: 5.x
-            node: 12.x
-          - os: windows-latest
-            eslint: 5.x
-            node: 10.x
-          - os: windows-latest
-            eslint: 5.x
-            node: 8.x
-          # On macOS, run tests with only the latest LTS environments.
-          - os: macOS-latest
-            eslint: 6.x
-            node: 13.x
-          - os: macOS-latest
-            eslint: 6.x
-            node: 10.x
-          - os: macOS-latest
-            eslint: 6.x
-            node: 8.x
-          - os: macOS-latest
-            eslint: 5.x
-            node: 13.x
-          - os: macOS-latest
-            eslint: 5.x
-            node: 12.x
-          - os: macOS-latest
-            eslint: 5.x
-            node: 10.x
-          - os: macOS-latest
-            eslint: 5.x
-            node: 8.x
-          # Run ESLint 5.x tests on only the latest LTS Node.
+        eslint: [8.x, 7.x]
+        node: [16.x]
+        include:
+          # run on node lts(ubuntu-latest)
           - os: ubuntu-latest
-            eslint: 5.x
-            node: 13.x
+            node: "12.x"
+            eslint: "8.x"
           - os: ubuntu-latest
-            eslint: 5.x
-            node: 10.x
+            node: "14.x"
+            eslint: "8.x"
           - os: ubuntu-latest
-            eslint: 5.x
-            node: 8.x
+            node: "17.x"
+            eslint: "8.x"
 
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           fetch-depth: 1
       - name: Install Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
       - name: Install Packages
