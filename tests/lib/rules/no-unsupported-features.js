@@ -193,7 +193,7 @@ ruleTester.run(
         {
             keys: ["templateStrings", "syntax"],
             name: "Template strings",
-            code: "`hello, ${world}!`; foo`tagged`;", //eslint-disable-line no-template-curly-in-string
+            code: "`hello, ${world}!`; foo`tagged`;",  
             errors: 2,
             supported: 4,
         },
@@ -404,7 +404,7 @@ ruleTester.run(
             keys: ["templateLiteralRevision", "syntax"],
             name: "Illegal escape sequences in taggled templates",
             code: [
-                //eslint-disable-next-line no-template-curly-in-string
+                 
                 "tag`\\01\\1\\xg\\xAg\\u0\\u0g\\u00g\\u000g\\u{g\\u{0\\u{110000}${0}\\0`",
             ].join("\n"),
             errors: 1,

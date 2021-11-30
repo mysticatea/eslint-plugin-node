@@ -1479,7 +1479,7 @@ ruleTester.run(
             ],
         },
         {
-            /*eslint-disable no-template-curly-in-string */
+             
             keyword: "templateLiterals",
             valid: [
                 {

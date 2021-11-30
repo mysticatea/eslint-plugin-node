@@ -207,7 +207,7 @@ ruleTester.run("no-unpublished-require", rule, {
         },
         {
             filename: fixture("1/test.js"),
-            code: "require(`foo${bar}`);", //eslint-disable-line no-template-curly-in-string
+            code: "require(`foo${bar}`);",  
             env: { node: true, es6: true },
         },
 
