@@ -149,12 +149,12 @@ For example of `package.json`:
     "name": "your-module",
     "version": "1.0.0",
     "engines": {
-        "node": ">=8.0.0"
+        "node": ">=10.0.0"
     }
 }
 ```
 
-If you omit the [engines] field, this rule chooses `>=8.0.0` as the configured Node.js version since `8` is the minimum version the community is maintaining (see also [Node.js Release Working Group](https://github.com/nodejs/Release#readme)).
+If you omit the [engines] field, this rule chooses `>=10.0.0` as the configured Node.js version since `10` is the minimum version the community is maintaining (see also [Node.js Release Working Group](https://github.com/nodejs/Release#readme)).
 
 ### Options
 
@@ -164,7 +164,7 @@ This rule has 3 options.
 {
     "rules": {
         "node/no-deprecated-api": ["error", {
-            "version": ">=8.0.0",
+            "version": ">=10.0.0",
             "ignoreModuleItems": [],
             "ignoreGlobalItems": []
         }]
