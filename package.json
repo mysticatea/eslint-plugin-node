@@ -22,7 +22,7 @@
     "semver": "^6.3.0"
   },
   "devDependencies": {
-    "@mysticatea/eslint-plugin": "^10.0.3",
+    "@mysticatea/eslint-plugin": "^13.0.0",
     "codecov": "^3.8.2",
     "eslint": "^6.3.0",
     "eslint-plugin-node": "file:.",
