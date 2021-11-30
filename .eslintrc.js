@@ -7,7 +7,8 @@
 // the config does not support eslint v8 yet, just replaced it with a simple config,
 // to make the ci passing.
 module.exports = {
-    extends: ["eslint:recommended", "plugin:node/recommended", "plugin:eslint-plugin/recommended"],
+    reportUnusedDisableDirectives: true,
+    extends: ["eslint:recommended", "plugin:@weiran.zsd/node/recommended", "plugin:eslint-plugin/recommended"],
     env: {
         mocha: true,
     }

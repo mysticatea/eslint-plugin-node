@@ -26,7 +26,7 @@
     "codecov": "^3.3.0",
     "eslint": "^8.3.0",
     "eslint-plugin-eslint-plugin": "^4.0.1",
-    "eslint-plugin-node": "file:.",
+    "@weiran.zsd/eslint-plugin-node": "file:.",
     "fast-glob": "^2.2.6",
     "globals": "^11.12.0",
     "mocha": "^6.1.4",
