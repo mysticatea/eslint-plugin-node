@@ -6,7 +6,7 @@
 
 const fs = require("fs")
 const path = require("path")
-const { categories, rules } = require("./rules")
+const { categories, rules } = require("./rules.js")
 
 /**
  * Render a given rule as a table row.

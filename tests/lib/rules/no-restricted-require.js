@@ -5,8 +5,8 @@
 "use strict"
 
 const path = require("path")
-const RuleTester = require("eslint").RuleTester
-const rule = require("../../../lib/rules/no-restricted-require")
+const { RuleTester } = require("eslint")
+const rule = require("../../../lib/rules/no-restricted-require.js")
 
 new RuleTester({
     globals: { require: "readonly" },

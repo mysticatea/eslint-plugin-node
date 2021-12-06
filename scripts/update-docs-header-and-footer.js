@@ -6,7 +6,7 @@
 
 const fs = require("fs")
 const path = require("path")
-const { rules } = require("./rules")
+const { rules } = require("./rules.js")
 const headerPattern = /^#.+\n(?:>.+\n)*\n+/u
 const footerPattern = /\n+## 🔎 Implementation[\s\S]*$/u
 const ruleRoot = path.resolve(__dirname, "../lib/rules")

@@ -4,8 +4,8 @@
  */
 "use strict"
 
-const RuleTester = require("eslint").RuleTester
-const rule = require("../../../lib/rules/callback-return")
+const { RuleTester } = require("eslint")
+const rule = require("../../../lib/rules/callback-return.js")
 
 new RuleTester().run("callback-return", rule, {
     valid: [

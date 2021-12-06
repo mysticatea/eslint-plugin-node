@@ -8,7 +8,7 @@
 
 const assert = require("assert")
 const eslint = require("eslint")
-const rule = require("../../../lib/rules/process-exit-as-throw")
+const rule = require("../../../lib/rules/process-exit-as-throw.js")
 
 const supported = rule.meta.supported
 

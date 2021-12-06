@@ -4,8 +4,8 @@
  */
 "use strict"
 
-const RuleTester = require("eslint").RuleTester
-const rule = require("../../../lib/rules/no-process-env")
+const { RuleTester } = require("eslint")
+const rule = require("../../../lib/rules/no-process-env.js")
 
 new RuleTester().run("no-process-env", rule, {
     valid: [

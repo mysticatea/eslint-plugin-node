@@ -4,8 +4,8 @@
  */
 "use strict"
 
-const RuleTester = require("eslint").RuleTester
-const rule = require("../../../../lib/rules/prefer-global/process")
+const { RuleTester } = require("eslint")
+const rule = require("../../../../lib/rules/prefer-global/process.js")
 
 new RuleTester({
     parserOptions: {
