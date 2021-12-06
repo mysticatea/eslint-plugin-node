@@ -4,8 +4,8 @@
  */
 "use strict"
 
-const RuleTester = require("eslint").RuleTester
-const rule = require("../../../lib/rules/no-process-exit")
+const { RuleTester } = require("eslint")
+const rule = require("../../../lib/rules/no-process-exit.js")
 
 new RuleTester().run("no-process-exit", rule, {
     valid: ["Process.exit()", "var exit = process.exit;", "f(process.exit)"],

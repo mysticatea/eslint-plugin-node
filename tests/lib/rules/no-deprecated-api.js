@@ -5,7 +5,7 @@
 "use strict"
 
 const { RuleTester } = require("eslint")
-const rule = require("../../../lib/rules/no-deprecated-api")
+const rule = require("../../../lib/rules/no-deprecated-api.js")
 
 const ruleTester = new RuleTester()
 ruleTester.run("no-deprecated-api", rule, {

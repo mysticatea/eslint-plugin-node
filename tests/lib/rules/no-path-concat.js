@@ -7,8 +7,8 @@
 /*eslint-disable no-template-curly-in-string */
 
 const path = require("path")
-const RuleTester = require("eslint").RuleTester
-const rule = require("../../../lib/rules/no-path-concat")
+const { RuleTester } = require("eslint")
+const rule = require("../../../lib/rules/no-path-concat.js")
 
 new RuleTester({
     parserOptions: {

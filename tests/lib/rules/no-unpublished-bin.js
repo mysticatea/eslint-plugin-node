@@ -5,8 +5,8 @@
 "use strict"
 
 const path = require("path")
-const RuleTester = require("eslint").RuleTester
-const rule = require("../../../lib/rules/no-unpublished-bin")
+const { RuleTester } = require("eslint")
+const rule = require("../../../lib/rules/no-unpublished-bin.js")
 
 /**
  * Makes a file path to a fixture.

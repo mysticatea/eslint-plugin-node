@@ -6,7 +6,7 @@
 
 const path = require("path")
 const { Linter, RuleTester } = require("eslint")
-const rule = require("../../../lib/rules/no-extraneous-import")
+const rule = require("../../../lib/rules/no-extraneous-import.js")
 
 const DynamicImportSupported = (() => {
     const config = { parserOptions: { ecmaVersion: 2020 } }

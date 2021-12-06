@@ -4,8 +4,8 @@
  */
 "use strict"
 
-const RuleTester = require("eslint").RuleTester
-const rule = require("../../../lib/rules/exports-style")
+const { RuleTester } = require("eslint")
+const rule = require("../../../lib/rules/exports-style.js")
 
 new RuleTester().run("exports-style", rule, {
     valid: [

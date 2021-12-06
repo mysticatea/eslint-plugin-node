@@ -6,7 +6,7 @@
 
 const { RuleTester } = require("eslint")
 const { builtin } = require("globals")
-const rule = require("../../../../lib/rules/no-unsupported-features/es-builtins")
+const rule = require("../../../../lib/rules/no-unsupported-features/es-builtins.js")
 
 /**
  * Clone given invalid patterns with adding `ignores` option.

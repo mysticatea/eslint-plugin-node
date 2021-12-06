@@ -4,8 +4,8 @@
  */
 "use strict"
 
-const RuleTester = require("eslint").RuleTester
-const rule = require("../../../lib/rules/no-new-require")
+const { RuleTester } = require("eslint")
+const rule = require("../../../lib/rules/no-new-require.js")
 
 new RuleTester().run("no-new-require", rule, {
     valid: [
