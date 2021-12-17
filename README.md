@@ -1,4 +1,6 @@
-# eslint-plugin-node
+# eslint-plugin-n
+
+> forked from [eslint-plugin-node](https://www.npmjs.com/package/eslint-plugin-node) v11.1.0. as the original repository seems [unmaintained](https://github.com/mysticatea/eslint-plugin-node/issues/300).
 
 [![npm version](https://img.shields.io/npm/v/eslint-plugin-node.svg)](https://www.npmjs.com/package/eslint-plugin-node)
 [![Downloads/month](https://img.shields.io/npm/dm/eslint-plugin-node.svg)](http://www.npmtrends.com/eslint-plugin-node)
