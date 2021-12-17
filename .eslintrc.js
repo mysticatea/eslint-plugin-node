@@ -8,7 +8,7 @@
 // to make the ci passing.
 module.exports = {
     reportUnusedDisableDirectives: true,
-    extends: ["eslint:recommended", "plugin:@weiran.zsd/node/recommended", "plugin:eslint-plugin/recommended"],
+    extends: ["eslint:recommended", "plugin:n/recommended", "plugin:eslint-plugin/recommended"],
     env: {
         mocha: true,
     }

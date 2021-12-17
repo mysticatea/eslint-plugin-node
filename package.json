@@ -1,5 +1,5 @@
 {
-  "name": "@weiran.zsd/eslint-plugin-node",
+  "name": "eslint-plugin-n",
   "version": "13.0.1",
   "description": "Additional ESLint's rules for Node.js",
   "engines": {
@@ -26,7 +26,7 @@
     "codecov": "^3.3.0",
     "eslint": "^8.3.0",
     "eslint-plugin-eslint-plugin": "^4.0.1",
-    "@weiran.zsd/eslint-plugin-node": "file:.",
+    "eslint-plugin-n": "file:.",
     "fast-glob": "^2.2.6",
     "globals": "^11.12.0",
     "mocha": "^6.1.4",

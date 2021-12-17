@@ -15,7 +15,7 @@ describe("node/recommended config", () => {
         beforeEach(() => {
             process.chdir(root)
             linter = new ESLint({
-                baseConfig: { extends: "plugin:@weiran.zsd/node/recommended" },
+                baseConfig: { extends: "plugin:n/recommended" },
                 useEslintrc: false,
             })
         })
@@ -78,7 +78,7 @@ describe("node/recommended config", () => {
                     line: 1,
                     message: '"foo" is not found.',
                     nodeType: "Literal",
-                    ruleId: "@weiran.zsd/node/no-missing-import",
+                    ruleId: "n/no-missing-import",
                     severity: 2,
                 },
             ])
@@ -94,7 +94,7 @@ describe("node/recommended config", () => {
         beforeEach(() => {
             process.chdir(root)
             linter = new ESLint({
-                baseConfig: { extends: "plugin:@weiran.zsd/node/recommended" },
+                baseConfig: { extends: "plugin:n/recommended" },
                 useEslintrc: false,
             })
         })
@@ -118,7 +118,7 @@ describe("node/recommended config", () => {
                     line: 1,
                     message: '"foo" is not found.',
                     nodeType: "Literal",
-                    ruleId: "@weiran.zsd/node/no-missing-import",
+                    ruleId: "n/no-missing-import",
                     severity: 2,
                 },
             ])
@@ -159,7 +159,7 @@ describe("node/recommended config", () => {
                     line: 1,
                     message: '"foo" is not found.',
                     nodeType: "Literal",
-                    ruleId: "@weiran.zsd/node/no-missing-import",
+                    ruleId: "n/no-missing-import",
                     severity: 2,
                 },
             ])
