@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-n",
-  "version": "13.0.1",
+  "version": "14.0.0",
   "description": "Additional ESLint's rules for Node.js",
   "engines": {
     "node": ">=12.22.0"
