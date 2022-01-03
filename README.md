@@ -77,7 +77,7 @@ $ npm install --save-dev eslint eslint-plugin-node
 | [node/no-missing-require](./docs/rules/no-missing-require.md) | disallow `require()` expressions which import non-existence modules | ⭐️ |
 | [node/no-new-require](./docs/rules/no-new-require.md) | disallow `new` operators with calls to `require` |  |
 | [node/no-path-concat](./docs/rules/no-path-concat.md) | disallow string concatenation with `__dirname` and `__filename` |  |
-| [node/no-process-exit](./docs/rules/no-process-exit.md) | disallow the use of `process.exit()` |  |
+| [node/no-process-exit](./docs/rules/no-process-exit.md) | disallow the use of `process.exit()` | ⭐️ |
 | [node/no-unpublished-bin](./docs/rules/no-unpublished-bin.md) | disallow `bin` files that npm ignores | ⭐️ |
 | [node/no-unpublished-import](./docs/rules/no-unpublished-import.md) | disallow `import` declarations which import private modules | ⭐️ |
 | [node/no-unpublished-require](./docs/rules/no-unpublished-require.md) | disallow `require()` expressions which import private modules | ⭐️ |
