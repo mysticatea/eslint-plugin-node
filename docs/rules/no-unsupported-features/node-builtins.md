@@ -1,6 +1,6 @@
-# node/no-unsupported-features/node-builtins
+# n/no-unsupported-features/node-builtins
 > disallow unsupported Node.js built-in APIs on the specified version
-> - ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:n/recommended` preset.
 
 Node.js community is improving built-in APIs continuously.
 You can check [Node.js Documentation](https://nodejs.org/api/) to know which Node.js version supports each Node.js API.
@@ -35,7 +35,7 @@ If you omit the [engines] field, this rule chooses `>=8.0.0` as the configured N
 
 ```json
 {
-    "node/no-unsupported-features/node-builtins": ["error", {
+    "n/no-unsupported-features/node-builtins": ["error", {
         "version": ">=8.0.0",
         "ignores": []
     }]

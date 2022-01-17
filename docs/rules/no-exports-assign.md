@@ -1,6 +1,6 @@
-# node/no-exports-assign
+# n/no-exports-assign
 > disallow the assignment to `exports`
-> - ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:n/recommended` preset.
 
 To assign to `exports` variable would not work as expected.
 
@@ -14,12 +14,12 @@ exports = {
 
 ## 📖 Rule Details
 
-This rule is aimed at disallowing `exports = {}`, but allows `module.exports = exports = {}` to avoid conflict with [node/exports-style](./exports-style.md) rule's `allowBatchAssign` option.
+This rule is aimed at disallowing `exports = {}`, but allows `module.exports = exports = {}` to avoid conflict with [n/exports-style](./exports-style.md) rule's `allowBatchAssign` option.
 
 👍 Examples of **correct** code for this rule:
 
 ```js
-/*eslint node/no-exports-assign: error */
+/*eslint n/no-exports-assign: error */
 
 module.exports.foo = 1
 exports.bar = 2
@@ -34,7 +34,7 @@ exports = module.exports = {}
 👎 Examples of **incorrect** code for this rule:
 
 ```js
-/*eslint node/no-exports-assign: error */
+/*eslint n/no-exports-assign: error */
 
 exports = {}
 ```

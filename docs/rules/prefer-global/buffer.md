@@ -1,4 +1,4 @@
-# node/prefer-global/buffer
+# n/prefer-global/buffer
 > enforce either `Buffer` or `require("buffer").Buffer`
 
 The `Buffer` class of `buffer` module is defined as a global variable.
@@ -19,7 +19,7 @@ This rule has a string option.
 
 ```json
 {
-    "node/prefer-global/buffer": ["error", "always" | "never"]
+    "n/prefer-global/buffer": ["error", "always" | "never"]
 }
 ```
 
@@ -31,7 +31,7 @@ This rule has a string option.
 Examples of :-1: **incorrect** code for this rule:
 
 ```js
-/*eslint node/prefer-global/buffer: [error]*/
+/*eslint n/prefer-global/buffer: [error]*/
 
 const { Buffer } = require("buffer")
 const b = Buffer.alloc(16)
@@ -40,7 +40,7 @@ const b = Buffer.alloc(16)
 Examples of :+1: **correct** code for this rule:
 
 ```js
-/*eslint node/prefer-global/buffer: [error]*/
+/*eslint n/prefer-global/buffer: [error]*/
 
 const b = Buffer.alloc(16)
 ```
@@ -50,7 +50,7 @@ const b = Buffer.alloc(16)
 Examples of :-1: **incorrect** code for the `"never"` option:
 
 ```js
-/*eslint node/prefer-global/buffer: [error, never]*/
+/*eslint n/prefer-global/buffer: [error, never]*/
 
 const b = Buffer.alloc(16)
 ```
@@ -58,7 +58,7 @@ const b = Buffer.alloc(16)
 Examples of :+1: **correct** code for the `"never"` option:
 
 ```js
-/*eslint node/prefer-global/buffer: [error, never]*/
+/*eslint n/prefer-global/buffer: [error, never]*/
 
 const { Buffer } = require("buffer")
 const b = Buffer.alloc(16)

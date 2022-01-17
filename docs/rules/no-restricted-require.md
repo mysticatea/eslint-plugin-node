@@ -1,4 +1,4 @@
-# node/no-restricted-require
+# n/no-restricted-require
 > disallow specified modules when loaded by `require`
 
 A module in Node.js is a simple or complex functionality organized in a JavaScript file which can be reused throughout the Node.js
@@ -18,7 +18,7 @@ The rule takes an array as options: the names of restricted modules.
 
 ```json
 {
-  "node/no-restricted-require": ["error", [
+  "n/no-restricted-require": ["error", [
     "foo-module",
     "bar-module"
   ]]
@@ -29,7 +29,7 @@ You may also specify a custom message for each module you want to restrict as fo
 
 ```json
 {
-  "node/no-restricted-require": ["error", [
+  "n/no-restricted-require": ["error", [
     {
       "name": "foo-module",
       "message": "Please use foo-module2 instead."
@@ -46,7 +46,7 @@ And you can use glob patterns in the `name` property.
 
 ```json
 {
-  "node/no-restricted-require": ["error", [
+  "n/no-restricted-require": ["error", [
     {
       "name": "lodash/*",
       "message": "Please use xyz-module instead."
@@ -67,7 +67,7 @@ module.exports = {
     {
       files: "client/**",
       rules: {
-        "node/no-restricted-require": ["error", [
+        "n/no-restricted-require": ["error", [
           {
             name: path.resolve(__dirname, "server/**"),
             message: "Don't use server code from client code."
@@ -78,7 +78,7 @@ module.exports = {
     {
       files: "server/**",
       rules: {
-        "node/no-restricted-require": ["error", [
+        "n/no-restricted-require": ["error", [
           {
             name: path.resolve(__dirname, "client/**"),
             message: "Don't use client code from server code."
@@ -95,7 +95,7 @@ module.exports = {
 Examples of **incorrect** code for this rule with sample `"fs", "cluster", "lodash"` restricted modules:
 
 ```js
-/*eslint node/no-restricted-require: ["error", ["fs", "cluster", "lodash/*"]]*/
+/*eslint n/no-restricted-require: ["error", ["fs", "cluster", "lodash/*"]]*/
 
 const fs = require('fs');
 const cluster = require('cluster');
@@ -105,14 +105,14 @@ const pick = require('lodash/pick');
 Examples of **correct** code for this rule with sample `"fs", "cluster", "lodash"` restricted modules:
 
 ```js
-/*eslint node/no-restricted-require: ["error", ["fs", "cluster", "lodash/*"]]*/
+/*eslint n/no-restricted-require: ["error", ["fs", "cluster", "lodash/*"]]*/
 
 const crypto = require('crypto');
 const _ = require('lodash');
 ```
 
 ```js
-/*eslint node/no-restricted-require: ["error", ["fs", "cluster", { "name": ["lodash/*", "!lodash/pick"] }]]*/
+/*eslint n/no-restricted-require: ["error", ["fs", "cluster", { "name": ["lodash/*", "!lodash/pick"] }]]*/
 
 const pick = require('lodash/pick');
 ```

@@ -1,4 +1,4 @@
-# node/no-path-concat
+# n/no-path-concat
 > disallow string concatenation with `__dirname` and `__filename`
 
 In Node.js, the `__dirname` and `__filename` global variables contain the directory path and the file path of the currently executing script file, respectively. Sometimes, developers try to use these variables to create paths to other files, such as:
@@ -30,7 +30,7 @@ This rule aims to prevent string concatenation of directory paths in Node.js
 Examples of **incorrect** code for this rule:
 
 ```js
-/*eslint node/no-path-concat: "error"*/
+/*eslint n/no-path-concat: "error"*/
 
 const fullPath1 = __dirname + "/foo.js";
 const fullPath2 = __filename + "/foo.js";
@@ -41,7 +41,7 @@ const fullPath4 = `${__filename}/foo.js`;
 Examples of **correct** code for this rule:
 
 ```js
-/*eslint node/no-path-concat: "error"*/
+/*eslint n/no-path-concat: "error"*/
 
 const fullPath1 = path.join(__dirname, "foo.js");
 const fullPath2 = path.join(__filename, "foo.js");

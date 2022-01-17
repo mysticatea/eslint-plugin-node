@@ -1,6 +1,6 @@
-# node/no-missing-require
+# n/no-missing-require
 > disallow `require()` expressions which import non-existence modules
-> - ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:n/recommended` preset.
 
 Maybe we cannot find typo of import paths until run it, so this rule checks import paths.
 
@@ -16,7 +16,7 @@ This rule checks the file paths of `require()`s, then reports the path of files 
 Examples of :-1: **incorrect** code for this rule:
 
 ```js
-/*eslint node/no-missing-require: "error" */
+/*eslint n/no-missing-require: "error" */
 
 var typoFile = require("./typo-file");   /*error "./typo-file" is not found.*/
 var typoModule = require("typo-module"); /*error "typo-module" is not found.*/
@@ -25,7 +25,7 @@ var typoModule = require("typo-module"); /*error "typo-module" is not found.*/
 Examples of :+1: **correct** code for this rule:
 
 ```js
-/*eslint node/no-missing-require: "error" */
+/*eslint n/no-missing-require: "error" */
 
 var existingFile = require("./existing-file");
 var existingModule = require("existing-module");
@@ -39,7 +39,7 @@ var foo = require(FOO_NAME);
 ```json
 {
     "rules": {
-        "node/no-missing-require": ["error", {
+        "n/no-missing-require": ["error", {
             "allowModules": [],
             "resolvePaths": ["/path/to/a/modules/directory"],
             "tryExtensions": [".js", ".json", ".node"]
@@ -59,7 +59,7 @@ This option is an array of strings as module names.
 ```json
 {
     "rules": {
-        "node/no-missing-require": ["error", {
+        "n/no-missing-require": ["error", {
             "allowModules": ["electron"]
         }]
     }
@@ -100,7 +100,7 @@ module.exports = {
         }
     },
     "rules": {
-        "node/no-missing-require": "error"
+        "n/no-missing-require": "error"
     }
 }
 ```

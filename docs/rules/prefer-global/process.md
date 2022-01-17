@@ -1,4 +1,4 @@
-# node/prefer-global/process
+# n/prefer-global/process
 > enforce either `process` or `require("process")`
 
 The `process` module is defined as a global variable.
@@ -19,7 +19,7 @@ This rule has a string option.
 
 ```json
 {
-    "node/prefer-global/process": ["error", "always" | "never"]
+    "n/prefer-global/process": ["error", "always" | "never"]
 }
 ```
 
@@ -31,7 +31,7 @@ This rule has a string option.
 Examples of :-1: **incorrect** code for this rule:
 
 ```js
-/*eslint node/prefer-global/process: [error]*/
+/*eslint n/prefer-global/process: [error]*/
 
 const process = require("process")
 process.exit(0)
@@ -40,7 +40,7 @@ process.exit(0)
 Examples of :+1: **correct** code for this rule:
 
 ```js
-/*eslint node/prefer-global/process: [error]*/
+/*eslint n/prefer-global/process: [error]*/
 
 process.exit(0)
 ```
@@ -50,7 +50,7 @@ process.exit(0)
 Examples of :-1: **incorrect** code for the `"never"` option:
 
 ```js
-/*eslint node/prefer-global/process: [error, never]*/
+/*eslint n/prefer-global/process: [error, never]*/
 
 process.exit(0)
 ```
@@ -58,7 +58,7 @@ process.exit(0)
 Examples of :+1: **correct** code for the `"never"` option:
 
 ```js
-/*eslint node/prefer-global/process: [error, never]*/
+/*eslint n/prefer-global/process: [error, never]*/
 
 const process = require("process")
 process.exit(0)

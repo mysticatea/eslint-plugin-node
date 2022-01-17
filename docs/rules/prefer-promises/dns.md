@@ -1,4 +1,4 @@
-# node/prefer-promises/dns
+# n/prefer-promises/dns
 > enforce `require("dns").promises`
 
 Since Node.js v11.14.0, `require("dns").promises` API has been stable.
@@ -11,7 +11,7 @@ This rule disallows callback API in favor of promise API.
 Examples of :-1: **incorrect** code for this rule:
 
 ```js
-/*eslint node/prefer-promises/dns: [error]*/
+/*eslint n/prefer-promises/dns: [error]*/
 const dns = require("dns")
 
 function lookup(hostname) {
@@ -22,7 +22,7 @@ function lookup(hostname) {
 ```
 
 ```js
-/*eslint node/prefer-promises/dns: [error]*/
+/*eslint n/prefer-promises/dns: [error]*/
 import dns from "dns"
 
 function lookup(hostname) {
@@ -35,7 +35,7 @@ function lookup(hostname) {
 Examples of :+1: **correct** code for this rule:
 
 ```js
-/*eslint node/prefer-promises/dns: [error]*/
+/*eslint n/prefer-promises/dns: [error]*/
 const { promises: dns } = require("dns")
 
 async function lookup(hostname) {
@@ -45,7 +45,7 @@ async function lookup(hostname) {
 ```
 
 ```js
-/*eslint node/prefer-promises/dns: [error]*/
+/*eslint n/prefer-promises/dns: [error]*/
 import { promises as dns } from "dns"
 
 async function lookup(hostname) {

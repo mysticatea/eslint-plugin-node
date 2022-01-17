@@ -1,6 +1,6 @@
-# node/shebang
+# n/shebang
 > suggest correct usage of shebang
-> - ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:n/recommended` preset.
 > - ✒️ The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
 
 When we make a CLI tool with Node.js, we add `bin` field to `package.json`, then we add a shebang the entry file.
@@ -60,7 +60,7 @@ console.log("hello");
 
 ```json
 {
-    "node/shebang": ["error", {"convertPath": null}]
+    "n/shebang": ["error", {"convertPath": null}]
 }
 ```
 
@@ -74,7 +74,7 @@ For example:
 ```json
 {
     "rules": {
-        "node/shebang": ["error", {
+        "n/shebang": ["error", {
             "convertPath": {
                 "src/**/*.jsx": ["^src/(.+?)\\.jsx$", "lib/$1.js"]
             }
@@ -101,7 +101,7 @@ For example:
 ```json
 {
     "rules": {
-        "node/shebang": ["error", {
+        "n/shebang": ["error", {
             "convertPath": [
                 {
                     "include": ["src/**/*.js"],
@@ -136,7 +136,7 @@ For Example:
         }
     },
     "rules": {
-        "node/shebang": "error"
+        "n/shebang": "error"
     }
 }
 ```

@@ -1,6 +1,6 @@
-# node/no-extraneous-import
+# n/no-extraneous-import
 > disallow `import` declarations which import extraneous modules
-> - ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:n/recommended` preset.
 
 If an `import` declaration's source is extraneous (it's not written in `package.json`), the program works in local, but will not work after dependencies are re-installed. It will cause troubles to your team/contributors.
 This rule disallows `import` declarations of extraneous modules.
@@ -14,7 +14,7 @@ This rule warns `import` declarations of extraneous modules.
 ```json
 {
     "rules": {
-        "node/no-extraneous-import": ["error", {
+        "n/no-extraneous-import": ["error", {
             "allowModules": [],
             "resolvePaths": [],
             "tryExtensions": []
@@ -34,7 +34,7 @@ This option is an array of strings as module names.
 ```json
 {
     "rules": {
-        "node/no-extraneous-import": ["error", {
+        "n/no-extraneous-import": ["error", {
             "allowModules": ["electron"]
         }]
     }
@@ -75,7 +75,7 @@ module.exports = {
         }
     },
     "rules": {
-        "node/no-extraneous-import": "error"
+        "n/no-extraneous-import": "error"
     }
 }
 ```

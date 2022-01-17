@@ -1,4 +1,4 @@
-# node/global-require
+# n/global-require
 > require `require()` calls to be placed at top-level module scope
 
 In Node.js, module dependencies are included using the `require()` function, such as:
@@ -29,7 +29,7 @@ This rule requires all calls to `require()` to be at the top level of the module
 Examples of **incorrect** code for this rule:
 
 ```js
-/*eslint node/global-require: "error"*/
+/*eslint n/global-require: "error"*/
 /*eslint-env es6*/
 
 // calling require() inside of a function is not allowed
@@ -61,7 +61,7 @@ try {
 Examples of **correct** code for this rule:
 
 ```js
-/*eslint node/global-require: "error"*/
+/*eslint n/global-require: "error"*/
 
 // all these variations of require() are ok
 require('x');

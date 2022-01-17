@@ -1,4 +1,4 @@
-# node/no-new-require
+# n/no-new-require
 > disallow `new` operators with calls to `require`
 
 The `require` function is used to include modules that exist in separate files, such as:
@@ -28,7 +28,7 @@ This rule aims to eliminate use of the `new require` expression.
 Examples of **incorrect** code for this rule:
 
 ```js
-/*eslint node/no-new-require: "error"*/
+/*eslint n/no-new-require: "error"*/
 
 var appHeader = new require('app-header');
 ```
@@ -36,7 +36,7 @@ var appHeader = new require('app-header');
 Examples of **correct** code for this rule:
 
 ```js
-/*eslint node/no-new-require: "error"*/
+/*eslint n/no-new-require: "error"*/
 
 var AppHeader = require('app-header');
 var appHeader = new AppHeader();

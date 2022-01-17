@@ -1,6 +1,6 @@
-# node/no-deprecated-api
+# n/no-deprecated-api
 > disallow deprecated APIs
-> - ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:n/recommended` preset.
 
 Node has many deprecated API.
 The community is going to remove those API from Node in future, so we should not use those.
@@ -10,7 +10,7 @@ The community is going to remove those API from Node in future, so we should not
 Examples of :-1: **incorrect** code for this rule:
 
 ```js
-/*eslint node/no-deprecated-api: "error" */
+/*eslint n/no-deprecated-api: "error" */
 
 var fs = require("fs");
 fs.exists("./foo.js", function() {}); /*ERROR: 'fs.exists' was deprecated since v4. Use 'fs.stat()' or 'fs.access()' instead.*/
@@ -163,7 +163,7 @@ This rule has 3 options.
 ```json
 {
     "rules": {
-        "node/no-deprecated-api": ["error", {
+        "n/no-deprecated-api": ["error", {
             "version": ">=8.0.0",
             "ignoreModuleItems": [],
             "ignoreGlobalItems": []
@@ -272,7 +272,7 @@ This option can include the following values:
 Examples of :+1: **correct** code for the `{"ignoreModuleItems": ["new buffer.Buffer()"]}`:
 
 ```js
-/*eslint node/no-deprecated-api: [error, {ignoreModuleItems: ["new buffer.Buffer()"]}] */
+/*eslint n/no-deprecated-api: [error, {ignoreModuleItems: ["new buffer.Buffer()"]}] */
 
 const buffer = require("buffer")
 const data = new buffer.Buffer(10) // OK since it's in ignoreModuleItems.
@@ -304,7 +304,7 @@ This option can include the following values:
 Examples of :+1: **correct** code for the `{"ignoreGlobalItems": ["new Buffer()"]}`:
 
 ```js
-/*eslint node/no-deprecated-api: [error, {ignoreGlobalItems: ["new Buffer()"]}] */
+/*eslint n/no-deprecated-api: [error, {ignoreGlobalItems: ["new Buffer()"]}] */
 
 const data = new Buffer(10) // OK since it's in ignoreGlobalItems.
 ```

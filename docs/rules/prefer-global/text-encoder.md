@@ -1,4 +1,4 @@
-# node/prefer-global/text-encoder
+# n/prefer-global/text-encoder
 > enforce either `TextEncoder` or `require("util").TextEncoder`
 
 The `TextEncoder` class of `util` module is defined as a global variable.
@@ -19,7 +19,7 @@ This rule has a string option.
 
 ```json
 {
-    "node/prefer-global/text-encoder": ["error", "always" | "never"]
+    "n/prefer-global/text-encoder": ["error", "always" | "never"]
 }
 ```
 
@@ -31,7 +31,7 @@ This rule has a string option.
 Examples of :-1: **incorrect** code for this rule:
 
 ```js
-/*eslint node/prefer-global/text-encoder: [error]*/
+/*eslint n/prefer-global/text-encoder: [error]*/
 
 const { TextEncoder } = require("util")
 const u = new TextEncoder(s)
@@ -40,7 +40,7 @@ const u = new TextEncoder(s)
 Examples of :+1: **correct** code for this rule:
 
 ```js
-/*eslint node/prefer-global/text-encoder: [error]*/
+/*eslint n/prefer-global/text-encoder: [error]*/
 
 const u = new TextEncoder(s)
 ```
@@ -50,7 +50,7 @@ const u = new TextEncoder(s)
 Examples of :-1: **incorrect** code for the `"never"` option:
 
 ```js
-/*eslint node/prefer-global/text-encoder: [error, never]*/
+/*eslint n/prefer-global/text-encoder: [error, never]*/
 
 const u = new TextEncoder(s)
 ```
@@ -58,7 +58,7 @@ const u = new TextEncoder(s)
 Examples of :+1: **correct** code for the `"never"` option:
 
 ```js
-/*eslint node/prefer-global/text-encoder: [error, never]*/
+/*eslint n/prefer-global/text-encoder: [error, never]*/
 
 const { TextEncoder } = require("util")
 const u = new TextEncoder(s)

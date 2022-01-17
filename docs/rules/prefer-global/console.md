@@ -1,4 +1,4 @@
-# node/prefer-global/console
+# n/prefer-global/console
 > enforce either `console` or `require("console")`
 
 The `console` module is defined as a global variable.
@@ -19,7 +19,7 @@ This rule has a string option.
 
 ```json
 {
-    "node/prefer-global/console": ["error", "always" | "never"]
+    "n/prefer-global/console": ["error", "always" | "never"]
 }
 ```
 
@@ -31,7 +31,7 @@ This rule has a string option.
 Examples of :-1: **incorrect** code for this rule:
 
 ```js
-/*eslint node/prefer-global/console: [error]*/
+/*eslint n/prefer-global/console: [error]*/
 
 const console = require("console")
 console.log("hello")
@@ -40,7 +40,7 @@ console.log("hello")
 Examples of :+1: **correct** code for this rule:
 
 ```js
-/*eslint node/prefer-global/console: [error]*/
+/*eslint n/prefer-global/console: [error]*/
 
 console.log("hello")
 ```
@@ -50,7 +50,7 @@ console.log("hello")
 Examples of :-1: **incorrect** code for the `"never"` option:
 
 ```js
-/*eslint node/prefer-global/console: [error, never]*/
+/*eslint n/prefer-global/console: [error, never]*/
 
 console.log("hello")
 ```
@@ -58,7 +58,7 @@ console.log("hello")
 Examples of :+1: **correct** code for the `"never"` option:
 
 ```js
-/*eslint node/prefer-global/console: [error, never]*/
+/*eslint n/prefer-global/console: [error, never]*/
 
 const console = require("console")
 console.log("hello")

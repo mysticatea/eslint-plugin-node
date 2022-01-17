@@ -1,8 +1,8 @@
-# node/no-unsupported-features
+# n/no-unsupported-features
 > disallow unsupported ECMAScript features on the specified version
-> - ⛔ This rule has been deprecated. Use [node/no-unsupported-features/es-syntax](./no-unsupported-features/es-syntax.md) and [node/no-unsupported-features/es-builtins](./no-unsupported-features/es-builtins.md) instead.
+> - ⛔ This rule has been deprecated. Use [n/no-unsupported-features/es-syntax](./no-unsupported-features/es-syntax.md) and [n/no-unsupported-features/es-builtins](./no-unsupported-features/es-builtins.md) instead.
 
-**:warning: This is deprecated since v7.0.0.** Use [node/no-unsupported-features/es-syntax](./no-unsupported-features/es-syntax.md) and [node/no-unsupported-features/es-builtins](./no-unsupported-features/es-builtins.md) instead.
+**:warning: This is deprecated since v7.0.0.** Use [n/no-unsupported-features/es-syntax](./no-unsupported-features/es-syntax.md) and [n/no-unsupported-features/es-builtins](./no-unsupported-features/es-builtins.md) instead.
 
 Node.js doesn't support all ECMAScript standard features.
 This rule reports when you used unsupported ECMAScript 2015-2018 features on the specified Node.js version.
@@ -41,7 +41,7 @@ If the [engines] field is omitted, this rule chooses `4` since it's the minimum 
 Examples of :-1: **incorrect** code for this rule:
 
 ```js
-/*eslint node/no-unsupported-features: ["error", {version: 4}]*/
+/*eslint n/no-unsupported-features: ["error", {version: 4}]*/
 /*eslint-env es6*/
 
 function foo(a = 1) {  /*error Default Parameters are not supported yet on Node v4.*/
@@ -76,7 +76,7 @@ var p = new Proxy(o, { /*error Proxy is not supported yet on Node v4.*/
 Examples of :+1: **correct** code for this rule:
 
 ```js
-/*eslint node/no-unsupported-features: ["error", {version: 4}]*/
+/*eslint n/no-unsupported-features: ["error", {version: 4}]*/
 /*eslint-env es6*/
 
 for (var a of list) {
@@ -111,7 +111,7 @@ var p = new Promise((resolve, reject) => {
 
 ```json
 {
-    "node/no-unsupported-features": ["error", {
+    "n/no-unsupported-features": ["error", {
         "version": 4,
         "ignores": []
     }]
@@ -283,7 +283,7 @@ e.g. if `"String.*"` is given then `"String.raw"` and `"String.fromCodePoint"` a
 Examples of :+1: **correct** code for the `"ignores"` option:
 
 ```js
-/*eslint node/no-unsupported-features: ["error", {version: 4, ignores: ["defaultParameters"]}]*/
+/*eslint n/no-unsupported-features: ["error", {version: 4, ignores: ["defaultParameters"]}]*/
 /*eslint-env es6*/
 
 function foo(a = 1) {

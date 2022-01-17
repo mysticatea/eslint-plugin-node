@@ -1,4 +1,4 @@
-# node/no-hide-core-modules
+# n/no-hide-core-modules
 > disallow third-party modules which are hiding core modules
 > - ⛔ This rule has been deprecated.
 
@@ -15,7 +15,7 @@ This rule warns `require()` expressions and `import` declarations if those impor
 :-1: Examples of **incorrect** code for this rule:
 
 ```js
-/*eslint node/no-hide-core-modules: "error"*/
+/*eslint n/no-hide-core-modules: "error"*/
 
 const util = require("util")  // ERROR if `util` module exists in node_modules directory.
 const path = require("path")  // ERROR if `path` module exists in node_modules directory.
@@ -25,7 +25,7 @@ const path = require("path")  // ERROR if `path` module exists in node_modules d
 :+1: Examples of **correct** code for this rule:
 
 ```js
-/*eslint node/no-hide-core-modules: "error"*/
+/*eslint n/no-hide-core-modules: "error"*/
 
 const util = require("util")  // OK if this is the core module 'util' surely.
 const path = require("path")  // OK if this is the core module 'path' surely.
@@ -35,7 +35,7 @@ const path = require("path")  // OK if this is the core module 'path' surely.
 
 ```json
 {
-    "node/no-hide-core-modules": ["error", {
+    "n/no-hide-core-modules": ["error", {
         "allow": [],
         "ignoreDirectDependencies": false,
         "ignoreIndirectDependencies": false,

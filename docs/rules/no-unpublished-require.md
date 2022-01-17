@@ -1,6 +1,6 @@
-# node/no-unpublished-require
+# n/no-unpublished-require
 > disallow `require()` expressions which import private modules
-> - ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:n/recommended` preset.
 
 If a `require()` expression's target is not published, the program works in local, but will not work after published to npm.
 This rule disallows `require()` expressions of unpublished files/modules.
@@ -22,7 +22,7 @@ Then this rule warns `require()` expressions in \*published\* files if the `requ
 ```json
 {
     "rules": {
-        "node/no-unpublished-require": ["error", {
+        "n/no-unpublished-require": ["error", {
             "allowModules": [],
             "convertPath": null,
             "tryExtensions": [".js", ".json", ".node"]
@@ -42,7 +42,7 @@ This option is an array of strings as module names.
 ```json
 {
     "rules": {
-        "node/no-unpublished-require": ["error", {
+        "n/no-unpublished-require": ["error", {
             "allowModules": ["electron"]
         }]
     }
@@ -59,7 +59,7 @@ For example:
 ```json
 {
     "rules": {
-        "node/no-unpublished-require": ["error", {
+        "n/no-unpublished-require": ["error", {
             "convertPath": {
                 "src/**/*.jsx": ["^src/(.+?)\\.jsx$", "lib/$1.js"]
             },
@@ -87,7 +87,7 @@ For example:
 ```json
 {
     "rules": {
-        "node/no-unpublished-require": ["error", {
+        "n/no-unpublished-require": ["error", {
             "convertPath": [
                 {
                     "include": ["src/**/*.js"],
@@ -133,7 +133,7 @@ For Example:
         }
     },
     "rules": {
-        "node/no-unpublished-require": "error"
+        "n/no-unpublished-require": "error"
     }
 }
 ```

@@ -1,6 +1,6 @@
-# node/no-missing-import
+# n/no-missing-import
 > disallow `import` declarations which import non-existence modules
-> - ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:n/recommended` preset.
 
 This is similar to [no-missing-require](no-missing-require.md), but this rule handles `import` and `export` declarations.
 
@@ -14,7 +14,7 @@ If the file paths don't exist, this reports these.
 Examples of :-1: **incorrect** code for this rule:
 
 ```js
-/*eslint node/no-missing-import: "error" */
+/*eslint n/no-missing-import: "error" */
 
 import typoFile from "./typo-file";   /*ERROR: "./typo-file" is not found.*/
 import typoModule from "typo-module"; /*ERROR: "typo-module" is not found.*/
@@ -23,7 +23,7 @@ import typoModule from "typo-module"; /*ERROR: "typo-module" is not found.*/
 Examples of :+1: **correct** code for this rule:
 
 ```js
-/*eslint node/no-missing-import: "error" */
+/*eslint n/no-missing-import: "error" */
 
 import existingFile from "./existing-file";
 import existingModule from "existing-module";
@@ -34,7 +34,7 @@ import existingModule from "existing-module";
 ```json
 {
     "rules": {
-        "node/no-missing-import": ["error", {
+        "n/no-missing-import": ["error", {
             "allowModules": [],
             "resolvePaths": ["/path/to/a/modules/directory"],
             "tryExtensions": [".js", ".json", ".node"]
@@ -54,7 +54,7 @@ This option is an array of strings as module names.
 ```json
 {
     "rules": {
-        "node/no-missing-import": ["error", {
+        "n/no-missing-import": ["error", {
             "allowModules": ["electron"]
         }]
     }
@@ -95,7 +95,7 @@ module.exports = {
         }
     },
     "rules": {
-        "node/no-missing-import": "error"
+        "n/no-missing-import": "error"
     }
 }
 ```

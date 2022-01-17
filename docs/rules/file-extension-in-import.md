@@ -1,4 +1,4 @@
-# node/file-extension-in-import
+# n/file-extension-in-import
 > enforce the style of file extensions in `import` declarations
 > - ✒️ The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
 
@@ -23,7 +23,7 @@ This rule has a string option and an object option.
 
 ```json
 {
-    "node/file-extension-in-import": [
+    "n/file-extension-in-import": [
         "error",
         "always" or "never",
         {
@@ -44,7 +44,7 @@ This rule has a string option and an object option.
 Examples of :-1: **incorrect** code for the `"always"` option:
 
 ```js
-/*eslint node/file-extension-in-import: ["error", "always"]*/
+/*eslint n/file-extension-in-import: ["error", "always"]*/
 
 import foo from "./path/to/a/file"
 ```
@@ -52,7 +52,7 @@ import foo from "./path/to/a/file"
 Examples of :+1: **correct** code for the `"always"` option:
 
 ```js
-/*eslint node/file-extension-in-import: ["error", "always"]*/
+/*eslint n/file-extension-in-import: ["error", "always"]*/
 
 import eslint from "eslint"
 import foo from "./path/to/a/file.js"
@@ -63,7 +63,7 @@ import foo from "./path/to/a/file.js"
 Examples of :-1: **incorrect** code for the `"never"` option:
 
 ```js
-/*eslint node/file-extension-in-import: ["error", "never"]*/
+/*eslint n/file-extension-in-import: ["error", "never"]*/
 
 import foo from "./path/to/a/file.js"
 ```
@@ -71,7 +71,7 @@ import foo from "./path/to/a/file.js"
 Examples of :+1: **correct** code for the `"never"` option:
 
 ```js
-/*eslint node/file-extension-in-import: ["error", "never"]*/
+/*eslint n/file-extension-in-import: ["error", "never"]*/
 
 import eslint from "eslint"
 import foo from "./path/to/a/file"
@@ -82,7 +82,7 @@ import foo from "./path/to/a/file"
 Examples of :+1: **correct** code for the `["always", { ".js": "never" }]` option:
 
 ```js
-/*eslint node/file-extension-in-import: ["error", "always", { ".js": "never" }]*/
+/*eslint n/file-extension-in-import: ["error", "always", { ".js": "never" }]*/
 
 import eslint from "eslint"
 import script from "./script"
@@ -106,7 +106,7 @@ module.exports = {
         }
     },
     "rules": {
-        "node/file-extension-in-import": "error"
+        "n/file-extension-in-import": "error"
     }
 }
 ```

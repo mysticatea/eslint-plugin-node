@@ -1,6 +1,6 @@
-# node/no-unsupported-features/es-syntax
+# n/no-unsupported-features/es-syntax
 > disallow unsupported ECMAScript syntax on the specified version
-> - ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:n/recommended` preset.
 
 ECMAScript standard is updating every two months.
 You can check [node.green](https://node.green/) to know which Node.js version supports each ECMAScript feature.
@@ -41,7 +41,7 @@ If you omit the [engines] field, this rule chooses `>=8.0.0` as the configured N
 
 ```json
 {
-    "node/no-unsupported-features/es-syntax": ["error", {
+    "n/no-unsupported-features/es-syntax": ["error", {
         "version": ">=8.0.0",
         "ignores": []
     }]

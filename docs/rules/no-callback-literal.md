@@ -1,4 +1,4 @@
-# node/no-callback-literal
+# n/no-callback-literal
 > ensure Node.js-style error-first callback pattern is followed
 
 When invoking a callback function which uses the Node.js error-first callback pattern, all of your errors should either use the `Error` class or a subclass of it. It is also acceptable to use `undefined` or `null` if there is no error.
@@ -10,7 +10,7 @@ When a function is named `cb` or `callback`, then it must be invoked with a firs
 Examples of :-1: **incorrect** code for this rule:
 
 ```js
-/*eslint node/no-callback-literal: "error" */
+/*eslint n/no-callback-literal: "error" */
 
 cb('this is an error string');
 cb({ a: 1 });
@@ -20,7 +20,7 @@ callback(0);
 Examples of :+1: **correct** code for this rule:
 
 ```js
-/*eslint node/no-callback-literal: "error" */
+/*eslint n/no-callback-literal: "error" */
 
 cb(undefined);
 cb(null, 5);
@@ -33,7 +33,7 @@ callback(someVariable);
 ```json
 {
     "rules": {
-        "node/no-callback-literal": "error"
+        "n/no-callback-literal": "error"
     }
 }
 ```

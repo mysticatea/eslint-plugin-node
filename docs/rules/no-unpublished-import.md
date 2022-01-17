@@ -1,6 +1,6 @@
-# node/no-unpublished-import
+# n/no-unpublished-import
 > disallow `import` declarations which import private modules
-> - ⭐️ This rule is included in `plugin:node/recommended` preset.
+> - ⭐️ This rule is included in `plugin:n/recommended` preset.
 
 This is similar to [no-unpublished-require](no-unpublished-require.md), but this rule handles `import` declarations.
 
@@ -23,7 +23,7 @@ Then this rule warns `import` declarations in \*published\* files if the `import
 ```json
 {
     "rules": {
-        "node/no-unpublished-import": ["error", {
+        "n/no-unpublished-import": ["error", {
             "allowModules": [],
             "convertPath": null,
             "tryExtensions": [".js", ".json", ".node"]
@@ -43,7 +43,7 @@ This option is an array of strings as module names.
 ```json
 {
     "rules": {
-        "node/no-unpublished-import": ["error", {
+        "n/no-unpublished-import": ["error", {
             "allowModules": ["electron"]
         }]
     }
@@ -60,7 +60,7 @@ For example:
 ```json
 {
     "rules": {
-        "node/no-unpublished-import": ["error", {
+        "n/no-unpublished-import": ["error", {
             "convertPath": {
                 "src/**/*.jsx": ["^src/(.+?)\\.jsx$", "lib/$1.js"]
             },
@@ -88,7 +88,7 @@ For example:
 ```json
 {
     "rules": {
-        "node/no-unpublished-import": ["error", {
+        "n/no-unpublished-import": ["error", {
             "convertPath": [
                 {
                     "include": ["src/**/*.js"],
@@ -134,7 +134,7 @@ For Example:
         }
     },
     "rules": {
-        "node/no-unpublished-import": "error"
+        "n/no-unpublished-import": "error"
     }
 }
 ```
