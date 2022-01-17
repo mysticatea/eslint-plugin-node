@@ -1,25 +1,25 @@
 # eslint-plugin-n
 
-> forked from [eslint-plugin-node](https://www.npmjs.com/package/eslint-plugin-node) v11.1.0. as the original repository seems [unmaintained](https://github.com/mysticatea/eslint-plugin-node/issues/300).
+> forked from [eslint-plugin-node](https://www.npmjs.com/package/eslint-plugin-node) v11.1.0. as the original repository seems [no longer maintained](https://github.com/mysticatea/eslint-plugin-node/issues/300).
 
-[![npm version](https://img.shields.io/npm/v/eslint-plugin-node.svg)](https://www.npmjs.com/package/eslint-plugin-node)
-[![Downloads/month](https://img.shields.io/npm/dm/eslint-plugin-node.svg)](http://www.npmtrends.com/eslint-plugin-node)
-[![Build Status](https://github.com/mysticatea/eslint-plugin-node/workflows/CI/badge.svg)](https://github.com/mysticatea/eslint-plugin-node/actions)
-[![Coverage Status](https://codecov.io/gh/mysticatea/eslint-plugin-node/branch/master/graph/badge.svg)](https://codecov.io/gh/mysticatea/eslint-plugin-node)
-[![Dependency Status](https://david-dm.org/mysticatea/eslint-plugin-node.svg)](https://david-dm.org/mysticatea/eslint-plugin-node)
+[![npm version](https://img.shields.io/npm/v/eslint-plugin-n.svg)](https://www.npmjs.com/package/eslint-plugin-n)
+[![Downloads/month](https://img.shields.io/npm/dm/eslint-plugin-n.svg)](http://www.npmtrends.com/eslint-plugin-n)
+[![Build Status](https://github.com/weiran-zsd/eslint-plugin-node/workflows/CI/badge.svg)](https://github.com/weiran-zsd/eslint-plugin-node/actions)
+[![Coverage Status](https://codecov.io/gh/weiran-zsd/eslint-plugin-node/branch/master/graph/badge.svg)](https://codecov.io/gh/weiran-zsd/eslint-plugin-node)
+[![Dependency Status](https://david-dm.org/weiran-zsd/eslint-plugin-node.svg)](https://david-dm.org/weiran-zsd/eslint-plugin-node)
 
 Additional ESLint's rules for Node.js
 
 ## 💿 Install & Usage
 
 ```
-$ npm install --save-dev eslint eslint-plugin-node
+$ npm install --save-dev eslint eslint-plugin-n
 ```
 
 - Requires Node.js `>=8.10.0`
 - Requires ESLint `>=5.16.0`
 
-**Note:** It recommends a use of [the "engines" field of package.json](https://docs.npmjs.com/files/package.json#engines). The "engines" field is used by `node/no-unsupported-features/*` rules.
+**Note:** It recommends a use of [the "engines" field of package.json](https://docs.npmjs.com/files/package.json#engines). The "engines" field is used by `n/no-unsupported-features/*` rules.
 
 **.eslintrc.json** (An example)
 
@@ -27,22 +27,22 @@ $ npm install --save-dev eslint eslint-plugin-node
 {
     "extends": [
         "eslint:recommended",
-        "plugin:node/recommended"
+        "plugin:n/recommended"
     ],
     "parserOptions": {
         // Only ESLint 6.2.0 and later support ES2020.
         "ecmaVersion": 2020
     },
     "rules": {
-        "node/exports-style": ["error", "module.exports"],
-        "node/file-extension-in-import": ["error", "always"],
-        "node/prefer-global/buffer": ["error", "always"],
-        "node/prefer-global/console": ["error", "always"],
-        "node/prefer-global/process": ["error", "always"],
-        "node/prefer-global/url-search-params": ["error", "always"],
-        "node/prefer-global/url": ["error", "always"],
-        "node/prefer-promises/dns": "error",
-        "node/prefer-promises/fs": "error"
+        "n/exports-style": ["error", "module.exports"],
+        "n/file-extension-in-import": ["error", "always"],
+        "n/prefer-global/buffer": ["error", "always"],
+        "n/prefer-global/console": ["error", "always"],
+        "n/prefer-global/process": ["error", "always"],
+        "n/prefer-global/url-search-params": ["error", "always"],
+        "n/prefer-global/url": ["error", "always"],
+        "n/prefer-promises/dns": "error",
+        "n/prefer-promises/fs": "error"
     }
 }
 ```
@@ -70,53 +70,53 @@ $ npm install --save-dev eslint eslint-plugin-node
 
 | Rule ID | Description |    |
 |:--------|:------------|:--:|
-| [node/handle-callback-err](./docs/rules/handle-callback-err.md) | require error handling in callbacks |  |
-| [node/no-callback-literal](./docs/rules/no-callback-literal.md) | ensure Node.js-style error-first callback pattern is followed |  |
-| [node/no-exports-assign](./docs/rules/no-exports-assign.md) | disallow the assignment to `exports` | ⭐️ |
-| [node/no-extraneous-import](./docs/rules/no-extraneous-import.md) | disallow `import` declarations which import extraneous modules | ⭐️ |
-| [node/no-extraneous-require](./docs/rules/no-extraneous-require.md) | disallow `require()` expressions which import extraneous modules | ⭐️ |
-| [node/no-missing-import](./docs/rules/no-missing-import.md) | disallow `import` declarations which import non-existence modules | ⭐️ |
-| [node/no-missing-require](./docs/rules/no-missing-require.md) | disallow `require()` expressions which import non-existence modules | ⭐️ |
-| [node/no-new-require](./docs/rules/no-new-require.md) | disallow `new` operators with calls to `require` |  |
-| [node/no-path-concat](./docs/rules/no-path-concat.md) | disallow string concatenation with `__dirname` and `__filename` |  |
-| [node/no-process-exit](./docs/rules/no-process-exit.md) | disallow the use of `process.exit()` |  |
-| [node/no-unpublished-bin](./docs/rules/no-unpublished-bin.md) | disallow `bin` files that npm ignores | ⭐️ |
-| [node/no-unpublished-import](./docs/rules/no-unpublished-import.md) | disallow `import` declarations which import private modules | ⭐️ |
-| [node/no-unpublished-require](./docs/rules/no-unpublished-require.md) | disallow `require()` expressions which import private modules | ⭐️ |
-| [node/no-unsupported-features/es-builtins](./docs/rules/no-unsupported-features/es-builtins.md) | disallow unsupported ECMAScript built-ins on the specified version | ⭐️ |
-| [node/no-unsupported-features/es-syntax](./docs/rules/no-unsupported-features/es-syntax.md) | disallow unsupported ECMAScript syntax on the specified version | ⭐️ |
-| [node/no-unsupported-features/node-builtins](./docs/rules/no-unsupported-features/node-builtins.md) | disallow unsupported Node.js built-in APIs on the specified version | ⭐️ |
-| [node/process-exit-as-throw](./docs/rules/process-exit-as-throw.md) | make `process.exit()` expressions the same code path as `throw` | ⭐️ |
-| [node/shebang](./docs/rules/shebang.md) | suggest correct usage of shebang | ⭐️✒️ |
+| [n/handle-callback-err](./docs/rules/handle-callback-err.md) | require error handling in callbacks |  |
+| [n/no-callback-literal](./docs/rules/no-callback-literal.md) | ensure Node.js-style error-first callback pattern is followed |  |
+| [n/no-exports-assign](./docs/rules/no-exports-assign.md) | disallow the assignment to `exports` | ⭐️ |
+| [n/no-extraneous-import](./docs/rules/no-extraneous-import.md) | disallow `import` declarations which import extraneous modules | ⭐️ |
+| [n/no-extraneous-require](./docs/rules/no-extraneous-require.md) | disallow `require()` expressions which import extraneous modules | ⭐️ |
+| [n/no-missing-import](./docs/rules/no-missing-import.md) | disallow `import` declarations which import non-existence modules | ⭐️ |
+| [n/no-missing-require](./docs/rules/no-missing-require.md) | disallow `require()` expressions which import non-existence modules | ⭐️ |
+| [n/no-new-require](./docs/rules/no-new-require.md) | disallow `new` operators with calls to `require` |  |
+| [n/no-path-concat](./docs/rules/no-path-concat.md) | disallow string concatenation with `__dirname` and `__filename` |  |
+| [n/no-process-exit](./docs/rules/no-process-exit.md) | disallow the use of `process.exit()` |  |
+| [n/no-unpublished-bin](./docs/rules/no-unpublished-bin.md) | disallow `bin` files that npm ignores | ⭐️ |
+| [n/no-unpublished-import](./docs/rules/no-unpublished-import.md) | disallow `import` declarations which import private modules | ⭐️ |
+| [n/no-unpublished-require](./docs/rules/no-unpublished-require.md) | disallow `require()` expressions which import private modules | ⭐️ |
+| [n/no-unsupported-features/es-builtins](./docs/rules/no-unsupported-features/es-builtins.md) | disallow unsupported ECMAScript built-ins on the specified version | ⭐️ |
+| [n/no-unsupported-features/es-syntax](./docs/rules/no-unsupported-features/es-syntax.md) | disallow unsupported ECMAScript syntax on the specified version | ⭐️ |
+| [n/no-unsupported-features/node-builtins](./docs/rules/no-unsupported-features/node-builtins.md) | disallow unsupported Node.js built-in APIs on the specified version | ⭐️ |
+| [n/process-exit-as-throw](./docs/rules/process-exit-as-throw.md) | make `process.exit()` expressions the same code path as `throw` | ⭐️ |
+| [n/shebang](./docs/rules/shebang.md) | suggest correct usage of shebang | ⭐️✒️ |
 
 ### Best Practices
 
 | Rule ID | Description |    |
 |:--------|:------------|:--:|
-| [node/no-deprecated-api](./docs/rules/no-deprecated-api.md) | disallow deprecated APIs | ⭐️ |
+| [n/no-deprecated-api](./docs/rules/no-deprecated-api.md) | disallow deprecated APIs | ⭐️ |
 
 ### Stylistic Issues
 
 | Rule ID | Description |    |
 |:--------|:------------|:--:|
-| [node/callback-return](./docs/rules/callback-return.md) | require `return` statements after callbacks |  |
-| [node/exports-style](./docs/rules/exports-style.md) | enforce either `module.exports` or `exports` |  |
-| [node/file-extension-in-import](./docs/rules/file-extension-in-import.md) | enforce the style of file extensions in `import` declarations | ✒️ |
-| [node/global-require](./docs/rules/global-require.md) | require `require()` calls to be placed at top-level module scope |  |
-| [node/no-mixed-requires](./docs/rules/no-mixed-requires.md) | disallow `require` calls to be mixed with regular variable declarations |  |
-| [node/no-process-env](./docs/rules/no-process-env.md) | disallow the use of `process.env` |  |
-| [node/no-restricted-import](./docs/rules/no-restricted-import.md) | disallow specified modules when loaded by `import` declarations |  |
-| [node/no-restricted-require](./docs/rules/no-restricted-require.md) | disallow specified modules when loaded by `require` |  |
-| [node/no-sync](./docs/rules/no-sync.md) | disallow synchronous methods |  |
-| [node/prefer-global/buffer](./docs/rules/prefer-global/buffer.md) | enforce either `Buffer` or `require("buffer").Buffer` |  |
-| [node/prefer-global/console](./docs/rules/prefer-global/console.md) | enforce either `console` or `require("console")` |  |
-| [node/prefer-global/process](./docs/rules/prefer-global/process.md) | enforce either `process` or `require("process")` |  |
-| [node/prefer-global/text-decoder](./docs/rules/prefer-global/text-decoder.md) | enforce either `TextDecoder` or `require("util").TextDecoder` |  |
-| [node/prefer-global/text-encoder](./docs/rules/prefer-global/text-encoder.md) | enforce either `TextEncoder` or `require("util").TextEncoder` |  |
-| [node/prefer-global/url-search-params](./docs/rules/prefer-global/url-search-params.md) | enforce either `URLSearchParams` or `require("url").URLSearchParams` |  |
-| [node/prefer-global/url](./docs/rules/prefer-global/url.md) | enforce either `URL` or `require("url").URL` |  |
-| [node/prefer-promises/dns](./docs/rules/prefer-promises/dns.md) | enforce `require("dns").promises` |  |
-| [node/prefer-promises/fs](./docs/rules/prefer-promises/fs.md) | enforce `require("fs").promises` |  |
+| [n/callback-return](./docs/rules/callback-return.md) | require `return` statements after callbacks |  |
+| [n/exports-style](./docs/rules/exports-style.md) | enforce either `module.exports` or `exports` |  |
+| [n/file-extension-in-import](./docs/rules/file-extension-in-import.md) | enforce the style of file extensions in `import` declarations | ✒️ |
+| [n/global-require](./docs/rules/global-require.md) | require `require()` calls to be placed at top-level module scope |  |
+| [n/no-mixed-requires](./docs/rules/no-mixed-requires.md) | disallow `require` calls to be mixed with regular variable declarations |  |
+| [n/no-process-env](./docs/rules/no-process-env.md) | disallow the use of `process.env` |  |
+| [n/no-restricted-import](./docs/rules/no-restricted-import.md) | disallow specified modules when loaded by `import` declarations |  |
+| [n/no-restricted-require](./docs/rules/no-restricted-require.md) | disallow specified modules when loaded by `require` |  |
+| [n/no-sync](./docs/rules/no-sync.md) | disallow synchronous methods |  |
+| [n/prefer-global/buffer](./docs/rules/prefer-global/buffer.md) | enforce either `Buffer` or `require("buffer").Buffer` |  |
+| [n/prefer-global/console](./docs/rules/prefer-global/console.md) | enforce either `console` or `require("console")` |  |
+| [n/prefer-global/process](./docs/rules/prefer-global/process.md) | enforce either `process` or `require("process")` |  |
+| [n/prefer-global/text-decoder](./docs/rules/prefer-global/text-decoder.md) | enforce either `TextDecoder` or `require("util").TextDecoder` |  |
+| [n/prefer-global/text-encoder](./docs/rules/prefer-global/text-encoder.md) | enforce either `TextEncoder` or `require("util").TextEncoder` |  |
+| [n/prefer-global/url-search-params](./docs/rules/prefer-global/url-search-params.md) | enforce either `URLSearchParams` or `require("url").URLSearchParams` |  |
+| [n/prefer-global/url](./docs/rules/prefer-global/url.md) | enforce either `URL` or `require("url").URL` |  |
+| [n/prefer-promises/dns](./docs/rules/prefer-promises/dns.md) | enforce `require("dns").promises` |  |
+| [n/prefer-promises/fs](./docs/rules/prefer-promises/fs.md) | enforce `require("fs").promises` |  |
 
 ### Deprecated rules
 
@@ -124,8 +124,8 @@ These rules have been deprecated in accordance with the [deprecation policy](htt
 
 | Rule ID | Replaced by |
 |:--------|:------------|
-| [node/no-hide-core-modules](./docs/rules/no-hide-core-modules.md) | (nothing) |
-| [node/no-unsupported-features](./docs/rules/no-unsupported-features.md) | [node/no-unsupported-features/es-syntax](./docs/rules/no-unsupported-features/es-syntax.md) and [node/no-unsupported-features/es-builtins](./docs/rules/no-unsupported-features/es-builtins.md) |
+| [n/no-hide-core-modules](./docs/rules/no-hide-core-modules.md) | (nothing) |
+| [n/no-unsupported-features](./docs/rules/no-unsupported-features.md) | [n/no-unsupported-features/es-syntax](./docs/rules/no-unsupported-features/es-syntax.md) and [n/no-unsupported-features/es-builtins](./docs/rules/no-unsupported-features/es-builtins.md) |
 
 <!--RULES_TABLE_END-->
 
@@ -133,9 +133,9 @@ These rules have been deprecated in accordance with the [deprecation policy](htt
 
 This plugin provides three configs:
 
-- `plugin:node/recommended` considers both CommonJS and ES Modules. If [`"type":"module"` field](https://medium.com/@nodejs/announcing-a-new-experimental-modules-1be8d2d6c2ff#b023) existed in package.json then it considers files as ES Modules. Otherwise it considers files as CommonJS. In addition, it considers `*.mjs` files as ES Modules and `*.cjs` files as CommonJS.
-- `plugin:node/recommended-module` considers all files as ES Modules.
-- `plugin:node/recommended-script` considers all files as CommonJS.
+- `plugin:n/recommended` considers both CommonJS and ES Modules. If [`"type":"module"` field](https://medium.com/@nodejs/announcing-a-new-experimental-modules-1be8d2d6c2ff#b023) existed in package.json then it considers files as ES Modules. Otherwise it considers files as CommonJS. In addition, it considers `*.mjs` files as ES Modules and `*.cjs` files as CommonJS.
+- `plugin:n/recommended-module` considers all files as ES Modules.
+- `plugin:n/recommended-script` considers all files as CommonJS.
 
 Those preset config:
 
@@ -152,7 +152,7 @@ Those preset config:
 
 ## 🚥 Semantic Versioning Policy
 
-`eslint-plugin-node` follows [semantic versioning](http://semver.org/) and [ESLint's Semantic Versioning Policy](https://github.com/eslint/eslint#semantic-versioning-policy).
+`eslint-plugin-n` follows [semantic versioning](http://semver.org/) and [ESLint's Semantic Versioning Policy](https://github.com/eslint/eslint#semantic-versioning-policy).
 
 - Patch release (intended to not break your lint build)
     - A bug fix in a rule that results in it reporting fewer errors.
@@ -174,7 +174,7 @@ Those preset config:
 
 ## 📰 Changelog
 
-- [GitHub Releases](https://github.com/mysticatea/eslint-plugin-node/releases)
+- [GitHub Releases](https://github.com/weiran-zsd/eslint-plugin-n/releases)
 
 ## ❤️ Contributing
 
