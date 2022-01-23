@@ -43,5 +43,20 @@ new RuleTester().run("no-process-env", rule, {
                 },
             ],
         },
+        {
+            code: "f(process.env)",
+            options: [
+                {
+                    customMessage:
+                        "custom error message - use the wrapper instead",
+                },
+            ],
+            errors: [
+                {
+                    message: "custom error message - use the wrapper instead",
+                    type: "MemberExpression",
+                },
+            ],
+        },
     ],
 })
