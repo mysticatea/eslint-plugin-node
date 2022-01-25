@@ -83,20 +83,20 @@ new RuleTester().run("${ruleId}", rule, {
 👍 Examples of **correct** code for this rule:
 
 \`\`\`js
-/*eslint node/${ruleId}: error */
+/*eslint n/${ruleId}: error */
 \`\`\`
 
 👎 Examples of **incorrect** code for this rule:
 
 \`\`\`js
-/*eslint node/${ruleId}: error */
+/*eslint n/${ruleId}: error */
 \`\`\`
 
 ## ⚙ Options
 
 \`\`\`json
 {
-    "node/${ruleId}": ["error", ...]
+    "n/${ruleId}": ["error", ...]
 }
 \`\`\`
 `

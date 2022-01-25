@@ -26,7 +26,7 @@ function renderHeader(rule) {
 
     if (rule.recommended) {
         lines.push(
-            "> - ⭐️ This rule is included in `plugin:node/recommended` preset."
+            "> - ⭐️ This rule is included in `plugin:n/recommended` preset."
         )
     }
     if (rule.fixable) {
@@ -36,7 +36,7 @@ function renderHeader(rule) {
     }
     if (rule.deprecated) {
         const replace = rule.replacedBy.map(
-            ruleId => `[${ruleId}](./${ruleId.replace("node/", "")}.md)`
+            ruleId => `[${ruleId}](./${ruleId.replace(/^n\//, "")}.md)`
         )
         const replaceText =
             replace.length === 0

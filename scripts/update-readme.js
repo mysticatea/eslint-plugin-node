@@ -7,6 +7,7 @@
 const fs = require("fs")
 const path = require("path")
 const { categories, rules } = require("./rules")
+const { pluginName } = require("./utils")
 
 /**
  * Render a given rule as a table row.
@@ -27,10 +28,11 @@ function renderRule(rule) {
  */
 function renderDeprecatedRule(rule) {
     const link = `[${rule.id}](./docs/rules/${rule.name}.md)`
+    const pluginNameReg = new RegExp(`^${pluginName}[/]`, "u")
     const replacedBy = rule.replacedBy
         .map(nameRaw => {
-            const name = nameRaw.replace(/^node[/]/u, "")
-            return `[node/${name}](./docs/rules/${name}.md)`
+            const name = nameRaw.replace(pluginNameReg, "")
+            return `[${pluginName}/${name}](./docs/rules/${name}.md)`
         })
         .join(" and ")
 

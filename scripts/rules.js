@@ -7,12 +7,13 @@
 const path = require("path")
 const glob = require("fast-glob")
 const rootDir = path.resolve(__dirname, "../lib/rules/")
+const {pluginName} = require("./utils");
 
 /**
  * @typedef {Object} RuleInfo
  * @property {string} filePath The path to the rule definition.
- * @property {string} id The rule ID. (This includes `node/` prefix.)
- * @property {string} name The rule name. (This doesn't include `node/` prefix.)
+ * @property {string} id The rule ID. (This includes `n/` prefix.)
+ * @property {string} name The rule name. (This doesn't include `n/` prefix.)
  * @property {string} category The category ID.
  * @property {string} description The description of this rule.
  * @property {boolean} recommended The flag to indicate a recommended rule.
@@ -38,7 +39,7 @@ const rules = glob
         return Object.assign(
             {
                 filePath,
-                id: `node/${name}`,
+                id: `${pluginName}/${name}`,
                 name,
                 deprecated: Boolean(meta.deprecated),
                 fixable: Boolean(meta.fixable),
