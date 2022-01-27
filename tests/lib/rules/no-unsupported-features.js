@@ -78,12 +78,10 @@ function convertPattern(retv, pattern) {
             })
         } else {
             // If this is not supported, add to a valid pattern with a "ignores" option.
-            [].push.apply(
+            ;[].push.apply(
                 retv.valid,
                 pattern.keys.map(key => ({
-                    code: `/*${
-                        pattern.name
-                    }: ${versionText}, ignores: ["${key}"]*/ ${pattern.code}`,
+                    code: `/*${pattern.name}: ${versionText}, ignores: ["${key}"]*/ ${pattern.code}`,
                     env: { es6: true },
                     globals: { SharedArrayBuffer: false, Atomics: false },
                     options: [{ version, ignores: [key] }],
@@ -193,7 +191,7 @@ ruleTester.run(
         {
             keys: ["templateStrings", "syntax"],
             name: "Template strings",
-            code: "`hello, ${world}!`; foo`tagged`;",  
+            code: "`hello, ${world}!`; foo`tagged`;",
             errors: 2,
             supported: 4,
         },
@@ -242,8 +240,7 @@ ruleTester.run(
         {
             keys: ["new.target", "syntax"],
             name: "'new.target'",
-            code:
-                "function Foo() { new.target; } ;(function() { new.target; })()",
+            code: "function Foo() { new.target; } ;(function() { new.target; })()",
             errors: 2,
             supported: 5,
         },
@@ -296,8 +293,7 @@ ruleTester.run(
         {
             keys: ["blockScopedFunctions", "syntax"],
             name: "Block-scoped functions",
-            code:
-                "'use strict'; { function foo() {} } if (a) { function foo() {} }",
+            code: "'use strict'; { function foo() {} } if (a) { function foo() {} }",
             errors: 2,
             supported: 4,
         },
@@ -357,8 +353,7 @@ ruleTester.run(
         {
             keys: ["modules", "syntax"],
             name: "Import and export declarations",
-            code:
-                "import foo from 'foo'; export default 0; export {foo}; export * from 'foo';",
+            code: "import foo from 'foo'; export default 0; export {foo}; export * from 'foo';",
             errors: 4,
             supported: NaN,
             modules: true,
@@ -404,7 +399,6 @@ ruleTester.run(
             keys: ["templateLiteralRevision", "syntax"],
             name: "Illegal escape sequences in taggled templates",
             code: [
-                 
                 "tag`\\01\\1\\xg\\xAg\\u0\\u0g\\u00g\\u000g\\u{g\\u{0\\u{110000}${0}\\0`",
             ].join("\n"),
             errors: 1,

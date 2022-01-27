@@ -53,8 +53,7 @@ new RuleTester({
                     options: [{ version: "0.12.0" }],
                 },
                 {
-                    code:
-                        "var assert = require('assert'); assert(); assert.strictEqual()",
+                    code: "var assert = require('assert'); assert(); assert.strictEqual()",
                     options: [{ version: "0.12.0" }],
                 },
                 {
@@ -62,23 +61,19 @@ new RuleTester({
                     options: [{ version: "4.0.0" }],
                 },
                 {
-                    code:
-                        "var assert = require('assert'); assert.deepStrictEqual()",
+                    code: "var assert = require('assert'); assert.deepStrictEqual()",
                     options: [{ version: "4.0.0" }],
                 },
                 {
-                    code:
-                        "var { deepStrictEqual } = require('assert'); deepStrictEqual()",
+                    code: "var { deepStrictEqual } = require('assert'); deepStrictEqual()",
                     options: [{ version: "4.0.0" }],
                 },
                 {
-                    code:
-                        "import assert from 'assert'; assert.deepStrictEqual()",
+                    code: "import assert from 'assert'; assert.deepStrictEqual()",
                     options: [{ version: "4.0.0" }],
                 },
                 {
-                    code:
-                        "import { deepStrictEqual } from 'assert'; deepStrictEqual()",
+                    code: "import { deepStrictEqual } from 'assert'; deepStrictEqual()",
                     options: [{ version: "4.0.0" }],
                 },
                 {
@@ -106,8 +101,7 @@ new RuleTester({
                     options: [{ version: "9.9.0" }],
                 },
                 {
-                    code:
-                        "var {strict: assert} = require('assert'); assert.rejects()",
+                    code: "var {strict: assert} = require('assert'); assert.rejects()",
                     options: [{ version: "10.0.0" }],
                 },
                 {
@@ -120,8 +114,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var assert = require('assert'); assert.deepStrictEqual()",
+                    code: "var assert = require('assert'); assert.deepStrictEqual()",
                     options: [
                         {
                             version: "3.9.9",
@@ -130,8 +123,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var { deepStrictEqual } = require('assert'); deepStrictEqual()",
+                    code: "var { deepStrictEqual } = require('assert'); deepStrictEqual()",
                     options: [
                         {
                             version: "3.9.9",
@@ -140,8 +132,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import assert from 'assert'; assert.deepStrictEqual()",
+                    code: "import assert from 'assert'; assert.deepStrictEqual()",
                     options: [
                         {
                             version: "3.9.9",
@@ -150,8 +141,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import { deepStrictEqual } from 'assert'; deepStrictEqual()",
+                    code: "import { deepStrictEqual } from 'assert'; deepStrictEqual()",
                     options: [
                         {
                             version: "3.9.9",
@@ -203,8 +193,7 @@ new RuleTester({
                     options: [{ version: "9.8.9", ignores: ["assert.strict"] }],
                 },
                 {
-                    code:
-                        "var {strict: assert} = require('assert'); assert.rejects()",
+                    code: "var {strict: assert} = require('assert'); assert.rejects()",
                     options: [
                         {
                             version: "9.8.9",
@@ -213,15 +202,13 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "const { CallTracker } = require('assert'); new CallTracker();",
+                    code: "const { CallTracker } = require('assert'); new CallTracker();",
                     options: [
                         { version: "14.2.0", ignores: ["assert.CallTracker"] },
                     ],
                 },
                 {
-                    code:
-                        "import { CallTracker } from 'assert'; new CallTracker();",
+                    code: "import { CallTracker } from 'assert'; new CallTracker();",
                     options: [
                         { version: "14.2.0", ignores: ["assert.CallTracker"] },
                     ],
@@ -243,8 +230,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var assert = require('assert'); assert.deepStrictEqual()",
+                    code: "var assert = require('assert'); assert.deepStrictEqual()",
                     options: [{ version: "3.9.9" }],
                     errors: [
                         {
@@ -258,8 +244,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var { deepStrictEqual } = require('assert'); deepStrictEqual()",
+                    code: "var { deepStrictEqual } = require('assert'); deepStrictEqual()",
                     options: [{ version: "3.9.9" }],
                     errors: [
                         {
@@ -273,8 +258,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import assert from 'assert'; assert.deepStrictEqual()",
+                    code: "import assert from 'assert'; assert.deepStrictEqual()",
                     options: [{ version: "3.9.9" }],
                     errors: [
                         {
@@ -288,8 +272,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import { deepStrictEqual } from 'assert'; deepStrictEqual()",
+                    code: "import { deepStrictEqual } from 'assert'; deepStrictEqual()",
                     options: [{ version: "3.9.9" }],
                     errors: [
                         {
@@ -387,8 +370,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var {strict: assert} = require('assert'); assert.rejects()",
+                    code: "var {strict: assert} = require('assert'); assert.rejects()",
                     options: [{ version: "9.8.9" }],
                     errors: [
                         {
@@ -410,8 +392,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "const { CallTracker } = require('assert'); new CallTracker();",
+                    code: "const { CallTracker } = require('assert'); new CallTracker();",
                     options: [{ version: "14.2.0" }],
                     errors: [
                         {
@@ -425,8 +406,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import { CallTracker } from 'assert'; new CallTracker();",
+                    code: "import { CallTracker } from 'assert'; new CallTracker();",
                     options: [{ version: "14.2.0" }],
                     errors: [
                         {
@@ -460,13 +440,11 @@ new RuleTester({
                     options: [{ version: "8.1.0" }],
                 },
                 {
-                    code:
-                        "var hooks = require('async_hooks'); hooks.createHook()",
+                    code: "var hooks = require('async_hooks'); hooks.createHook()",
                     options: [{ version: "8.1.0" }],
                 },
                 {
-                    code:
-                        "var { createHook } = require('async_hooks'); createHook()",
+                    code: "var { createHook } = require('async_hooks'); createHook()",
                     options: [{ version: "8.1.0" }],
                 },
                 {
@@ -474,28 +452,23 @@ new RuleTester({
                     options: [{ version: "8.1.0" }],
                 },
                 {
-                    code:
-                        "import { createHook } from 'async_hooks'; createHook()",
+                    code: "import { createHook } from 'async_hooks'; createHook()",
                     options: [{ version: "8.1.0" }],
                 },
                 {
-                    code:
-                        "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
+                    code: "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
                     options: [{ version: "13.10.0" }],
                 },
                 {
-                    code:
-                        "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
+                    code: "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
                     options: [{ version: "13.10.0" }],
                 },
                 {
-                    code:
-                        "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
+                    code: "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
                     options: [{ version: "12.17.0" }],
                 },
                 {
-                    code:
-                        "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
+                    code: "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
                     options: [{ version: "12.17.0" }],
                 },
 
@@ -527,8 +500,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var hooks = require('async_hooks'); hooks.createHook()",
+                    code: "var hooks = require('async_hooks'); hooks.createHook()",
                     options: [
                         {
                             version: "8.0.9",
@@ -537,8 +509,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var { createHook } = require('async_hooks'); createHook()",
+                    code: "var { createHook } = require('async_hooks'); createHook()",
                     options: [
                         {
                             version: "8.0.9",
@@ -547,8 +518,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import async_hooks from 'async_hooks'; async_hooks.createHook()",
+                    code: "import async_hooks from 'async_hooks'; async_hooks.createHook()",
                     options: [
                         {
                             version: "8.0.9",
@@ -557,8 +527,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import { createHook } from 'async_hooks'; createHook()",
+                    code: "import { createHook } from 'async_hooks'; createHook()",
                     options: [
                         {
                             version: "8.0.9",
@@ -567,8 +536,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
+                    code: "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
                     options: [
                         {
                             version: "13.9.0",
@@ -577,8 +545,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
+                    code: "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
                     options: [
                         {
                             version: "13.9.0",
@@ -587,8 +554,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
+                    code: "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
                     options: [
                         {
                             version: "12.16.0",
@@ -597,8 +563,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
+                    code: "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
                     options: [
                         {
                             version: "12.16.0",
@@ -673,8 +638,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var hooks = require('async_hooks'); hooks.createHook()",
+                    code: "var hooks = require('async_hooks'); hooks.createHook()",
                     options: [{ version: "8.0.9" }],
                     errors: [
                         {
@@ -688,8 +652,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var { createHook } = require('async_hooks'); createHook()",
+                    code: "var { createHook } = require('async_hooks'); createHook()",
                     options: [{ version: "8.0.9" }],
                     errors: [
                         {
@@ -703,8 +666,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import async_hooks from 'async_hooks'; async_hooks.createHook()",
+                    code: "import async_hooks from 'async_hooks'; async_hooks.createHook()",
                     options: [{ version: "8.0.9" }],
                     errors: [
                         {
@@ -718,8 +680,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import { createHook } from 'async_hooks'; createHook()",
+                    code: "import { createHook } from 'async_hooks'; createHook()",
                     options: [{ version: "8.0.9" }],
                     errors: [
                         {
@@ -733,8 +694,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
+                    code: "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
                     options: [{ version: "13.9.0" }],
                     errors: [
                         {
@@ -748,8 +708,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
+                    code: "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
                     options: [{ version: "13.9.0" }],
                     errors: [
                         {
@@ -763,8 +722,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
+                    code: "const { AsyncLocalStorage } = require('async_hooks'); new AsyncLocalStorage();",
                     options: [{ version: "12.16.0" }],
                     errors: [
                         {
@@ -778,8 +736,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
+                    code: "import hooks from 'async_hooks'; new hooks.AsyncLocalStorage();",
                     options: [{ version: "12.16.0" }],
                     errors: [
                         {
@@ -845,8 +802,7 @@ new RuleTester({
                     options: [{ version: "4.5.0" }],
                 },
                 {
-                    code:
-                        "var {Buffer: b} = require('buffer'); b.allocUnsafeSlow",
+                    code: "var {Buffer: b} = require('buffer'); b.allocUnsafeSlow",
                     options: [{ version: "4.5.0" }],
                 },
                 {
@@ -932,8 +888,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var {Buffer: b} = require('buffer'); b.allocUnsafeSlow",
+                    code: "var {Buffer: b} = require('buffer'); b.allocUnsafeSlow",
                     options: [
                         {
                             version: "4.4.9",
@@ -1124,8 +1079,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var {Buffer: b} = require('buffer'); b.allocUnsafeSlow",
+                    code: "var {Buffer: b} = require('buffer'); b.allocUnsafeSlow",
                     options: [{ version: "4.4.9" }],
                     errors: [
                         {
@@ -1225,8 +1179,7 @@ new RuleTester({
                     options: [{ version: "2.2.0" }],
                 },
                 {
-                    code:
-                        "var { ChildProcess } = require('child_process'); ChildProcess",
+                    code: "var { ChildProcess } = require('child_process'); ChildProcess",
                     options: [{ version: "2.2.0" }],
                 },
                 {
@@ -1258,8 +1211,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var { ChildProcess } = require('child_process'); ChildProcess",
+                    code: "var { ChildProcess } = require('child_process'); ChildProcess",
                     options: [
                         {
                             version: "2.1.9",
@@ -1316,8 +1268,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var { ChildProcess } = require('child_process'); ChildProcess",
+                    code: "var { ChildProcess } = require('child_process'); ChildProcess",
                     options: [{ version: "2.1.9" }],
                     errors: [
                         {
@@ -1844,18 +1795,15 @@ new RuleTester({
                     options: [{ version: "9.0.0" }],
                 },
                 {
-                    code:
-                        "var { Certificate: c } = require('crypto'); c.exportChallenge()",
+                    code: "var { Certificate: c } = require('crypto'); c.exportChallenge()",
                     options: [{ version: "9.0.0" }],
                 },
                 {
-                    code:
-                        "var { Certificate: c } = require('crypto'); c.exportPublicKey()",
+                    code: "var { Certificate: c } = require('crypto'); c.exportPublicKey()",
                     options: [{ version: "9.0.0" }],
                 },
                 {
-                    code:
-                        "var { Certificate: c } = require('crypto'); c.verifySpkac()",
+                    code: "var { Certificate: c } = require('crypto'); c.verifySpkac()",
                     options: [{ version: "9.0.0" }],
                 },
                 {
@@ -1944,8 +1892,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var { Certificate: c } = require('crypto'); c.exportChallenge()",
+                    code: "var { Certificate: c } = require('crypto'); c.exportChallenge()",
                     options: [
                         {
                             version: "8.9.9",
@@ -1954,8 +1901,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var { Certificate: c } = require('crypto'); c.exportPublicKey()",
+                    code: "var { Certificate: c } = require('crypto'); c.exportPublicKey()",
                     options: [
                         {
                             version: "8.9.9",
@@ -1964,8 +1910,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var { Certificate: c } = require('crypto'); c.verifySpkac()",
+                    code: "var { Certificate: c } = require('crypto'); c.verifySpkac()",
                     options: [
                         {
                             version: "8.9.9",
@@ -2133,8 +2078,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var { Certificate: c } = require('crypto'); c.exportChallenge()",
+                    code: "var { Certificate: c } = require('crypto'); c.exportChallenge()",
                     options: [{ version: "8.9.9" }],
                     errors: [
                         {
@@ -2148,8 +2092,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var { Certificate: c } = require('crypto'); c.exportPublicKey()",
+                    code: "var { Certificate: c } = require('crypto'); c.exportPublicKey()",
                     options: [{ version: "8.9.9" }],
                     errors: [
                         {
@@ -2163,8 +2106,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var { Certificate: c } = require('crypto'); c.verifySpkac()",
+                    code: "var { Certificate: c } = require('crypto'); c.verifySpkac()",
                     options: [{ version: "8.9.9" }],
                     errors: [
                         {
@@ -3568,8 +3510,7 @@ new RuleTester({
                     options: [{ version: "9.0.0" }],
                 },
                 {
-                    code:
-                        "var { toNamespacedPath } = require('path'); toNamespacedPath()",
+                    code: "var { toNamespacedPath } = require('path'); toNamespacedPath()",
                     options: [{ version: "9.0.0" }],
                 },
                 {
@@ -3577,8 +3518,7 @@ new RuleTester({
                     options: [{ version: "9.0.0" }],
                 },
                 {
-                    code:
-                        "import { toNamespacedPath } from 'path'; toNamespacedPath()",
+                    code: "import { toNamespacedPath } from 'path'; toNamespacedPath()",
                     options: [{ version: "9.0.0" }],
                 },
 
@@ -3602,8 +3542,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var { toNamespacedPath } = require('path'); toNamespacedPath()",
+                    code: "var { toNamespacedPath } = require('path'); toNamespacedPath()",
                     options: [
                         {
                             version: "8.9.9",
@@ -3621,8 +3560,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import { toNamespacedPath } from 'path'; toNamespacedPath()",
+                    code: "import { toNamespacedPath } from 'path'; toNamespacedPath()",
                     options: [
                         {
                             version: "8.9.9",
@@ -3661,8 +3599,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var { toNamespacedPath } = require('path'); toNamespacedPath()",
+                    code: "var { toNamespacedPath } = require('path'); toNamespacedPath()",
                     options: [{ version: "8.9.9" }],
                     errors: [
                         {
@@ -3690,8 +3627,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import { toNamespacedPath } from 'path'; toNamespacedPath()",
+                    code: "import { toNamespacedPath } from 'path'; toNamespacedPath()",
                     options: [{ version: "8.9.9" }],
                     errors: [
                         {
@@ -4089,8 +4025,7 @@ new RuleTester({
                         {
                             messageId: "unsupported",
                             data: {
-                                name:
-                                    "process.hasUncaughtExceptionCaptureCallback",
+                                name: "process.hasUncaughtExceptionCaptureCallback",
                                 supported: "9.3.0",
                                 version: "9.2.9",
                             },
@@ -4161,8 +4096,7 @@ new RuleTester({
                         {
                             messageId: "unsupported",
                             data: {
-                                name:
-                                    "process.setUncaughtExceptionCaptureCallback",
+                                name: "process.setUncaughtExceptionCaptureCallback",
                                 supported: "9.3.0",
                                 version: "9.2.9",
                             },
@@ -5020,13 +4954,11 @@ new RuleTester({
                     options: [{ version: "8.0.0" }],
                 },
                 {
-                    code:
-                        "var hooks = require('v8'); hooks.cachedDataVersionTag()",
+                    code: "var hooks = require('v8'); hooks.cachedDataVersionTag()",
                     options: [{ version: "8.0.0" }],
                 },
                 {
-                    code:
-                        "var { cachedDataVersionTag } = require('v8'); cachedDataVersionTag()",
+                    code: "var { cachedDataVersionTag } = require('v8'); cachedDataVersionTag()",
                     options: [{ version: "8.0.0" }],
                 },
                 {
@@ -5034,8 +4966,7 @@ new RuleTester({
                     options: [{ version: "8.0.0" }],
                 },
                 {
-                    code:
-                        "import { cachedDataVersionTag } from 'v8'; cachedDataVersionTag()",
+                    code: "import { cachedDataVersionTag } from 'v8'; cachedDataVersionTag()",
                     options: [{ version: "8.0.0" }],
                 },
                 {
@@ -5095,8 +5026,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var hooks = require('v8'); hooks.cachedDataVersionTag()",
+                    code: "var hooks = require('v8'); hooks.cachedDataVersionTag()",
                     options: [
                         {
                             version: "7.9.9",
@@ -5105,8 +5035,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var { cachedDataVersionTag } = require('v8'); cachedDataVersionTag()",
+                    code: "var { cachedDataVersionTag } = require('v8'); cachedDataVersionTag()",
                     options: [
                         {
                             version: "7.9.9",
@@ -5124,8 +5053,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import { cachedDataVersionTag } from 'v8'; cachedDataVersionTag()",
+                    code: "import { cachedDataVersionTag } from 'v8'; cachedDataVersionTag()",
                     options: [
                         {
                             version: "7.9.9",
@@ -5244,8 +5172,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var hooks = require('v8'); hooks.cachedDataVersionTag()",
+                    code: "var hooks = require('v8'); hooks.cachedDataVersionTag()",
                     options: [{ version: "7.9.9" }],
                     errors: [
                         {
@@ -5259,8 +5186,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "var { cachedDataVersionTag } = require('v8'); cachedDataVersionTag()",
+                    code: "var { cachedDataVersionTag } = require('v8'); cachedDataVersionTag()",
                     options: [{ version: "7.9.9" }],
                     errors: [
                         {
@@ -5288,8 +5214,7 @@ new RuleTester({
                     ],
                 },
                 {
-                    code:
-                        "import { cachedDataVersionTag } from 'v8'; cachedDataVersionTag()",
+                    code: "import { cachedDataVersionTag } from 'v8'; cachedDataVersionTag()",
                     options: [{ version: "7.9.9" }],
                     errors: [
                         {

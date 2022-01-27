@@ -4,8 +4,6 @@
  */
 "use strict"
 
- 
-
 const path = require("path")
 const RuleTester = require("eslint").RuleTester
 const rule = require("../../../lib/rules/no-path-concat")
@@ -71,8 +69,7 @@ new RuleTester({
             ],
         },
         {
-            code:
-                'var path = require("path"); var fullPath = `${__dirname}${path.sep}foo.js`;',
+            code: 'var path = require("path"); var fullPath = `${__dirname}${path.sep}foo.js`;',
             errors: [
                 {
                     messageId: "usePathFunctions",
@@ -81,8 +78,7 @@ new RuleTester({
             ],
         },
         {
-            code:
-                'var path = require("path"); var fullPath = `${__filename}${path.sep}foo.js`;',
+            code: 'var path = require("path"); var fullPath = `${__filename}${path.sep}foo.js`;',
             errors: [
                 {
                     messageId: "usePathFunctions",
@@ -91,8 +87,7 @@ new RuleTester({
             ],
         },
         {
-            code:
-                'var path = require("path"); var fullPath = __dirname + path.sep + `foo.js`;',
+            code: 'var path = require("path"); var fullPath = __dirname + path.sep + `foo.js`;',
             errors: [
                 {
                     messageId: "usePathFunctions",

@@ -172,13 +172,11 @@ ruleTester.run(
                     options: [{ version: "4.0.0" }],
                 },
                 {
-                    code:
-                        "'use strict'; function wrap() { if (a) { function f() {} } }",
+                    code: "'use strict'; function wrap() { if (a) { function f() {} } }",
                     options: [{ version: "4.0.0" }],
                 },
                 {
-                    code:
-                        "function wrap() { 'use strict'; if (a) { function f() {} } }",
+                    code: "function wrap() { 'use strict'; if (a) { function f() {} } }",
                     options: [{ version: "4.0.0" }],
                 },
                 {
@@ -1479,7 +1477,6 @@ ruleTester.run(
             ],
         },
         {
-             
             keyword: "templateLiterals",
             valid: [
                 {

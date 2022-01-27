@@ -25,11 +25,9 @@ describe("node/recommended config", () => {
         })
 
         it("*.js files should be a script.", async () => {
-            const report = await linter.lintText(
-                "import 'foo'",
-                {filePath: path.join(root, "test.js")}
-                
-            )
+            const report = await linter.lintText("import 'foo'", {
+                filePath: path.join(root, "test.js"),
+            })
 
             assert.deepStrictEqual(report[0].messages, [
                 {
@@ -45,10 +43,9 @@ describe("node/recommended config", () => {
         })
 
         it("*.cjs files should be a script.", async () => {
-            const report = await linter.lintText(
-                "import 'foo'",
-                {filePath: path.join(root, "test.cjs")}
-            )
+            const report = await linter.lintText("import 'foo'", {
+                filePath: path.join(root, "test.cjs"),
+            })
 
             assert.deepStrictEqual(report[0].messages, [
                 {
@@ -64,11 +61,9 @@ describe("node/recommended config", () => {
         })
 
         it("*.mjs files should be a module.", async () => {
-            const report = await linter.lintText(
-                "import 'foo'",
-                {filePath: path.join(root, "test.mjs")}
-                
-            )
+            const report = await linter.lintText("import 'foo'", {
+                filePath: path.join(root, "test.mjs"),
+            })
 
             assert.deepStrictEqual(report[0].messages, [
                 {
@@ -104,11 +99,9 @@ describe("node/recommended config", () => {
         })
 
         it("*.js files should be a module.", async () => {
-            const report = await linter.lintText(
-                "import 'foo'",
-                {filePath: path.join(root, "test.js")}
-                
-            )
+            const report = await linter.lintText("import 'foo'", {
+                filePath: path.join(root, "test.js"),
+            })
 
             assert.deepStrictEqual(report[0].messages, [
                 {
@@ -125,11 +118,9 @@ describe("node/recommended config", () => {
         })
 
         it("*.cjs files should be a script.", async () => {
-            const report = await linter.lintText(
-                "import 'foo'",
-                {filePath: path.join(root, "test.cjs")}
-                
-            )
+            const report = await linter.lintText("import 'foo'", {
+                filePath: path.join(root, "test.cjs"),
+            })
 
             assert.deepStrictEqual(report[0].messages, [
                 {
@@ -145,11 +136,9 @@ describe("node/recommended config", () => {
         })
 
         it("*.mjs files should be a module.", async () => {
-            const report = await linter.lintText(
-                "import 'foo'",
-                {filePath: path.join(root, "test.mjs")}
-                
-            )
+            const report = await linter.lintText("import 'foo'", {
+                filePath: path.join(root, "test.mjs"),
+            })
 
             assert.deepStrictEqual(report[0].messages, [
                 {

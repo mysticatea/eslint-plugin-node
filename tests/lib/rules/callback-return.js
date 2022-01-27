@@ -57,8 +57,7 @@ new RuleTester().run("callback-return", rule, {
             parserOptions: { ecmaVersion: 6 },
         },
         {
-            code:
-                "class x { horse() { if (err) { return callback(); } callback(); } } ",
+            code: "class x { horse() { if (err) { return callback(); } callback(); } } ",
             parserOptions: { ecmaVersion: 6 },
         },
 
@@ -72,8 +71,7 @@ new RuleTester().run("callback-return", rule, {
             options: [["cb", "next"]],
         },
         {
-            code:
-                "function a(err) { if (err) { return next(err) } else { callback(); } }",
+            code: "function a(err) { if (err) { return next(err) } else { callback(); } }",
             options: [["cb", "next"]],
         },
 
@@ -83,13 +81,11 @@ new RuleTester().run("callback-return", rule, {
             options: [["obj.method"]],
         },
         {
-            code:
-                "function a(err) { if (err) { return obj.prop.method(err); } }",
+            code: "function a(err) { if (err) { return obj.prop.method(err); } }",
             options: [["obj.prop.method"]],
         },
         {
-            code:
-                "function a(err) { if (err) { return obj.prop.method(err); } otherObj.prop.method() }",
+            code: "function a(err) { if (err) { return obj.prop.method(err); } otherObj.prop.method() }",
             options: [["obj.prop.method", "otherObj.prop.method"]],
         },
         {
@@ -101,23 +97,19 @@ new RuleTester().run("callback-return", rule, {
             options: [["obj.method"]],
         },
         {
-            code:
-                "function a(err) { if (err) { //comment\nreturn obj.method(err); } }",
+            code: "function a(err) { if (err) { //comment\nreturn obj.method(err); } }",
             options: [["obj.method"]],
         },
         {
-            code:
-                "function a(err) { if (err) { /*comment*/return obj.method(err); } }",
+            code: "function a(err) { if (err) { /*comment*/return obj.method(err); } }",
             options: [["obj.method"]],
         },
         {
-            code:
-                "function a(err) { if (err) { return obj.method(err); //comment\n } }",
+            code: "function a(err) { if (err) { return obj.method(err); //comment\n } }",
             options: [["obj.method"]],
         },
         {
-            code:
-                "function a(err) { if (err) { return obj.method(err); /*comment*/ } }",
+            code: "function a(err) { if (err) { return obj.method(err); /*comment*/ } }",
             options: [["obj.method"]],
         },
 
@@ -141,8 +133,7 @@ new RuleTester().run("callback-return", rule, {
             options: [["obj.method"]],
         },
         {
-            code:
-                "function a(err) { if (err) { obj().method(err); } obj.method(); }",
+            code: "function a(err) { if (err) { obj().method(err); } obj.method(); }",
             options: [["obj.method"]],
         },
 
@@ -163,8 +154,7 @@ new RuleTester().run("callback-return", rule, {
             ],
         },
         {
-            code:
-                "function a(callback) { if (typeof callback !== 'undefined') { callback(); } }",
+            code: "function a(callback) { if (typeof callback !== 'undefined') { callback(); } }",
             errors: [
                 {
                     messageId: "missingReturn",
@@ -175,8 +165,7 @@ new RuleTester().run("callback-return", rule, {
             ],
         },
         {
-            code:
-                "function a(callback) { if (typeof callback !== 'undefined') callback();  }",
+            code: "function a(callback) { if (typeof callback !== 'undefined') callback();  }",
             errors: [
                 {
                     messageId: "missingReturn",
@@ -187,8 +176,7 @@ new RuleTester().run("callback-return", rule, {
             ],
         },
         {
-            code:
-                "function a(callback) { if (err) { callback(); horse && horse(); } }",
+            code: "function a(callback) { if (err) { callback(); horse && horse(); } }",
             errors: [
                 {
                     messageId: "missingReturn",
@@ -234,8 +222,7 @@ new RuleTester().run("callback-return", rule, {
             ],
         },
         {
-            code:
-                "var x = { x(err) { if (err) { callback && callback (err); } } }",
+            code: "var x = { x(err) { if (err) { callback && callback (err); } } }",
             parserOptions: { ecmaVersion: 6 },
             errors: [
                 {
@@ -269,8 +256,7 @@ new RuleTester().run("callback-return", rule, {
             ],
         },
         {
-            code:
-                "function a(err) { if (err) { callback (err); horse(); return; } }",
+            code: "function a(err) { if (err) { callback (err); horse(); return; } }",
             errors: [
                 {
                     messageId: "missingReturn",
@@ -293,8 +279,7 @@ new RuleTester().run("callback-return", rule, {
             ],
         },
         {
-            code:
-                "function a(err) { if (err) { callback (err); } else if (x) { callback(err); return; } }",
+            code: "function a(err) { if (err) { callback (err); } else if (x) { callback(err); return; } }",
             errors: [
                 {
                     messageId: "missingReturn",
@@ -305,8 +290,7 @@ new RuleTester().run("callback-return", rule, {
             ],
         },
         {
-            code:
-                "function x(err) { if (err) { return callback(); }\nelse if (abc) {\ncallback(); }\nelse {\nreturn callback(); } }",
+            code: "function x(err) { if (err) { return callback(); }\nelse if (abc) {\ncallback(); }\nelse {\nreturn callback(); } }",
             errors: [
                 {
                     messageId: "missingReturn",
@@ -317,8 +301,7 @@ new RuleTester().run("callback-return", rule, {
             ],
         },
         {
-            code:
-                "class x { horse() { if (err) { callback(); } callback(); } } ",
+            code: "class x { horse() { if (err) { callback(); } callback(); } } ",
             parserOptions: { ecmaVersion: 6 },
             errors: [
                 {
@@ -332,8 +315,7 @@ new RuleTester().run("callback-return", rule, {
 
         // generally good behavior which we must not allow to keep the rule simple
         {
-            code:
-                "function x(err) { if (err) { callback() } else { callback() } }",
+            code: "function x(err) { if (err) { callback() } else { callback() } }",
             errors: [
                 {
                     messageId: "missingReturn",
@@ -350,8 +332,7 @@ new RuleTester().run("callback-return", rule, {
             ],
         },
         {
-            code:
-                "function x(err) { if (err) return callback(); else callback(); }",
+            code: "function x(err) { if (err) return callback(); else callback(); }",
             errors: [
                 {
                     messageId: "missingReturn",
@@ -459,8 +440,7 @@ new RuleTester().run("callback-return", rule, {
             ],
         },
         {
-            code:
-                "function a(err) { if (err) { obj.prop.method(err); } otherObj.prop.method() }",
+            code: "function a(err) { if (err) { obj.prop.method(err); } otherObj.prop.method() }",
             options: [["obj.prop.method", "otherObj.prop.method"]],
             errors: [
                 {
@@ -472,8 +452,7 @@ new RuleTester().run("callback-return", rule, {
             ],
         },
         {
-            code:
-                "function a(err) { if (err) { /*comment*/obj.method(err); } }",
+            code: "function a(err) { if (err) { /*comment*/obj.method(err); } }",
             options: [["obj.method"]],
             errors: [
                 {
@@ -485,8 +464,7 @@ new RuleTester().run("callback-return", rule, {
             ],
         },
         {
-            code:
-                "function a(err) { if (err) { //comment\nobj.method(err); } }",
+            code: "function a(err) { if (err) { //comment\nobj.method(err); } }",
             options: [["obj.method"]],
             errors: [
                 {
@@ -498,8 +476,7 @@ new RuleTester().run("callback-return", rule, {
             ],
         },
         {
-            code:
-                "function a(err) { if (err) { obj.method(err); /*comment*/ } }",
+            code: "function a(err) { if (err) { obj.method(err); /*comment*/ } }",
             options: [["obj.method"]],
             errors: [
                 {
@@ -511,8 +488,7 @@ new RuleTester().run("callback-return", rule, {
             ],
         },
         {
-            code:
-                "function a(err) { if (err) { obj.method(err); //comment\n } }",
+            code: "function a(err) { if (err) { obj.method(err); //comment\n } }",
             options: [["obj.method"]],
             errors: [
                 {

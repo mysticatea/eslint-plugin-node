@@ -163,7 +163,7 @@ ruleTester.run("no-missing-require", rule, {
         },
         {
             filename: fixture("test.js"),
-            code: "require(`foo${bar}`);",  
+            code: "require(`foo${bar}`);",
             env: { node: true, es6: true },
         },
 

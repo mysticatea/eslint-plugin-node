@@ -50,8 +50,7 @@ new RuleTester().run("handle-callback-err", rule, {
             parserOptions: { ecmaVersion: 6 },
         },
         {
-            code:
-                "var test = function(error) {if(! error){doSomethingHere();}};",
+            code: "var test = function(error) {if(! error){doSomethingHere();}};",
             options: ["error"],
         },
         {
@@ -87,8 +86,7 @@ new RuleTester().run("handle-callback-err", rule, {
             errors: [EXPECTED_DECL_ERROR],
         },
         {
-            code:
-                "function test(err, callback) { foo(function(err, callback) {}); }",
+            code: "function test(err, callback) { foo(function(err, callback) {}); }",
             errors: [EXPECTED_DECL_ERROR, EXPECTED_FUNC_ERROR],
         },
         {
@@ -106,8 +104,7 @@ new RuleTester().run("handle-callback-err", rule, {
             errors: [EXPECTED_FUNC_ERROR],
         },
         {
-            code:
-                "function test(err) {doSomethingHere(function(err){console.log(err);})}",
+            code: "function test(err) {doSomethingHere(function(err){console.log(err);})}",
             errors: [EXPECTED_DECL_ERROR],
         },
         {
@@ -116,23 +113,19 @@ new RuleTester().run("handle-callback-err", rule, {
             errors: [EXPECTED_DECL_ERROR],
         },
         {
-            code:
-                "getData(function(err, data) {getMoreDataWith(data, function(err, moreData) {if (err) {}getEvenMoreDataWith(moreData, function(err, allOfTheThings) {if (err) {}});}); });",
+            code: "getData(function(err, data) {getMoreDataWith(data, function(err, moreData) {if (err) {}getEvenMoreDataWith(moreData, function(err, allOfTheThings) {if (err) {}});}); });",
             errors: [EXPECTED_FUNC_ERROR],
         },
         {
-            code:
-                "getData(function(err, data) {getMoreDataWith(data, function(err, moreData) {getEvenMoreDataWith(moreData, function(err, allOfTheThings) {if (err) {}});}); });",
+            code: "getData(function(err, data) {getMoreDataWith(data, function(err, moreData) {getEvenMoreDataWith(moreData, function(err, allOfTheThings) {if (err) {}});}); });",
             errors: [EXPECTED_FUNC_ERROR, EXPECTED_FUNC_ERROR],
         },
         {
-            code:
-                "function userHandler(err) {logThisAction(function(err) {if (err) { console.log(err); } })}",
+            code: "function userHandler(err) {logThisAction(function(err) {if (err) { console.log(err); } })}",
             errors: [EXPECTED_DECL_ERROR],
         },
         {
-            code:
-                "function help() { function userHandler(err) {function tester(err) { err; process.nextTick(function() { err; }); } } }",
+            code: "function help() { function userHandler(err) {function tester(err) { err; process.nextTick(function() { err; }); } } }",
             errors: [EXPECTED_DECL_ERROR],
         },
         {

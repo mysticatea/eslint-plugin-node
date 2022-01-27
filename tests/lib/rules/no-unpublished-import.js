@@ -15,7 +15,6 @@ const DynamicImportSupported = (() => {
 })()
 
 if (!DynamicImportSupported) {
-     
     console.warn(
         "[%s] Skip tests for 'import()'",
         path.basename(__filename, ".js")

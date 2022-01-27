@@ -28,8 +28,7 @@ new RuleTester().run("global-require", rule, {
     invalid: [
         // block statements
         {
-            code:
-                "if (process.env.NODE_ENV === 'DEVELOPMENT') {\n\trequire('debug');\n}",
+            code: "if (process.env.NODE_ENV === 'DEVELOPMENT') {\n\trequire('debug');\n}",
             errors: [ERROR],
         },
         {

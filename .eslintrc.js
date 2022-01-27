@@ -8,11 +8,16 @@
 // to make the ci passing.
 module.exports = {
     reportUnusedDisableDirectives: true,
-    extends: ["eslint:recommended", "plugin:n/recommended", "plugin:eslint-plugin/recommended"],
+    extends: [
+        "eslint:recommended",
+        "plugin:n/recommended",
+        "plugin:eslint-plugin/recommended",
+        "prettier",
+    ],
     env: {
         mocha: true,
-    }
-};
+    },
+}
 
 // const version = require("./package.json").version
 

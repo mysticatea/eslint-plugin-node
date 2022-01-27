@@ -23,20 +23,17 @@ new RuleTester({
             options: ["always"],
         },
         {
-            code:
-                "var { Buffer } = require('buffer'); var b = Buffer.alloc(10)",
+            code: "var { Buffer } = require('buffer'); var b = Buffer.alloc(10)",
             options: ["never"],
         },
     ],
     invalid: [
         {
-            code:
-                "var { Buffer } = require('buffer'); var b = Buffer.alloc(10)",
+            code: "var { Buffer } = require('buffer'); var b = Buffer.alloc(10)",
             errors: [{ messageId: "preferGlobal" }],
         },
         {
-            code:
-                "var { Buffer } = require('buffer'); var b = Buffer.alloc(10)",
+            code: "var { Buffer } = require('buffer'); var b = Buffer.alloc(10)",
             options: ["always"],
             errors: [{ messageId: "preferGlobal" }],
         },

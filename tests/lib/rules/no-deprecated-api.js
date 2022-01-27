@@ -230,8 +230,7 @@ ruleTester.run("no-deprecated-api", rule, {
             ],
         },
         {
-            code:
-                "var b; new ((b = require('buffer')).Buffer)(); new b.Buffer()",
+            code: "var b; new ((b = require('buffer')).Buffer)(); new b.Buffer()",
             options: [{ version: "6.0.0" }],
             env: { node: true },
             errors: [

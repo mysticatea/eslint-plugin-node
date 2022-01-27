@@ -23,20 +23,17 @@ new RuleTester({
             options: ["always"],
         },
         {
-            code:
-                "var { TextEncoder } = require('util'); var b = new TextEncoder(s)",
+            code: "var { TextEncoder } = require('util'); var b = new TextEncoder(s)",
             options: ["never"],
         },
     ],
     invalid: [
         {
-            code:
-                "var { TextEncoder } = require('util'); var b = new TextEncoder(s)",
+            code: "var { TextEncoder } = require('util'); var b = new TextEncoder(s)",
             errors: [{ messageId: "preferGlobal" }],
         },
         {
-            code:
-                "var { TextEncoder } = require('util'); var b = new TextEncoder(s)",
+            code: "var { TextEncoder } = require('util'); var b = new TextEncoder(s)",
             options: ["always"],
             errors: [{ messageId: "preferGlobal" }],
         },

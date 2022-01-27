@@ -11,8 +11,7 @@ new RuleTester().run("no-mixed-requires", rule, {
     valid: [
         { code: "var a, b = 42, c = doStuff()", options: [false] },
         {
-            code:
-                "var a = require(42), b = require(), c = require('y'), d = require(doStuff())",
+            code: "var a = require(42), b = require(), c = require('y'), d = require(doStuff())",
             options: [false],
         },
         {
@@ -20,8 +19,7 @@ new RuleTester().run("no-mixed-requires", rule, {
             options: [false],
         },
         {
-            code:
-                "var exec = require('child_process').exec, foo = require('foo')",
+            code: "var exec = require('child_process').exec, foo = require('foo')",
             options: [false],
         },
         {
@@ -33,8 +31,7 @@ new RuleTester().run("no-mixed-requires", rule, {
             options: [false],
         },
         {
-            code:
-                "var emitter = require('events').EventEmitter, fs = require('fs')",
+            code: "var emitter = require('events').EventEmitter, fs = require('fs')",
             options: [false],
         },
         {
@@ -55,8 +52,7 @@ new RuleTester().run("no-mixed-requires", rule, {
         },
         { code: "var a;", options: [true] },
         {
-            code:
-                "var async = require('async'), debug = require('diagnostics')('my-module')",
+            code: "var async = require('async'), debug = require('diagnostics')('my-module')",
             options: [{ allowCall: true }],
         },
     ],
@@ -82,8 +78,7 @@ new RuleTester().run("no-mixed-requires", rule, {
             ],
         },
         {
-            code:
-                "var a = require(42), b = require(), c = require('y'), d = require(doStuff())",
+            code: "var a = require(42), b = require(), c = require('y'), d = require(doStuff())",
             options: [true],
             errors: [
                 {
@@ -113,8 +108,7 @@ new RuleTester().run("no-mixed-requires", rule, {
             ],
         },
         {
-            code:
-                "var exec = require('child_process').exec, foo = require('foo')",
+            code: "var exec = require('child_process').exec, foo = require('foo')",
             options: [true],
             errors: [
                 {
@@ -154,8 +148,7 @@ new RuleTester().run("no-mixed-requires", rule, {
             ],
         },
         {
-            code:
-                "var async = require('async'), debug = require('diagnostics').someFun('my-module')",
+            code: "var async = require('async'), debug = require('diagnostics').someFun('my-module')",
             options: [{ allowCall: true }],
             errors: [
                 {

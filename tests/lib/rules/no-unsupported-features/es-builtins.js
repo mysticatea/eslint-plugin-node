@@ -1022,8 +1022,7 @@ ruleTester.run(
                     options: [{ version: "0.11.9" }],
                 },
                 {
-                    code:
-                        "(function(Object) { Object.getOwnPropertySymbols(a) }(b))",
+                    code: "(function(Object) { Object.getOwnPropertySymbols(a) }(b))",
                     options: [{ version: "0.11.9" }],
                 },
                 {
@@ -1528,8 +1527,7 @@ ruleTester.run(
             keyword: "Uint8ClampedArray",
             valid: [
                 {
-                    code:
-                        "(function(Uint8ClampedArray) { Uint8ClampedArray }(a))",
+                    code: "(function(Uint8ClampedArray) { Uint8ClampedArray }(a))",
                     options: [{ version: "0.9.9" }],
                 },
                 {
@@ -2158,8 +2156,7 @@ ruleTester.run(
                     options: [{ version: "6.9.9" }],
                 },
                 {
-                    code:
-                        "(function(Object) { Object.getOwnPropertyDescriptors(a) }(b))",
+                    code: "(function(Object) { Object.getOwnPropertyDescriptors(a) }(b))",
                     options: [{ version: "6.9.9" }],
                 },
                 {
@@ -2188,8 +2185,7 @@ ruleTester.run(
             keyword: "SharedArrayBuffer",
             valid: [
                 {
-                    code:
-                        "(function(SharedArrayBuffer) { SharedArrayBuffer }(a))",
+                    code: "(function(SharedArrayBuffer) { SharedArrayBuffer }(a))",
                     options: [{ version: "8.9.9" }],
                 },
                 {

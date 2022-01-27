@@ -23,20 +23,17 @@ new RuleTester({
             options: ["always"],
         },
         {
-            code:
-                "var { URLSearchParams } = require('url'); var b = new URLSearchParams(s)",
+            code: "var { URLSearchParams } = require('url'); var b = new URLSearchParams(s)",
             options: ["never"],
         },
     ],
     invalid: [
         {
-            code:
-                "var { URLSearchParams } = require('url'); var b = new URLSearchParams(s)",
+            code: "var { URLSearchParams } = require('url'); var b = new URLSearchParams(s)",
             errors: [{ messageId: "preferGlobal" }],
         },
         {
-            code:
-                "var { URLSearchParams } = require('url'); var b = new URLSearchParams(s)",
+            code: "var { URLSearchParams } = require('url'); var b = new URLSearchParams(s)",
             options: ["always"],
             errors: [{ messageId: "preferGlobal" }],
         },
