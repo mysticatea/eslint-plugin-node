@@ -25,8 +25,7 @@ Then this rule warns `import` declarations in \*published\* files if the `import
     "rules": {
         "n/no-unpublished-import": ["error", {
             "allowModules": [],
-            "convertPath": null,
-            "tryExtensions": [".js", ".json", ".node"]
+            "convertPath": null
         }]
     }
 }
@@ -63,8 +62,7 @@ For example:
         "n/no-unpublished-import": ["error", {
             "convertPath": {
                 "src/**/*.jsx": ["^src/(.+?)\\.jsx$", "lib/$1.js"]
-            },
-            "tryExtensions": [".js", ".jsx", ".json"]
+            }
         }]
     }
 }
@@ -104,13 +102,6 @@ For example:
 In this style, this option has the following shape as the same expression as above: `{include: [<targetFiles>], replace: [<fromRegExp>, <toString>]}`.
 In addition, we can specify glob patterns to exclude files.
 
-#### tryExtensions
-
-When an import path does not exist, this rule checks whether or not any of `path.js`, `path.json`, and `path.node` exists.
-`tryExtensions` option is the extension list this rule uses at the time.
-
-Default is `[".js", ".json", ".node"]`.
-
 ### Shared Settings
 
 The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
@@ -118,7 +109,6 @@ Several rules have the same option, but we can set this option at once.
 
 - `allowModules`
 - `convertPath`
-- `tryExtensions`
 
 For Example:
 
@@ -129,8 +119,7 @@ For Example:
             "allowModules": ["electron"],
             "convertPath": {
                 "src/**/*.jsx": ["^src/(.+?)\\.jsx$", "lib/$1.js"]
-            },
-            "tryExtensions": [".js", ".jsx", ".json"]
+            }
         }
     },
     "rules": {

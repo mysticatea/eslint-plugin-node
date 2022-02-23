@@ -52,11 +52,7 @@ ruleTester.run("no-missing-import", rule, {
         },
         {
             filename: fixture("test.js"),
-            code: "import eslint from 'eslint/lib/api';",
-        },
-        {
-            filename: fixture("test.js"),
-            code: "import a from './a'; a();",
+            code: "import eslint from 'eslint'",
         },
         {
             filename: fixture("test.js"),
@@ -64,15 +60,7 @@ ruleTester.run("no-missing-import", rule, {
         },
         {
             filename: fixture("test.js"),
-            code: "import aConfig from './a.config';",
-        },
-        {
-            filename: fixture("test.js"),
             code: "import aConfig from './a.config.js';",
-        },
-        {
-            filename: fixture("test.js"),
-            code: "import b from './b';",
         },
         {
             filename: fixture("test.js"),
@@ -88,19 +76,19 @@ ruleTester.run("no-missing-import", rule, {
         },
         {
             filename: fixture("test.js"),
+            code: "import something from 'cjs-module-with-no-main';",
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import something from 'esm-module';",
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import something from 'esm-module/sub';",
+        },
+        {
+            filename: fixture("test.js"),
             code: "import mocha from 'mocha!foo?a=b&c=d';",
-        },
-
-        // tryExtensions
-        {
-            filename: fixture("test.js"),
-            code: "import c from './c';",
-            options: [{ tryExtensions: [".coffee"] }],
-        },
-        {
-            filename: fixture("test.js"),
-            code: "import c from './c';",
-            settings: { node: { tryExtensions: [".coffee"] } },
         },
 
         // Ignores it if the filename is unknown.
@@ -120,25 +108,7 @@ ruleTester.run("no-missing-import", rule, {
         },
         {
             filename: "tests/fixtures/no-missing/test.js",
-            code: "import a from './a';",
-        },
-
-        // Relative paths to a directory should work.
-        {
-            filename: fixture("test.js"),
-            code: "import a from '.';",
-        },
-        {
-            filename: fixture("test.js"),
-            code: "import a from './';",
-        },
-        {
-            filename: fixture("test.js"),
-            code: "import a from './foo';",
-        },
-        {
-            filename: fixture("test.js"),
-            code: "import a from './foo/';",
+            code: "import a from './a.js';",
         },
 
         // allow option.
@@ -151,7 +121,7 @@ ruleTester.run("no-missing-import", rule, {
         // resolvePaths
         {
             filename: fixture("test.js"),
-            code: "import a from 'fixtures/no-missing/a';",
+            code: "import a from './fixtures/no-missing/a.js';",
             env: { node: true },
             settings: {
                 node: { resolvePaths: [path.resolve(__dirname, "../../")] },
@@ -159,13 +129,7 @@ ruleTester.run("no-missing-import", rule, {
         },
         {
             filename: fixture("test.js"),
-            code: "import a from 'fixtures/no-missing/a';",
-            options: [{ resolvePaths: [path.resolve(__dirname, "../../")] }],
-            env: { node: true },
-        },
-        {
-            filename: fixture("test.js"),
-            code: "import a from 'fixtures/no-missing/a';",
+            code: "import a from './fixtures/no-missing/a.js';",
             options: [{ resolvePaths: ["tests"] }],
             env: { node: true },
         },
@@ -186,6 +150,11 @@ ruleTester.run("no-missing-import", rule, {
             filename: fixture("test.js"),
             code: "import abc from 'no-exist-package-0';",
             errors: ['"no-exist-package-0" is not found.'],
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import abcdef from 'esm-module/sub.mjs';",
+            errors: ['"esm-module/sub.mjs" is not found.'],
         },
         {
             filename: fixture("test.js"),
@@ -230,6 +199,27 @@ ruleTester.run("no-missing-import", rule, {
             filename: fixture("test.js"),
             code: "import a from './bar/';",
             errors: ['"./bar/" is not found.'],
+        },
+        // Relative paths to an existing directory should not work.
+        {
+            filename: fixture("test.js"),
+            code: "import a from '.';",
+            errors: ['"." is not found.'],
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import a from './';",
+            errors: ['"./" is not found.'],
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import a from './foo';",
+            errors: ['"./foo" is not found.'],
+        },
+        {
+            filename: fixture("test.js"),
+            code: "import a from './foo/';",
+            errors: ['"./foo/" is not found.'],
         },
 
         // Case sensitive

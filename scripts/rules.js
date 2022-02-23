@@ -7,7 +7,7 @@
 const path = require("path")
 const glob = require("fast-glob")
 const rootDir = path.resolve(__dirname, "../lib/rules/")
-const {pluginName} = require("./utils");
+const { pluginName } = require("./utils")
 
 /**
  * @typedef {Object} RuleInfo

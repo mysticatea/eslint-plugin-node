@@ -127,6 +127,12 @@ ruleTester.run("no-unpublished-import", rule, {
             options: [{ allowModules: ["electron"] }],
         },
 
+        // Should not fill in the extension
+        {
+            filename: fixture("2/test.js"),
+            code: "import ignore1 from './ignore1';",
+        },
+
         // Auto-published files only apply to root package directory
         {
             filename: fixture("3/src/readme.js"),
@@ -147,24 +153,19 @@ ruleTester.run("no-unpublished-import", rule, {
             errors: ['"./ignore1.js" is not published.'],
         },
         {
-            filename: fixture("2/test.js"),
-            code: "import ignore1 from './ignore1';",
-            errors: ['"./ignore1" is not published.'],
-        },
-        {
             filename: fixture("3/pub/test.js"),
             code: "import bbb from 'bbb';",
             errors: ['"bbb" is not published.'],
         },
         {
             filename: fixture("3/pub/test.js"),
-            code: "import ignore1 from './ignore1';",
-            errors: ['"./ignore1" is not published.'],
+            code: "import ignore1 from './ignore1.js';",
+            errors: ['"./ignore1.js" is not published.'],
         },
         {
             filename: fixture("3/pub/test.js"),
-            code: "import abc from './abc';",
-            errors: ['"./abc" is not published.'],
+            code: "import abc from './abc.json';",
+            errors: ['"./abc.json" is not published.'],
         },
         {
             filename: fixture("3/pub/test.js"),
@@ -186,41 +187,39 @@ ruleTester.run("no-unpublished-import", rule, {
         // Should work fine if the filename is relative.
         {
             filename: "tests/fixtures/no-unpublished/2/test.js",
-            code: "import ignore1 from './ignore1';",
-            errors: ['"./ignore1" is not published.'],
+            code: "import ignore1 from './ignore1.js';",
+            errors: ['"./ignore1.js" is not published.'],
         },
 
         // `convertPath` option.
         {
             filename: fixture("3/src/test.jsx"),
-            code: "import a from '../test';",
-            errors: ['"../test" is not published.'],
+            code: "import a from '../test.jsx';",
+            errors: ['"../test.jsx" is not published.'],
             settings: {
                 node: {
                     convertPath: {
                         "src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"],
                     },
-                    tryExtensions: [".js", ".jsx", ".json"],
                 },
             },
         },
         {
             filename: fixture("3/src/test.jsx"),
-            code: "import a from '../test';",
+            code: "import a from '../test.jsx';",
             options: [
                 {
                     convertPath: {
                         "src/**/*.jsx": ["src/(.+?)\\.jsx", "pub/$1.js"],
                     },
-                    tryExtensions: [".js", ".jsx", ".json"],
                 },
             ],
-            errors: ['"../test" is not published.'],
+            errors: ['"../test.jsx" is not published.'],
         },
         {
             filename: fixture("3/src/test.jsx"),
-            code: "import a from '../test';",
-            errors: ['"../test" is not published.'],
+            code: "import a from '../test.jsx';",
+            errors: ['"../test.jsx" is not published.'],
             settings: {
                 node: {
                     convertPath: [
@@ -229,13 +228,12 @@ ruleTester.run("no-unpublished-import", rule, {
                             replace: ["src/(.+?)\\.jsx", "pub/$1.js"],
                         },
                     ],
-                    tryExtensions: [".js", ".jsx", ".json"],
                 },
             },
         },
         {
             filename: fixture("3/src/test.jsx"),
-            code: "import a from '../test';",
+            code: "import a from '../test.jsx';",
             options: [
                 {
                     convertPath: [
@@ -244,10 +242,9 @@ ruleTester.run("no-unpublished-import", rule, {
                             replace: ["src/(.+?)\\.jsx", "pub/$1.js"],
                         },
                     ],
-                    tryExtensions: [".js", ".jsx", ".json"],
                 },
             ],
-            errors: ['"../test" is not published.'],
+            errors: ['"../test.jsx" is not published.'],
         },
 
         // outside of the package.

@@ -42,4 +42,3 @@ linter.lintText(rawContent, { filePath }).then(lintResult => {
     const content = lintResult[0].output || rawContent
     fs.writeFileSync(filePath, content)
 })
-

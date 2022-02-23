@@ -16,8 +16,7 @@ This rule warns `import` declarations of extraneous modules.
     "rules": {
         "n/no-extraneous-import": ["error", {
             "allowModules": [],
-            "resolvePaths": [],
-            "tryExtensions": []
+            "resolvePaths": []
         }]
     }
 }
@@ -48,13 +47,6 @@ If a path is relative, it will be resolved from CWD.
 
 Default is `[]`
 
-#### tryExtensions
-
-When an import path does not exist, this rule checks whether or not any of `path.js`, `path.json`, and `path.node` exists.
-`tryExtensions` option is the extension list this rule uses at the time.
-
-Default is `[".js", ".json", ".node"]`.
-
 ### Shared Settings
 
 The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
@@ -62,7 +54,6 @@ Several rules have the same option, but we can set this option at once.
 
 - `allowModules`
 - `resolvePaths`
-- `tryExtensions`
 
 ```js
 // .eslintrc.js
@@ -71,7 +62,6 @@ module.exports = {
         "node": {
             "allowModules": ["electron"],
             "resolvePaths": [__dirname],
-            "tryExtensions": [".js", ".json", ".node"]
         }
     },
     "rules": {

@@ -4,7 +4,8 @@
     ],
     "exclude": [
         "lib/rules/no-hide-core-modules.js",
-        "lib/rules/no-unsupported-features.js"
+        "lib/rules/no-unsupported-features.js",
+        "lib/converted-esm/*.js"
     ],
     "reporter": [
         "lcov",

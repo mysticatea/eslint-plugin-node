@@ -24,6 +24,7 @@
     "devDependencies": {
         "@mysticatea/eslint-plugin": "^13.0.0",
         "codecov": "^3.3.0",
+        "esbuild": "^0.14.14",
         "eslint": "^8.3.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-eslint-plugin": "^4.0.1",
@@ -31,6 +32,7 @@
         "fast-glob": "^2.2.6",
         "globals": "^11.12.0",
         "husky": "^7.0.4",
+        "import-meta-resolve": "^1.1.1",
         "lint-staged": "^12.3.1",
         "mocha": "^6.1.4",
         "nyc": "^14.0.0",

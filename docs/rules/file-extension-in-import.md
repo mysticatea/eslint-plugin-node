@@ -27,7 +27,6 @@ This rule has a string option and an object option.
         "error",
         "always" or "never",
         {
-            "tryExtensions": [".js", ".json", ".node"],
             ".xxx": "always" or "never",
         }
     ]
@@ -36,7 +35,6 @@ This rule has a string option and an object option.
 
 - `"always"` (default) requires file extensions in `import`/`export` declarations.
 - `"never"` disallows file extensions in `import`/`export` declarations.
-- `tryExtensions` is the file extensions to resolve import paths. Default is `[".js", ".json", ".node"]`.
 - `.xxx` is the overriding setting for specific file extensions. You can use arbitrary property names which start with `.`.
 
 #### always
@@ -88,27 +86,6 @@ import eslint from "eslint"
 import script from "./script"
 import styles from "./styles.css"
 import logo from "./logo.png"
-```
-
-### Shared Settings
-
-The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
-Several rules have the same option, but we can set this option at once.
-
-- `tryExtensions`
-
-```js
-// .eslintrc.js
-module.exports = {
-    "settings": {
-        "node": {
-            "tryExtensions": [".js", ".json", ".node"]
-        }
-    },
-    "rules": {
-        "n/file-extension-in-import": "error"
-    }
-}
 ```
 
 ## 🔎 Implementation

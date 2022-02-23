@@ -34,11 +34,7 @@ new RuleTester({
         ecmaVersion: 2015,
         sourceType: "module",
     },
-    settings: {
-        node: {
-            tryExtensions: [".mjs", ".cjs", ".js", ".json", ".node"],
-        },
-    },
+    settings: {},
 }).run("file-extension-in-import", rule, {
     valid: [
         {
@@ -242,7 +238,9 @@ new RuleTester({
             code: "import './multi'",
             output: null,
             options: ["always"],
-            errors: [{ messageId: "requireExt", data: { ext: ".mjs" } }],
+            errors: [
+                { messageId: "requireExt", data: { ext: ".cjs or .mjs" } },
+            ],
         },
         {
             filename: fixture("test.js"),
