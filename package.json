@@ -51,7 +51,6 @@
         "new": "node scripts/new-rule",
         "pretest": "npm run -s lint",
         "test": "nyc npm run -s test:_mocha",
-        "posttest": "npm run format",
         "test:ci": "nyc npm run -s test:_mocha",
         "test:_mocha": "_mocha \"tests/lib/**/*.js\" --reporter progress --timeout 4000",
         "preversion": "npm test",
