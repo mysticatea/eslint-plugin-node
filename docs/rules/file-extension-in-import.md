@@ -9,9 +9,9 @@ import foo from "./path/to/a/file" // maybe it's resolved to 'file.js' or 'file.
 export * from "./path/to/a/file"
 ```
 
-However, [--experimental-modules](https://medium.com/@nodejs/announcing-a-new-experimental-modules-1be8d2d6c2ff) has declared to drop the file extension omition.
+However, when using [`--experimental-modules`](https://medium.com/@nodejs/announcing-a-new-experimental-modules-1be8d2d6c2ff), file extensions are required.
 
-Also, we can import a variety kind of files with bundlers such as Webpack. In the situation, probably explicit file extensions help us to understand code.
+We can also import a variety of file types with bundlers such as Webpack. In this situation, explicit file extensions can help to identify the type of file being imported.
 
 ## 📖 Rule Details
 
