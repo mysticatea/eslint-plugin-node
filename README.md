@@ -167,7 +167,7 @@ Those preset config:
 
 ## 📰 Changelog
 
--   [GitHub Releases](https://github.com/weiran-zsd/eslint-plugin-n/releases)
+-   [GitHub Releases](https://github.com/weiran-zsd/eslint-plugin-node/releases)
 
 ## ❤️ Contributing
 
