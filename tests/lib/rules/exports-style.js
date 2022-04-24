@@ -202,7 +202,36 @@ new RuleTester().run("exports-style", rule, {
             ],
         },
         {
+            code:
+                "if(foo){ module.exports = { foo: 1};} else { module.exports = {foo: 2};}",
+            output: null,
+            options: ["exports"],
+            globals: { module: false, exports: true },
+            errors: [
+                "Unexpected access to 'module.exports'. Use 'exports' instead.",
+                "Unexpected access to 'module.exports'. Use 'exports' instead.",
+            ],
+        },
+        {
+            code: "function bar() { module.exports = { foo: 1 }; }",
+            output: null,
+            options: ["exports"],
+            globals: { module: false, exports: true },
+            errors: [
+                "Unexpected access to 'module.exports'. Use 'exports' instead.",
+            ],
+        },
+        {
             code: "module.exports = { get a() {} }",
+            output: null,
+            options: ["exports"],
+            globals: { module: false, exports: true },
+            errors: [
+                "Unexpected access to 'module.exports'. Use 'exports' instead.",
+            ],
+        },
+        {
+            code: "module.exports = { set a(a) {} }",
             output: null,
             options: ["exports"],
             globals: { module: false, exports: true },
