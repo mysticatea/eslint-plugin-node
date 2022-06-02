@@ -71,6 +71,14 @@ new RuleTester({
         },
         {
             filename: fixture("test.js"),
+            code: "import './d.js'",
+        },
+        {
+            filename: fixture("test.ts"),
+            code: "import './d.js'",
+        },
+        {
+            filename: fixture("test.js"),
             code: "import './a.js'",
             options: ["always"],
         },
