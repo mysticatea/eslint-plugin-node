@@ -59,6 +59,14 @@ ruleTester.run("no-missing-import", rule, {
             code: "import a from './a.js';",
         },
         {
+            filename: fixture("test.ts"),
+            code: "import a from './a.js';",
+        },
+        {
+            filename: fixture("test.ts"),
+            code: "import a from './d.js';",
+        },
+        {
             filename: fixture("test.js"),
             code: "import aConfig from './a.config.js';",
         },
@@ -165,6 +173,11 @@ ruleTester.run("no-missing-import", rule, {
             filename: fixture("test.js"),
             code: "import c from './c';",
             errors: ['"./c" is not found.'],
+        },
+        {
+            filename: fixture("test.ts"),
+            code: "import d from './d';",
+            errors: ['"./d" is not found.'],
         },
         {
             filename: fixture("test.js"),
