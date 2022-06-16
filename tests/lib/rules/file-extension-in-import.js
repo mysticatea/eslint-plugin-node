@@ -75,6 +75,10 @@ new RuleTester({
         },
         {
             filename: fixture("test.ts"),
+            code: "import './a.js'",
+        },
+        {
+            filename: fixture("test.ts"),
             code: "import './d.js'",
         },
         {
@@ -143,6 +147,18 @@ new RuleTester({
             filename: fixture("test.js"),
             code: "import './a'",
             output: "import './a.js'",
+            errors: [{ messageId: "requireExt", data: { ext: ".js" } }],
+        },
+        {
+            filename: fixture("test.ts"),
+            code: "import './a'",
+            output: "import './a.js'",
+            errors: [{ messageId: "requireExt", data: { ext: ".js" } }],
+        },
+        {
+            filename: fixture("test.ts"),
+            code: "import './d'",
+            output: "import './d.js'",
             errors: [{ messageId: "requireExt", data: { ext: ".js" } }],
         },
         {
