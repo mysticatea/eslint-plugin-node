@@ -2493,7 +2493,7 @@ ruleTester.run(
                 })),
             ],
             invalid: [
-                ...["12.16.0", "13.0.0", "13.1.0"].map(v => ({
+                ...["12.16.0", "13.0.0", "13.1.0", ">=8.0.0"].map(v => ({
                     code: "import(source)",
                     options: [{ version: v }],
                     errors: [
