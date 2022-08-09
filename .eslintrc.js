@@ -17,6 +17,15 @@ module.exports = {
     env: {
         mocha: true,
     },
+    overrides: [
+        {
+            // these messageIds were used outside
+            files: ["lib/rules/prefer-global/*.js"],
+            rules: {
+                "eslint-plugin/no-unused-message-ids": 0,
+            },
+        },
+    ],
 }
 
 // const version = require("./package.json").version
