@@ -223,6 +223,23 @@ ruleTester.run("no-unpublished-require", rule, {
             env: { node: true },
         },
 
+        // Should work fine if the target is the package directory.
+        {
+            filename: fixture("issue48n/test.js"),
+            code: "require('.');",
+            env: { node: true },
+        },
+        {
+            filename: fixture("issue48n/test.js"),
+            code: "require('./');",
+            env: { node: true },
+        },
+        {
+            filename: fixture("issue48n/test/test.js"),
+            code: "require('..');",
+            env: { node: true },
+        },
+
         // allowModules option
         {
             filename: fixture("1/test.js"),
