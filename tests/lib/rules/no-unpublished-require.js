@@ -266,6 +266,13 @@ ruleTester.run("no-unpublished-require", rule, {
             code: "require('bbb');",
             env: { node: true },
         },
+
+        // devDependency in a private package
+        {
+            filename: fixture("private-package/index.js"),
+            code: "require('bbb');",
+            env: { node: true },
+        },
     ],
     invalid: [
         {

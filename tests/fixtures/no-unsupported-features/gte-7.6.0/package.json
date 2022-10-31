@@ -1,5 +1,4 @@
 {
-    "private": true,
     "name": "test",
     "engines": {
         "node": ">=7.6.0"

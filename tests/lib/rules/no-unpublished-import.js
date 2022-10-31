@@ -145,6 +145,12 @@ ruleTester.run("no-unpublished-import", rule, {
             filename: fixture("negative-in-files/lib/__test__/index.js"),
             code: "import bbb from 'bbb';",
         },
+
+        // devDependency in a private package
+        {
+            filename: fixture("private-package/index.js"),
+            code: "import bbb from 'bbb';",
+        },
     ],
     invalid: [
         {
