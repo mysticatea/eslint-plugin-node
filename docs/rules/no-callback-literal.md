@@ -1,5 +1,6 @@
-# n/no-callback-literal
-> ensure Node.js-style error-first callback pattern is followed
+# Enforce Node.js-style error-first callback pattern is followed (`n/no-callback-literal`)
+
+<!-- end auto-generated rule header -->
 
 When invoking a callback function which uses the Node.js error-first callback pattern, all of your errors should either use the `Error` class or a subclass of it. It is also acceptable to use `undefined` or `null` if there is no error.
 
@@ -26,16 +27,6 @@ cb(undefined);
 cb(null, 5);
 callback(new Error('some error'));
 callback(someVariable);
-```
-
-### Options
-
-```json
-{
-    "rules": {
-        "n/no-callback-literal": "error"
-    }
-}
 ```
 
 ## 🔎 Implementation

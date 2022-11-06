@@ -1,6 +1,8 @@
-# n/no-extraneous-import
-> disallow `import` declarations which import extraneous modules
-> - ⭐️ This rule is included in `plugin:n/recommended` preset.
+# Disallow `import` declarations which import extraneous modules (`n/no-extraneous-import`)
+
+💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+
+<!-- end auto-generated rule header -->
 
 If an `import` declaration's source is extraneous (it's not written in `package.json`), the program works in local, but will not work after dependencies are re-installed. It will cause troubles to your team/contributors.
 This rule disallows `import` declarations of extraneous modules.
@@ -46,6 +48,10 @@ Adds additional paths to try for when resolving imports.
 If a path is relative, it will be resolved from CWD.
 
 Default is `[]`
+
+#### convertPath
+
+TODO
 
 ### Shared Settings
 

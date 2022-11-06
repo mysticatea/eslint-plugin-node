@@ -1,6 +1,8 @@
-# n/no-deprecated-api
-> disallow deprecated APIs
-> - ⭐️ This rule is included in `plugin:n/recommended` preset.
+# Disallow deprecated APIs (`n/no-deprecated-api`)
+
+💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+
+<!-- end auto-generated rule header -->
 
 Node has many deprecated API.
 The community is going to remove those API from Node in future, so we should not use those.
@@ -28,110 +30,110 @@ This rule reports the following deprecated API.
 - [_linklist](https://nodejs.org/docs/v8.0.0/api/deprecations.html#deprecations_dep0002_require_linklist)
 - [_stream_wrap](https://nodejs.org/docs/v12.0.0/api/deprecations.html#deprecations_dep0125_require_stream_wrap)
 - async_hooks
-    - [currentId](https://nodejs.org/dist/v8.2.0/docs/api/deprecations.html#deprecations_dep0070_async_hooks_currentid)
-    - [triggerId](https://nodejs.org/dist/v8.2.0/docs/api/deprecations.html#deprecations_dep0071_async_hooks_triggerid)
+  - [currentId](https://nodejs.org/dist/v8.2.0/docs/api/deprecations.html#deprecations_dep0070_async_hooks_currentid)
+  - [triggerId](https://nodejs.org/dist/v8.2.0/docs/api/deprecations.html#deprecations_dep0071_async_hooks_triggerid)
 - buffer
-    - [Buffer constructors](https://nodejs.org/dist/v6.0.0/docs/api/buffer.html#buffer_class_buffer) (Use [safe-buffer](https://www.npmjs.com/package/safe-buffer) module for `Node@<4.5.0`)
-    - [SlowBuffer class](https://nodejs.org/dist/v6.0.0/docs/api/buffer.html#buffer_class_slowbuffer)
+  - [Buffer constructors](https://nodejs.org/dist/v6.0.0/docs/api/buffer.html#buffer_class_buffer) (Use [safe-buffer](https://www.npmjs.com/package/safe-buffer) module for `Node@<4.5.0`)
+  - [SlowBuffer class](https://nodejs.org/dist/v6.0.0/docs/api/buffer.html#buffer_class_slowbuffer)
 - constants (undocumented)
 - crypto
-    - [_toBuf](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0114_crypto_tobuf)
-    - `Credentials` (undocumented)
-    - [DEFAULT_ENCODING](https://nodejs.org/dist/v10.0.0/docs/api/crypto.html#crypto_crypto_default_encoding)
-    - [createCredentials](https://nodejs.org/dist/v0.12.0/docs/api/crypto.html#crypto_crypto_createcredentials_details)
-    - [createCipher](https://nodejs.org/dist/v10.0.0/docs/api/crypto.html#crypto_crypto_createcipher_algorithm_password_options)
-    - [createDecipher](https://nodejs.org/dist/v10.0.0/docs/api/crypto.html#crypto_crypto_createdecipher_algorithm_password_options)
-    - [fips](https://nodejs.org/dist/v10.0.0/docs/api/crypto.html#crypto_crypto_fips)
-    - [prng](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0115_crypto_prng_crypto_pseudorandombytes_crypto_rng)
-    - [pseudoRandomBytes](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0115_crypto_prng_crypto_pseudorandombytes_crypto_rng)
-    - [rng](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0115_crypto_prng_crypto_pseudorandombytes_crypto_rng)
+  - [_toBuf](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0114_crypto_tobuf)
+  - `Credentials` (undocumented)
+  - [DEFAULT_ENCODING](https://nodejs.org/dist/v10.0.0/docs/api/crypto.html#crypto_crypto_default_encoding)
+  - [createCredentials](https://nodejs.org/dist/v0.12.0/docs/api/crypto.html#crypto_crypto_createcredentials_details)
+  - [createCipher](https://nodejs.org/dist/v10.0.0/docs/api/crypto.html#crypto_crypto_createcipher_algorithm_password_options)
+  - [createDecipher](https://nodejs.org/dist/v10.0.0/docs/api/crypto.html#crypto_crypto_createdecipher_algorithm_password_options)
+  - [fips](https://nodejs.org/dist/v10.0.0/docs/api/crypto.html#crypto_crypto_fips)
+  - [prng](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0115_crypto_prng_crypto_pseudorandombytes_crypto_rng)
+  - [pseudoRandomBytes](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0115_crypto_prng_crypto_pseudorandombytes_crypto_rng)
+  - [rng](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0115_crypto_prng_crypto_pseudorandombytes_crypto_rng)
 - [domain](https://nodejs.org/dist/v4.0.0/docs/api/domain.html#domain_domain)
 - events
-    - [EventEmitter.listenerCount](https://nodejs.org/dist/v4.0.0/docs/api/events.html#events_class_method_eventemitter_listenercount_emitter_event)
+  - [EventEmitter.listenerCount](https://nodejs.org/dist/v4.0.0/docs/api/events.html#events_class_method_eventemitter_listenercount_emitter_event)
 - freelist (undocumented)
 - fs
-    - `SyncWriteStream` (undocumented)
-    - [exists](https://nodejs.org/dist/v4.0.0/docs/api/fs.html#fs_fs_exists_path_callback)
-    - [lchmod](https://nodejs.org/dist/v8.0.0/docs/api/fs.html#fs_fs_lchmod_path_mode_callback)
-    - [lchmodSync](https://nodejs.org/dist/v8.0.0/docs/api/fs.html#fs_fs_lchmodsync_path_mode)
+  - `SyncWriteStream` (undocumented)
+  - [exists](https://nodejs.org/dist/v4.0.0/docs/api/fs.html#fs_fs_exists_path_callback)
+  - [lchmod](https://nodejs.org/dist/v8.0.0/docs/api/fs.html#fs_fs_lchmod_path_mode_callback)
+  - [lchmodSync](https://nodejs.org/dist/v8.0.0/docs/api/fs.html#fs_fs_lchmodsync_path_mode)
 - globals
-    - [require.extensions](https://nodejs.org/dist/v0.12.0/docs/api/globals.html#globals_require_extensions)
-    - [GLOBAL](https://nodejs.org/api/deprecations.html#deprecations_dep0016_global_root)
-    - [root](https://nodejs.org/api/deprecations.html#deprecations_dep0016_global_root)
-    - [Intl.v8BreakIterator](https://nodejs.org/api/deprecations.html#deprecations_dep0017_intl_v8breakiterator)
-    - [COUNTER_NET_SERVER_CONNECTION](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
-    - [COUNTER_NET_SERVER_CONNECTION_CLOSE](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
-    - [COUNTER_HTTP_SERVER_REQUEST](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
-    - [COUNTER_HTTP_SERVER_RESPONSE](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
-    - [COUNTER_HTTP_CLIENT_REQUEST](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
-    - [COUNTER_HTTP_CLIENT_RESPONSE](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
+  - [require.extensions](https://nodejs.org/dist/v0.12.0/docs/api/globals.html#globals_require_extensions)
+  - [GLOBAL](https://nodejs.org/api/deprecations.html#deprecations_dep0016_global_root)
+  - [root](https://nodejs.org/api/deprecations.html#deprecations_dep0016_global_root)
+  - [Intl.v8BreakIterator](https://nodejs.org/api/deprecations.html#deprecations_dep0017_intl_v8breakiterator)
+  - [COUNTER_NET_SERVER_CONNECTION](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
+  - [COUNTER_NET_SERVER_CONNECTION_CLOSE](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
+  - [COUNTER_HTTP_SERVER_REQUEST](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
+  - [COUNTER_HTTP_SERVER_RESPONSE](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
+  - [COUNTER_HTTP_CLIENT_REQUEST](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
+  - [COUNTER_HTTP_CLIENT_RESPONSE](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0120_windows_performance_counter_support)
 - http
-    - [createClient](https://nodejs.org/dist/v0.10.0/docs/api/http.html#http_http_createclient_port_host)
+  - [createClient](https://nodejs.org/dist/v0.10.0/docs/api/http.html#http_http_createclient_port_host)
 - module
-    - [createRequireFromPath](https://nodejs.org/dist/v12.2.0/docs/api/deprecations.html#deprecations_dep0130_module_createrequirefrompath)
-    - `requireRepl` (undocumented)
-    - [_debug](https://nodejs.org/dist/v9.0.0/docs/api/deprecations.html#deprecations_dep0077_module_debug)
+  - [createRequireFromPath](https://nodejs.org/dist/v12.2.0/docs/api/deprecations.html#deprecations_dep0130_module_createrequirefrompath)
+  - `requireRepl` (undocumented)
+  - [_debug](https://nodejs.org/dist/v9.0.0/docs/api/deprecations.html#deprecations_dep0077_module_debug)
 - net
-    - [_setSimultaneousAccepts](https://nodejs.org/docs/v12.0.0/api/deprecations.html#deprecations_dep0121_net_setsimultaneousaccepts)
+  - [_setSimultaneousAccepts](https://nodejs.org/docs/v12.0.0/api/deprecations.html#deprecations_dep0121_net_setsimultaneousaccepts)
 - os
-    - `tmpDir` (undocumented)
-    - `getNetworkInterfaces` (undocumented)
+  - `tmpDir` (undocumented)
+  - `getNetworkInterfaces` (undocumented)
 - path
-    - [_makeLong](https://nodejs.org/dist/v9.0.0/docs/api/deprecations.html#deprecations_dep0080_path_makelong)
+  - [_makeLong](https://nodejs.org/dist/v9.0.0/docs/api/deprecations.html#deprecations_dep0080_path_makelong)
 - process
-    - `EventEmitter` (undocumented)
-    - `assert` (undocumented)
-    - [binding](https://nodejs.org/dist/v10.9.0/docs/api/deprecations.html#deprecations_dep0111_process_binding)
+  - `EventEmitter` (undocumented)
+  - `assert` (undocumented)
+  - [binding](https://nodejs.org/dist/v10.9.0/docs/api/deprecations.html#deprecations_dep0111_process_binding)
 - [punycode](https://nodejs.org/dist/v7.0.0/docs/api/punycode.html)
 - readline
-    - `codePointAt` (undocumented)
-    - `getStringWidth` (undocumented)
-    - `isFullWidthCodePoint` (undocumented)
-    - `stripVTControlCharacters` (undocumented)
+  - `codePointAt` (undocumented)
+  - `getStringWidth` (undocumented)
+  - `isFullWidthCodePoint` (undocumented)
+  - `stripVTControlCharacters` (undocumented)
 - repl
-    - [process.env.NODE_REPL_HISTORY_FILE](https://nodejs.org/dist/v4.0.0/docs/api/repl.html#repl_node_repl_history_file)
+  - [process.env.NODE_REPL_HISTORY_FILE](https://nodejs.org/dist/v4.0.0/docs/api/repl.html#repl_node_repl_history_file)
 - [sys](https://nodejs.org/api/deprecations.html#deprecations_dep0025_require_sys)
 - timers
-    - `enroll` (undocumented)
-    - `unenroll` (undocumented)
+  - `enroll` (undocumented)
+  - `unenroll` (undocumented)
 - tls
-    - [CleartextStream](https://nodejs.org/dist/v0.10.0/docs/api/tls.html#tls_class_tls_cleartextstream)
+  - [CleartextStream](https://nodejs.org/dist/v0.10.0/docs/api/tls.html#tls_class_tls_cleartextstream)
       (this class was removed on v0.11.3, but never deprecated in documents)
-    - [CryptoStream](https://nodejs.org/dist/v0.12.0/docs/api/tls.html#tls_class_cryptostream)
-    - [SecurePair](https://nodejs.org/dist/v6.0.0/docs/api/tls.html#tls_class_securepair)
-    - `convertNPNProtocols` (undocumented)
-    - [createSecurePair](https://nodejs.org/dist/v6.0.0/docs/api/tls.html#tls_tls_createsecurepair_context_isserver_requestcert_rejectunauthorized_options)
-    - [parseCertString](https://nodejs.org/dist/v8.6.0/docs/api/deprecations.html#deprecations_dep0076_tls_parsecertstring)
+  - [CryptoStream](https://nodejs.org/dist/v0.12.0/docs/api/tls.html#tls_class_cryptostream)
+  - [SecurePair](https://nodejs.org/dist/v6.0.0/docs/api/tls.html#tls_class_securepair)
+  - `convertNPNProtocols` (undocumented)
+  - [createSecurePair](https://nodejs.org/dist/v6.0.0/docs/api/tls.html#tls_tls_createsecurepair_context_isserver_requestcert_rejectunauthorized_options)
+  - [parseCertString](https://nodejs.org/dist/v8.6.0/docs/api/deprecations.html#deprecations_dep0076_tls_parsecertstring)
 - tty
-    - [setRawMode](https://nodejs.org/dist/v0.10.0/docs/api/tty.html#tty_tty_setrawmode_mode)
+  - [setRawMode](https://nodejs.org/dist/v0.10.0/docs/api/tty.html#tty_tty_setrawmode_mode)
 - url
-    - [parse](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0116_legacy_url_api)
-    - [resolve](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0116_legacy_url_api)
+  - [parse](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0116_legacy_url_api)
+  - [resolve](https://nodejs.org/dist/v11.0.0/docs/api/deprecations.html#deprecations_dep0116_legacy_url_api)
 - util
-    - [debug](https://nodejs.org/dist/v0.12.0/docs/api/util.html#util_util_debug_string)
-    - [error](https://nodejs.org/dist/v0.12.0/docs/api/util.html#util_util_error)
-    - [isArray](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isarray_object)
-    - [isBoolean](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isboolean_object)
-    - [isBuffer](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isbuffer_object)
-    - [isDate](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isdate_object)
-    - [isError](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_iserror_object)
-    - [isFunction](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isfunction_object)
-    - [isNull](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isnull_object)
-    - [isNullOrUndefined](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isnullorundefined_object)
-    - [isNumber](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isnumber_object)
-    - [isObject](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isobject_object)
-    - [isPrimitive](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isprimitive_object)
-    - [isRegExp](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isregexp_object)
-    - [isString](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isstring_object)
-    - [isSymbol](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_issymbol_object)
-    - [isUndefined](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isundefined_object)
-    - [log](https://nodejs.org/dist/v6.0.0/docs/api/util.html#util_util_log_string)
-    - [print](https://nodejs.org/dist/v0.12.0/docs/api/util.html#util_util_print)
-    - [pump](https://nodejs.org/dist/v0.10.0/docs/api/util.html#util_util_pump_readablestream_writablestream_callback)
-    - [puts](https://nodejs.org/dist/v0.12.0/docs/api/util.html#util_util_puts)
-    - [_extend](https://nodejs.org/dist/v6.0.0/docs/api/util.html#util_util_extend_obj)
+  - [debug](https://nodejs.org/dist/v0.12.0/docs/api/util.html#util_util_debug_string)
+  - [error](https://nodejs.org/dist/v0.12.0/docs/api/util.html#util_util_error)
+  - [isArray](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isarray_object)
+  - [isBoolean](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isboolean_object)
+  - [isBuffer](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isbuffer_object)
+  - [isDate](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isdate_object)
+  - [isError](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_iserror_object)
+  - [isFunction](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isfunction_object)
+  - [isNull](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isnull_object)
+  - [isNullOrUndefined](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isnullorundefined_object)
+  - [isNumber](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isnumber_object)
+  - [isObject](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isobject_object)
+  - [isPrimitive](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isprimitive_object)
+  - [isRegExp](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isregexp_object)
+  - [isString](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isstring_object)
+  - [isSymbol](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_issymbol_object)
+  - [isUndefined](https://nodejs.org/dist/v4.0.0/docs/api/util.html#util_util_isundefined_object)
+  - [log](https://nodejs.org/dist/v6.0.0/docs/api/util.html#util_util_log_string)
+  - [print](https://nodejs.org/dist/v0.12.0/docs/api/util.html#util_util_print)
+  - [pump](https://nodejs.org/dist/v0.10.0/docs/api/util.html#util_util_pump_readablestream_writablestream_callback)
+  - [puts](https://nodejs.org/dist/v0.12.0/docs/api/util.html#util_util_puts)
+  - [_extend](https://nodejs.org/dist/v6.0.0/docs/api/util.html#util_util_extend_obj)
 - vm
-    - [runInDebugContext](https://nodejs.org/dist/v8.0.0/docs/api/vm.html#vm_vm_runindebugcontext_code)
+  - [runInDebugContext](https://nodejs.org/dist/v8.0.0/docs/api/vm.html#vm_vm_runindebugcontext_code)
 
 > ⚠️ Note that userland modules don't hide core modules.
 > For example, `require("punycode")` still imports the deprecated core module even if you executed `npm install punycode`.
@@ -158,7 +160,7 @@ If you omit the [engines] field, this rule chooses `>=8.0.0` as the configured N
 
 ### Options
 
-This rule has 3 options.
+This rule has 4 options.
 
 ```json
 {
@@ -167,6 +169,7 @@ This rule has 3 options.
             "version": ">=8.0.0",
             "ignoreModuleItems": [],
             "ignoreGlobalItems": []
+            "ignoreIndirectDependencies": true
         }]
     }
 }
@@ -316,28 +319,28 @@ This rule cannot report the following cases:
 ### non-static properties
 
 - async_hooks
-    - [asyncResource.triggerId](https://nodejs.org/dist/v8.2.0/docs/api/deprecations.html#deprecations_dep0072_async_hooks_asyncresource_triggerid)
+  - [asyncResource.triggerId](https://nodejs.org/dist/v8.2.0/docs/api/deprecations.html#deprecations_dep0072_async_hooks_asyncresource_triggerid)
 - buffer
-    - [buf.parent](https://nodejs.org/dist/v8.0.0/docs/api/buffer.html#buffer_buf_parent)
+  - [buf.parent](https://nodejs.org/dist/v8.0.0/docs/api/buffer.html#buffer_buf_parent)
 - cluster
-    - [worker.suicide](https://nodejs.org/dist/v6.0.0/docs/api/cluster.html#cluster_worker_suicide)
+  - [worker.suicide](https://nodejs.org/dist/v6.0.0/docs/api/cluster.html#cluster_worker_suicide)
 - crypto
-    - [ecdh.setPublicKey](https://nodejs.org/dist/v6.0.0/docs/api/crypto.html#crypto_ecdh_setpublickey_public_key_encoding)
+  - [ecdh.setPublicKey](https://nodejs.org/dist/v6.0.0/docs/api/crypto.html#crypto_ecdh_setpublickey_public_key_encoding)
 - http
-    - [res.writeHeader()](https://nodejs.org/dist/v8.0.0/docs/api/deprecations.html#deprecations_dep0063_serverresponse_prototype_writeheader)
+  - [res.writeHeader()](https://nodejs.org/dist/v8.0.0/docs/api/deprecations.html#deprecations_dep0063_serverresponse_prototype_writeheader)
 - net
-    - [server.connections](https://nodejs.org/dist/v0.10.0/docs/api/net.html#net_server_connections)
+  - [server.connections](https://nodejs.org/dist/v0.10.0/docs/api/net.html#net_server_connections)
 - repl
-    - `replServer.convertToContext` (undocumented)
-    - [replServer.turnOffEditorMode](https://nodejs.org/dist/v9.0.0/docs/api/deprecations.html#deprecations_dep0078_replserver_turnoffeditormode)
-    - [replServer.memory](https://nodejs.org/dist/v9.0.0/docs/api/deprecations.html#deprecations_dep0082_replserver_prototype_memory)
+  - `replServer.convertToContext` (undocumented)
+  - [replServer.turnOffEditorMode](https://nodejs.org/dist/v9.0.0/docs/api/deprecations.html#deprecations_dep0078_replserver_turnoffeditormode)
+  - [replServer.memory](https://nodejs.org/dist/v9.0.0/docs/api/deprecations.html#deprecations_dep0082_replserver_prototype_memory)
 
 ### types of arguments
 
 - fs
-    - `fs.truncate()` and `fs.truncateSync()` usage with a file descriptor has been deprecated.
+  - `fs.truncate()` and `fs.truncateSync()` usage with a file descriptor has been deprecated.
 - url
-    - `url.format()` with legacy `urlObject` has been deprecated.
+  - `url.format()` with legacy `urlObject` has been deprecated.
 
 ### dynamic things
 

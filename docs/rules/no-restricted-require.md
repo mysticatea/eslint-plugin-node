@@ -1,5 +1,6 @@
-# n/no-restricted-require
-> disallow specified modules when loaded by `require`
+# Disallow specified modules when loaded by `require` (`n/no-restricted-require`)
+
+<!-- end auto-generated rule header -->
 
 A module in Node.js is a simple or complex functionality organized in a JavaScript file which can be reused throughout the Node.js
 application. The keyword `require` is used in Node.js/CommonJS to import modules into an application. This way you can have dynamic loading where the loaded module name isn't predefined /static, or where you conditionally load a module only if it's "truly required".

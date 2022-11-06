@@ -1,5 +1,6 @@
-# n/prefer-global/buffer
-> enforce either `Buffer` or `require("buffer").Buffer`
+# Enforce either `Buffer` or `require("buffer").Buffer` (`n/prefer-global/buffer`)
+
+<!-- end auto-generated rule header -->
 
 The `Buffer` class of `buffer` module is defined as a global variable.
 

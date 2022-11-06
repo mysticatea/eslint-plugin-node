@@ -1,6 +1,8 @@
-# n/no-exports-assign
-> disallow the assignment to `exports`
-> - ⭐️ This rule is included in `plugin:n/recommended` preset.
+# Disallow the assignment to `exports` (`n/no-exports-assign`)
+
+💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+
+<!-- end auto-generated rule header -->
 
 To assign to `exports` variable would not work as expected.
 

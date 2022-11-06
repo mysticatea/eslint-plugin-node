@@ -1,5 +1,8 @@
-# n/no-process-exit
-> disallow the use of `process.exit()`
+# Disallow the use of `process.exit()` (`n/no-process-exit`)
+
+💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+
+<!-- end auto-generated rule header -->
 
 The `process.exit()` method in Node.js is used to immediately stop the Node.js process and exit. This is a dangerous operation because it can occur in any method at any point in time, potentially stopping a Node.js application completely when an error occurs. For example:
 

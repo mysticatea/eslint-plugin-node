@@ -1,5 +1,6 @@
-# n/no-new-require
-> disallow `new` operators with calls to `require`
+# Disallow `new` operators with calls to `require` (`n/no-new-require`)
+
+<!-- end auto-generated rule header -->
 
 The `require` function is used to include modules that exist in separate files, such as:
 

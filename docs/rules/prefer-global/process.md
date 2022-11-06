@@ -1,5 +1,6 @@
-# n/prefer-global/process
-> enforce either `process` or `require("process")`
+# Enforce either `process` or `require("process")` (`n/prefer-global/process`)
+
+<!-- end auto-generated rule header -->
 
 The `process` module is defined as a global variable.
 

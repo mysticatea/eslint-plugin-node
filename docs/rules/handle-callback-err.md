@@ -1,5 +1,6 @@
-# n/handle-callback-err
-> require error handling in callbacks
+# Require error handling in callbacks (`n/handle-callback-err`)
+
+<!-- end auto-generated rule header -->
 
 In Node.js, a common pattern for dealing with asynchronous behavior is called the callback pattern.
 This pattern expects an `Error` object or `null` as the first argument of the callback.

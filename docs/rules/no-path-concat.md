@@ -1,5 +1,6 @@
-# n/no-path-concat
-> disallow string concatenation with `__dirname` and `__filename`
+# Disallow string concatenation with `__dirname` and `__filename` (`n/no-path-concat`)
+
+<!-- end auto-generated rule header -->
 
 In Node.js, the `__dirname` and `__filename` global variables contain the directory path and the file path of the currently executing script file, respectively. Sometimes, developers try to use these variables to create paths to other files, such as:
 

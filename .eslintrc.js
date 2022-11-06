@@ -17,6 +17,9 @@ module.exports = {
     env: {
         mocha: true,
     },
+    rules: {
+        "eslint-plugin/require-meta-docs-description": "error",
+    },
     overrides: [
         {
             // these messageIds were used outside

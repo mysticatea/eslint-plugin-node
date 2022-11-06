@@ -1,8 +1,8 @@
-# n/no-unsupported-features
-> disallow unsupported ECMAScript features on the specified version
-> - ⛔ This rule has been deprecated. Use [n/no-unsupported-features/es-syntax](./no-unsupported-features/es-syntax.md) and [n/no-unsupported-features/es-builtins](./no-unsupported-features/es-builtins.md) instead.
+# Disallow unsupported ECMAScript features on the specified version (`n/no-unsupported-features`)
 
-**:warning: This is deprecated since v7.0.0.** Use [n/no-unsupported-features/es-syntax](./no-unsupported-features/es-syntax.md) and [n/no-unsupported-features/es-builtins](./no-unsupported-features/es-builtins.md) instead.
+❌ This rule is deprecated. It was replaced by [`n/no-unsupported-features/es-syntax`](n/no-unsupported-features/es-syntax.md), [`n/no-unsupported-features/es-builtins`](n/no-unsupported-features/es-builtins.md).
+
+<!-- end auto-generated rule header -->
 
 Node.js doesn't support all ECMAScript standard features.
 This rule reports when you used unsupported ECMAScript 2015-2018 features on the specified Node.js version.
@@ -298,7 +298,7 @@ E.g., a use of instance methods.
 
 ## 📚 Further Reading
 
-- http://node.green/
+- <http://node.green/>
 
 [engines]: https://docs.npmjs.com/files/package.json#engines
 

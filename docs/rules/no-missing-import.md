@@ -1,6 +1,8 @@
-# n/no-missing-import
-> disallow `import` declarations which import non-existence modules
-> - ⭐️ This rule is included in `plugin:n/recommended` preset.
+# Disallow `import` declarations which import non-existence modules (`n/no-missing-import`)
+
+💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+
+<!-- end auto-generated rule header -->
 
 This is similar to [no-missing-require](no-missing-require.md), but this rule handles `import` and `export` declarations.
 

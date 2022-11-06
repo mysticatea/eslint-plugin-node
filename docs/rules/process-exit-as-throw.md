@@ -1,6 +1,8 @@
-# n/process-exit-as-throw
-> make `process.exit()` expressions the same code path as `throw`
-> - ⭐️ This rule is included in `plugin:n/recommended` preset.
+# Require that `process.exit()` expressions use the same code path as `throw` (`n/process-exit-as-throw`)
+
+💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+
+<!-- end auto-generated rule header -->
 
 ## 📖 Rule Details
 

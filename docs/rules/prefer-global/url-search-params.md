@@ -1,5 +1,6 @@
-# n/prefer-global/url-search-params
-> enforce either `URLSearchParams` or `require("url").URLSearchParams`
+# Enforce either `URLSearchParams` or `require("url").URLSearchParams` (`n/prefer-global/url-search-params`)
+
+<!-- end auto-generated rule header -->
 
 The `URLSearchParams` class of `url` module is defined as a global variable.
 

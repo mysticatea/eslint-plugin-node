@@ -1,6 +1,8 @@
-# n/no-unsupported-features/node-builtins
-> disallow unsupported Node.js built-in APIs on the specified version
-> - ⭐️ This rule is included in `plugin:n/recommended` preset.
+# Disallow unsupported Node.js built-in APIs on the specified version (`n/no-unsupported-features/node-builtins`)
+
+💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+
+<!-- end auto-generated rule header -->
 
 Node.js community is improving built-in APIs continuously.
 You can check [Node.js Documentation](https://nodejs.org/api/) to know which Node.js version supports each Node.js API.

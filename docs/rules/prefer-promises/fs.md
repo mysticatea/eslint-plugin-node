@@ -1,5 +1,6 @@
-# n/prefer-promises/fs
-> enforce `require("fs").promises`
+# Enforce `require("fs").promises` (`n/prefer-promises/fs`)
+
+<!-- end auto-generated rule header -->
 
 Since Node.js v11.14.0, `require("fs").promises` API has been stable.
 Promise API and `async`/`await` syntax will make code more readable than callback API.

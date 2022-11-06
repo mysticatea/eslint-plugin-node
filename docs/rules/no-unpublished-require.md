@@ -1,6 +1,8 @@
-# n/no-unpublished-require
-> disallow `require()` expressions which import private modules
-> - ⭐️ This rule is included in `plugin:n/recommended` preset.
+# Disallow `require()` expressions which import private modules (`n/no-unpublished-require`)
+
+💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+
+<!-- end auto-generated rule header -->
 
 If a `require()` expression's target is not published, the program works in local, but will not work after published to npm.
 This rule disallows `require()` expressions of unpublished files/modules.
@@ -109,6 +111,10 @@ When an import path does not exist, this rule checks whether or not any of `path
 `tryExtensions` option is the extension list this rule uses at the time.
 
 Default is `[".js", ".json", ".node"]`.
+
+#### resolvePaths
+
+TODO
 
 ### Shared Settings
 

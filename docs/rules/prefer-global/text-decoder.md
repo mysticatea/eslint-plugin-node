@@ -1,5 +1,6 @@
-# n/prefer-global/text-decoder
-> enforce either `TextDecoder` or `require("util").TextDecoder`
+# Enforce either `TextDecoder` or `require("util").TextDecoder` (`n/prefer-global/text-decoder`)
+
+<!-- end auto-generated rule header -->
 
 The `TextDecoder` class of `util` module is defined as a global variable.
 

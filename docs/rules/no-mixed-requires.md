@@ -1,5 +1,6 @@
-# n/no-mixed-requires
-> disallow `require` calls to be mixed with regular variable declarations
+# Disallow `require` calls to be mixed with regular variable declarations (`n/no-mixed-requires`)
+
+<!-- end auto-generated rule header -->
 
 In the Node.js community it is often customary to separate initializations with calls to `require` modules from other variable declarations, sometimes also grouping them by the type of module. This rule helps you enforce this convention.
 

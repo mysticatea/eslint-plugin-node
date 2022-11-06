@@ -1,5 +1,6 @@
-# n/prefer-global/console
-> enforce either `console` or `require("console")`
+# Enforce either `console` or `require("console")` (`n/prefer-global/console`)
+
+<!-- end auto-generated rule header -->
 
 The `console` module is defined as a global variable.
 

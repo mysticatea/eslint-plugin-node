@@ -1,6 +1,8 @@
-# n/exports-style
-> enforce either `module.exports` or `exports`
-> - ✒️ The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+# Enforce either `module.exports` or `exports` (`n/exports-style`)
+
+🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
+
+<!-- end auto-generated rule header -->
 
 `module.exports` and `exports` are the same instance by default.
 But those come to be different if one of them is modified.

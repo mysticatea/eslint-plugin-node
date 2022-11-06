@@ -1,5 +1,6 @@
-# n/callback-return
-> require `return` statements after callbacks
+# Require `return` statements after callbacks (`n/callback-return`)
+
+<!-- end auto-generated rule header -->
 
 The callback pattern is at the heart of most I/O and event-driven programming
  in JavaScript.

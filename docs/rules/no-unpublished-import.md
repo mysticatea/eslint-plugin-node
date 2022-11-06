@@ -1,6 +1,8 @@
-# n/no-unpublished-import
-> disallow `import` declarations which import private modules
-> - ⭐️ This rule is included in `plugin:n/recommended` preset.
+# Disallow `import` declarations which import private modules (`n/no-unpublished-import`)
+
+💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+
+<!-- end auto-generated rule header -->
 
 This is similar to [no-unpublished-require](no-unpublished-require.md), but this rule handles `import` declarations.
 
@@ -101,6 +103,10 @@ For example:
 
 In this style, this option has the following shape as the same expression as above: `{include: [<targetFiles>], replace: [<fromRegExp>, <toString>]}`.
 In addition, we can specify glob patterns to exclude files.
+
+#### resolvePaths
+
+TODO
 
 ### Shared Settings
 

@@ -1,5 +1,6 @@
-# n/global-require
-> require `require()` calls to be placed at top-level module scope
+# Require `require()` calls to be placed at top-level module scope (`n/global-require`)
+
+<!-- end auto-generated rule header -->
 
 In Node.js, module dependencies are included using the `require()` function, such as:
 

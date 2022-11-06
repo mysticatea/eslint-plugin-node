@@ -1,6 +1,8 @@
-# n/no-missing-require
-> disallow `require()` expressions which import non-existence modules
-> - ⭐️ This rule is included in `plugin:n/recommended` preset.
+# Disallow `require()` expressions which import non-existence modules (`n/no-missing-require`)
+
+💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+
+<!-- end auto-generated rule header -->
 
 Maybe we cannot find typo of import paths until run it, so this rule checks import paths.
 

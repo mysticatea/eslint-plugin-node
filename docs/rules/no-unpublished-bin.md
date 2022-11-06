@@ -1,6 +1,8 @@
-# n/no-unpublished-bin
-> disallow `bin` files that npm ignores
-> - ⭐️ This rule is included in `plugin:n/recommended` preset.
+# Disallow `bin` files that npm ignores (`n/no-unpublished-bin`)
+
+💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+
+<!-- end auto-generated rule header -->
 
 We can publish CLI commands by `npm`. It uses `bin` field of `package.json`.
 
@@ -84,7 +86,6 @@ For example:
 
 In this style, this option has the following shape as the same expression as above: `{include: [<targetFiles>], replace: [<fromRegExp>, <toString>]}`.
 In addition, we can specify glob patterns to exclude files.
-
 
 ### Shared Settings
 

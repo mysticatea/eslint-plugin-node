@@ -1,5 +1,6 @@
-# n/prefer-global/url
-> enforce either `URL` or `require("url").URL`
+# Enforce either `URL` or `require("url").URL` (`n/prefer-global/url`)
+
+<!-- end auto-generated rule header -->
 
 The `URL` class of `url` module is defined as a global variable.
 

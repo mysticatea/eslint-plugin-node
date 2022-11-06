@@ -1,6 +1,8 @@
-# n/no-unsupported-features/es-builtins
-> disallow unsupported ECMAScript built-ins on the specified version
-> - ⭐️ This rule is included in `plugin:n/recommended` preset.
+# Disallow unsupported ECMAScript built-ins on the specified version (`n/no-unsupported-features/es-builtins`)
+
+💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+
+<!-- end auto-generated rule header -->
 
 ECMAScript standard is updating every two months.
 You can check [node.green](https://node.green/) to know which Node.js version supports each ECMAScript feature.
