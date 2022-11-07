@@ -67,7 +67,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/weiran-zsd/eslint-plugin-node.git"
+        "url": "git+https://github.com/eslint-community/eslint-plugin-n.git"
     },
     "keywords": [
         "eslint",
@@ -85,9 +85,9 @@
     "author": "Toru Nagashima",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/weiran-zsd/eslint-plugin-node/issues"
+        "url": "https://github.com/eslint-community/eslint-plugin-n/issues"
     },
-    "homepage": "https://github.com/weiran-zsd/eslint-plugin-node#readme",
+    "homepage": "https://github.com/eslint-community/eslint-plugin-n#readme",
     "funding": "https://github.com/sponsors/mysticatea",
     "publishConfig": {
         "access": "public",
