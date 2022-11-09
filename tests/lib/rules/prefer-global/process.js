@@ -26,6 +26,10 @@ new RuleTester({
             code: "var process = require('process'); process.exit(0)",
             options: ["never"],
         },
+        {
+            code: "var process = require('node:process'); process.exit(0)",
+            options: ["never"],
+        },
     ],
     invalid: [
         {
@@ -33,7 +37,16 @@ new RuleTester({
             errors: [{ messageId: "preferGlobal" }],
         },
         {
+            code: "var process = require('node:process'); process.exit(0)",
+            errors: [{ messageId: "preferGlobal" }],
+        },
+        {
             code: "var process = require('process'); process.exit(0)",
+            options: ["always"],
+            errors: [{ messageId: "preferGlobal" }],
+        },
+        {
+            code: "var process = require('node:process'); process.exit(0)",
             options: ["always"],
             errors: [{ messageId: "preferGlobal" }],
         },

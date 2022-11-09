@@ -26,6 +26,10 @@ new RuleTester({
             code: "var { URLSearchParams } = require('url'); var b = new URLSearchParams(s)",
             options: ["never"],
         },
+        {
+            code: "var { URLSearchParams } = require('node:url'); var b = new URLSearchParams(s)",
+            options: ["never"],
+        },
     ],
     invalid: [
         {
@@ -33,7 +37,16 @@ new RuleTester({
             errors: [{ messageId: "preferGlobal" }],
         },
         {
+            code: "var { URLSearchParams } = require('node:url'); var b = new URLSearchParams(s)",
+            errors: [{ messageId: "preferGlobal" }],
+        },
+        {
             code: "var { URLSearchParams } = require('url'); var b = new URLSearchParams(s)",
+            options: ["always"],
+            errors: [{ messageId: "preferGlobal" }],
+        },
+        {
+            code: "var { URLSearchParams } = require('node:url'); var b = new URLSearchParams(s)",
             options: ["always"],
             errors: [{ messageId: "preferGlobal" }],
         },

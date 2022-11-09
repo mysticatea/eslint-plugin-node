@@ -26,6 +26,10 @@ new RuleTester({
             code: "var { TextEncoder } = require('util'); var b = new TextEncoder(s)",
             options: ["never"],
         },
+        {
+            code: "var { TextEncoder } = require('node:util'); var b = new TextEncoder(s)",
+            options: ["never"],
+        },
     ],
     invalid: [
         {
@@ -33,7 +37,16 @@ new RuleTester({
             errors: [{ messageId: "preferGlobal" }],
         },
         {
+            code: "var { TextEncoder } = require('node:util'); var b = new TextEncoder(s)",
+            errors: [{ messageId: "preferGlobal" }],
+        },
+        {
             code: "var { TextEncoder } = require('util'); var b = new TextEncoder(s)",
+            options: ["always"],
+            errors: [{ messageId: "preferGlobal" }],
+        },
+        {
+            code: "var { TextEncoder } = require('node:util'); var b = new TextEncoder(s)",
             options: ["always"],
             errors: [{ messageId: "preferGlobal" }],
         },

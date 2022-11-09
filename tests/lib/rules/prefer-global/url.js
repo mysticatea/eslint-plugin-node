@@ -26,6 +26,10 @@ new RuleTester({
             code: "var { URL } = require('url'); var b = new URL(s)",
             options: ["never"],
         },
+        {
+            code: "var { URL } = require('node:url'); var b = new URL(s)",
+            options: ["never"],
+        },
     ],
     invalid: [
         {
@@ -33,7 +37,16 @@ new RuleTester({
             errors: [{ messageId: "preferGlobal" }],
         },
         {
+            code: "var { URL } = require('node:url'); var b = new URL(s)",
+            errors: [{ messageId: "preferGlobal" }],
+        },
+        {
             code: "var { URL } = require('url'); var b = new URL(s)",
+            options: ["always"],
+            errors: [{ messageId: "preferGlobal" }],
+        },
+        {
+            code: "var { URL } = require('node:url'); var b = new URL(s)",
             options: ["always"],
             errors: [{ messageId: "preferGlobal" }],
         },

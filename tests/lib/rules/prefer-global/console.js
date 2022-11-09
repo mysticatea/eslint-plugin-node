@@ -26,6 +26,10 @@ new RuleTester({
             code: "var console = require('console'); console.log(10)",
             options: ["never"],
         },
+        {
+            code: "var console = require('node:console'); console.log(10)",
+            options: ["never"],
+        },
     ],
     invalid: [
         {
@@ -33,7 +37,16 @@ new RuleTester({
             errors: [{ messageId: "preferGlobal" }],
         },
         {
+            code: "var console = require('node:console'); console.log(10)",
+            errors: [{ messageId: "preferGlobal" }],
+        },
+        {
             code: "var console = require('console'); console.log(10)",
+            options: ["always"],
+            errors: [{ messageId: "preferGlobal" }],
+        },
+        {
+            code: "var console = require('node:console'); console.log(10)",
             options: ["always"],
             errors: [{ messageId: "preferGlobal" }],
         },
