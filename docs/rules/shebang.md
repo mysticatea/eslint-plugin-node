@@ -1,6 +1,6 @@
 # Require correct usage of shebang (`n/shebang`)
 
-💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/eslint-community/eslint-plugin-n#-configs).
 
 🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
 
@@ -8,8 +8,6 @@
 
 When we make a CLI tool with Node.js, we add `bin` field to `package.json`, then we add a shebang the entry file.
 This rule suggests correct usage of shebang.
-
-**Fixable:** This rule is automatically fixable using the `--fix` flag on the command line.
 
 ## 📖 Rule Details
 

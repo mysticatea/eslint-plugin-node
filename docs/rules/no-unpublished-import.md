@@ -1,12 +1,12 @@
 # Disallow `import` declarations which import private modules (`n/no-unpublished-import`)
 
-💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/eslint-community/eslint-plugin-n#-configs).
 
 <!-- end auto-generated rule header -->
 
 This is similar to [no-unpublished-require](no-unpublished-require.md), but this rule handles `import` declarations.
 
-:warning: ECMAScript 2015 (ES6) does not define the lookup logic and Node does not support modules yet. So this rule spec might be changed in future.
+⚠️ ECMAScript 2015 (ES6) does not define the lookup logic and Node does not support modules yet. So this rule spec might be changed in future.
 
 ## 📖 Rule Details
 
@@ -17,8 +17,8 @@ If a source code file satisfies all of the following conditions, the file is \*p
 
 Then this rule warns `import` declarations in \*published\* files if the `import` declaration imports \*unpublished\* files or the packages of `devDependencies`.
 
-> This intends to prevent "Module Not Found" error after `npm publish`.<br>
-> :bulb: If you want to import `devDependencies`, please write `.npmignore` or `"files"` field of `package.json`.
+> This intends to prevent "Module Not Found" error after `npm publish`.\
+> 💡 If you want to import `devDependencies`, please write `.npmignore` or `"files"` field of `package.json`.
 
 ### Options
 

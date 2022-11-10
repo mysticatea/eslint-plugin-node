@@ -4,7 +4,7 @@
 
 <!-- end auto-generated rule header -->
 
-**:warning: This is deprecated since v4.2.0.** This rule was based on an invalid assumption. See also [#69](https://github.com/mysticatea/eslint-plugin-node/issues/69).
+**⚠️ This is deprecated since v4.2.0.** This rule was based on an invalid assumption. See also [#69](https://github.com/mysticatea/eslint-plugin-node/issues/69).
 
 If you have dependencies which have the same name as core modules, your module would use the third-party modules instead of core modules.
 Especially, if you depends on such modules indirectly and npm flattens dependencies, you can depend on such third-party modules before as you know it.
@@ -14,7 +14,7 @@ This rule warns `require()` expressions and `import` declarations if those impor
 
 ## 📖 Rule Details
 
-:-1: Examples of **incorrect** code for this rule:
+👎 Examples of **incorrect** code for this rule:
 
 ```js
 /*eslint n/no-hide-core-modules: "error"*/
@@ -24,7 +24,7 @@ const path = require("path")  // ERROR if `path` module exists in node_modules d
 // ...
 ```
 
-:+1: Examples of **correct** code for this rule:
+👍 Examples of **correct** code for this rule:
 
 ```js
 /*eslint n/no-hide-core-modules: "error"*/

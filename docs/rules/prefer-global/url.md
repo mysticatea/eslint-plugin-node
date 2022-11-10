@@ -29,7 +29,7 @@ This rule has a string option.
 
 #### always
 
-Examples of :-1: **incorrect** code for this rule:
+Examples of 👎 **incorrect** code for this rule:
 
 ```js
 /*eslint n/prefer-global/url: [error]*/
@@ -38,7 +38,7 @@ const { URL } = require("url")
 const u = new URL(s)
 ```
 
-Examples of :+1: **correct** code for this rule:
+Examples of 👍 **correct** code for this rule:
 
 ```js
 /*eslint n/prefer-global/url: [error]*/
@@ -48,7 +48,7 @@ const u = new URL(s)
 
 #### never
 
-Examples of :-1: **incorrect** code for the `"never"` option:
+Examples of 👎 **incorrect** code for the `"never"` option:
 
 ```js
 /*eslint n/prefer-global/url: [error, never]*/
@@ -56,7 +56,7 @@ Examples of :-1: **incorrect** code for the `"never"` option:
 const u = new URL(s)
 ```
 
-Examples of :+1: **correct** code for the `"never"` option:
+Examples of 👍 **correct** code for the `"never"` option:
 
 ```js
 /*eslint n/prefer-global/url: [error, never]*/

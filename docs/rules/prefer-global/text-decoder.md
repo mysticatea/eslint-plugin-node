@@ -29,7 +29,7 @@ This rule has a string option.
 
 #### always
 
-Examples of :-1: **incorrect** code for this rule:
+Examples of 👎 **incorrect** code for this rule:
 
 ```js
 /*eslint n/prefer-global/text-decoder: [error]*/
@@ -38,7 +38,7 @@ const { TextDecoder } = require("util")
 const u = new TextDecoder(s)
 ```
 
-Examples of :+1: **correct** code for this rule:
+Examples of 👍 **correct** code for this rule:
 
 ```js
 /*eslint n/prefer-global/text-decoder: [error]*/
@@ -48,7 +48,7 @@ const u = new TextDecoder(s)
 
 #### never
 
-Examples of :-1: **incorrect** code for the `"never"` option:
+Examples of 👎 **incorrect** code for the `"never"` option:
 
 ```js
 /*eslint n/prefer-global/text-decoder: [error, never]*/
@@ -56,7 +56,7 @@ Examples of :-1: **incorrect** code for the `"never"` option:
 const u = new TextDecoder(s)
 ```
 
-Examples of :+1: **correct** code for the `"never"` option:
+Examples of 👍 **correct** code for the `"never"` option:
 
 ```js
 /*eslint n/prefer-global/text-decoder: [error, never]*/

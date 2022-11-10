@@ -9,7 +9,7 @@ Promise API and `async`/`await` syntax will make code more readable than callbac
 
 This rule disallows callback API in favor of promise API.
 
-Examples of :-1: **incorrect** code for this rule:
+Examples of 👎 **incorrect** code for this rule:
 
 ```js
 /*eslint n/prefer-promises/dns: [error]*/
@@ -33,7 +33,7 @@ function lookup(hostname) {
 }
 ```
 
-Examples of :+1: **correct** code for this rule:
+Examples of 👍 **correct** code for this rule:
 
 ```js
 /*eslint n/prefer-promises/dns: [error]*/

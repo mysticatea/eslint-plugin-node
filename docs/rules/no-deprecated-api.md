@@ -1,6 +1,6 @@
 # Disallow deprecated APIs (`n/no-deprecated-api`)
 
-💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/eslint-community/eslint-plugin-n#-configs).
 
 <!-- end auto-generated rule header -->
 
@@ -9,7 +9,7 @@ The community is going to remove those API from Node in future, so we should not
 
 ## 📖 Rule Details
 
-Examples of :-1: **incorrect** code for this rule:
+Examples of 👎 **incorrect** code for this rule:
 
 ```js
 /*eslint n/no-deprecated-api: "error" */
@@ -272,7 +272,7 @@ This option can include the following values:
 - `util._extend`
 - `vm.runInDebugContext`
 
-Examples of :+1: **correct** code for the `{"ignoreModuleItems": ["new buffer.Buffer()"]}`:
+Examples of 👍 **correct** code for the `{"ignoreModuleItems": ["new buffer.Buffer()"]}`:
 
 ```js
 /*eslint n/no-deprecated-api: [error, {ignoreModuleItems: ["new buffer.Buffer()"]}] */
@@ -304,7 +304,7 @@ This option can include the following values:
 - `process.binding`
 - `process.env.NODE_REPL_HISTORY_FILE`
 
-Examples of :+1: **correct** code for the `{"ignoreGlobalItems": ["new Buffer()"]}`:
+Examples of 👍 **correct** code for the `{"ignoreGlobalItems": ["new Buffer()"]}`:
 
 ```js
 /*eslint n/no-deprecated-api: [error, {ignoreGlobalItems: ["new Buffer()"]}] */

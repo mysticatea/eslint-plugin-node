@@ -57,43 +57,41 @@ npm install --save-dev eslint eslint-plugin-n
 
 <!-- begin auto-generated rules list -->
 
-💼 Configurations enabled in.\
-✅ Set in the `recommended` configuration.\
-☑️ Set in the `recommended-module` configuration.\
-✔️ Set in the `recommended-script` configuration.\
+💼 [Configurations](https://github.com/eslint-community/eslint-plugin-n#-configs) enabled in.\
+✅ Set in the `recommended` [configuration](https://github.com/eslint-community/eslint-plugin-n#-configs).\
 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).\
 ❌ Deprecated.
 
 ### Best Practices
 
-| Name                                                 | Description              | 💼      | 🔧 | ❌  |
-| :--------------------------------------------------- | :----------------------- | :------ | :- | :- |
-| [no-deprecated-api](docs/rules/no-deprecated-api.md) | disallow deprecated APIs | ✅ ☑️ ✔️ |    |    |
+| Name                                                 | Description              | 💼 | 🔧 | ❌  |
+| :--------------------------------------------------- | :----------------------- | :- | :- | :- |
+| [no-deprecated-api](docs/rules/no-deprecated-api.md) | disallow deprecated APIs | ✅  |    |    |
 
 ### Possible Errors
 
-| Name                                                                                         | Description                                                                 | 💼      | 🔧 | ❌  |
-| :------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------- | :------ | :- | :- |
-| [handle-callback-err](docs/rules/handle-callback-err.md)                                     | require error handling in callbacks                                         |         |    |    |
-| [no-callback-literal](docs/rules/no-callback-literal.md)                                     | enforce Node.js-style error-first callback pattern is followed              |         |    |    |
-| [no-exports-assign](docs/rules/no-exports-assign.md)                                         | disallow the assignment to `exports`                                        | ✅ ☑️ ✔️ |    |    |
-| [no-extraneous-import](docs/rules/no-extraneous-import.md)                                   | disallow `import` declarations which import extraneous modules              | ✅ ☑️ ✔️ |    |    |
-| [no-extraneous-require](docs/rules/no-extraneous-require.md)                                 | disallow `require()` expressions which import extraneous modules            | ✅ ☑️ ✔️ |    |    |
-| [no-hide-core-modules](docs/rules/no-hide-core-modules.md)                                   | disallow third-party modules which are hiding core modules                  |         |    | ❌  |
-| [no-missing-import](docs/rules/no-missing-import.md)                                         | disallow `import` declarations which import non-existence modules           | ✅ ☑️ ✔️ |    |    |
-| [no-missing-require](docs/rules/no-missing-require.md)                                       | disallow `require()` expressions which import non-existence modules         | ✅ ☑️ ✔️ |    |    |
-| [no-new-require](docs/rules/no-new-require.md)                                               | disallow `new` operators with calls to `require`                            |         |    |    |
-| [no-path-concat](docs/rules/no-path-concat.md)                                               | disallow string concatenation with `__dirname` and `__filename`             |         |    |    |
-| [no-process-exit](docs/rules/no-process-exit.md)                                             | disallow the use of `process.exit()`                                        | ✅ ☑️ ✔️ |    |    |
-| [no-unpublished-bin](docs/rules/no-unpublished-bin.md)                                       | disallow `bin` files that npm ignores                                       | ✅ ☑️ ✔️ |    |    |
-| [no-unpublished-import](docs/rules/no-unpublished-import.md)                                 | disallow `import` declarations which import private modules                 | ✅ ☑️ ✔️ |    |    |
-| [no-unpublished-require](docs/rules/no-unpublished-require.md)                               | disallow `require()` expressions which import private modules               | ✅ ☑️ ✔️ |    |    |
-| [no-unsupported-features](docs/rules/no-unsupported-features.md)                             | disallow unsupported ECMAScript features on the specified version           |         |    | ❌  |
-| [no-unsupported-features/es-builtins](docs/rules/no-unsupported-features/es-builtins.md)     | disallow unsupported ECMAScript built-ins on the specified version          | ✅ ☑️ ✔️ |    |    |
-| [no-unsupported-features/es-syntax](docs/rules/no-unsupported-features/es-syntax.md)         | disallow unsupported ECMAScript syntax on the specified version             | ✅ ☑️ ✔️ |    |    |
-| [no-unsupported-features/node-builtins](docs/rules/no-unsupported-features/node-builtins.md) | disallow unsupported Node.js built-in APIs on the specified version         | ✅ ☑️ ✔️ |    |    |
-| [process-exit-as-throw](docs/rules/process-exit-as-throw.md)                                 | require that `process.exit()` expressions use the same code path as `throw` | ✅ ☑️ ✔️ |    |    |
-| [shebang](docs/rules/shebang.md)                                                             | require correct usage of shebang                                            | ✅ ☑️ ✔️ | 🔧 |    |
+| Name                                                                                         | Description                                                                 | 💼 | 🔧 | ❌  |
+| :------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------- | :- | :- | :- |
+| [handle-callback-err](docs/rules/handle-callback-err.md)                                     | require error handling in callbacks                                         |    |    |    |
+| [no-callback-literal](docs/rules/no-callback-literal.md)                                     | enforce Node.js-style error-first callback pattern is followed              |    |    |    |
+| [no-exports-assign](docs/rules/no-exports-assign.md)                                         | disallow the assignment to `exports`                                        | ✅  |    |    |
+| [no-extraneous-import](docs/rules/no-extraneous-import.md)                                   | disallow `import` declarations which import extraneous modules              | ✅  |    |    |
+| [no-extraneous-require](docs/rules/no-extraneous-require.md)                                 | disallow `require()` expressions which import extraneous modules            | ✅  |    |    |
+| [no-hide-core-modules](docs/rules/no-hide-core-modules.md)                                   | disallow third-party modules which are hiding core modules                  |    |    | ❌  |
+| [no-missing-import](docs/rules/no-missing-import.md)                                         | disallow `import` declarations which import non-existence modules           | ✅  |    |    |
+| [no-missing-require](docs/rules/no-missing-require.md)                                       | disallow `require()` expressions which import non-existence modules         | ✅  |    |    |
+| [no-new-require](docs/rules/no-new-require.md)                                               | disallow `new` operators with calls to `require`                            |    |    |    |
+| [no-path-concat](docs/rules/no-path-concat.md)                                               | disallow string concatenation with `__dirname` and `__filename`             |    |    |    |
+| [no-process-exit](docs/rules/no-process-exit.md)                                             | disallow the use of `process.exit()`                                        | ✅  |    |    |
+| [no-unpublished-bin](docs/rules/no-unpublished-bin.md)                                       | disallow `bin` files that npm ignores                                       | ✅  |    |    |
+| [no-unpublished-import](docs/rules/no-unpublished-import.md)                                 | disallow `import` declarations which import private modules                 | ✅  |    |    |
+| [no-unpublished-require](docs/rules/no-unpublished-require.md)                               | disallow `require()` expressions which import private modules               | ✅  |    |    |
+| [no-unsupported-features](docs/rules/no-unsupported-features.md)                             | disallow unsupported ECMAScript features on the specified version           |    |    | ❌  |
+| [no-unsupported-features/es-builtins](docs/rules/no-unsupported-features/es-builtins.md)     | disallow unsupported ECMAScript built-ins on the specified version          | ✅  |    |    |
+| [no-unsupported-features/es-syntax](docs/rules/no-unsupported-features/es-syntax.md)         | disallow unsupported ECMAScript syntax on the specified version             | ✅  |    |    |
+| [no-unsupported-features/node-builtins](docs/rules/no-unsupported-features/node-builtins.md) | disallow unsupported Node.js built-in APIs on the specified version         | ✅  |    |    |
+| [process-exit-as-throw](docs/rules/process-exit-as-throw.md)                                 | require that `process.exit()` expressions use the same code path as `throw` | ✅  |    |    |
+| [shebang](docs/rules/shebang.md)                                                             | require correct usage of shebang                                            | ✅  | 🔧 |    |
 
 ### Stylistic Issues
 
@@ -124,11 +122,13 @@ npm install --save-dev eslint eslint-plugin-n
 
 This plugin provides three configs:
 
-- `plugin:n/recommended` considers both CommonJS and ES Modules. If [`"type":"module"` field](https://medium.com/@nodejs/announcing-a-new-experimental-modules-1be8d2d6c2ff#b023) existed in package.json then it considers files as ES Modules. Otherwise it considers files as CommonJS. In addition, it considers `*.mjs` files as ES Modules and `*.cjs` files as CommonJS.
-- `plugin:n/recommended-module` considers all files as ES Modules.
-- `plugin:n/recommended-script` considers all files as CommonJS.
+| Name | Description |
+| :-- | :-- |
+| `plugin:n/recommended` | Considers both CommonJS and ES Modules. If [`"type":"module"` field](https://medium.com/@nodejs/announcing-a-new-experimental-modules-1be8d2d6c2ff#b023) existed in package.json then it considers files as ES Modules. Otherwise it considers files as CommonJS. In addition, it considers `*.mjs` files as ES Modules and `*.cjs` files as CommonJS. |
+| `plugin:n/recommended-module` | Considers all files as ES Modules. |
+| `plugin:n/recommended-script` | Considers all files as CommonJS. |
 
-Those preset config:
+These preset configs:
 
 - enable [no-process-exit](http://eslint.org/docs/rules/no-process-exit) rule because [the official document](https://nodejs.org/api/process.html#process_process_exit_code) does not recommend a use of `process.exit()`.
 - enable plugin rules which are given ✅ in the above table.

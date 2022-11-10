@@ -1,6 +1,6 @@
 # Disallow `require()` expressions which import non-existence modules (`n/no-missing-require`)
 
-💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/eslint-community/eslint-plugin-n#-configs).
 
 <!-- end auto-generated rule header -->
 
@@ -15,7 +15,7 @@ const foo = require("./foo");
 
 This rule checks the file paths of `require()`s, then reports the path of files which don't exist.
 
-Examples of :-1: **incorrect** code for this rule:
+Examples of 👎 **incorrect** code for this rule:
 
 ```js
 /*eslint n/no-missing-require: "error" */
@@ -24,7 +24,7 @@ var typoFile = require("./typo-file");   /*error "./typo-file" is not found.*/
 var typoModule = require("typo-module"); /*error "typo-module" is not found.*/
 ```
 
-Examples of :+1: **correct** code for this rule:
+Examples of 👍 **correct** code for this rule:
 
 ```js
 /*eslint n/no-missing-require: "error" */

@@ -12,7 +12,7 @@ This rule reports when you used unsupported ECMAScript 2015-2018 features on the
 
 ## 📖 Rule Details
 
-:warning: This rule expects to be used with the following configuration:
+⚠️ This rule expects to be used with the following configuration:
 
 ```json
 {
@@ -21,7 +21,7 @@ This rule reports when you used unsupported ECMAScript 2015-2018 features on the
 }
 ```
 
-:warning: This rule reads the [engines] field of `package.json` to detect Node.js version.
+⚠️ This rule reads the [engines] field of `package.json` to detect Node.js version.
 
 I recommend a use of the [engines] field since it's the official way to indicate what Node.js versions your module is supporting.
 For example of `package.json`:
@@ -38,7 +38,7 @@ For example of `package.json`:
 
 If the [engines] field is omitted, this rule chooses `4` since it's the minimum version the community is maintaining.
 
-Examples of :-1: **incorrect** code for this rule:
+Examples of 👎 **incorrect** code for this rule:
 
 ```js
 /*eslint n/no-unsupported-features: ["error", {version: 4}]*/
@@ -73,7 +73,7 @@ var p = new Proxy(o, { /*error Proxy is not supported yet on Node v4.*/
 });
 ```
 
-Examples of :+1: **correct** code for this rule:
+Examples of 👍 **correct** code for this rule:
 
 ```js
 /*eslint n/no-unsupported-features: ["error", {version: 4}]*/
@@ -280,7 +280,7 @@ The `"ignores"` option accepts an array of the following strings.
 If a group value is given, all sub items of the value are ignored.
 e.g. if `"String.*"` is given then `"String.raw"` and `"String.fromCodePoint"` are ignored.
 
-Examples of :+1: **correct** code for the `"ignores"` option:
+Examples of 👍 **correct** code for the `"ignores"` option:
 
 ```js
 /*eslint n/no-unsupported-features: ["error", {version: 4, ignores: ["defaultParameters"]}]*/

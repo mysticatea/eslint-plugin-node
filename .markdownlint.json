@@ -1,0 +1,9 @@
+{
+    "line-length": false,
+    "no-inline-html": {
+        "allowed_elements": ["details"]
+    },
+    "ul-style": {
+        "style": "dash"
+    }
+}

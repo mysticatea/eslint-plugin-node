@@ -21,7 +21,7 @@ In this case, `exports.bar` will be lost since only the instance of `module.expo
 
 This rule enforces the export style.
 
-If you use `module.exports`, this rule disallows `exports`.<br>
+If you use `module.exports`, this rule disallows `exports`.\
 If you use `exports`, this rule disallows `module.exports`.
 
 You can select it by an option.
@@ -48,7 +48,7 @@ This rule has a string option.
 
 #### module.exports
 
-Examples of :-1: **incorrect** code for the `"module.exports"` option:
+Examples of 👎 **incorrect** code for the `"module.exports"` option:
 
 ```js
 /*eslint n/exports-style: ["error", "module.exports"]*/
@@ -57,7 +57,7 @@ exports.foo = 1
 exports.bar = 2
 ```
 
-Examples of :+1: **correct** code for the `"module.exports"` option:
+Examples of 👍 **correct** code for the `"module.exports"` option:
 
 ```js
 /*eslint n/exports-style: ["error", "module.exports"]*/
@@ -72,7 +72,7 @@ module.exports.baz = 3
 
 #### exports
 
-Examples of :-1: **incorrect** code for the `"exports"` option:
+Examples of 👎 **incorrect** code for the `"exports"` option:
 
 ```js
 /*eslint n/exports-style: ["error", "exports"]*/
@@ -85,7 +85,7 @@ module.exports = {
 module.exports.baz = 3
 ```
 
-Examples of :+1: **correct** code for the `"exports"` option:
+Examples of 👍 **correct** code for the `"exports"` option:
 
 ```js
 /*eslint n/exports-style: ["error", "exports"]*/
@@ -96,7 +96,7 @@ exports.bar = 2
 
 #### allowBatchAssign
 
-Examples of :+1: **correct** code for the `"exports"` and `{"allowBatchAssign": true}` option:
+Examples of 👍 **correct** code for the `"exports"` and `{"allowBatchAssign": true}` option:
 
 ```js
 /*eslint n/exports-style: ["error", "exports", {"allowBatchAssign": true}]*/

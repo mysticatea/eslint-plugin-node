@@ -41,7 +41,7 @@ This rule has a string option and an object option.
 
 #### always
 
-Examples of :-1: **incorrect** code for the `"always"` option:
+Examples of 👎 **incorrect** code for the `"always"` option:
 
 ```js
 /*eslint n/file-extension-in-import: ["error", "always"]*/
@@ -49,7 +49,7 @@ Examples of :-1: **incorrect** code for the `"always"` option:
 import foo from "./path/to/a/file"
 ```
 
-Examples of :+1: **correct** code for the `"always"` option:
+Examples of 👍 **correct** code for the `"always"` option:
 
 ```js
 /*eslint n/file-extension-in-import: ["error", "always"]*/
@@ -60,7 +60,7 @@ import foo from "./path/to/a/file.js"
 
 #### never
 
-Examples of :-1: **incorrect** code for the `"never"` option:
+Examples of 👎 **incorrect** code for the `"never"` option:
 
 ```js
 /*eslint n/file-extension-in-import: ["error", "never"]*/
@@ -68,7 +68,7 @@ Examples of :-1: **incorrect** code for the `"never"` option:
 import foo from "./path/to/a/file.js"
 ```
 
-Examples of :+1: **correct** code for the `"never"` option:
+Examples of 👍 **correct** code for the `"never"` option:
 
 ```js
 /*eslint n/file-extension-in-import: ["error", "never"]*/
@@ -79,7 +79,7 @@ import foo from "./path/to/a/file"
 
 #### .xxx
 
-Examples of :+1: **correct** code for the `["always", { ".js": "never" }]` option:
+Examples of 👍 **correct** code for the `["always", { ".js": "never" }]` option:
 
 ```js
 /*eslint n/file-extension-in-import: ["error", "always", { ".js": "never" }]*/

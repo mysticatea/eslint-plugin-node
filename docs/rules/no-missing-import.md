@@ -1,19 +1,19 @@
 # Disallow `import` declarations which import non-existence modules (`n/no-missing-import`)
 
-💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/eslint-community/eslint-plugin-n#-configs).
 
 <!-- end auto-generated rule header -->
 
 This is similar to [no-missing-require](no-missing-require.md), but this rule handles `import` and `export` declarations.
 
-:warning: ECMAScript 2015 (ES6) does not define the lookup logic and Node does not support modules yet. So this rule spec might be changed in future.
+⚠️ ECMAScript 2015 (ES6) does not define the lookup logic and Node does not support modules yet. So this rule spec might be changed in future.
 
 ## 📖 Rule Details
 
 This rule checks the file paths of `import` and `export` declarations.
 If the file paths don't exist, this reports these.
 
-Examples of :-1: **incorrect** code for this rule:
+Examples of 👎 **incorrect** code for this rule:
 
 ```js
 /*eslint n/no-missing-import: "error" */
@@ -22,7 +22,7 @@ import typoFile from "./typo-file";   /*ERROR: "./typo-file" is not found.*/
 import typoModule from "typo-module"; /*ERROR: "typo-module" is not found.*/
 ```
 
-Examples of :+1: **correct** code for this rule:
+Examples of 👍 **correct** code for this rule:
 
 ```js
 /*eslint n/no-missing-import: "error" */

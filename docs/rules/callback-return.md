@@ -102,8 +102,8 @@ function bar(err, send) {
 
 Because it is difficult to understand the meaning of a program through static analysis, this rule has limitations:
 
-* *false negatives* when this rule reports correct code, but the program calls the callback more than one time (which is incorrect behavior)
-* *false positives* when this rule reports incorrect code, but the program calls the callback only one time (which is correct behavior)
+- *false negatives* when this rule reports correct code, but the program calls the callback more than one time (which is incorrect behavior)
+- *false positives* when this rule reports incorrect code, but the program calls the callback only one time (which is correct behavior)
 
 #### Passing the callback by reference
 

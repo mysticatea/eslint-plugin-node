@@ -8,7 +8,7 @@ When invoking a callback function which uses the Node.js error-first callback pa
 
 When a function is named `cb` or `callback`, then it must be invoked with a first argument that is `undefined`, `null`, an `Error` class, or a subclass or `Error`.
 
-Examples of :-1: **incorrect** code for this rule:
+Examples of 👎 **incorrect** code for this rule:
 
 ```js
 /*eslint n/no-callback-literal: "error" */
@@ -18,7 +18,7 @@ cb({ a: 1 });
 callback(0);
 ```
 
-Examples of :+1: **correct** code for this rule:
+Examples of 👍 **correct** code for this rule:
 
 ```js
 /*eslint n/no-callback-literal: "error" */

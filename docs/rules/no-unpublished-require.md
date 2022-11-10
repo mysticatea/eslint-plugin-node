@@ -1,6 +1,6 @@
 # Disallow `require()` expressions which import private modules (`n/no-unpublished-require`)
 
-💼 This rule is enabled in the following configs: ✅ `recommended`, ☑️ `recommended-module`, ✔️ `recommended-script`.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/eslint-community/eslint-plugin-n#-configs).
 
 <!-- end auto-generated rule header -->
 
@@ -16,8 +16,8 @@ If a source code file satisfies all of the following conditions, the file is \*p
 
 Then this rule warns `require()` expressions in \*published\* files if the `require()` expression imports \*unpublished\* files or the packages of `devDependencies`.
 
-> This intends to prevent "Module Not Found" error after `npm publish`.<br>
-> :bulb: If you want to import `devDependencies`, please write `.npmignore` or `"files"` field of `package.json`.
+> This intends to prevent "Module Not Found" error after `npm publish`.\
+> 💡 If you want to import `devDependencies`, please write `.npmignore` or `"files"` field of `package.json`.
 
 ### Options
 
