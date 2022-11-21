@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 1
       - name: Install Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node: 16.x
       - name: Install Packages
@@ -32,7 +32,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
         eslint: [8.x, 7.x]
-        node: [16.x]
+        node: [18.x]
         include:
           # run on node lts(ubuntu-latest)
           - os: ubuntu-latest
@@ -42,19 +42,22 @@ jobs:
             node: "14.x"
             eslint: "8.x"
           - os: ubuntu-latest
+            node: "16.x"
+            eslint: "8.x"
+          - os: ubuntu-latest
             node: "17.x"
             eslint: "8.x"
           - os: ubuntu-latest
-            node: "18.x"
+            node: "19.x"
             eslint: "8.x"
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 1
       - name: Install Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
       - name: Install Packages
