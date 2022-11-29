@@ -1,6 +1,6 @@
 # Disallow unsupported ECMAScript features on the specified version (`n/no-unsupported-features`)
 
-❌ This rule is deprecated. It was replaced by [`no-unsupported-features/es-syntax`](no-unsupported-features/es-syntax.md), [`no-unsupported-features/es-builtins`](no-unsupported-features/es-builtins.md).
+❌ This rule is deprecated. It was replaced by [`n/no-unsupported-features/es-syntax`](../../docs/rules/no-unsupported-features/es-syntax.md),[`n/no-unsupported-features/es-builtins`](../../docs/rules/no-unsupported-features/es-builtins.md).
 
 <!-- end auto-generated rule header -->
 
