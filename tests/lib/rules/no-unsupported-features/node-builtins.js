@@ -5475,6 +5475,12 @@ new RuleTester({
                     code: "import worker_threads from 'worker_threads'",
                     options: [{ version: "12.11.0" }],
                 },
+                {
+                    code: "import worker_threads from 'worker_threads'",
+                    settings: {
+                        node: { version: "12.11.0" },
+                    },
+                },
             ],
             invalid: [
                 {
@@ -5508,6 +5514,22 @@ new RuleTester({
                 {
                     code: "import { Worker } from 'worker_threads'",
                     options: [{ version: "10.5.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "worker_threads",
+                                supported: "12.11.0",
+                                version: "10.5.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "import { Worker } from 'worker_threads'",
+                    settings: {
+                        node: { version: "10.5.0" },
+                    },
                     errors: [
                         {
                             messageId: "unsupported",

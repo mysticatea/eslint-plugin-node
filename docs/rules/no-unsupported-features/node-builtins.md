@@ -16,10 +16,16 @@ This rule reports APIs of Node.js built-in APIs on the basis of [Node.js v13.2.0
 
 ### Configured Node.js version range
 
-This rule reads the [engines] field of `package.json` to detect which Node.js versions your module is supporting.
+This rule gets the supported Node.js version range from the following, falling back to the next if unspecified:
 
-I recommend the use of the [engines] field because it's the official way that indicates which Node.js versions your module is supporting.
-For example of `package.json`:
+1. Rule configuration `version`
+2. ESLint [shared setting](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings) `node.version`
+3. `package.json` [`engines`] field
+4. `>=8.0.0`
+
+The default version is `8.0.0` because it's the minimum version the community is maintaining (see also [Node.js Release Working Group](https://github.com/nodejs/Release#readme)).
+
+For Node.js packages, using the [`engines`] field is recommended because it's the official way to indicate support:
 
 ```json
 {
@@ -31,7 +37,7 @@ For example of `package.json`:
 }
 ```
 
-If you omit the [engines] field, this rule chooses `>=8.0.0` as the configured Node.js version since `8` is the minimum version the community is maintaining (see also [Node.js Release Working Group](https://github.com/nodejs/Release#readme)).
+For [Shareable Configs](https://eslint.org/docs/latest/developer-guide/shareable-configs) or packages with a different development environment (e.g. pre-compiled, web package, etc.), you can configure ESLint with `settings.node.version` to specify support.
 
 ### Options
 
@@ -46,7 +52,7 @@ If you omit the [engines] field, this rule chooses `>=8.0.0` as the configured N
 
 #### version
 
-As mentioned above, this rule reads the [engines] field of `package.json`.
+As mentioned above, this rule reads the [`engines`] field of `package.json`.
 But, you can overwrite the version by `version` option.
 
 The `version` option accepts [the valid version range of `node-semver`](https://github.com/npm/node-semver#range-grammar).
@@ -324,6 +330,30 @@ The `"ignores"` option accepts an array of the following strings.
 
 </details>
 
+### Shared Settings
+
+The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
+Several rules have the same option, but we can set this option at once.
+
+- `version`
+
+For Example:
+
+```json
+{
+    "settings": {
+        "node": {
+            "version": ">=8.0.0",
+        }
+    },
+    "rules": {
+        "n/no-unsupported-features/node-builtins": ["error", {
+            "ignores": []
+        }]
+    }
+}
+```
+
 ### Known limitations
 
 This rule cannot find non-static things.
@@ -334,7 +364,7 @@ For example:
 - New `options` properties of function parameters.
 - New events.
 
-[engines]: https://docs.npmjs.com/files/package.json#engines
+[`engines`]: https://docs.npmjs.com/files/package.json#engines
 
 ## 🔎 Implementation
 

@@ -18,8 +18,18 @@ function ignores(keyword) {
         const pattern = Object.assign({}, original)
         delete pattern.error
 
-        pattern.options = pattern.options.slice()
-        pattern.options[0] = Object.assign({}, pattern.options[0])
+        if (pattern.options) {
+            pattern.options = pattern.options.slice()
+        } else {
+            pattern.options = []
+        }
+
+        if (pattern.options[0]) {
+            pattern.options[0] = Object.assign({}, pattern.options[0])
+        } else {
+            pattern.options.push({})
+        }
+
         if (pattern.options[0].ignores) {
             pattern.options[0].ignores = pattern.options[0].ignores.concat([
                 keyword,
@@ -2235,6 +2245,12 @@ ruleTester.run(
                     code: "globalThis",
                     options: [{ version: "12.0.0" }],
                 },
+                {
+                    code: "globalThis",
+                    settings: {
+                        node: { version: "12.0.0" },
+                    },
+                },
             ],
             invalid: [
                 {
@@ -2254,6 +2270,22 @@ ruleTester.run(
                 {
                     code: "function wrap() { globalThis }",
                     options: [{ version: "11.9.9" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "globalThis",
+                                supported: "12.0.0",
+                                version: "11.9.9",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "function wrap() { globalThis }",
+                    settings: {
+                        node: { version: "11.9.9" },
+                    },
                     errors: [
                         {
                             messageId: "unsupported",

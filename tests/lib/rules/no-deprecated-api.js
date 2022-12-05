@@ -942,5 +942,27 @@ ruleTester.run("no-deprecated-api", rule, {
                 "'Buffer()' was deprecated since v6.0.0. Use 'Buffer.alloc()' or 'Buffer.from()' instead.",
             ],
         },
+        {
+            code: "Buffer()",
+            settings: {
+                node: {
+                    version: "6.0.0",
+                },
+            },
+            options: [
+                {
+                    //
+                    ignoreModuleItems: [
+                        "buffer.Buffer()",
+                        "new buffer.Buffer()",
+                    ],
+                    ignoreGlobalItems: ["new Buffer()"],
+                },
+            ],
+            env: { node: true },
+            errors: [
+                "'Buffer()' was deprecated since v6.0.0. Use 'Buffer.alloc()' or 'Buffer.from()' instead.",
+            ],
+        },
     ],
 })

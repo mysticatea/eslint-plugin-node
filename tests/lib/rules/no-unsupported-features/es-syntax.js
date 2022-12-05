@@ -40,8 +40,18 @@ function ignores(keyword) {
         const pattern = Object.assign({}, original)
         delete pattern.error
 
-        pattern.options = pattern.options.slice()
-        pattern.options[0] = Object.assign({}, pattern.options[0])
+        if (pattern.options) {
+            pattern.options = pattern.options.slice()
+        } else {
+            pattern.options = []
+        }
+
+        if (pattern.options[0]) {
+            pattern.options[0] = Object.assign({}, pattern.options[0])
+        } else {
+            pattern.options.push({})
+        }
+
         if (pattern.options[0].ignores) {
             pattern.options[0].ignores = pattern.options[0].ignores.concat([
                 keyword,
@@ -2543,11 +2553,32 @@ ruleTester.run(
                     code: "foo ?? bar;",
                     options: [{ version: "14.0.0" }],
                 },
+                {
+                    code: "foo ?? bar;",
+                    settings: {
+                        node: { version: "14.0.0" },
+                    },
+                },
             ],
             invalid: [
                 {
                     code: "foo ?? bar",
                     options: [{ version: "13.0.0" }],
+                    errors: [
+                        {
+                            messageId: "no-nullish-coalescing-operators",
+                            data: {
+                                supported: "14.0.0",
+                                version: "13.0.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "foo ?? bar",
+                    settings: {
+                        node: { version: "13.0.0" },
+                    },
                     errors: [
                         {
                             messageId: "no-nullish-coalescing-operators",
@@ -2606,6 +2637,12 @@ ruleTester.run(
                 {
                     code: "var a = async () => 1",
                     options: [{ version: "7.10.0" }],
+                },
+                {
+                    code: "var a = async () => 1",
+                    settings: {
+                        node: { version: "7.10.0" },
+                    },
                 },
                 {
                     filename: fixture("without-node/a.js"),
@@ -2676,6 +2713,18 @@ ruleTester.run(
                 {
                     code: "var a = async () => 1",
                     options: [{ version: "7.1.0" }],
+                    errors: [
+                        {
+                            messageId: "no-async-functions",
+                            data: { supported: "7.6.0", version: "7.1.0" },
+                        },
+                    ],
+                },
+                {
+                    code: "var a = async () => 1",
+                    settings: {
+                        node: { version: "7.1.0" },
+                    },
                     errors: [
                         {
                             messageId: "no-async-functions",
