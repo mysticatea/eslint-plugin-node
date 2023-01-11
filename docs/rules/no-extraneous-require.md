@@ -59,7 +59,9 @@ Default is `[".js", ".json", ".node"]`.
 
 #### convertPath
 
-TODO
+- `exclude`: TODO
+- `include`: TODO
+- `replace`: TODO
 
 ### Shared Settings
 
