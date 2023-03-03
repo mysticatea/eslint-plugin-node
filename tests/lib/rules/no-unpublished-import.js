@@ -151,6 +151,17 @@ ruleTester.run("no-unpublished-import", rule, {
             filename: fixture("private-package/index.js"),
             code: "import bbb from 'bbb';",
         },
+
+        // https://github.com/eslint-community/eslint-plugin-n/issues/78
+        {
+            filename: fixture("1/test.ts"),
+            parser: path.join(
+                __dirname,
+                "../../../node_modules/@typescript-eslint/parser"
+            ),
+            code: "import type foo from 'foo';",
+            options: [{ ignoreTypeImport: true }],
+        },
     ],
     invalid: [
         {
@@ -272,5 +283,27 @@ ruleTester.run("no-unpublished-import", rule, {
                   },
               ]
             : []),
+
+        // https://github.com/eslint-community/eslint-plugin-n/issues/78
+        {
+            filename: fixture("1/test.ts"),
+            parser: path.join(
+                __dirname,
+                "../../../node_modules/@typescript-eslint/parser"
+            ),
+            code: "import type foo from 'foo';",
+            options: [{ ignoreTypeImport: false }],
+            errors: [{ messageId: "notPublished" }],
+        },
+
+        {
+            filename: fixture("1/test.ts"),
+            parser: path.join(
+                __dirname,
+                "../../../node_modules/@typescript-eslint/parser"
+            ),
+            code: "import type foo from 'foo';",
+            errors: [{ messageId: "notPublished" }],
+        },
     ],
 })

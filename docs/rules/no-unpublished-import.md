@@ -108,6 +108,26 @@ In addition, we can specify glob patterns to exclude files.
 
 TODO
 
+### ignoreTypeImport
+
+If using typescript, you may want to ignore type imports. This option allows you to do that.
+
+```json
+{
+    "rules": {
+        "n/no-unpublished-import": ["error", {
+            "ignoreTypeImport": true
+        }]
+    }
+}
+```
+
+In this way, the following code will not be reported:
+
+```ts
+import type foo from "foo";
+```
+
 ### Shared Settings
 
 The following options can be set by [shared settings](http://eslint.org/docs/user-guide/configuring.html#adding-shared-settings).
