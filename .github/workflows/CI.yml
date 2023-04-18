@@ -36,16 +36,7 @@ jobs:
         include:
           # run on node lts(ubuntu-latest)
           - os: ubuntu-latest
-            node: "12.x"
-            eslint: "8.x"
-          - os: ubuntu-latest
-            node: "14.x"
-            eslint: "8.x"
-          - os: ubuntu-latest
             node: "16.x"
-            eslint: "8.x"
-          - os: ubuntu-latest
-            node: "17.x"
             eslint: "8.x"
           - os: ubuntu-latest
             node: "19.x"

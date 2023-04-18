@@ -3,7 +3,7 @@
     "version": "15.7.0",
     "description": "Additional ESLint's rules for Node.js",
     "engines": {
-        "node": ">=12.22.0"
+        "node": ">=16.0.0"
     },
     "main": "lib/index.js",
     "files": [

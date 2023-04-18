@@ -12,7 +12,7 @@ Additional ESLint's rules for Node.js
 npm install --save-dev eslint eslint-plugin-n
 ```
 
-- Requires Node.js `>=12.22.0`
+- Requires Node.js `>=16.0.0`
 - Requires ESLint `>=7.0.0`
 
 **Note:** It recommends a use of [the "engines" field of package.json](https://docs.npmjs.com/files/package.json#engines). The "engines" field is used by `n/no-unsupported-features/*` rules.
