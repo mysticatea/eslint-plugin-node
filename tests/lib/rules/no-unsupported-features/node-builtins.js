@@ -3833,6 +3833,14 @@ new RuleTester({
                     options: [{ version: "3.0.0" }],
                 },
                 {
+                    code: "process.report",
+                    options: [{ version: "13.12.0" }],
+                },
+                {
+                    code: "process.report",
+                    options: [{ version: "12.17.0" }],
+                },
+                {
                     code: "process.setegid",
                     options: [{ version: "2.0.0" }],
                 },
@@ -3915,6 +3923,12 @@ new RuleTester({
                     code: "process.release",
                     options: [
                         { version: "2.9.9", ignores: ["process.release"] },
+                    ],
+                },
+                {
+                    code: "process.report",
+                    options: [
+                        { version: "11.7.9", ignores: ["process.report"] },
                     ],
                 },
                 {
@@ -4165,6 +4179,20 @@ new RuleTester({
                                     "process.setUncaughtExceptionCaptureCallback",
                                 supported: "9.3.0",
                                 version: "9.2.9",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "process.report",
+                    options: [{ version: "11.7.9" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "process.report",
+                                supported: "13.12.0 (backported: ^12.17.0)",
+                                version: "11.7.9",
                             },
                         },
                     ],
