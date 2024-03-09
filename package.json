@@ -14,25 +14,25 @@
   },
   "dependencies": {
     "eslint-plugin-es": "^4.1.0",
-    "eslint-utils": "^2.0.0",
-    "ignore": "^5.1.1",
-    "is-core-module": "^2.3.0",
+    "eslint-utils": "^2.1.0",
+    "ignore": "^5.1.9",
+    "is-core-module": "^2.8.0",
     "minimatch": "^3.0.4",
-    "resolve": "^1.10.1",
-    "semver": "^6.1.0"
+    "resolve": "^1.20.0",
+    "semver": "^6.3.0"
   },
   "devDependencies": {
     "@mysticatea/eslint-plugin": "^10.0.3",
-    "codecov": "^3.3.0",
+    "codecov": "^3.8.2",
     "eslint": "^6.3.0",
     "eslint-plugin-node": "file:.",
-    "fast-glob": "^2.2.6",
+    "fast-glob": "^2.2.7",
     "globals": "^11.12.0",
-    "mocha": "^6.1.4",
-    "nyc": "^14.0.0",
-    "opener": "^1.5.1",
+    "mocha": "^6.2.3",
+    "nyc": "^14.1.1",
+    "opener": "^1.5.2",
     "punycode": "^2.1.1",
-    "rimraf": "^2.6.3"
+    "rimraf": "^2.7.1"
   },
   "scripts": {
     "build": "node scripts/update",
