@@ -1,3 +1,5 @@
+**This project is no longer maintained please see https://github.com/eslint-community/eslint-plugin-n**
+
 # eslint-plugin-node
 
 [![npm version](https://img.shields.io/npm/v/eslint-plugin-node.svg)](https://www.npmjs.com/package/eslint-plugin-node)
