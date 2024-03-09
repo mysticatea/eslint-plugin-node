@@ -7,6 +7,23 @@ The `process.env` object in Node.js is used to store deployment/configuration pa
 
 This rule is aimed at discouraging use of `process.env` to avoid global dependencies. As such, it will warn whenever `process.env` is used.
 
+### Options
+
+You can customize the error message for this rule:
+
+```json
+{
+  "rules": {
+    "node/no-process-env": [
+      "error",
+      {
+        "customMessage": "Use the env wrapper instead."
+      }
+    ]
+  }
+}
+```
+
 Examples of **incorrect** code for this rule:
 
 ```js
