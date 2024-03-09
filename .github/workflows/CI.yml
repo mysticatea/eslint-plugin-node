@@ -13,13 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
+        uses: actions/checkout@v2
       - name: Install Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
-          node: 12.x
+          node-version: 16
       - name: Install Packages
         run: npm install
       - name: Lint
@@ -27,86 +25,40 @@ jobs:
 
   test:
     name: Test
-
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
-        eslint: [6.x, 5.x]
-        node: [13.x, 12.x, 10.x, 8.x]
-        exclude:
-          # On Windows, run tests with only the latest LTS environments.
+        os: [ubuntu-latest]
+        eslint: [7]
+        node: [10, 12, 14, 16]
+        include:
+          # On other platforms
           - os: windows-latest
-            eslint: 6.x
-            node: 13.x
-          - os: windows-latest
-            eslint: 6.x
-            node: 10.x
-          - os: windows-latest
-            eslint: 6.x
-            node: 8.x
-          - os: windows-latest
-            eslint: 5.x
-            node: 13.x
-          - os: windows-latest
-            eslint: 5.x
-            node: 12.x
-          - os: windows-latest
-            eslint: 5.x
-            node: 10.x
-          - os: windows-latest
-            eslint: 5.x
-            node: 8.x
-          # On macOS, run tests with only the latest LTS environments.
-          - os: macOS-latest
-            eslint: 6.x
-            node: 13.x
-          - os: macOS-latest
-            eslint: 6.x
-            node: 10.x
-          - os: macOS-latest
-            eslint: 6.x
-            node: 8.x
-          - os: macOS-latest
-            eslint: 5.x
-            node: 13.x
-          - os: macOS-latest
-            eslint: 5.x
-            node: 12.x
-          - os: macOS-latest
-            eslint: 5.x
-            node: 10.x
-          - os: macOS-latest
-            eslint: 5.x
-            node: 8.x
-          # Run ESLint 5.x tests on only the latest LTS Node.
-          - os: ubuntu-latest
-            eslint: 5.x
-            node: 13.x
-          - os: ubuntu-latest
-            eslint: 5.x
-            node: 10.x
-          - os: ubuntu-latest
-            eslint: 5.x
-            node: 8.x
+            node: 16
+          - os: macos-latest
+            node: 16
+          # On old ESLint versions
+          - eslint: 6
+            node: 16
+          - eslint: 5
+            node: 16
+          # On the minimum supported ESLint/Node.js version
+          - eslint: 5.16.0
+            node: 10.0.0
 
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
+        uses: actions/checkout@v2
       - name: Install Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
       - name: Install Packages
         run: npm install
-      - name: Install ESLint ${{ matrix.eslint }}
-        # We need to execute this command twice because of npm's bug.
-        # See also: https://npm.community/t/error-node-modules-staging-eslint-e7cf6846-node-modules-eslint
-        run: |
-          npm install --no-save eslint@${{ matrix.eslint }}
-          npm install --no-save eslint@${{ matrix.eslint }}
+        env:
+          CI: true
+      - name: Install ESLint@${{  matrix.eslint  }}
+        run: npm install eslint@${{  matrix.eslint  }}
       - name: Test
         run: npm run -s test:ci
       - name: Send Coverage
