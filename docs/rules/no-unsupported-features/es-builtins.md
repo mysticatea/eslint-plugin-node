@@ -61,6 +61,13 @@ The `"ignores"` option accepts an array of the following strings.
 
 <details>
 
+**ES2021:**
+
+- `"AggregateError"`
+- `"Promise.any"`
+- `"WeakRef"`
+- `"FinalizationRegistry"`
+
 **ES2020:**
 
 - `"BigInt"`

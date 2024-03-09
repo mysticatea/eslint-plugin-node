@@ -63,6 +63,31 @@ ruleTester.run(
     rule,
     concat([
         {
+            keyword: "AggregateError",
+            valid: [
+                {
+                    code: "if (error instanceof AggregateError) {}",
+                    options: [{ version: "15.0.0" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "if (error instanceof AggregateError) {}",
+                    options: [{ version: "14.0.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "AggregateError",
+                                supported: "15.0.0",
+                                version: "14.0.0",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
             keyword: "Array.from",
             valid: [
                 {
@@ -169,6 +194,31 @@ ruleTester.run(
                                 name: "BigInt",
                                 supported: "10.4.0",
                                 version: "10.3.0",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            keyword: "FinalizationRegistry",
+            valid: [
+                {
+                    code: "new FinalizationRegistry(() => {})",
+                    options: [{ version: "14.6.0" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "new FinalizationRegistry(() => {})",
+                    options: [{ version: "14.5.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "FinalizationRegistry",
+                                supported: "14.6.0",
+                                version: "14.5.0",
                             },
                         },
                     ],
@@ -1201,6 +1251,49 @@ ruleTester.run(
             ],
         },
         {
+            keyword: "Promise.any",
+            valid: [
+                {
+                    code: "(function(Promise) { Promise.any }(a))",
+                    options: [{ version: "14.0.0" }],
+                },
+                {
+                    code: "Promise.any",
+                    options: [{ version: "15.0.0" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "Promise.any",
+                    options: [{ version: "14.0.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "Promise.any",
+                                supported: "15.0.0",
+                                version: "14.0.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "function wrap() { Promise.any }",
+                    options: [{ version: "14.0.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "Promise.any",
+                                supported: "15.0.0",
+                                version: "14.0.0",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
             keyword: "Proxy",
             valid: [
                 {
@@ -1992,6 +2085,49 @@ ruleTester.run(
                                 name: "WeakMap",
                                 supported: "0.12.0",
                                 version: "0.11.9",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            keyword: "WeakRef",
+            valid: [
+                {
+                    code: "(function(WeakRef) { WeakRef }(a))",
+                    options: [{ version: "14.5.0" }],
+                },
+                {
+                    code: "WeakRef",
+                    options: [{ version: "14.6.0" }],
+                },
+            ],
+            invalid: [
+                {
+                    code: "WeakRef",
+                    options: [{ version: "14.5.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "WeakRef",
+                                supported: "14.6.0",
+                                version: "14.5.0",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "function wrap() { WeakRef }",
+                    options: [{ version: "14.5.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "WeakRef",
+                                supported: "14.6.0",
+                                version: "14.5.0",
                             },
                         },
                     ],
