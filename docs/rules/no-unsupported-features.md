@@ -31,12 +31,12 @@ For example of `package.json`:
     "name": "your-module",
     "version": "1.0.0",
     "engines": {
-        "node": ">=6.0.0"
+        "node": ">=10.0.0"
     }
 }
 ```
 
-If the [engines] field is omitted, this rule chooses `4` since it's the minimum version the community is maintaining.
+If you omit the [engines] field, this rule chooses `>=10.0.0` as the configured Node.js version since `10` is the minimum version the community is maintaining (see also [Node.js Release Working Group](https://github.com/nodejs/Release#readme)).
 
 Examples of :-1: **incorrect** code for this rule:
 
