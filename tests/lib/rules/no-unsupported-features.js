@@ -5,7 +5,7 @@
 "use strict"
 
 const path = require("path")
-const RuleTester = require("eslint").RuleTester
+const { RuleTester } = require("eslint")
 const rule = require("../../../lib/rules/no-unsupported-features")
 
 const VERSION_MAP = new Map([
@@ -81,9 +81,7 @@ function convertPattern(retv, pattern) {
             ;[].push.apply(
                 retv.valid,
                 pattern.keys.map(key => ({
-                    code: `/*${
-                        pattern.name
-                    }: ${versionText}, ignores: ["${key}"]*/ ${pattern.code}`,
+                    code: `/*${pattern.name}: ${versionText}, ignores: ["${key}"]*/ ${pattern.code}`,
                     env: { es6: true },
                     globals: { SharedArrayBuffer: false, Atomics: false },
                     options: [{ version, ignores: [key] }],

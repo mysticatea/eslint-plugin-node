@@ -2,19 +2,19 @@
 
 const assert = require("assert")
 const path = require("path")
-const { CLIEngine } = require("eslint")
+const { ESLint } = require("eslint")
 const originalCwd = process.cwd()
 
 describe("node/recommended config", () => {
     describe("in CJS directory", () => {
-        const root = path.resolve(__dirname, "../../fixtures/configs/cjs/")
+        const CJSRoot = path.resolve(__dirname, "../../fixtures/configs/cjs/")
 
-        /** @type {CLIEngine} */
+        /** @type {ESLint} */
         let engine = null
 
         beforeEach(() => {
-            process.chdir(root)
-            engine = new CLIEngine({
+            process.chdir(CJSRoot)
+            engine = new ESLint({
                 baseConfig: { extends: "plugin:node/recommended" },
                 useEslintrc: false,
             })
@@ -25,9 +25,9 @@ describe("node/recommended config", () => {
         })
 
         it("*.js files should be a script.", () => {
-            const report = engine.executeOnText(
+            const report = engine.lintText(
                 "import 'foo'",
-                path.join(root, "test.js")
+                { filePath: path.join(CJSRoot, "test.js") }
             )
 
             assert.deepStrictEqual(report.results[0].messages, [
@@ -44,9 +44,9 @@ describe("node/recommended config", () => {
         })
 
         it("*.cjs files should be a script.", () => {
-            const report = engine.executeOnText(
+            const report = engine.lintText(
                 "import 'foo'",
-                path.join(root, "test.cjs")
+                { filePath: path.join(CJSRoot, "test.cjs") }
             )
 
             assert.deepStrictEqual(report.results[0].messages, [
@@ -63,9 +63,9 @@ describe("node/recommended config", () => {
         })
 
         it("*.mjs files should be a module.", () => {
-            const report = engine.executeOnText(
+            const report = engine.lintText(
                 "import 'foo'",
-                path.join(root, "test.mjs")
+                { filePath: path.join(CJSRoot, "test.mjs") }
             )
 
             assert.deepStrictEqual(report.results[0].messages, [
@@ -84,14 +84,14 @@ describe("node/recommended config", () => {
     })
 
     describe("in ESM directory", () => {
-        const root = path.resolve(__dirname, "../../fixtures/configs/esm/")
+        const ESMRoot = path.resolve(__dirname, "../../fixtures/configs/esm/")
 
-        /** @type {CLIEngine} */
+        /** @type {ESLint} */
         let engine = null
 
         beforeEach(() => {
-            process.chdir(root)
-            engine = new CLIEngine({
+            process.chdir(ESMRoot)
+            engine = new ESLint({
                 baseConfig: { extends: "plugin:node/recommended" },
                 useEslintrc: false,
             })
@@ -102,9 +102,9 @@ describe("node/recommended config", () => {
         })
 
         it("*.js files should be a module.", () => {
-            const report = engine.executeOnText(
+            const report = engine.lintText(
                 "import 'foo'",
-                path.join(root, "test.js")
+                { filePath: path.join(ESMRoot, "test.js") }
             )
 
             assert.deepStrictEqual(report.results[0].messages, [
@@ -122,9 +122,9 @@ describe("node/recommended config", () => {
         })
 
         it("*.cjs files should be a script.", () => {
-            const report = engine.executeOnText(
+            const report = engine.lintText(
                 "import 'foo'",
-                path.join(root, "test.cjs")
+                { filePath: path.join(ESMRoot, "test.cjs") }
             )
 
             assert.deepStrictEqual(report.results[0].messages, [
@@ -141,9 +141,9 @@ describe("node/recommended config", () => {
         })
 
         it("*.mjs files should be a module.", () => {
-            const report = engine.executeOnText(
+            const report = engine.lintText(
                 "import 'foo'",
-                path.join(root, "test.mjs")
+                { filePath: path.join(ESMRoot, "test.mjs") }
             )
 
             assert.deepStrictEqual(report.results[0].messages, [

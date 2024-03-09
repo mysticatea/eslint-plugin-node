@@ -5,7 +5,7 @@
 "use strict"
 
 const path = require("path")
-const RuleTester = require("eslint").RuleTester
+const { RuleTester } = require("eslint")
 const rule = require("../../../lib/rules/no-missing-require")
 
 /**
