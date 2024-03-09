@@ -221,6 +221,20 @@ ruleTester.run("no-missing-require", rule, {
             code: "require.resolve('eslint');",
             env: { node: true },
         },
+
+        // onlyRelativePath option
+        {
+            filename: fixture("test.js"),
+            code: "require('no-exist-package-0');",
+            options: [{ onlyRelativePath: true }],
+            env: { node: true },
+        },
+        {
+            filename: fixture("test.js"),
+            code: "require('./a.js');",
+            options: [{ onlyRelativePath: true }],
+            env: { node: true },
+        },
     ],
     invalid: [
         {
@@ -296,6 +310,15 @@ ruleTester.run("no-missing-require", rule, {
             code: "require.resolve('no-exist-package-0');",
             env: { node: true },
             errors: ['"no-exist-package-0" is not found.'],
+        },
+
+        // onlyRelativePath option
+        {
+            filename: fixture("test.js"),
+            code: "require('./c');",
+            options: [{ onlyRelativePath: true }],
+            env: { node: true },
+            errors: ['"./c" is not found.'],
         },
     ],
 })
