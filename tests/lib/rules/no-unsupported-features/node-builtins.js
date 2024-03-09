@@ -1887,6 +1887,10 @@ new RuleTester({
                     options: [{ version: "7.10.0" }],
                 },
                 {
+                    code: "require('crypto').randomUUID",
+                    options: [{ version: "14.17.0" }],
+                },
+                {
                     code: "require('crypto').scrypt",
                     options: [{ version: "10.5.0" }],
                 },
@@ -2271,6 +2275,20 @@ new RuleTester({
                                 name: "crypto.randomFill",
                                 supported: "7.10.0 (backported: ^6.13.0)",
                                 version: "7.9.9",
+                            },
+                        },
+                    ],
+                },
+                {
+                    code: "require('crypto').randomUUID",
+                    options: [{ version: "14.16.0" }],
+                    errors: [
+                        {
+                            messageId: "unsupported",
+                            data: {
+                                name: "crypto.randomUUID",
+                                supported: "14.17.0",
+                                version: "14.16.0",
                             },
                         },
                     ],
