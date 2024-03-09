@@ -43,7 +43,10 @@ $ npm install --save-dev eslint eslint-plugin-node
         "node/prefer-global/url": ["error", "always"],
         "node/prefer-promises/dns": "error",
         "node/prefer-promises/fs": "error"
-    }
+    },
+    "plugins": {
+        "node"
+    }    
 }
 ```
 
