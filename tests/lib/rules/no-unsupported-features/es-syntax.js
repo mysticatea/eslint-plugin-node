@@ -7,6 +7,7 @@
 const path = require("path")
 const { Linter, RuleTester } = require("eslint")
 const { builtin } = require("globals")
+const { Range } = require("semver")
 const rule = require("../../../../lib/rules/no-unsupported-features/es-syntax")
 
 const ES2020Supported = (() => {
@@ -2489,27 +2490,27 @@ ruleTester.run(
                     code: "obj.import(source)",
                     options: [{ version: "12.0.0" }],
                 },
-                {
+                ...["12.17.0", "13.2.0"].map(v => ({
                     code: "import(source)",
-                    options: [
-                        { version: "13.1.0", ignores: ["dynamicImport"] },
-                    ],
-                },
+                    options: [{ version: v }],
+                })),
             ],
             invalid: [
-                {
+                ...["12.16.0", "13.0.0", "13.1.0"].map(v => ({
                     code: "import(source)",
-                    options: [{ version: "13.3.0" }],
+                    options: [{ version: v }],
                     errors: [
                         {
                             messageId: "no-dynamic-import",
                             data: {
-                                supported: null,
-                                version: "13.3.0",
+                                supported: new Range(
+                                    ">=12.17 <13 || >=13.2"
+                                ).toString(),
+                                version: v,
                             },
                         },
                     ],
-                },
+                })),
             ],
         },
         {
